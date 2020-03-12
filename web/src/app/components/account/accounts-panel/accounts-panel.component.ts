@@ -26,6 +26,8 @@ export class AccountsPanelComponent implements OnInit {
   public selectedAccount: SelectableAccounts;
   public selectableAccounts = SelectableAccounts;
 
+  public searchTerm = '';
+
   constructor(private accountService: AccountService, private cd: ChangeDetectorRef) {
     this.clearForm();
     this.accounts = [];
@@ -87,6 +89,17 @@ export class AccountsPanelComponent implements OnInit {
         break;
       }
     }
+  }
+
+  search() {
+    this.selectedAccount = SelectableAccounts.All;
+    if (!this.searchTerm) {
+      this.updateDisplayAccounts();
+      this.cd.detectChanges();
+    } else {
+      this.displayAccounts = this.accounts.filter(a => a.name.toLowerCase().trim().includes(this.searchTerm.toLowerCase().trim()));
+      this.cd.detectChanges();
+    }
 
   }
 
@@ -102,8 +115,8 @@ export class AccountsPanelComponent implements OnInit {
 
 export enum SelectableAccounts {
   All = 0,
-    Current = 1,
-    Business = 2,
-    Savings = 3,
-    CreditCard = 4
+  Current = 1,
+  Business = 2,
+  Savings = 3,
+  CreditCard = 4
 }
