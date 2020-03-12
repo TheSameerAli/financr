@@ -22,20 +22,23 @@
             No accounts found
         </div>
 
-        <ng-container *ngIf="accounts && accounts.length > 0">
-            <a [routerLink]="['/account', account.id, 'dashboard']" *ngFor="let account of accounts"
-                class="panel-block">
-                <span class="panel-icon">
-                    <i class="fas fa-piggy-bank"></i>
-                </span>
-                {{account.name}} <span
-                    [class.current-account-color]="account.type === accountType.Current"
-                    [class.business-account-color]="account.type === accountType.Business"
-                    [class.credit-card-account-color]="account.type === accountType.CreditCard"
-                    [class.savings-account-color]="account.type === accountType.Savings"
-                    class="tag has-margin-left-10 ">{{accountType[account.type]}}</span>
-            </a>
-        </ng-container>
+        <div class="account-list">
+            <ng-container *ngIf="accounts && accounts.length > 0">
+                <a [routerLink]="['/account', account.id, 'dashboard']" *ngFor="let account of accounts"
+                    class="panel-block">
+                    <span class="panel-icon">
+                        <i class="fas fa-piggy-bank"></i>
+                    </span>
+                    {{account.name}} <span
+                        [class.current-account-color]="account.type === accountType.Current"
+                        [class.business-account-color]="account.type === accountType.Business"
+                        [class.credit-card-account-color]="account.type === accountType.CreditCard"
+                        [class.savings-account-color]="account.type === accountType.Savings"
+                        class="tag has-margin-left-10 ">{{accountType[account.type]}}</span>
+                </a>
+            </ng-container>
+        </div>
+
 
         <div class="panel-block">
             <button (click)="openModal()" class="button is-link is-outlined is-fullwidth">
