@@ -16,6 +16,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using WebApi.Configuration;
 using WebApi.Context;
+using WebApi.Controller;
 using WebApi.Models.Database;
 using WebApi.Models.Domain;
 using WebApi.Services;
@@ -40,6 +41,7 @@ namespace WebApi
             services.AddScoped<IAccountCategoryService, AccountCategoryService>();
             services.AddScoped<ITransactionService, TransactionService>();
             services.AddScoped<IFinancialHealthService, FinancialHealthService>();
+            services.AddScoped<IDashboardService, DashboardService>();
             
             services.AddDbContext<ApplicationDbContext>(options =>
             {

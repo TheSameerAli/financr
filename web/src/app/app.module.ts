@@ -7,6 +7,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ChartsModule } from 'ng2-charts';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,7 +23,7 @@ import { WebModalComponent } from './components/partials/modals/web-modal/web-mo
 import { TransactionsPageComponent } from './pages/account/transactions-page/transactions-page.component';
 import { ReportsPageComponent } from './pages/account/reports-page/reports-page.component';
 import { DangerZonePageComponent } from './pages/account/danger-zone-page/danger-zone-page.component';
-import { DatePipe } from '@angular/common';
+import { DatePipe, CurrencyPipe } from '@angular/common';
 import { FinancialBreakdownComponent } from './components/financial-components/financial-breakdown/financial-breakdown.component';
 
 @NgModule({
@@ -47,13 +48,14 @@ import { FinancialBreakdownComponent } from './components/financial-components/f
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ChartsModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: APIInterceptor,
     multi: true,
-  }, DatePipe],
+  }, DatePipe, CurrencyPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule {
