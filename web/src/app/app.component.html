@@ -1,0 +1,16 @@
+<div class="app">
+  <app-menu *ngIf="isLoggedIn"></app-menu>
+  <div *ngIf="isLoggedIn" class="columns">
+    <div class="column is-one-fifth left-sidebar has-margin-top-5 has-margin-left-5">
+      <app-left-sidebar></app-left-sidebar>
+    </div>
+
+    <div class="column main-content has-margin-top-5 has-margin-right-5">
+      <div class="box">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+  <router-outlet *ngIf="!isLoggedIn"></router-outlet>
+
+</div>

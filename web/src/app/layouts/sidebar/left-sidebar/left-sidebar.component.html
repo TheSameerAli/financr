@@ -1,0 +1,32 @@
+<!-- Net Worth Box -->
+<div class="net-worth" *ngIf="financialHeath">
+    <div class="box notification is-secondary">
+        <div class="heading">Net Worth</div>
+        <div class="title">{{financialHeath.totalNetWorth | currency: 'GBP'}}</div>
+        <div class="level">
+            <div class="level-item">
+                <div>
+                    <div class="heading">Personal</div>
+                    <div class="title is-5">{{financialHeath.personalAccountsWorth | currency: 'GBP'}}</div>
+                </div>
+            </div>
+            <div class="level-item">
+                <div>
+                    <div class="heading">Business</div>
+                    <div class="title is-5">{{financialHeath.businessAccountsWorth | currency: 'GBP'}}</div>
+                </div>
+            </div>
+            <div class="level-item">
+                <div>
+                    <div class="heading">Savings</div>
+                    <div class="title is-5">{{financialHeath.savingsAccountsWorth | currency: 'GBP'}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Net worth box ends -->
+
+<!-- Accounts Start -->
+<app-accounts-panel></app-accounts-panel>
+<!-- Accounts Ends -->

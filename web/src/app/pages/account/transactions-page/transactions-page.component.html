@@ -1,0 +1,123 @@
+<div class="columns">
+    <div class="column is-one-fifth">
+        <app-account-page-menu></app-account-page-menu>
+    </div>
+    <div class="column">
+        <div class="transaction-creator has-text-right has-margin-bottom-10">
+            <button (click)="openTransactionCreator('Expense')" title="Record Expense"
+                class="button has-margin-right-10 is-danger"><i class="fas fa-minus"></i></button>
+            <button (click)="openTransactionCreator('Income')" title="Record Income" class="button is-success"><i
+                    class="fas fa-plus"></i></button>
+        </div>
+        <div class="month-selector has-margin-bottom-20">
+            <div class="columns">
+                <div class="column">
+                    <button (click)="previousMonth()" class="button"><i class="fas fa-caret-left"></i></button>
+                </div>
+
+                <div class="column has-text-centered has-margin-top-10">
+                    <strong>{{displayMonth}}</strong>
+                </div>
+
+                <div class="column has-text-right">
+                    <button (click)="nextMonth()" class="button"><i class="fas fa-caret-right"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="transactions">
+            <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Date</th>
+                        <th>Description</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody *ngIf="transactions && transactions.length === 0">
+                    <tr>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>No transactions are found for this month.</td>
+                        <td>-</td>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr *ngFor="let t of transactions">
+                        <td>{{t.accountCategory.name}}</td>
+                        <td>{{t.transactionDate | date: 'MMM d, y'}}</td>
+                        <td>{{t.description}}</td>
+                        <td [class.expense-text]="t.income < 0" [class.income-text]="t.income > 0">
+                        {{t.income | currency :'GBP'}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>-</td>
+                        <td>-</td>
+                        <td class="has-text-right"> <strong>Total</strong> </td>
+                        <td [class.expense-text]="total < 0" [class.income-text]="total > 0" class="total-box">{{total | currency: 'GBP'}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+
+
+<div class="modal" [class.is-active]="createTransactionModalOpen">
+    <div class="modal-background"></div>
+    <div class="modal-card animated zoomIn">
+        <header class="modal-card-head">
+            <p class="modal-card-title">Record {{currentTransactionType}} </p>
+            <button (click)="closeModal()" class="delete" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+            <div class="field">
+                <label class="label">Date</label>
+                <div class="control">
+                    <input [(ngModel)]="transaction.transactionDate" class="input" type="date" placeholder="Transaction Date">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Amount</label>
+                <div class="control has-icons-left has-icons-right">
+                    <input [(ngModel)]="transaction.income" class="input" type="number" placeholder="Text input"
+                        step="0.01" value="0.00">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-pound-sign"></i>
+                    </span>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Category</label>
+                <div class="select" >
+                    <select [(ngModel)]="transaction.accountCategoryId" class="is-fullwidth">
+                        <ng-container *ngIf="currentTransactionType === 'Expense'">
+                            <option *ngFor="let cat of expenseCategories" [value]="cat.id">{{cat.name}}</option>
+                        </ng-container>
+
+                        <ng-container *ngIf="currentTransactionType === 'Income'">
+                            <option *ngFor="let cat of incomeCategories" [value]="cat.id">{{cat.name}}</option>
+                        </ng-container>
+                        
+                    </select>
+                  </div>
+            </div>
+
+
+            <div class="field">
+                <label class="label">Description</label>
+                <div class="control">
+                    <input [(ngModel)]="transaction.description" class="input" type="text" placeholder="Transaction notes">
+                </div>
+            </div>
+        </section>
+        <footer class="modal-card-foot">
+            <button (click)="createTransaction()" class="button is-success">Create</button>
+            <button (click)="closeModal()" class="button">Cancel</button>
+        </footer>
+    </div>
+</div>

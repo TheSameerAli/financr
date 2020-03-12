@@ -1,0 +1,33 @@
+<div class="transactions has-margin-top-5">
+    <nav class="panel">
+        <p class="panel-heading">
+            Recent Transactions
+        </p>
+        <div class="panel-block">
+            <p class="control has-icons-left">
+                <input class="input" type="text" placeholder="Search">
+                <span class="icon is-left">
+                    <i class="fas fa-search" aria-hidden="true"></i>
+                </span>
+            </p>
+        </div>
+
+        <span class="panel-block ">
+            <table class="table is-fullwidth">
+                <tbody>
+                    <tr *ngFor="let transaction of transactions">
+                        <td>
+                            <i *ngIf="transaction.income < 0" class="fas fa-minus has-text-danger"
+                                aria-hidden="true"></i>
+                            <i *ngIf="transaction.income > 0" class="fas fa-plus has-text-success"
+                                aria-hidden="true"></i>
+                        </td>
+                        <td>{{transaction.description}}</td>
+                        <td [class.has-text-success]="transaction.income > 0" [class.has-text-danger]="transaction.income < 0" class="has-text-right">{{transaction.income | currency: 'GBP'}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </span>
+    </nav>
+</div>
