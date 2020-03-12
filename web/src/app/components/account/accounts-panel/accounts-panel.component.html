@@ -12,11 +12,21 @@
             </p>
         </div>
         <p class="panel-tabs">
-            <a class="is-active">All</a>
-            <a>Current</a>
-            <a>Business</a>
-            <a>Savings</a>
-            <a>Credit Card</a>
+            <a (click)="changeSelectedAccountType(selectableAccounts.All)" [class.is-active]="selectedAccount === selectableAccounts.All">All</a>
+            <a 
+            (click)="changeSelectedAccountType(selectableAccounts.Current)" 
+            [class.is-active]="selectedAccount === selectableAccounts.Current">Current</a>
+
+            <a 
+            (click)="changeSelectedAccountType(selectableAccounts.Business)" 
+            [class.is-active]="selectedAccount === selectableAccounts.Business">Business</a>
+
+            <a 
+            (click)="changeSelectedAccountType(selectableAccounts.Savings)"
+             [class.is-active]="selectedAccount === selectableAccounts.Savings">Savings</a>
+
+            <a (click)="changeSelectedAccountType(selectableAccounts.CreditCard)" 
+            [class.is-active]="selectedAccount === selectableAccounts.CreditCard">Credit Card</a>
         </p>
         <div *ngIf="accounts === undefined || accounts === null || accounts.length === 0" class="panel-block">
             No accounts found
@@ -24,7 +34,7 @@
 
         <div class="account-list">
             <ng-container *ngIf="accounts && accounts.length > 0">
-                <a [routerLink]="['/account', account.id, 'dashboard']" *ngFor="let account of accounts"
+                <a [routerLink]="['/account', account.id, 'dashboard']" *ngFor="let account of displayAccounts"
                     class="panel-block">
                     <span class="panel-icon">
                         <i class="fas fa-piggy-bank"></i>
