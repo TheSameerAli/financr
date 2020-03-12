@@ -30,7 +30,8 @@ namespace WebApi.Services
             var personalWorth = await GetAccountsWorth(userId, AccountType.Current);
             var businessWorth = await GetAccountsWorth(userId, AccountType.Business);
             var savingsWorth = await GetAccountsWorth(userId, AccountType.Savings);
-            return new FinancialHealth(personalWorth+businessWorth, personalWorth, businessWorth, savingsWorth);
+            return new FinancialHealth(personalWorth+businessWorth+savingsWorth, 
+                personalWorth, businessWorth, savingsWorth);
         }
 
 
