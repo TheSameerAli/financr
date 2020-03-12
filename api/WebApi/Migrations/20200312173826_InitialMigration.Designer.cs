@@ -10,8 +10,8 @@ using WebApi.Context;
 namespace WebApi.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200306135817_AddTransactionDateColumn")]
-    partial class AddTransactionDateColumn
+    [Migration("20200312173826_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -38,7 +38,7 @@ namespace WebApi.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Accounts");
+                    b.ToTable("Financr_Accounts");
                 });
 
             modelBuilder.Entity("WebApi.Models.Database.AccountCategory", b =>
@@ -58,13 +58,15 @@ namespace WebApi.Migrations
 
                     b.HasIndex("AccountId");
 
-                    b.ToTable("AccountCategories");
+                    b.ToTable("Financr_AccountCategories");
                 });
 
             modelBuilder.Entity("WebApi.Models.Database.Transaction", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<Guid>("AccountCategoryId");
 
                     b.Property<Guid>("AccountId");
 
@@ -78,9 +80,11 @@ namespace WebApi.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AccountCategoryId");
+
                     b.HasIndex("AccountId");
 
-                    b.ToTable("Transactions");
+                    b.ToTable("Financr_Transactions");
                 });
 
             modelBuilder.Entity("WebApi.Models.Database.User", b =>
@@ -96,7 +100,7 @@ namespace WebApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Financr_Users");
                 });
 
             modelBuilder.Entity("WebApi.Models.Database.Account", b =>
@@ -117,6 +121,11 @@ namespace WebApi.Migrations
 
             modelBuilder.Entity("WebApi.Models.Database.Transaction", b =>
                 {
+                    b.HasOne("WebApi.Models.Database.AccountCategory", "AccountCategory")
+                        .WithMany()
+                        .HasForeignKey("AccountCategoryId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("WebApi.Models.Database.Account", "Account")
                         .WithMany("Transactions")
                         .HasForeignKey("AccountId")

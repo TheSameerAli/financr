@@ -1,4 +1,5 @@
 ﻿﻿using Microsoft.EntityFrameworkCore;
+ using Microsoft.EntityFrameworkCore.Metadata;
  using WebApi.Models.Database;
 
  namespace WebApi.Context
@@ -24,6 +25,13 @@
          */
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            foreach (var entityType in modelBuilder.Model.GetEntityTypes())
+            {
+                const string TableNamePrefix = "Financr_";
+                var tableName = entityType.Relational().TableName;
+                entityType.Relational().TableName = TableNamePrefix + tableName;
+            }
+
             #region User
             modelBuilder.Entity<User>(o =>
             {
