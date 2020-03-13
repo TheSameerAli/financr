@@ -60,7 +60,7 @@ api-release:
         - docker rmi $(docker image ls -q registry.gitlab.com/sam.eer.ali/financr/api) || true
         - echo "$CI_REGISTRY_PASSWORD" | docker login registry.gitlab.com -u "$CI_REGISTRY_USER" --password-stdin
         - docker pull registry.gitlab.com/sam.eer.ali/financr/api:latest
-        - docker run -d -p 8071:80 --name financr-api --env ConnectionStrings__DefaultConnection="$ConnectionStrings__DefaultConnection" registry.gitlab.com/financr/api:latest
+        - docker run -d -p 8071:80 --name financr-api --env ConnectionStrings__DefaultConnection="$ConnectionStrings__DefaultConnection" registry.gitlab.com/sam.eer.ali/financr/api:latest
 
 
 #############################################
