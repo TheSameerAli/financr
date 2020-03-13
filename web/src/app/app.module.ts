@@ -45,7 +45,7 @@ import { FinancialBreakdownComponent } from './components/financial-components/f
     FinancialBreakdownComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
