@@ -1,8 +1,8 @@
 FROM node:10-alpine as buildContainer
 WORKDIR /app
-COPY web/package.json web/package-lock.json /app/
+COPY ./package.json ./package-lock.json /app/
 RUN npm install
-COPY web/ /app
+COPY . /app
 RUN npm run build:ssr
 
 

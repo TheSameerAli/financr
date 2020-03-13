@@ -1,7 +1,7 @@
 FROM mcr.microsoft.com/dotnet/core/sdk:2.2 AS build
 WORKDIR /app
 
-COPY /api/WebApi/ ./financr-api/
+COPY ./WebApi/ ./financr-api/
 WORKDIR /app/financr-api
 RUN ls
 RUN dotnet restore
