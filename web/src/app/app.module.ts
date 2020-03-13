@@ -25,6 +25,11 @@ import { ReportsPageComponent } from './pages/account/reports-page/reports-page.
 import { DangerZonePageComponent } from './pages/account/danger-zone-page/danger-zone-page.component';
 import { DatePipe, CurrencyPipe } from '@angular/common';
 import { FinancialBreakdownComponent } from './components/financial-components/financial-breakdown/financial-breakdown.component';
+import { LocalStorage } from './models/local-storage';
+
+export function localStorageFactory() {
+  return localStorage;
+}
 
 @NgModule({
   declarations: [
@@ -55,7 +60,8 @@ import { FinancialBreakdownComponent } from './components/financial-components/f
     provide: HTTP_INTERCEPTORS,
     useClass: APIInterceptor,
     multi: true,
-  }, DatePipe, CurrencyPipe],
+  }, DatePipe, CurrencyPipe,
+  {provide: LocalStorage, useFactory: localStorageFactory}],
   bootstrap: [AppComponent]
 })
 export class AppModule {
