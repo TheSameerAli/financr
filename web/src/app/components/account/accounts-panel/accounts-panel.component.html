@@ -1,0 +1,106 @@
+<div class="accounts has-margin-top-5">
+    <nav class="panel">
+        <p class="panel-heading">
+            Accounts
+        </p>
+        <div class="panel-block">
+            <p class="control has-icons-left">
+                <input (keyup)="search()" [(ngModel)]="searchTerm" class="input" type="text" placeholder="Search">
+                <span class="icon is-left">
+                    <i class="fas fa-search" aria-hidden="true"></i>
+                </span>
+            </p>
+        </div>
+        <p class="panel-tabs">
+            <a (click)="changeSelectedAccountType(selectableAccounts.All)" [class.is-active]="selectedAccount === selectableAccounts.All">All</a>
+            <a 
+            (click)="changeSelectedAccountType(selectableAccounts.Current)" 
+            [class.is-active]="selectedAccount === selectableAccounts.Current">Current</a>
+
+            <a 
+            (click)="changeSelectedAccountType(selectableAccounts.Business)" 
+            [class.is-active]="selectedAccount === selectableAccounts.Business">Business</a>
+
+            <a 
+            (click)="changeSelectedAccountType(selectableAccounts.Savings)"
+             [class.is-active]="selectedAccount === selectableAccounts.Savings">Savings</a>
+
+            <a (click)="changeSelectedAccountType(selectableAccounts.CreditCard)" 
+            [class.is-active]="selectedAccount === selectableAccounts.CreditCard">Credit Card</a>
+        </p>
+        <div *ngIf="accounts === undefined || accounts === null || accounts.length === 0" class="panel-block">
+            No accounts found
+        </div>
+
+        <div class="account-list">
+            <ng-container *ngIf="accounts && accounts.length > 0">
+                <a [routerLink]="['/account', account.id, 'dashboard']" *ngFor="let account of displayAccounts"
+                    class="panel-block">
+                    <span class="panel-icon">
+                        <i class="fas fa-piggy-bank"></i>
+                    </span>
+                    {{account.name}} <span
+                        [class.current-account-color]="account.type === accountType.Current"
+                        [class.business-account-color]="account.type === accountType.Business"
+                        [class.credit-card-account-color]="account.type === accountType.CreditCard"
+                        [class.savings-account-color]="account.type === accountType.Savings"
+                        class="tag has-margin-left-10 ">{{accountType[account.type]}}</span>
+                </a>
+            </ng-container>
+        </div>
+
+
+        <div class="panel-block">
+            <button (click)="openModal()" class="button is-link is-outlined is-fullwidth">
+                Add Account
+            </button>
+        </div>
+    </nav>
+</div>
+
+<div class="modal" [class.is-active]="createAccountModalOpen">
+    <div class="modal-background"></div>
+    <div class="modal-card animated zoomIn">
+        <header class="modal-card-head">
+            <p class="modal-card-title">Add Account</p>
+            <button (click)="closeModal()" class="delete" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+            <div class="field">
+                <label class="label">Name</label>
+                <div class="control">
+                    <input [(ngModel)]="account.name" class="input" type="text" placeholder="Account Name">
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Account Type</label>
+                <div class="control is-full-width">
+                    <div class="select">
+                        <select [(ngModel)]="account.type">
+                            <option [value]="accountType.Current">Current</option>
+                            <option [value]="accountType.Savings">Savings</option>
+                            <option [value]="accountType.CreditCard">Credit Card</option>
+                            <option [value]="accountType.Business">Business</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Initial Balance</label>
+                <div class="control has-icons-left has-icons-right">
+                    <input [(ngModel)]="account.initialAmount" class="input" type="number" placeholder="Text input"
+                        step="0.01" value="0.00">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-pound-sign"></i>
+                    </span>
+                </div>
+            </div>
+        </section>
+        <footer class="modal-card-foot">
+            <button (click)="createAccount()" class="button is-success">Create</button>
+            <button (click)="closeModal()" class="button">Cancel</button>
+        </footer>
+    </div>
+</div>

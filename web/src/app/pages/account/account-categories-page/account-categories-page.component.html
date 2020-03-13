@@ -1,0 +1,91 @@
+<div class="columns">
+    <div class="column is-one-fifth">
+        <app-account-page-menu></app-account-page-menu>
+    </div>
+
+    <!-- Income categories -->
+    <div class="column">
+        <table class="table is-fullwidth">
+            <thead>
+                <tr>
+                    <th>Income Categories</th>
+                    <th></th>
+                    <th class="has-text-right">
+                        <button (click)="openModal('income')" class="button is-success is-small"><i
+                                class="fas fa-plus"></i></button>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngIf="!incomeCategories || incomeCategories.length === 0">
+                    <td>No income categories are found</td>
+                </tr>
+                <tr *ngFor="let category of incomeCategories">
+                    <td>{{category.name}}</td>
+                    <td></td>
+                    <td class="has-text-right">
+                        <button (click)="deleteCategory(category.id)" class="button is-danger is-small"><i
+                                class="fas fa-trash"></i></button>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <!-- Income categories ends here -->
+
+    <!-- Expense categories -->
+    <div class="column">
+        <table class="table is-fullwidth">
+            <thead>
+                <tr>
+                    <th>Expense Categories</th>
+                    <th></th>
+                    <th class="has-text-right">
+                        <button (click)="openModal('expense')" class="button is-success is-small"><i
+                                class="fas fa-plus"></i>
+                        </button>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngIf="!expenseCategories || expenseCategories.length === 0">
+                    <td>No expense categories are found</td>
+                </tr>
+                <tr *ngFor="let category of expenseCategories">
+                    <td>{{category.name}}</td>
+                    <td></td>
+                    <td class="has-text-right">
+                        <button (click)="deleteCategory(category.id)" class="button is-danger is-small"><i
+                                class="fas fa-trash"></i></button>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <!-- Outgoing categories ends here -->
+
+</div>
+
+<div class="modal" [class.is-active]="createAccountModalOpen">
+    <div class="modal-background"></div>
+    <div class="modal-card animated zoomIn">
+        <header class="modal-card-head">
+            <p class="modal-card-title">Add {{currentCategoryType}} Category</p>
+            <button (click)="closeModal()" class="delete" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+            <div class="field">
+                <label class="label">Name</label>
+                <div class="control">
+                    <input [(ngModel)]="category.name" class="input" type="text" placeholder="Category Name">
+                </div>
+            </div>
+        </section>
+        <footer class="modal-card-foot">
+            <button [disabled]="!category.name" (click)="createCategory()" class="button is-success">Create</button>
+            <button (click)="closeModal()" class="button">Cancel</button>
+        </footer>
+    </div>
+</div>

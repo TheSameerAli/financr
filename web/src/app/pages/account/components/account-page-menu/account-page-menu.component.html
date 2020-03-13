@@ -1,0 +1,26 @@
+<aside class="menu">
+
+    <p class="menu-label">
+        General
+    </p>
+    <ul class="menu-list">
+        <li><a routerLinkActive="is-active" [routerLink]="['/account', accountId, 'dashboard']">Dashboard</a></li>
+    </ul>
+
+    <p class="menu-label">
+        Transactions
+    </p>
+    <ul class="menu-list">
+        <li><a routerLinkActive="is-active" [routerLink]="['/account', accountId, 'transactions']">Transactions</a></li>
+        <li><a routerLinkActive="is-active" [routerLink]="['/account', accountId, 'reports']">Reports</a></li>
+    </ul>
+
+    <p class="menu-label">
+        Management
+    </p>
+
+    <ul class="menu-list">
+        <li><a routerLinkActive="is-active" [routerLink]="['/account', accountId, 'categories']">Categories</a></li>
+        <li><a  routerLinkActive="is-active"[routerLink]="['/account', accountId, 'danger']">Danger Zone</a></li>
+    </ul>
+</aside>

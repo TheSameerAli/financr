@@ -1,0 +1,18 @@
+<div class="dashboard-page">
+    <div class="columns">
+        <div class="column">
+            <canvas *ngIf="mainChart" baseChart width="400" height="250"
+                [datasets]="mainChart.datasets"
+                [labels]="mainChart.labels"
+                [chartType]="'line'"
+                [options]="mainChart.options"
+                [colors]="mainChart.colors"
+                ></canvas>
+
+        </div>
+
+        <div class="column">
+            <p>Lorem ipsum dolar</p>
+        </div>
+    </div>
+</div>

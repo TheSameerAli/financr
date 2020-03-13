@@ -1,0 +1,13 @@
+node_modules/
+bin/
+dist/
+obj/
+.atom
+.atom/
+.idea/
+.idea
+.code
+.code/
+.vscode/
+.vscode
+appsettings.json

@@ -1,0 +1,119 @@
+stages:
+    - api-build
+    - api-release
+    - frontend-build
+    - frontend-release
+  
+############################################
+####### Build api Docker Image##############
+############################################
+build:
+    stage: api-build
+    variables:
+        DOCKER_HOST: tcp://docker:2375/
+        DOCKER_DRIVER: overlay2
+    image: docker:latest
+    services:
+        - docker:dind
+    only:
+        - master
+    before_script:
+        - docker info
+        - echo "$CI_REGISTRY_PASSWORD" | docker login registry.gitlab.com -u "$CI_REGISTRY_USER" --password-stdin 
+    script:
+    - >
+        docker build
+        --pull
+        --tag registry.gitlab.com/sam.eer.ali/financr/api:latest
+        -f api/Dockerfile .
+    - docker image ls
+    - docker push registry.gitlab.com/sam.eer.ali/financr/api:latest
+  
+#############################################
+####### Release API Docker Image ###########
+#############################################
+release:
+    stage: api-release
+    image: ubuntu:latest
+    variables:
+        DOCKER_HOST: ssh://root@$SERVER_IP
+        DOCKER_DRIVER: overlay2
+    only:
+        - master
+    before_script:
+        - apt-get update
+        - 'which ssh-agent || ( apt-get install -qq openssh-client )'
+        - eval $(ssh-agent -s)
+        - ssh-add <(echo "$SSH_PRIVATE_KEY")
+        - mkdir ~/.ssh
+        - touch ~/.ssh/config
+        - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+        - apt-get install -y apt-transport-https ca-certificates curl software-properties-common
+        - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+        - add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+        - apt-get update
+        - apt-get install -y docker-ce
+
+
+    script:
+        - docker stop financr-api || true && docker rm financr-api || true
+        - docker rmi $(docker image ls -q registry.gitlab.com/sam.eer.ali/financr/api) || true
+        - echo "$CI_REGISTRY_PASSWORD" | docker login registry.gitlab.com -u "$CI_REGISTRY_USER" --password-stdin
+        - docker pull registry.gitlab.com/sam.eer.ali/financr/api:latest
+        - docker run -d -p 8071:80 --name financr-api --env ConnectionStrings__DefaultConnection="$ConnectionStrings__DefaultConnection" registry.gitlab.com/financr/api:latest
+
+
+#############################################
+####### Build frontend Docker Image #########
+#############################################
+build:
+    stage: frontend-build
+    variables:
+      DOCKER_HOST: tcp://docker:2375/
+      DOCKER_DRIVER: overlay2
+    image: docker:latest
+    services:
+      - docker:dind
+    only:
+      - master
+    before_script:
+      - docker info
+      - echo "$CI_REGISTRY_PASSWORD" | docker login registry.gitlab.com -u "$CI_REGISTRY_USER" --password-stdin 
+    script:
+      - docker build -t registry.gitlab.com/sam.eer.ali/financr/frontend:latest -f web/Dockerfile .
+      - docker image ls
+      - docker push registry.gitlab.com/sam.eer.ali/financr/frontend:latest
+  
+  
+#############################################
+####### Release FRONTEND Docker Image #######
+#############################################
+release:
+    stage: frontend-release
+    image: ubuntu:latest
+    variables:
+      DOCKER_HOST: ssh://root@$SERVER_IP
+      DOCKER_DRIVER: overlay2
+    only:
+      - master
+    before_script:
+      - apt-get update
+      - 'which ssh-agent || ( apt-get install -qq openssh-client )'
+      - eval $(ssh-agent -s)
+      - ssh-add <(echo "$SSH_PRIVATE_KEY")
+      - mkdir ~/.ssh
+      - touch ~/.ssh/config
+      - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+      - apt-get install -y apt-transport-https ca-certificates curl software-properties-common
+      - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+      - add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+      - apt-get update
+      - apt-get install -y docker-ce
+  
+      
+    script:
+      - docker stop financr-web || true && docker rm financr-web || true
+      - docker rmi $(docker image ls -q registry.gitlab.com/sam.eer.ali/financr/frontend) || true
+      - echo "$CI_REGISTRY_PASSWORD" | docker login registry.gitlab.com -u "$CI_REGISTRY_USER" --password-stdin
+      - docker pull registry.gitlab.com/sam.eer.ali/financr/frontend:latest
+      - docker run -d -p 8070:4000 --name financr-web registry.gitlab.com/sam.eer.ali/financr/frontend:latest
