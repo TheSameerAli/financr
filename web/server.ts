@@ -19,6 +19,9 @@ import 'zone.js/dist/zone-node';
 
 import * as express from 'express';
 import {join} from 'path';
+import 'localstorage-polyfill'
+
+global['localStorage'] = localStorage;
 
 // Express server
 const domino = require("domino");
