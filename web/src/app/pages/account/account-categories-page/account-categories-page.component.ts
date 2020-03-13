@@ -1,5 +1,5 @@
 import { AccountType } from './../../../models/account';
-import { CategoryType, AccountCategory } from './../../../models/AccountCategory';
+import { CategoryType, AccountCategory } from './../../../models/accountCategory';
 import { AccountService } from './../../../services/account/account.service';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
