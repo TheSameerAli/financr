@@ -25,7 +25,7 @@ build:
         docker build
         --pull
         --tag registry.gitlab.com/sam.eer.ali/financr/api:latest
-        -f api/Dockerfile .
+        -f api/Dockerfile api/
     - docker image ls
     - docker push registry.gitlab.com/sam.eer.ali/financr/api:latest
   
@@ -80,7 +80,7 @@ build:
       - docker info
       - echo "$CI_REGISTRY_PASSWORD" | docker login registry.gitlab.com -u "$CI_REGISTRY_USER" --password-stdin 
     script:
-      - docker build -t registry.gitlab.com/sam.eer.ali/financr/frontend:latest -f web/Dockerfile .
+      - docker build -t registry.gitlab.com/sam.eer.ali/financr/frontend:latest -f web/Dockerfile web/
       - docker image ls
       - docker push registry.gitlab.com/sam.eer.ali/financr/frontend:latest
   
