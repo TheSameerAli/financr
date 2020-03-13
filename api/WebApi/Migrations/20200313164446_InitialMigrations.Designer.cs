@@ -10,13 +10,14 @@ using WebApi.Context;
 namespace WebApi.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200312173826_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20200313164446_InitialMigrations")]
+    partial class InitialMigrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
+                .HasDefaultSchema("Financr")
                 .HasAnnotation("ProductVersion", "2.2.3-servicing-35854")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -38,7 +39,7 @@ namespace WebApi.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Financr_Accounts");
+                    b.ToTable("Accounts");
                 });
 
             modelBuilder.Entity("WebApi.Models.Database.AccountCategory", b =>
@@ -58,7 +59,7 @@ namespace WebApi.Migrations
 
                     b.HasIndex("AccountId");
 
-                    b.ToTable("Financr_AccountCategories");
+                    b.ToTable("AccountCategories");
                 });
 
             modelBuilder.Entity("WebApi.Models.Database.Transaction", b =>
@@ -84,7 +85,7 @@ namespace WebApi.Migrations
 
                     b.HasIndex("AccountId");
 
-                    b.ToTable("Financr_Transactions");
+                    b.ToTable("Transactions");
                 });
 
             modelBuilder.Entity("WebApi.Models.Database.User", b =>
@@ -100,7 +101,7 @@ namespace WebApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Financr_Users");
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("WebApi.Models.Database.Account", b =>

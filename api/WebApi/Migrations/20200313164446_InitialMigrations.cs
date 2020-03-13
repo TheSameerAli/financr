@@ -3,12 +3,16 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WebApi.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class InitialMigrations : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.EnsureSchema(
+                name: "Financr");
+
             migrationBuilder.CreateTable(
-                name: "Financr_Users",
+                name: "Users",
+                schema: "Financr",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -18,11 +22,12 @@ namespace WebApi.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Financr_Users", x => x.Id);
+                    table.PrimaryKey("PK_Users", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Financr_Accounts",
+                name: "Accounts",
+                schema: "Financr",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -33,17 +38,19 @@ namespace WebApi.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Financr_Accounts", x => x.Id);
+                    table.PrimaryKey("PK_Accounts", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Financr_Accounts_Financr_Users_UserId",
+                        name: "FK_Accounts_Users_UserId",
                         column: x => x.UserId,
-                        principalTable: "Financr_Users",
+                        principalSchema: "Financr",
+                        principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Financr_AccountCategories",
+                name: "AccountCategories",
+                schema: "Financr",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -54,17 +61,19 @@ namespace WebApi.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Financr_AccountCategories", x => x.Id);
+                    table.PrimaryKey("PK_AccountCategories", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Financr_AccountCategories_Financr_Accounts_AccountId",
+                        name: "FK_AccountCategories_Accounts_AccountId",
                         column: x => x.AccountId,
-                        principalTable: "Financr_Accounts",
+                        principalSchema: "Financr",
+                        principalTable: "Accounts",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Financr_Transactions",
+                name: "Transactions",
+                schema: "Financr",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -77,55 +86,65 @@ namespace WebApi.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Financr_Transactions", x => x.Id);
+                    table.PrimaryKey("PK_Transactions", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Financr_Transactions_Financr_AccountCategories_AccountCategoryId",
+                        name: "FK_Transactions_AccountCategories_AccountCategoryId",
                         column: x => x.AccountCategoryId,
-                        principalTable: "Financr_AccountCategories",
+                        principalSchema: "Financr",
+                        principalTable: "AccountCategories",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Financr_Transactions_Financr_Accounts_AccountId",
+                        name: "FK_Transactions_Accounts_AccountId",
                         column: x => x.AccountId,
-                        principalTable: "Financr_Accounts",
+                        principalSchema: "Financr",
+                        principalTable: "Accounts",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Financr_AccountCategories_AccountId",
-                table: "Financr_AccountCategories",
+                name: "IX_AccountCategories_AccountId",
+                schema: "Financr",
+                table: "AccountCategories",
                 column: "AccountId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Financr_Accounts_UserId",
-                table: "Financr_Accounts",
+                name: "IX_Accounts_UserId",
+                schema: "Financr",
+                table: "Accounts",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Financr_Transactions_AccountCategoryId",
-                table: "Financr_Transactions",
+                name: "IX_Transactions_AccountCategoryId",
+                schema: "Financr",
+                table: "Transactions",
                 column: "AccountCategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Financr_Transactions_AccountId",
-                table: "Financr_Transactions",
+                name: "IX_Transactions_AccountId",
+                schema: "Financr",
+                table: "Transactions",
                 column: "AccountId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Financr_Transactions");
+                name: "Transactions",
+                schema: "Financr");
 
             migrationBuilder.DropTable(
-                name: "Financr_AccountCategories");
+                name: "AccountCategories",
+                schema: "Financr");
 
             migrationBuilder.DropTable(
-                name: "Financr_Accounts");
+                name: "Accounts",
+                schema: "Financr");
 
             migrationBuilder.DropTable(
-                name: "Financr_Users");
+                name: "Users",
+                schema: "Financr");
         }
     }
 }

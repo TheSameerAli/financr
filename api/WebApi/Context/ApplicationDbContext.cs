@@ -25,12 +25,7 @@
          */
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            foreach (var entityType in modelBuilder.Model.GetEntityTypes())
-            {
-                const string TableNamePrefix = "Financr_";
-                var tableName = entityType.Relational().TableName;
-                entityType.Relational().TableName = TableNamePrefix + tableName;
-            }
+            modelBuilder.HasDefaultSchema("Financr");
 
             #region User
             modelBuilder.Entity<User>(o =>
