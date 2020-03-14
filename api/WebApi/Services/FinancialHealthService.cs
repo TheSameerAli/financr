@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using WebApi.Context;
 using WebApi.Models.Database;
 using WebApi.Models.Domain;
-using Account = WebApi.Models.Database.Account;
+using Account = WebApi.Models.Database.Account.Account;
 
 namespace WebApi.Services
 {

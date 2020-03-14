@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using WebApi.Context;
 using WebApi.Models.Database;
+using WebApi.Models.Database.Account;
 
 namespace WebApi.Services
 {

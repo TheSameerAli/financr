@@ -1,4 +1,4 @@
-import { DangerZonePageComponent } from './pages/account/danger-zone-page/danger-zone-page.component';
+import { AccountSettingsPageComponent } from './pages/account/account-settings-page/account-settings-page.component';
 import { ReportsPageComponent } from './pages/account/reports-page/reports-page.component';
 import { TransactionsPageComponent } from './pages/account/transactions-page/transactions-page.component';
 import { AccountCategoriesPageComponent } from './pages/account/account-categories-page/account-categories-page.component';
@@ -42,8 +42,8 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'account/:id/danger',
-    component: DangerZonePageComponent,
+    path: 'account/:id/settings',
+    component: AccountSettingsPageComponent,
     canActivate: [AuthGuard]
   },
   {

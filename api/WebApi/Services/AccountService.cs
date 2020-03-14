@@ -7,8 +7,9 @@ using Microsoft.EntityFrameworkCore;
 using WebApi.Configuration;
 using WebApi.Context;
 using WebApi.Models.Database;
+using WebApi.Models.Database.Account;
 using WebApi.Models.Domain;
-using Account = WebApi.Models.Database.Account;
+using Account = WebApi.Models.Database.Account.Account;
 using Transaction = WebApi.Models.Database.Transaction;
 
 namespace WebApi.Services
@@ -18,6 +19,7 @@ namespace WebApi.Services
         Task<Account> Create(string name, AccountType type, Guid userId, double initialBalance);
         Task<List<Account>> GetAccounts(Guid userId);
         Task<Account> GetAccount(Guid accountId);
+        Task<AccountBudget> SetBudget(double budget, Guid accountId);
 
 
     }
@@ -27,12 +29,14 @@ namespace WebApi.Services
         private readonly DbSet<Account> _accounts;
         private readonly DbSet<Transaction> _transactions;
         private readonly DbSet<AccountCategory> _accountCategories;
+        private readonly DbSet<AccountBudget> _accountBudgets;
         private readonly IAccountCategoryService _accountCategoryService;
         public AccountService(IUnitOfWork uow, IAccountCategoryService accountCategoryService)
         {
             _uow = uow;
             _accounts = _uow.Set<Account>();
             _transactions = _uow.Set<Transaction>();
+            _accountBudgets = _uow.Set<AccountBudget>();
             _accountCategoryService = accountCategoryService;
             _accountCategories = _uow.Set<AccountCategory>();
         }
@@ -61,6 +65,7 @@ namespace WebApi.Services
         {
             return await _accounts
                 .Where(a => a.UserId == userId)
+                .Include(a => a.Budget)
                 .ToListAsync();
         }
 
@@ -68,7 +73,25 @@ namespace WebApi.Services
         {
             return await _accounts
                 .Include(a => a.Transactions)
+                .Include(ac => ac.Budget)
                 .FirstOrDefaultAsync(a => a.Id == accountId);
+        }
+
+        public async Task<AccountBudget> SetBudget(double budget, Guid accountId)
+        {
+            var accountBudget = await 
+                _accountBudgets.FirstOrDefaultAsync(ab => ab.AccountId == accountId);
+            if (accountBudget == null)
+            {
+                accountBudget = new AccountBudget(budget, accountId);
+                await _accountBudgets.AddAsync(accountBudget);
+                await _uow.SaveChangesAsync();
+                return accountBudget;
+            }
+
+            accountBudget.Budget = budget;
+            await _uow.SaveChangesAsync();
+            return accountBudget;
         }
 
         private async Task<bool> AddDefaultCategories(Guid accountId)

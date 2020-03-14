@@ -1,3 +1,4 @@
+import { AccountSettingsPageComponent } from './pages/account/account-settings-page/account-settings-page.component';
 import { AccountPageMenuComponent } from './pages/account/components/account-page-menu/account-page-menu.component';
 import { UserService } from './services/user/user.service';
 import { User } from './models/user';
@@ -22,7 +23,6 @@ import { AccountCategoriesPageComponent } from './pages/account/account-categori
 import { WebModalComponent } from './components/partials/modals/web-modal/web-modal.component';
 import { TransactionsPageComponent } from './pages/account/transactions-page/transactions-page.component';
 import { ReportsPageComponent } from './pages/account/reports-page/reports-page.component';
-import { DangerZonePageComponent } from './pages/account/danger-zone-page/danger-zone-page.component';
 import { DatePipe, CurrencyPipe } from '@angular/common';
 import { FinancialBreakdownComponent } from './components/financial-components/financial-breakdown/financial-breakdown.component';
 import { LocalStorage } from './models/local-storage';
@@ -46,8 +46,8 @@ export function localStorageFactory() {
     WebModalComponent,
     TransactionsPageComponent,
     ReportsPageComponent,
-    DangerZonePageComponent,
-    FinancialBreakdownComponent
+    FinancialBreakdownComponent,
+    AccountSettingsPageComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

@@ -37,7 +37,13 @@ namespace WebApi.Controller
         public async Task<IActionResult> GetAccountData(Guid accountId)
         {
             var account = await _accountService.GetAccount(accountId);
-            return Ok(new Account(account.Id, account.Name, account.Type, account.UserId, account.Transactions));
+            return Ok(new Account(account.Id, account.Name, account.Type, account.UserId, account.Transactions, account.Budget));
+        }
+
+        [HttpPost("{accountId}/budget")]
+        public async Task<IActionResult> SetAccountBudget(Guid accountId, SetAccountBudgetRequest request)
+        {
+            return Ok(await _accountService.SetBudget(request.Budget, accountId));
         }
 
         

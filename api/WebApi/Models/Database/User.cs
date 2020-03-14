@@ -9,7 +9,7 @@ namespace WebApi.Models.Database
         public string Email { get; set; }
         public string Password { get; set; }
         
-        public virtual List<Account> Accounts { get; set; }
+        public virtual List<Account.Account> Accounts { get; set; }
         
         public User() {}
 

@@ -1,6 +1,7 @@
 ﻿﻿using Microsoft.EntityFrameworkCore;
  using Microsoft.EntityFrameworkCore.Metadata;
  using WebApi.Models.Database;
+ using WebApi.Models.Database.Account;
 
  namespace WebApi.Context
 {
@@ -40,6 +41,7 @@
                 o.HasMany(a => a.Transactions);
                 o.HasMany(a => a.Categories);
                 o.HasOne(a => a.User);
+                o.HasOne(a => a.Budget);
             });
             #endregion
             
@@ -47,6 +49,14 @@
             modelBuilder.Entity<AccountCategory>(o =>
             {
                 o.HasOne(ac => ac.Account);
+                
+            });
+            #endregion
+            
+            #region AccountBudget
+            modelBuilder.Entity<AccountBudget>(o =>
+            {
+                o.HasOne(ab => ab.Account);
                 
             });
             #endregion
