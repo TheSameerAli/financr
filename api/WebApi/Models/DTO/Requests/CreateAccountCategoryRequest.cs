@@ -1,5 +1,6 @@
 ﻿using System;
 using WebApi.Models.Database;
+using WebApi.Models.Database.Account;
 
 namespace WebApi.Models.DTO.Requests
 {

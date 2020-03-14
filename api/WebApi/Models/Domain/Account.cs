@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using WebApi.Models.Database;
+using WebApi.Models.Database.Account;
 
 namespace WebApi.Models.Domain
 {
@@ -12,6 +13,8 @@ namespace WebApi.Models.Domain
         public Guid UserId { get; set; }
         public AccountType Type { get; set; }
         public List<Transaction> Transactions { get; set; }
+        
+        public AccountBudget Budget { get; set; }
 
         public double AvailableBalance => Transactions.Sum(transaction => transaction.Income);
         public double TotalIncome 
@@ -19,13 +22,14 @@ namespace WebApi.Models.Domain
         public double TotalOutgoings 
             => Transactions.Where(transaction => transaction.Income < 0).Sum(transaction => transaction.Income);
 
-        public Account(Guid id, string name, AccountType type, Guid userId, List<Transaction> transactions)
+        public Account(Guid id, string name, AccountType type, Guid userId, List<Transaction> transactions, AccountBudget budget)
         {
             Id = id;
             Name = name;
             Type = type;
             UserId = userId;
             Transactions = transactions;
+            Budget = budget;
         }
     }
 

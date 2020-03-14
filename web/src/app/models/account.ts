@@ -1,3 +1,4 @@
+import { AccountBudget } from './account-budget';
 export interface Account {
     name: string;
     id: string;
@@ -5,6 +6,7 @@ export interface Account {
     availableBalance: number;
     totalIncome: number;
     totalOutgoings: number;
+    budget?: AccountBudget;
 }
 
 export enum AccountType {

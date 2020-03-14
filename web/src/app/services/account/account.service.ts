@@ -55,6 +55,15 @@ export class AccountService {
     return this.http.post(uri, data);
   }
 
+  setBudget(budget: number, accountId: string) {
+    const uri = `/account/${accountId}/budget`;
+    const data = {
+      budget
+    };
+    return this.http.post(uri, data);
+    
+  }
+
   getTransactions(accountId: string) {
     const uri = `/account/${accountId}/transactions`;
     return this.http.get(uri);
