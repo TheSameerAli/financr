@@ -18,6 +18,7 @@ export class AccountPageComponent implements OnInit {
   public monthlyTotal: number;
   public accountType = AccountType;
   public budget;
+  public allTransactions: Transaction[];
   constructor(private route: ActivatedRoute, private accountService: AccountService) {
     route.params.subscribe(p => {
       this.accountId = p.id;
@@ -34,6 +35,7 @@ export class AccountPageComponent implements OnInit {
   ngOnInit() {
     this.getAccount();
     this.getTransactions();
+    this.getAllTransactions();
   }
 
   getAccount() {
@@ -53,6 +55,12 @@ export class AccountPageComponent implements OnInit {
         }
       });
       this.budget.available = this.budget.total - this.budget.spent;
+    });
+  }
+
+  getAllTransactions() {
+    this.accountService.getTransactions(this.accountId).subscribe((data: Transaction[]) => {
+      this.allTransactions = data;
     });
   }
 

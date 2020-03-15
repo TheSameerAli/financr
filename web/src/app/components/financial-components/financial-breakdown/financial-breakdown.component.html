@@ -6,7 +6,7 @@
         <table class="table is-fullwidth">
             <tr>
                 <td> <strong>Opening Balance</strong> </td>
-                <td class="has-text-right">{{299.99 | currency: 'GBP'}}</td>
+                <td [class.has-text-success]="openingBalance > 0" [class.has-text-danger]="openingBalance < 0" class="has-text-right">{{openingBalance | currency: 'GBP'}}</td>
             </tr>
 
 
