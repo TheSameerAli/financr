@@ -13,25 +13,37 @@ import {
   styleUrls: ['./financial-breakdown.component.scss']
 })
 export class FinancialBreakdownComponent implements OnInit {
-  @Input() transactions: Transaction[];
+  @Input() monthlyTransactions: Transaction[];
+  @Input() allTransactions: Transaction[];
   public incomeCategoryTransactions: CategoryAmount[];
   public expenseCategoryTransactions: CategoryAmount[];
   public monthlyTotal: number;
+  public openingBalance: number;
   constructor() {}
 
   ngOnInit() {
     this.monthlyTotal = 0;
-    this.transactions.forEach(tr => {
+    this.monthlyTransactions.forEach(tr => {
       this.monthlyTotal += tr.income;
     });
     this.incomeCategoryTransactions = [];
     this.expenseCategoryTransactions = [];
     this.getCategoryAmounts();
+    this.getOpeningBalance();
+  }
+
+  getOpeningBalance() {
+    this.openingBalance = 0;
+    this.allTransactions.forEach(trans => {
+      if (new Date(trans.transactionDate).getMonth() < new Date().getMonth()) {
+        this.openingBalance += trans.income;
+      }
+    });
   }
 
   getCategoryAmounts() {
-    const incomeTransactions = this.transactions.filter(t => t.income > 0);
-    const expenseTransactions = this.transactions.filter(t => t.income < 0);
+    const incomeTransactions = this.monthlyTransactions.filter(t => t.income > 0);
+    const expenseTransactions = this.monthlyTransactions.filter(t => t.income < 0);
 
 
     // Get for income
@@ -60,10 +72,6 @@ export class FinancialBreakdownComponent implements OnInit {
         this.expenseCategoryTransactions[index].amount += et.income;
       }
     });
-
-    console.log('dd')
-
-
   }
 
 }

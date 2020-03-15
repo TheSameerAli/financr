@@ -45,7 +45,7 @@
                             <div>
                                 <div class="heading">Conversion</div>
                                 <div class="title is-5" *ngIf="account.totalIncome && account.totalOutgoings">{{((account.totalOutgoings / account.totalIncome) * 100) * -1 | number: '1.0-2'}}%</div>
-                                <div class="title is-5" *ngIf="!account.totalIncome || !account.totalOutgoings">0%</div>
+                                <div class="title is-5" *ngIf="!account.totalIncome || !account.totalOutgoings">--</div>
                             </div>
                         </div>
                     </div>
@@ -56,28 +56,28 @@
             <div class="column">
                 <div class="box notification is-secondary">
                     <div class="heading">Available Budget Remaining</div>
-                    <div class="title" *ngIf="account.budget">{{budget.available | currency: 'GBP'}}</div>
-                    <div class="title" *ngIf="!account.budget">--</div>
+                    <div class="title" *ngIf="account && account.budget">{{budget.available | currency: 'GBP'}}</div>
+                    <div class="title" *ngIf="!account || !account.budget">--</div>
                     <div class="level">
                         <div class="level-item">
                             <div>
                                 <div class="heading">Total Budget</div>
-                                <div class="title is-5" *ngIf="account.budget">{{budget.total | currency: 'GBP'}}</div>
-                                <div class="title is-5" *ngIf="!account.budget">--</div>
+                                <div class="title is-5" *ngIf="account && account.budget">{{budget.total | currency: 'GBP'}}</div>
+                                <div class="title is-5" *ngIf="!account || !account.budget">--</div>
                             </div>
                         </div>
                         <div class="level-item">
                             <div>
                                 <div class="heading">Spent</div>
-                                <div class="title is-5" *ngIf="account.budget">{{budget.spent | currency: 'GBP'}}</div>
-                                <div class="title is-5" *ngIf="!account.budget">--</div>
+                                <div class="title is-5" *ngIf="account && account.budget">{{budget.spent | currency: 'GBP'}}</div>
+                                <div class="title is-5" *ngIf="!account || !account.budget">--</div>
                             </div>
                         </div>
                         <div class="level-item">
                             <div>
                                 <div class="heading">% Spent</div>
-                                <div class="title is-5" *ngIf="account.budget">{{((budget.spent / budget.total) * 100) | number: '1.0-0'}}%</div>
-                                <div class="title is-5" *ngIf="!account.budget">--</div>
+                                <div class="title is-5" *ngIf="account && account.budget">{{((budget.spent / budget.total) * 100) | number: '1.0-0'}}%</div>
+                                <div class="title is-5" *ngIf="!account || !account.budget">--</div>
                             </div>
                         </div>
                     </div>
@@ -90,7 +90,7 @@
                 <app-transactions-panel [accountId]="accountId"></app-transactions-panel>
             </div>
             <div class="column">
-               <app-financial-breakdown *ngIf="transactions" [transactions]="transactions"></app-financial-breakdown>
+               <app-financial-breakdown *ngIf="transactions && allTransactions" [allTransactions]="allTransactions" [monthlyTransactions]="transactions"></app-financial-breakdown>
             </div>
         </div>
 
