@@ -17,12 +17,18 @@ export class AccountPageComponent implements OnInit {
   public transactions: Transaction[];
   public monthlyTotal: number;
   public accountType = AccountType;
+  public budget;
   constructor(private route: ActivatedRoute, private accountService: AccountService) {
     route.params.subscribe(p => {
       this.accountId = p.id;
       this.ngOnInit();
     });
     this.currentDate = new Date();
+    this.budget = {
+      total: 0,
+      available: 0,
+      spent: 0
+    };
   }
 
   ngOnInit() {
@@ -33,12 +39,20 @@ export class AccountPageComponent implements OnInit {
   getAccount() {
     this.accountService.getAccount(this.accountId).subscribe((data: Account) => {
       this.account = data;
+      this.budget.total = this.account.budget.budget;
     });
   }
 
   getTransactions() {
     this.accountService.getTransactionsByMonth(this.accountId, new Date()).subscribe((data: Transaction[]) => {
       this.transactions = data;
+      this.budget.spent = 0;
+      this.transactions.forEach(trans => {
+        if (trans.income < 0) {
+          this.budget.spent += trans.income * -1;
+        }
+      });
+      this.budget.available = this.budget.total - this.budget.spent;
     });
   }
 
