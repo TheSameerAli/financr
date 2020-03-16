@@ -33,8 +33,8 @@
 
             <tr>
                 <td class="has-text-left"> <strong>Closing Balance</strong> </td>
-                <td [class.has-text-success]="monthlyTotal > 0" [class.has-text-danger]="monthlyTotal < 0"
-                    class="has-text-right total"> {{monthlyTotal | currency: 'GBP'}} </td>
+                <td [class.has-text-success]="closingBalance > 0" [class.has-text-danger]="closingBalance < 0"
+                    class="has-text-right total"> {{closingBalance | currency: 'GBP'}} </td>
             </tr>
         </table>
     </div>

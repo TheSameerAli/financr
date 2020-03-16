@@ -17,19 +17,16 @@ export class FinancialBreakdownComponent implements OnInit {
   @Input() allTransactions: Transaction[];
   public incomeCategoryTransactions: CategoryAmount[];
   public expenseCategoryTransactions: CategoryAmount[];
-  public monthlyTotal: number;
+  public closingBalance: number;
   public openingBalance: number;
   constructor() {}
 
   ngOnInit() {
-    this.monthlyTotal = 0;
-    this.monthlyTransactions.forEach(tr => {
-      this.monthlyTotal += tr.income;
-    });
     this.incomeCategoryTransactions = [];
     this.expenseCategoryTransactions = [];
     this.getCategoryAmounts();
     this.getOpeningBalance();
+    this.getClosingBalance();
   }
 
   getOpeningBalance() {
@@ -38,6 +35,13 @@ export class FinancialBreakdownComponent implements OnInit {
       if (new Date(trans.transactionDate).getMonth() < new Date().getMonth()) {
         this.openingBalance += trans.income;
       }
+    });
+  }
+
+  getClosingBalance() {
+    this.closingBalance = this.openingBalance;
+    this.monthlyTransactions.forEach(tr => {
+      this.closingBalance += tr.income;
     });
   }
 
