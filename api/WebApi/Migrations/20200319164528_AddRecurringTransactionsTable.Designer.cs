@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApi.Context;
 
 namespace WebApi.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200319164528_AddRecurringTransactionsTable")]
+    partial class AddRecurringTransactionsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -105,20 +107,6 @@ namespace WebApi.Migrations
                     b.HasIndex("AccountId");
 
                     b.ToTable("RecurringTransactions");
-                });
-
-            modelBuilder.Entity("WebApi.Models.Database.RecurringTransactionsLog", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTimeOffset>("CreatedAt");
-
-                    b.Property<int>("NewTransactionsAdded");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("RecurringTransactionsLogs");
                 });
 
             modelBuilder.Entity("WebApi.Models.Database.Transaction", b =>

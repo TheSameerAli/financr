@@ -10,6 +10,8 @@
         public DbSet<User> Users { get; set; } 
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<RecurringTransaction> RecurringTransactions { get; set; }
+        public DbSet<RecurringTransactionsLog> RecurringTransactionsLogs { get; set; }
         public DbSet<AccountCategory> AccountCategories { get; set; }
         public ApplicationDbContext()
         {
@@ -66,6 +68,14 @@
             {
                 o.HasOne(a => a.Account);
                 o.HasOne(t => t.AccountCategory);
+            });
+            #endregion
+            
+            #region Transaction
+            modelBuilder.Entity<RecurringTransaction>(o =>
+            {
+                o.HasOne(rt => rt.Account);
+                o.HasOne(rt => rt.AccountCategory);
             });
             #endregion
         }

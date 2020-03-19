@@ -1,3 +1,5 @@
+import { RecurringTransactionsTableComponent } from './pages/account/recurring-transactions-page/components/recurring-transactions-table/recurring-transactions-table.component';
+import { RecurringTransactionsPageComponent } from './pages/account/recurring-transactions-page/recurring-transactions-page.component';
 import { AccountSettingsPageComponent } from './pages/account/account-settings-page/account-settings-page.component';
 import { AccountPageMenuComponent } from './pages/account/components/account-page-menu/account-page-menu.component';
 import { UserService } from './services/user/user.service';
@@ -47,7 +49,9 @@ export function localStorageFactory() {
     TransactionsPageComponent,
     ReportsPageComponent,
     FinancialBreakdownComponent,
-    AccountSettingsPageComponent
+    AccountSettingsPageComponent,
+    RecurringTransactionsPageComponent,
+    RecurringTransactionsTableComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

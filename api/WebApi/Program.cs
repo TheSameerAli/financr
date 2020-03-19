@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Hangfire;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -10,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using WebApi.Context;
 using WebApi.Seeders;
+using WebApi.Services;
 
 namespace WebApi
 {
@@ -25,6 +27,10 @@ namespace WebApi
                 {
                     var context = services.GetRequiredService<ApplicationDbContext>();
                     Task.Run(() => DbInitializer.Seed(context)).Wait();
+                    var transactionService = services.GetRequiredService<ITransactionService>();
+                    RecurringJob.AddOrUpdate(
+                        () => transactionService.RunRecurringTransactions(),
+                        Cron.Daily(1));
                 }
                 catch (Exception ex)
                 {

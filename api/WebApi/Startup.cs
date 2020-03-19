@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Hangfire;
+using Hangfire.SqlServer;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -42,6 +44,18 @@ namespace WebApi
             services.AddScoped<ITransactionService, TransactionService>();
             services.AddScoped<IFinancialHealthService, FinancialHealthService>();
             services.AddScoped<IDashboardService, DashboardService>();
+            services.AddScoped<IRecurringTransactionsService, RecurringTransactionsService>();
+
+            
+            // Hangfire configuration
+            JobStorage.Current = new SqlServerStorage(Configuration.GetConnectionString("DefaultConnection"), 
+                new SqlServerStorageOptions());
+            services.AddHangfire(x => x.UseSqlServerStorage(
+                Configuration.GetConnectionString("DefaultConnection"))
+            );
+            services.AddHangfireServer();
+            // Hangfire configuration ends
+            
             
             services.AddDbContext<ApplicationDbContext>(options =>
             {
@@ -91,6 +105,8 @@ namespace WebApi
             {
                 app.UseDeveloperExceptionPage();
             }
+            
+            app.UseHangfireDashboard();
             
             using (var scope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
             {

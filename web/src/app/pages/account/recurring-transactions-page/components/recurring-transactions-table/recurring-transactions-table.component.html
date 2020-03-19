@@ -1,0 +1,45 @@
+<div class="transactions">
+    <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+        <thead>
+            <tr>
+                <th>Start Date</th>
+                <th>Category</th>
+                <th>Description</th>
+                <th>NextDue</th>
+                <th>Amount</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody *ngIf="!transactions || transactions.length === 0">
+            <tr>
+                <td>-</td>
+                <td>-</td>
+                <td>No recurring transactions were found for this category.</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+        </tbody>
+        <tbody *ngIf="transactions && transactions.length > 0">
+            <tr *ngFor="let t of transactions">
+                <td>{{t.startDate |  date: 'MMM d, y'}}</td>
+                <td>{{t.accountCategory.name}}</td>
+                <td>{{t.description}}</td>
+                <td>{{t.nextDate | date: 'MMM d, y'}}</td>
+                <td [class.expense-text]="t.income < 0" [class.income-text]="t.income > 0">
+                {{t.income | currency :'GBP'}}</td>
+                <td (click)="deleteRecurringTransaction(t.id)" class="has-text-centered"> <button class="button is-small is-danger is-outlined">
+                    <i class="fas fa-trash"></i>
+                </button> </td>
+            </tr>
+            <tr>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td class="has-text-right"> <strong>Total</strong> </td>
+                <td [class.expense-text]="total < 0" [class.income-text]="total > 0" class="total-box">{{total | currency: 'GBP'}}</td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
