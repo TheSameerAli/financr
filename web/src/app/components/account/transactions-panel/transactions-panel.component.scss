@@ -10,4 +10,11 @@
 
 .panel-block {
     display: block !important;
+
+}
+
+.custom-table {
+    max-height: 350px !important;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
