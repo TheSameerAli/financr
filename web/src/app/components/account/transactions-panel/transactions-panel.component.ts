@@ -1,6 +1,6 @@
 import { Transaction } from './../../../models/transaction';
 import { AccountService } from './../../../services/account/account.service';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-transactions-panel',
@@ -10,7 +10,9 @@ import { Component, OnInit, Input } from '@angular/core';
 export class TransactionsPanelComponent implements OnInit {
   @Input() accountId: string;
   public transactions: Transaction[];
-  constructor(private accountService: AccountService) { }
+  public displayTransactions: Transaction[];
+  public searchTerm: string;
+  constructor(private accountService: AccountService, private cd: ChangeDetectorRef) { }
 
   ngOnInit() {
     this.getTransactions();
@@ -19,7 +21,20 @@ export class TransactionsPanelComponent implements OnInit {
   getTransactions() {
     this.accountService.getTransactionsByMonth(this.accountId, new Date()).subscribe((data: Transaction[]) => {
       this.transactions = data;
+      this.displayTransactions = this.transactions;
     });
+  }
+
+  search() {
+    if (!this.searchTerm) {
+      this.displayTransactions = this.transactions;
+      this.cd.detectChanges();
+    } else {
+      this.displayTransactions =
+      this.transactions.filter(t => t.description.toLowerCase().trim().includes(this.searchTerm.toLowerCase().trim()));
+      this.cd.detectChanges();
+    }
+
   }
 
 }
