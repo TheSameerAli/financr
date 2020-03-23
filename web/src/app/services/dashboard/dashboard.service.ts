@@ -9,7 +9,7 @@ export class DashboardService {
   constructor(private http: HttpClient) { }
 
   getNetworthByMonth() {
-    const uri = `/dashboard/networth-chart`;
+    const uri = `/dashboard/dashboard-chart`;
     return this.http.get(uri);
   }
 }

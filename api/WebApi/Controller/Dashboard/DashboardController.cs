@@ -17,10 +17,10 @@ namespace WebApi.Controller
             _dashboardService = dashboardService;
         }
         
-        [HttpGet("networth-chart")]
-        public async Task<IActionResult> GetNetworthChart()
+        [HttpGet("dashboard-chart")]
+        public async Task<IActionResult> GetDashboardChart()
         {
-            return Ok(await _dashboardService.GetNetworthByMonth(UserId));
+            return Ok(await _dashboardService.GetDashboardChartData(UserId));
         }
     }
 }

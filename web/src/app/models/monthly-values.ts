@@ -1,4 +1,4 @@
-export interface MonthlyNetworth {
+export interface MonthlyValues {
     month: Date;
     amount: number;
 }
