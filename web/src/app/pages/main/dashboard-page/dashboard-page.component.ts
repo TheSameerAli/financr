@@ -60,7 +60,6 @@ export class DashboardPageComponent implements OnInit {
         },
       ],
     };
-    console.log(this.mainChart);
   }
 
   private getNetworthByMonth() {

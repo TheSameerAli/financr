@@ -28,6 +28,7 @@ import { ReportsPageComponent } from './pages/account/reports-page/reports-page.
 import { DatePipe, CurrencyPipe } from '@angular/common';
 import { FinancialBreakdownComponent } from './components/financial-components/financial-breakdown/financial-breakdown.component';
 import { LocalStorage } from './models/local-storage';
+import { KFormatterPipe } from './pipes/k-formatter.pipe';
 
 export function localStorageFactory() {
   return localStorage;
@@ -51,7 +52,8 @@ export function localStorageFactory() {
     FinancialBreakdownComponent,
     AccountSettingsPageComponent,
     RecurringTransactionsPageComponent,
-    RecurringTransactionsTableComponent
+    RecurringTransactionsTableComponent,
+    KFormatterPipe
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
