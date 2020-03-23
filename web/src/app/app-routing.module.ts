@@ -1,3 +1,4 @@
+import { RecurringTransactionsPageComponent } from './pages/account/recurring-transactions-page/recurring-transactions-page.component';
 import { AccountSettingsPageComponent } from './pages/account/account-settings-page/account-settings-page.component';
 import { ReportsPageComponent } from './pages/account/reports-page/reports-page.component';
 import { TransactionsPageComponent } from './pages/account/transactions-page/transactions-page.component';
@@ -34,6 +35,11 @@ const routes: Routes = [
   {
     path: 'account/:id/transactions',
     component: TransactionsPageComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'account/:id/recurring-transactions',
+    component: RecurringTransactionsPageComponent,
     canActivate: [AuthGuard]
   },
   {

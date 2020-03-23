@@ -1,0 +1,108 @@
+<div class="columns">
+    <div class="column is-one-fifth">
+        <app-account-page-menu></app-account-page-menu>
+    </div>
+
+    <div class="column">
+        <div class="tabs is-left">
+            <ul>
+                <li (click)="changeTab(recurringTransactionsTabs.Income)"
+                    [class.is-active]="selectedTab === recurringTransactionsTabs.Income"><a>Income</a></li>
+                <li (click)="changeTab(recurringTransactionsTabs.Expenses)"
+                    [class.is-active]="selectedTab === recurringTransactionsTabs.Expenses"><a>Expenses</a></li>
+            </ul>
+        </div>
+
+        <div *ngIf="selectedTab === recurringTransactionsTabs.Income">
+            <div class="has-text-right has-margin-bottom-10">
+                <button (click)="openModal()" class="button is-success"> <i class="fas fa-plus"></i> </button>
+            </div>
+            <app-recurring-transactions-table
+            (deleteTransaction)="deleteRecurringTransaction($event)" 
+            *ngIf="displayRecurringTransactions" [transactions]="displayRecurringTransactions">
+            </app-recurring-transactions-table>
+
+        </div>
+
+
+        <div *ngIf="selectedTab === recurringTransactionsTabs.Expenses">
+            <div class="has-text-right has-margin-bottom-10">
+                <button (click)="openModal()" class="button is-success"> <i class="fas fa-plus"></i> </button>
+            </div>
+            <app-recurring-transactions-table
+            (deleteTransaction)="deleteRecurringTransaction($event)"  
+            *ngIf="displayRecurringTransactions" [transactions]="displayRecurringTransactions">
+            </app-recurring-transactions-table>
+        </div>
+    </div>
+</div>
+
+
+<!-- Create transaction modal -->
+<div class="modal" [class.is-active]="createRecurringTransactionModalOpen">
+    <div class="modal-background"></div>
+    <div class="modal-card animated zoomIn">
+        <header class="modal-card-head">
+            <p class="modal-card-title">Create Recurring {{recurringTransactionTypes[currentTransactionType]}} </p>
+            <button (click)="closeModal()" class="delete" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+            <div class="field">
+                <label class="label">Start Date</label>
+                <div class="control">
+                    <input [(ngModel)]="recurringTransaction.startDate" class="input" type="date"
+                        placeholder="Transaction Date">
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Occurrence</label>
+                <div class="control">
+                    <input [(ngModel)]="recurringTransaction.occurrence" class="input" type="number"
+                        placeholder="Text input" step="1" value="0">
+                </div>
+                <p class="help">The frequency of this transaction (in days)</p>
+            </div>
+
+            <div class="field">
+                <label class="label">Amount</label>
+                <div class="control has-icons-left has-icons-right">
+                    <input [(ngModel)]="recurringTransaction.income" class="input" type="number"
+                        placeholder="Text input" step="0.01" value="0.00">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-pound-sign"></i>
+                    </span>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Category</label>
+                <div class="select">
+                    <select [(ngModel)]="recurringTransaction.accountCategoryId" class="is-fullwidth">
+                        <ng-container *ngIf="currentTransactionType === recurringTransactionTypes.Expense">
+                            <option *ngFor="let cat of expenseCategories" [value]="cat.id">{{cat.name}}</option>
+                        </ng-container>
+
+                        <ng-container *ngIf="currentTransactionType === recurringTransactionTypes.Income">
+                            <option *ngFor="let cat of incomeCategories" [value]="cat.id">{{cat.name}}</option>
+                        </ng-container>
+
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="field">
+                <label class="label">Description</label>
+                <div class="control">
+                    <input [(ngModel)]="recurringTransaction.description" class="input" type="text"
+                        placeholder="Transaction notes">
+                </div>
+            </div>
+        </section>
+        <footer class="modal-card-foot">
+            <button (click)="createRecurringTransaction()" class="button is-success">Create</button>
+            <button (click)="closeModal()" class="button">Cancel</button>
+        </footer>
+    </div>
+</div>
