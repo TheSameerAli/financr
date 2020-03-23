@@ -64,7 +64,7 @@ export class DashboardPageComponent implements OnInit {
   }
 
   private getNetworthByMonth() {
-    this.dashboardService.getNetworthByMonth().subscribe((data: MonthlyValues[]) => {
+    this.dashboardService.getNetworthByMonth().subscribe((data: DashboardChartData) => {
       this.generateMainChart(data);
     });
   }
