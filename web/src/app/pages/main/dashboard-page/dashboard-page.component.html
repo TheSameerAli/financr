@@ -1,6 +1,37 @@
 <div class="dashboard-page">
     <div class="columns">
         <div class="column">
+            <div *ngIf="dashboardData" 
+            [class.is-success]="dashboardData.profitLossCard.profit > 0" 
+            [class.is-danger]="dashboardData.profitLossCard.profit < 0" 
+            [class.is-secondary]="dashboardData.profitLossCard.profit === 0" 
+                class="box notification">
+                <div class="heading">Profit / month</div>
+                <div class="title">{{dashboardData.profitLossCard.profit | kFormatter}}</div>
+                <div class="level">
+                    <div class="level-item">
+                        <div>
+                            <div class="heading">Income</div>
+                            <div class="title is-5">{{dashboardData.profitLossCard.income | kFormatter}}</div>
+                        </div>
+                    </div>
+                    <div class="level-item">
+                        <div>
+                            <div class="heading">Outgoing</div>
+                            <div class="title is-5">{{dashboardData.profitLossCard.outgoing | kFormatter}}</div>
+                        </div>
+                    </div>
+                    <div class="level-item">
+                        <div>
+                            <div class="heading">Debt</div>
+                            <div class="title is-5">{{dashboardData.profitLossCard.debt | kFormatter}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="column">
             <canvas *ngIf="mainChart" baseChart width="400" height="250"
                 [datasets]="mainChart.datasets"
                 [labels]="mainChart.labels"
@@ -9,10 +40,6 @@
                 [colors]="mainChart.colors"
                 ></canvas>
 
-        </div>
-
-        <div class="column">
-            <p>Lorem ipsum dolar</p>
         </div>
     </div>
 </div>

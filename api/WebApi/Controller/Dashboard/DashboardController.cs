@@ -22,5 +22,11 @@ namespace WebApi.Controller
         {
             return Ok(await _dashboardService.GetDashboardChartData(UserId));
         }
+
+        [HttpGet("dashboard-data")]
+        public async Task<IActionResult> GetDashboardData()
+        {
+            return Ok(await _dashboardService.GetDashboardData(UserId));
+        }
     }
 }

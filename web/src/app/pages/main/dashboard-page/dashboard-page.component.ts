@@ -1,3 +1,4 @@
+import { DashboardData } from './../../../models/dashboard-data';
 import { DashboardChartData } from './../../../models/dashboard-chart-data';
 import { DatePipe } from '@angular/common';
 import { LineChartData } from './../../../models/charts/line-chart-data';
@@ -12,10 +13,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardPageComponent implements OnInit {
   public mainChart: LineChartData;
+  public dashboardData: DashboardData;
   constructor(private dashboardService: DashboardService, private datePipe: DatePipe) { }
 
   ngOnInit() {
     this.getNetworthByMonth();
+    this.getDashboardData();
+  }
+
+  getDashboardData() {
+    this.dashboardService.getDashboardData().subscribe((data: DashboardData) => {
+      this.dashboardData = data;
+    });
   }
 
   generateMainChart(dashboardData: DashboardChartData) {
