@@ -30,7 +30,8 @@ namespace WebApi.Services
             var personalWorth = await GetAccountsWorth(userId, AccountType.Current);
             var businessWorth = await GetAccountsWorth(userId, AccountType.Business);
             var savingsWorth = await GetAccountsWorth(userId, AccountType.Savings);
-            return new FinancialHealth(personalWorth+businessWorth+savingsWorth, 
+            var debts = await GetUserDebt(userId);
+            return new FinancialHealth(personalWorth+businessWorth+savingsWorth+debts, 
                 personalWorth, businessWorth, savingsWorth);
         }
 
@@ -46,6 +47,24 @@ namespace WebApi.Services
                 transactions.AddRange(await _transactions.Where(t => t.AccountId == account.Id).ToListAsync());
             }
             return transactions.Sum(transaction => transaction.Income);
+        }
+
+        private async Task<double> GetUserDebt(Guid userId) 
+        {
+            var accounts = await _accounts
+                    .Where(a => a.UserId == userId && a.Type == AccountType.CreditCard)
+                    .Include(a => a.Transactions)
+                    .ToListAsync();
+            
+            var transactions = new List<Transaction>();
+
+            foreach (var account in accounts) 
+            {
+                transactions.AddRange(account.Transactions);
+            }
+
+            return transactions.Sum(t => t.Income);
+
         }
     }
 }
