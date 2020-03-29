@@ -34,7 +34,7 @@
 
         <div class="account-list">
             <ng-container *ngIf="accounts && accounts.length > 0">
-                <a [routerLink]="['/account', account.id, 'dashboard']" *ngFor="let account of displayAccounts"
+                <a (click)="navigate(['/account', account.id, 'overview'])" *ngFor="let account of displayAccounts"
                     class="panel-block">
                     <span class="panel-icon">
                         <i class="fas fa-piggy-bank"></i>
