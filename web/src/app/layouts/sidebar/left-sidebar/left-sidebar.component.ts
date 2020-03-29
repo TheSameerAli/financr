@@ -1,3 +1,4 @@
+import { AccountService } from './../../../services/account/account.service';
 import { FinancialHealth } from './../../../models/financial-health';
 import { FinancialHealthService } from './../../../services/overview/financial-health.service';
 import { Component, OnInit } from '@angular/core';
@@ -9,10 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LeftSidebarComponent implements OnInit {
   public financialHeath: FinancialHealth;
-  constructor(private financialHealthService: FinancialHealthService) { }
+  constructor(private financialHealthService: FinancialHealthService, private accountService: AccountService) { }
 
   ngOnInit() {
     this.getFinancialHealth();
+    this.accountService.transactionEvent.subscribe(() => {
+      this.getFinancialHealth();
+    });
   }
 
   getFinancialHealth() {
