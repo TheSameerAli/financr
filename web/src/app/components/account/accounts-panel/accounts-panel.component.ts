@@ -26,6 +26,7 @@ export class AccountsPanelComponent implements OnInit {
   public displayAccounts: Account[];
   public selectedAccount: SelectableAccounts;
   public selectableAccounts = SelectableAccounts;
+  public isLoading = false;
 
   public searchTerm = '';
 
@@ -39,10 +40,14 @@ export class AccountsPanelComponent implements OnInit {
   ngOnInit() {}
 
   createAccount() {
+    this.isLoading = true;
     this.accountService.createAccount(this.account).subscribe((data: Account) => {
+      this.isLoading = false;
       this.getAccounts();
       this.closeModal();
       this.clearForm();
+    }, (err) => {
+      this.isLoading = false;
     });
   }
 
@@ -55,6 +60,9 @@ export class AccountsPanelComponent implements OnInit {
   }
 
   closeModal() {
+    if (this.isLoading) {
+      return;
+    }
     this.createAccountModalOpen = false;
   }
 

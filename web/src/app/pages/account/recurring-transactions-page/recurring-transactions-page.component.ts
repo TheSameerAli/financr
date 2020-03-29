@@ -163,10 +163,10 @@ export class RecurringTransactionsPageComponent implements OnInit {
       income,
       this.recurringTransaction.accountCategoryId,
       this.accountId).subscribe(t => {
+        this.isLoading = false;
         this.getRecurringTransactions();
         this.closeModal();
         this.clearInput();
-        this.isLoading = false;
       }, (err) => {this.isLoading = false; });
   }
 
