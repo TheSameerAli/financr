@@ -1,3 +1,4 @@
+import { Title } from '@angular/platform-browser';
 import { AccountType } from './../../../models/account';
 import { Transaction } from './../../../models/transaction';
 import { AccountService } from './../../../services/account/account.service';
@@ -20,7 +21,10 @@ export class AccountPageComponent implements OnInit {
   public recentTransactions: Transaction[];
   public budget;
   public allTransactions: Transaction[];
-  constructor(private route: ActivatedRoute, private accountService: AccountService) {
+  constructor(
+    private route: ActivatedRoute,
+    private accountService: AccountService,
+    private titleService: Title) {
     route.params.subscribe(p => {
       this.accountId = p.id;
       this.ngOnInit();
@@ -46,6 +50,7 @@ export class AccountPageComponent implements OnInit {
       if (this.account.budget) {
         this.budget.total = this.account.budget.budget;
       }
+      this.titleService.setTitle('Dashboard - ' + this.account.name + ' | Financr');
     });
   }
 

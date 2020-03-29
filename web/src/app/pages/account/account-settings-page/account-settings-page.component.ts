@@ -1,3 +1,4 @@
+import { Title } from '@angular/platform-browser';
 import { AccountService } from './../../../services/account/account.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
@@ -16,12 +17,12 @@ export class AccountSettingsPageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private accountService: AccountService) {
+    private accountService: AccountService,
+    private titleService: Title) {
     this.selectedTab = AccountSettingsTabs.General;
   }
 
   ngOnInit() {
-    
     this.route.queryParams.subscribe(qp => {
       if (qp.selectedTab) {
         const selectedTab = qp.selectedTab;
@@ -41,6 +42,8 @@ export class AccountSettingsPageComponent implements OnInit {
       if (!this.account.budget) {
         this.account.budget = {budget: 0, accountId: this.accountId};
       }
+      this.titleService.setTitle('Settings - ' + this.account.name + ' | Financr');
+
     });
   }
 

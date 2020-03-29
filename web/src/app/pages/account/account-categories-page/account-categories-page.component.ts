@@ -1,4 +1,5 @@
-import { AccountType } from './../../../models/account';
+import { Title } from '@angular/platform-browser';
+import { AccountType, Account } from './../../../models/account';
 import { CategoryType, AccountCategory } from './../../../models/accountCategory';
 import { AccountService } from './../../../services/account/account.service';
 import { ActivatedRoute } from '@angular/router';
@@ -18,7 +19,10 @@ export class AccountCategoriesPageComponent implements OnInit {
   };
   public expenseCategories: AccountCategory[];
   public incomeCategories: AccountCategory[];
-  constructor(private route: ActivatedRoute, private accountService: AccountService) {
+  constructor(
+    private route: ActivatedRoute,
+    private accountService: AccountService,
+    private titleService: Title) {
     this.route.params.subscribe(p => {
       this.accountId = p.id;
     });
@@ -26,6 +30,13 @@ export class AccountCategoriesPageComponent implements OnInit {
 
   ngOnInit() {
     this.getCategories();
+    this.setTitle();
+  }
+
+  setTitle() {
+    this.accountService.getAccount(this.accountId).subscribe((data: Account) => {
+      this.titleService.setTitle('Categories - ' + data.name + ' | Financr');
+    });
   }
 
   getCategories() {

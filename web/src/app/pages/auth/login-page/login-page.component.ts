@@ -1,3 +1,4 @@
+import { Title } from '@angular/platform-browser';
 import { AuthService } from './../../../services/user/auth.service';
 import { UserService } from './../../../services/user/user.service';
 import { User } from './../../../models/user';
@@ -16,7 +17,8 @@ export class LoginPageComponent implements OnInit {
   constructor(
     private userService: UserService,
     private authService: AuthService,
-    private router: Router) {
+    private router: Router,
+    private titleService: Title) {
     this.user = {
       email: '',
       id: '',
@@ -26,6 +28,7 @@ export class LoginPageComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.titleService.setTitle('Login | Financr');
   }
 
   doLogin() {

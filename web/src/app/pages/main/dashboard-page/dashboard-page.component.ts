@@ -7,6 +7,7 @@ import { LineChartData } from './../../../models/charts/line-chart-data';
 import { MonthlyValues } from '../../../models/monthly-values';
 import { DashboardService } from './../../../services/dashboard/dashboard.service';
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -20,9 +21,11 @@ export class DashboardPageComponent implements OnInit {
   constructor(
     private dashboardService: DashboardService,
     private datePipe: DatePipe,
-    private accountService: AccountService) { }
+    private accountService: AccountService,
+    private titleService: Title) { }
 
   ngOnInit() {
+    this.titleService.setTitle('Dashboard | Financr');
     this.getNetworthByMonth();
     this.getDashboardData();
     this.getSubscriptions();
