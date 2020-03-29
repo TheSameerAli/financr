@@ -87,7 +87,9 @@
 
         <div class="columns">
             <div class="column">
-                <app-transactions-panel [accountId]="accountId"></app-transactions-panel>
+                <app-transactions-panel 
+                [transactions]="recentTransactions" 
+                [accountId]="accountId" panelTitle="Recent Transactions"></app-transactions-panel>
             </div>
             <div class="column">
                <app-financial-breakdown *ngIf="transactions && allTransactions" [allTransactions]="allTransactions" [monthlyTransactions]="transactions"></app-financial-breakdown>

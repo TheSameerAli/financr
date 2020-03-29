@@ -17,6 +17,7 @@ export class AccountPageComponent implements OnInit {
   public transactions: Transaction[];
   public monthlyTotal: number;
   public accountType = AccountType;
+  public recentTransactions: Transaction[];
   public budget;
   public allTransactions: Transaction[];
   constructor(private route: ActivatedRoute, private accountService: AccountService) {
@@ -36,12 +37,20 @@ export class AccountPageComponent implements OnInit {
     this.getAccount();
     this.getTransactions();
     this.getAllTransactions();
+    this.getRecentTransactions();
   }
 
   getAccount() {
     this.accountService.getAccount(this.accountId).subscribe((data: Account) => {
       this.account = data;
       this.budget.total = this.account.budget.budget;
+    });
+  }
+
+  getRecentTransactions() {
+    this.accountService.getTransactionsByMonth(this.accountId, new Date()).subscribe((data: Transaction[]) => {
+      this.transactions = data;
+      this.recentTransactions = this.transactions;
     });
   }
 

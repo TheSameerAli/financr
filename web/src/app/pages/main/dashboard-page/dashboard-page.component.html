@@ -1,6 +1,7 @@
 <div class="dashboard-page">
     <div class="columns">
         <div class="column">
+            <h4 class="title is-4">Monthly Overview</h4>
             <div *ngIf="dashboardData" 
             [class.is-success]="dashboardData.profitLossCard.profit > 0" 
             [class.is-danger]="dashboardData.profitLossCard.profit < 0" 
@@ -32,13 +33,23 @@
         </div>
 
         <div class="column">
-            <canvas *ngIf="mainChart" baseChart width="400" height="250"
+            <canvas *ngIf="mainChart" baseChart width="300" height="120"
                 [datasets]="mainChart.datasets"
                 [labels]="mainChart.labels"
                 [chartType]="'line'"
                 [options]="mainChart.options"
                 [colors]="mainChart.colors"
                 ></canvas>
+
+        </div>
+    </div>
+
+    <div class="columns">
+        <div class="column">
+            <app-transactions-panel 
+            [transactions]="subscriptions" panelTitle="Monthly Subscriptions"></app-transactions-panel>
+        </div>
+        <div class="column">
 
         </div>
     </div>

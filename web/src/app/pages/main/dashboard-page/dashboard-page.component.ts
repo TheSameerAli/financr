@@ -1,3 +1,5 @@
+import { RecurringTransaction } from './../../../models/recurring-transaction';
+import { AccountService } from './../../../services/account/account.service';
 import { DashboardData } from './../../../models/dashboard-data';
 import { DashboardChartData } from './../../../models/dashboard-chart-data';
 import { DatePipe } from '@angular/common';
@@ -14,17 +16,28 @@ import { Component, OnInit } from '@angular/core';
 export class DashboardPageComponent implements OnInit {
   public mainChart: LineChartData;
   public dashboardData: DashboardData;
-  constructor(private dashboardService: DashboardService, private datePipe: DatePipe) { }
+  public subscriptions: RecurringTransaction[];
+  constructor(
+    private dashboardService: DashboardService,
+    private datePipe: DatePipe,
+    private accountService: AccountService) { }
 
   ngOnInit() {
     this.getNetworthByMonth();
     this.getDashboardData();
+    this.getSubscriptions();
   }
 
   getDashboardData() {
     this.dashboardService.getDashboardData().subscribe((data: DashboardData) => {
       this.dashboardData = data;
     });
+  }
+
+  getSubscriptions() {
+    this.accountService.getSubscriptions().subscribe((data: RecurringTransaction[]) => {
+      this.subscriptions = data;
+    })
   }
 
   generateMainChart(dashboardData: DashboardChartData) {

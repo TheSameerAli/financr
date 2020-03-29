@@ -19,10 +19,11 @@ namespace WebApi.Controller
     public class TransactionController : BaseController
     {
         private readonly ITransactionService _transactionService;
-
-        public TransactionController(ITransactionService transactionService)
+        private readonly IRecurringTransactionsService _recurringTransactionService;
+        public TransactionController(ITransactionService transactionService, IRecurringTransactionsService recurringTransactions)
         {
             _transactionService = transactionService;
+            _recurringTransactionService = recurringTransactions;
         }
 
         [HttpGet("{accountId}/transactions")]
@@ -33,6 +34,12 @@ namespace WebApi.Controller
                 return Ok(await _transactionService.GetAllByDate(accountId, dateMonth));
             }
             return Ok(await _transactionService.GetAll(accountId));
+        }
+
+        [HttpGet("subscriptions")]
+        public async Task<IActionResult> GetUserSubscriptions() 
+        {
+            return Ok(await _recurringTransactionService.GetAllSubscriptions(UserId));
         }
         
 

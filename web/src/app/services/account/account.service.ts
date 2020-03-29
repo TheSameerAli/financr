@@ -68,6 +68,11 @@ export class AccountService {
     return this.http.get(uri);
   }
 
+  getSubscriptions() {
+    const uri = `/account/subscriptions`;
+    return this.http.get(uri);
+  }
+
   getTransactionsByMonth(accountId: string, date: Date) {
     const uri = `/account/${accountId}/transactions?dateMonth=${date.toJSON()}`;
     return this.http.get(uri);
