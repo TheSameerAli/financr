@@ -101,8 +101,9 @@
             </div>
         </section>
         <footer class="modal-card-foot">
-            <button (click)="createRecurringTransaction()" class="button is-success">Create</button>
-            <button (click)="closeModal()" class="button">Cancel</button>
+            <button [class.is-loading]="isLoading" [disabled]="isLoading" 
+            (click)="createRecurringTransaction()" class="button is-success">Create</button>
+            <button [disabled]="isLoading" (click)="closeModal()" class="button">Cancel</button>
         </footer>
     </div>
 </div>

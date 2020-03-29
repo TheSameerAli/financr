@@ -45,6 +45,8 @@ export class RecurringTransactionsPageComponent implements OnInit {
   public recurringTransactions: RecurringTransaction[];
   public displayRecurringTransactions: RecurringTransaction[];
 
+  public isLoading = false;
+
 
   constructor(
     private route: ActivatedRoute,
@@ -102,6 +104,9 @@ export class RecurringTransactionsPageComponent implements OnInit {
 
 
   closeModal() {
+    if (this.isLoading) {
+      return;
+    }
     this.createRecurringTransactionModalOpen = false;
   }
 
@@ -142,13 +147,17 @@ export class RecurringTransactionsPageComponent implements OnInit {
   }
 
   createRecurringTransaction() {
+    if (this.isLoading) {
+      return;
+    }
+    this.isLoading = true;
     let income = 0;
     if (this.selectedTab === RecurringTransactionsTabs.Expenses) {
       income = this.recurringTransaction.income * -1;
     } else {
       income = this.recurringTransaction.income;
     }
-    this.recurringTransactionService.createRecurringTransaction(this.recurringTransaction.startDate, 
+    this.recurringTransactionService.createRecurringTransaction(this.recurringTransaction.startDate,
       this.recurringTransaction.occurrence,
       this.recurringTransaction.description,
       income,
@@ -157,7 +166,8 @@ export class RecurringTransactionsPageComponent implements OnInit {
         this.getRecurringTransactions();
         this.closeModal();
         this.clearInput();
-      });
+        this.isLoading = false;
+      }, (err) => {this.isLoading = false; });
   }
 
   clearInput() {

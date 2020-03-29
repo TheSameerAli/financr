@@ -1,3 +1,4 @@
+import { LoadingSpinnerComponent } from './components/partials/loading-spinner/loading-spinner.component';
 import { RecurringTransactionsTableComponent } from './pages/account/recurring-transactions-page/components/recurring-transactions-table/recurring-transactions-table.component';
 import { RecurringTransactionsPageComponent } from './pages/account/recurring-transactions-page/recurring-transactions-page.component';
 import { AccountSettingsPageComponent } from './pages/account/account-settings-page/account-settings-page.component';
@@ -53,6 +54,7 @@ export function localStorageFactory() {
     AccountSettingsPageComponent,
     RecurringTransactionsPageComponent,
     RecurringTransactionsTableComponent,
+    LoadingSpinnerComponent,
     KFormatterPipe
   ],
   imports: [
