@@ -1,3 +1,4 @@
+import { Title } from '@angular/platform-browser';
 import {
   RecurringTransactionService
 } from './../../../services/account/transactions/recurring-transaction.service';
@@ -53,7 +54,8 @@ export class RecurringTransactionsPageComponent implements OnInit {
     private router: Router,
     private accountService: AccountService,
     private recurringTransactionService: RecurringTransactionService,
-    private cd: ChangeDetectorRef) {
+    private cd: ChangeDetectorRef,
+    private titleService: Title) {
     this.selectedTab = RecurringTransactionsTabs.Income;
     this.recurringTransaction = {
       id: '',
@@ -78,7 +80,15 @@ export class RecurringTransactionsPageComponent implements OnInit {
     });
     this.getCategories();
     this.getRecurringTransactions();
+    this.setTitle();
   }
+
+  setTitle() {
+    this.accountService.getAccount(this.accountId).subscribe((data: Account) => {
+      this.titleService.setTitle('Recurring Transactions - ' + data.name + ' | Financr');
+    });
+  }
+
 
 
 

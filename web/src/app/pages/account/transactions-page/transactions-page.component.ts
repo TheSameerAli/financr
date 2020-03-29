@@ -1,3 +1,4 @@
+import { Title } from '@angular/platform-browser';
 import { AccountCategory, CategoryType } from './../../../models/accountCategory';
 import { AccountService } from './../../../services/account/account.service';
 import { ActivatedRoute } from '@angular/router';
@@ -30,7 +31,8 @@ export class TransactionsPageComponent implements OnInit {
   constructor(
     private datePipe: DatePipe,
     private route: ActivatedRoute,
-    private accountService: AccountService) {
+    private accountService: AccountService,
+    private titleService: Title) {
     this.selectedMonth = new Date();
     this.updateDisplayDate();
     this.resetTransactionData();
@@ -40,9 +42,16 @@ export class TransactionsPageComponent implements OnInit {
     this.total = 0;
   }
 
+  setTitle() {
+    this.accountService.getAccount(this.accountId).subscribe((data: Account) => {
+      this.titleService.setTitle('Transactions - ' + data.name + ' | Financr');
+    });
+  }
+
   ngOnInit() {
     this.getTransactions();
     this.getCategories();
+    this.setTitle();
   }
 
   previousMonth() {
