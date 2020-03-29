@@ -95,6 +95,7 @@ export class TransactionsPageComponent implements OnInit {
       income,
       this.transaction.accountCategoryId,
       this.accountId).subscribe((data: Transaction) => {
+        this.accountService.transactionEvent.emit();
         this.getTransactions();
         this.closeModal();
         this.resetTransactionData();

@@ -1,13 +1,13 @@
 import { CategoryType } from './../../models/accountCategory';
 import { CreateAccountRequest, Account } from './../../models/account';
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
-
+  public transactionEvent: EventEmitter<any> = new EventEmitter();
   constructor(private http: HttpClient) { }
 
   createAccount(account: CreateAccountRequest) {
