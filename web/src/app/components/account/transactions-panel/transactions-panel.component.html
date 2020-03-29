@@ -1,7 +1,7 @@
 <div class="transactions has-margin-top-5">
     <nav class="panel">
         <p class="panel-heading">
-            Recent Transactions
+            {{panelTitle}}
         </p>
         <div class="panel-block">
             <p class="control has-icons-left">
@@ -14,7 +14,7 @@
 
         <span class="panel-block custom-table">
             <table class="table is-fullwidth">
-                <tbody>
+                <tbody *ngIf="displayTransactions && displayTransactions.length > 0">
                     <tr *ngFor="let transaction of displayTransactions">
                         <td>
                             <i *ngIf="transaction.income < 0" class="fas fa-minus has-text-danger"
@@ -24,6 +24,16 @@
                         </td>
                         <td>{{transaction.description}}</td>
                         <td [class.has-text-success]="transaction.income > 0" [class.has-text-danger]="transaction.income < 0" class="has-text-right">{{transaction.income | currency: 'GBP'}}</td>
+                    </tr>
+                </tbody>
+
+                <tbody *ngIf="!displayTransactions || displayTransactions.length === 0">
+                    <tr>
+                        <td>
+                            -
+                        </td>
+                        <td>No transactions were found.</td>
+                        <td class="has-text-right">-</td>
                     </tr>
                 </tbody>
             </table>
