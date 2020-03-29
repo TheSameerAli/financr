@@ -46,7 +46,6 @@ export class AccountSettingsPageComponent implements OnInit {
 
   saveBudget() {
     this.accountService.setBudget(this.account.budget.budget, this.accountId).subscribe(data => {
-      console.log('Budget has been saved');
     });
   }
 

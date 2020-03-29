@@ -37,7 +37,7 @@ export class DashboardPageComponent implements OnInit {
   getSubscriptions() {
     this.accountService.getSubscriptions().subscribe((data: RecurringTransaction[]) => {
       this.subscriptions = data;
-    })
+    });
   }
 
   generateMainChart(dashboardData: DashboardChartData) {

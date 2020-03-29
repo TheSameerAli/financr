@@ -1,7 +1,7 @@
 import { AccountType } from './../../../models/account';
 import { Transaction } from './../../../models/transaction';
 import { AccountService } from './../../../services/account/account.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Account } from 'src/app/models/account';
 
@@ -43,7 +43,9 @@ export class AccountPageComponent implements OnInit {
   getAccount() {
     this.accountService.getAccount(this.accountId).subscribe((data: Account) => {
       this.account = data;
-      this.budget.total = this.account.budget.budget;
+      if (this.account.budget) {
+        this.budget.total = this.account.budget.budget;
+      }
     });
   }
 

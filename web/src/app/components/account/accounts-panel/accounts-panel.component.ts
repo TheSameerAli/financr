@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import {
   AccountService
 } from './../../../services/account/account.service';
@@ -28,7 +29,7 @@ export class AccountsPanelComponent implements OnInit {
 
   public searchTerm = '';
 
-  constructor(private accountService: AccountService, private cd: ChangeDetectorRef) {
+  constructor(private accountService: AccountService, private cd: ChangeDetectorRef, private router: Router) {
     this.clearForm();
     this.accounts = [];
     this.getAccounts();
@@ -109,6 +110,10 @@ export class AccountsPanelComponent implements OnInit {
       type: AccountType.Current,
       initialAmount: 0
     };
+  }
+
+  navigate(route: any[]) {
+    this.router.navigate(route);
   }
 }
 

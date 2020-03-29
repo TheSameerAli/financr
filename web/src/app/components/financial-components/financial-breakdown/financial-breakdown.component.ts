@@ -4,7 +4,9 @@ import {
 import {
   Component,
   OnInit,
-  Input
+  Input,
+  OnChanges,
+  SimpleChanges
 } from '@angular/core';
 
 @Component({
@@ -12,7 +14,7 @@ import {
   templateUrl: './financial-breakdown.component.html',
   styleUrls: ['./financial-breakdown.component.scss']
 })
-export class FinancialBreakdownComponent implements OnInit {
+export class FinancialBreakdownComponent implements OnInit, OnChanges {
   @Input() monthlyTransactions: Transaction[];
   @Input() allTransactions: Transaction[];
   public incomeCategoryTransactions: CategoryAmount[];
@@ -20,6 +22,10 @@ export class FinancialBreakdownComponent implements OnInit {
   public closingBalance: number;
   public openingBalance: number;
   constructor() {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.ngOnInit();
+  }
 
   ngOnInit() {
     this.incomeCategoryTransactions = [];
@@ -65,7 +71,6 @@ export class FinancialBreakdownComponent implements OnInit {
 
     // Get for expenses
     expenseTransactions.forEach(et => {
-      console.log(et);
       const index = this.expenseCategoryTransactions.findIndex(t => t.categoryName === et.accountCategory.name);
       if (index === -1) {
         this.expenseCategoryTransactions.push({
