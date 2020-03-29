@@ -25,6 +25,8 @@ export class TransactionsPageComponent implements OnInit {
   public expenseCategories: AccountCategory[];
   public incomeCategories: AccountCategory[];
 
+  public isLoading = false;
+
   constructor(
     private datePipe: DatePipe,
     private route: ActivatedRoute,
@@ -80,7 +82,12 @@ export class TransactionsPageComponent implements OnInit {
   }
 
   createTransaction() {
+    if (this.isLoading) {
+      return;
+    }
+    this.isLoading = true;
     if (this.transaction.description === '' || !this.transaction.income || !this.transaction.transactionDate) {
+      this.isLoading = false;
       return;
     }
     let income = 0;
@@ -95,11 +102,12 @@ export class TransactionsPageComponent implements OnInit {
       income,
       this.transaction.accountCategoryId,
       this.accountId).subscribe((data: Transaction) => {
+        this.isLoading = false;
         this.accountService.transactionEvent.emit();
         this.getTransactions();
         this.closeModal();
         this.resetTransactionData();
-      });
+      }, (err) => { this.isLoading = false; });
   }
 
   resetTransactionData() {
@@ -120,6 +128,9 @@ export class TransactionsPageComponent implements OnInit {
   }
 
   closeModal() {
+    if (this.isLoading) {
+      return;
+    }
     this.createTransactionModalOpen = false;
   }
 

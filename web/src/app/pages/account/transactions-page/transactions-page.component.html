@@ -116,8 +116,8 @@
             </div>
         </section>
         <footer class="modal-card-foot">
-            <button (click)="createTransaction()" class="button is-success">Create</button>
-            <button (click)="closeModal()" class="button">Cancel</button>
+            <button [disabled]="isLoading" [class.is-loading]="isLoading" (click)="createTransaction()" class="button is-success">Create</button>
+            <button [disabled]="isLoading" (click)="closeModal()" class="button">Cancel</button>
         </footer>
     </div>
 </div>
