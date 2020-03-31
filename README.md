@@ -1,8 +1,7 @@
 # Financr
+![preview-1](https://snipboard.io/l4XqNf.jpg "")
 
 ## Overview 
-
-![preview-1](https://snipboard.io/l4XqNf.jpg "")
 
 Financr provides a platform to manage all the finances from a single place. The platform enables the addition of multiple accounts (i.e. bank current accounts, credit card, investments, etc) and provides a big picture overview about the financial health.
 
