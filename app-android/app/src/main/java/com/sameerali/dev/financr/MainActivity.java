@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.sameerali.dev.financr.configuration.SharedPreferences;
+import com.sameerali.dev.financr.repositories.AuthRepository;
 import com.sameerali.dev.financr.ui.login.LoginActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,13 +13,24 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Intent intent = new Intent(this, LoginActivity.class);
+        AuthRepository authRepo = new AuthRepository();
+        boolean isLoggedIn = authRepo.isLoggedIn(getSharedPreferences(SharedPreferences.UserCreds, MODE_PRIVATE));
+        Intent intent;
+        if (!isLoggedIn) {
+            Toast.makeText(getApplicationContext(), "Not logged in", Toast.LENGTH_LONG).show();
+            intent = new Intent(this, LoginActivity.class);
+        }
+        else {
+            Toast.makeText(getApplicationContext(), "Already logged in", Toast.LENGTH_LONG).show();
+            intent = new Intent(this, DashboardActivity.class);
+        }
         startActivity(intent);
 //        setContentView(R.layout.activity_main);
 
