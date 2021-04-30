@@ -1,76 +1,18 @@
-import { LoadingSpinnerComponent } from './components/partials/loading-spinner/loading-spinner.component';
-import { RecurringTransactionsTableComponent } from './pages/account/recurring-transactions-page/components/recurring-transactions-table/recurring-transactions-table.component';
-import { RecurringTransactionsPageComponent } from './pages/account/recurring-transactions-page/recurring-transactions-page.component';
-import { AccountSettingsPageComponent } from './pages/account/account-settings-page/account-settings-page.component';
-import { AccountPageMenuComponent } from './pages/account/components/account-page-menu/account-page-menu.component';
-import { UserService } from './services/user/user.service';
-import { User } from './models/user';
-import { AuthService } from './services/user/auth.service';
-import { APIInterceptor } from './interceptors/api.interceptor';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ChartsModule } from 'ng2-charts';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginPageComponent } from './pages/auth/login-page/login-page.component';
-import { DashboardPageComponent } from './pages/main/dashboard-page/dashboard-page.component';
-import { MenuComponent } from './layouts/header/menu/menu.component';
-import { AccountsPanelComponent } from './components/account/accounts-panel/accounts-panel.component';
-import { TransactionsPanelComponent } from './components/account/transactions-panel/transactions-panel.component';
-import { LeftSidebarComponent } from './layouts/sidebar/left-sidebar/left-sidebar.component';
-import { AccountPageComponent } from './pages/account/account-page/account-page.component';
-import { AccountCategoriesPageComponent } from './pages/account/account-categories-page/account-categories-page.component';
-import { WebModalComponent } from './components/partials/modals/web-modal/web-modal.component';
-import { TransactionsPageComponent } from './pages/account/transactions-page/transactions-page.component';
-import { ReportsPageComponent } from './pages/account/reports-page/reports-page.component';
-import { DatePipe, CurrencyPipe } from '@angular/common';
-import { FinancialBreakdownComponent } from './components/financial-components/financial-breakdown/financial-breakdown.component';
-import { LocalStorage } from './models/local-storage';
-import { KFormatterPipe } from './pipes/k-formatter.pipe';
-
-export function localStorageFactory() {
-  return localStorage;
-}
 
 @NgModule({
   declarations: [
-    AppComponent,
-    LoginPageComponent,
-    DashboardPageComponent,
-    MenuComponent,
-    AccountsPanelComponent,
-    TransactionsPanelComponent,
-    LeftSidebarComponent,
-    AccountPageComponent,
-    AccountPageMenuComponent,
-    AccountCategoriesPageComponent,
-    WebModalComponent,
-    TransactionsPageComponent,
-    ReportsPageComponent,
-    FinancialBreakdownComponent,
-    AccountSettingsPageComponent,
-    RecurringTransactionsPageComponent,
-    RecurringTransactionsTableComponent,
-    LoadingSpinnerComponent,
-    KFormatterPipe
+    AppComponent
   ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'serverApp' }),
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule,
-    ChartsModule
+    BrowserModule,
+    AppRoutingModule
   ],
-  providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass: APIInterceptor,
-    multi: true,
-  }, DatePipe, CurrencyPipe,
-  {provide: LocalStorage, useFactory: localStorageFactory}],
+  providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule { }
