@@ -5,10 +5,22 @@
   position: absolute;
   left: 0;
   bottom: 0;
+
+  @media (max-width: $sm) {
+    display: none;
+
+  }
 }
 
 .nav-section {
   padding: 1rem;
+
+  @media (max-width: $sm) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
 }
 
 .right-circle-design {
@@ -27,14 +39,25 @@
   align-items: center;
   flex-direction: column;
 
+  @media(max-width: $md) {
+    padding: 1rem;
+  }
+
   .login-title {
     font-size: 54px;
     font-weight: bold;
     color: $title-color;
+
+    @media(max-width: $sm) {
+      font-size: 36px;
+    }
   }
 
   .login-description {
     font-size: 18px;
+    @media(max-width: $sm) {
+      font-size: 16px;
+    }
   }
 
 
@@ -47,6 +70,12 @@
     width: 608px;
     height: 376px;
     display: flex;
+
+    @media (max-width: $md) {
+      width: 100%;
+      padding: 1rem;
+
+    }
 
     .login-form {
       display: flex;
@@ -72,6 +101,10 @@
         width: 100%;
         font-size: 24px;
         text-transform: uppercase;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50px;
 
         ng-lottie {
           display: flex;
@@ -79,17 +112,6 @@
           justify-content: center;
         }
 
-
-
-        span {
-          margin-top: 10px;
-        }
-
-        .continue-icon {
-          margin-right: 1rem;
-          width: 30px;
-          height: 30px;
-        }
       }
     }
 
