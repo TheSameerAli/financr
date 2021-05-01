@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login-page.component.scss']
 })
 export class LoginPageComponent implements OnInit {
-
+  public isLoading = false;
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  clickLogin() {
+    this.isLoading = true;
   }
 
 }

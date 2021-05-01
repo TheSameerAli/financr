@@ -7,9 +7,13 @@ import { AppComponent } from './app.component';
 import { LoginPageComponent } from './pages/auth/login-page/login-page.component';
 import { FeatherModule } from 'angular-feather';
 import { ArrowRightCircle } from 'angular-feather/icons';
+import { LottieModule } from 'ngx-lottie';
 const icons = {
   ArrowRightCircle,
 };
+export function playerFactory() {
+  return import(/* webpackChunkName: 'lottie-web' */ 'lottie-web');
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +22,8 @@ const icons = {
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FeatherModule.pick(icons)
+    FeatherModule.pick(icons),
+    LottieModule.forRoot({ player: playerFactory })
   ],
   providers: [],
   bootstrap: [AppComponent]

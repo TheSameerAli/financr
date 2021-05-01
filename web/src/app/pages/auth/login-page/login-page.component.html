@@ -28,7 +28,17 @@
         <div class="form-group">
           <input class="form-control" type="password" placeholder="Password" name="" id="">
         </div>
-        <button class="btn btn-login"> <i-feather name="arrow-right-circle" class="continue-icon"></i-feather> <span>Continue</span> </button>
+        <button class="btn btn-login" >
+          <ng-container *ngIf="isLoading">
+            <ng-lottie width="35px" height="35px" containerClass="loader-icon"
+            [options]="{path: '/assets/animations/lottie/loaders/333-loader-4.json'}"></ng-lottie>
+          </ng-container>
+
+          <ng-container *ngIf="!isLoading">
+            <span>Login</span>
+          </ng-container>
+
+           </button>
       </div>
     </div>
   </div>
