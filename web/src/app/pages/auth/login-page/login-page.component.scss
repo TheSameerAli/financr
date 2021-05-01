@@ -1,0 +1,87 @@
+@import '../../../styles/variables';
+
+.page-wave {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+.nav-section {
+  padding: 1rem;
+}
+
+.right-circle-design {
+  position: absolute;
+  top: 5%;
+  right: 0;
+
+  @media(max-width: 1200px) {
+    display: none;
+  }
+}
+
+.login-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .login-title {
+    font-size: 54px;
+    font-weight: bold;
+    color: $title-color;
+  }
+
+  .login-description {
+    font-size: 18px;
+  }
+
+
+
+  .login-box {
+    padding: 3rem;
+    background-color: white;
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    width: 608px;
+    height: 376px;
+    display: flex;
+
+    .login-form {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      width: 100%;
+
+      .form-group {
+        width: 100%;
+        padding-bottom: 1rem;
+
+        input {
+          padding: 1.5rem;
+        }
+      }
+
+      .btn-login {
+        background: $primary;
+        color: white;
+        width: 100%;
+        font-size: 24px;
+        text-transform: uppercase;
+
+        span {
+          margin-top: 10px;
+        }
+
+        .continue-icon {
+          margin-right: 1rem;
+          width: 30px;
+          height: 30px;
+        }
+      }
+    }
+
+  }
+}
