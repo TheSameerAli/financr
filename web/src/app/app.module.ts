@@ -10,7 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginPageComponent } from './pages/auth/login-page/login-page.component';
 import { FeatherModule } from 'angular-feather';
-import { ArrowRightCircle } from 'angular-feather/icons';
+import { ArrowRightCircle, Home } from 'angular-feather/icons';
 import { LottieModule } from 'ngx-lottie';
 
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
@@ -19,6 +19,7 @@ import { LogoutPageComponent } from './pages/auth/logout-page/logout-page.compon
 
 const icons = {
   ArrowRightCircle,
+  Home
 };
 
 
