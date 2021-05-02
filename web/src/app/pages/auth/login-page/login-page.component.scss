@@ -70,6 +70,8 @@
     width: 608px;
     height: 376px;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
 
     @media (max-width: $md) {
       width: 100%;
