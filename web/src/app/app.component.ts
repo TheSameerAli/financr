@@ -1,3 +1,4 @@
+import { AuthService } from './_services/auth.service';
 import { TokenStorageService } from './_services/token-storage.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -9,9 +10,16 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit {
   title = 'web';
-  constructor() {
-
+  public isLoggedIn: boolean;
+  constructor(private tokenStorageService: TokenStorageService, private authService: AuthService) {
   }
   ngOnInit(): void {
+    this.isLoggedIn = !!this.tokenStorageService.getToken();
+
+    this.authService.authEvent.subscribe(() => {
+      console.log('login event');
+      this.isLoggedIn = !!this.tokenStorageService.getToken();
+    })
+
   }
 }

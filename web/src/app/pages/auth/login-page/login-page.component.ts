@@ -30,6 +30,7 @@ export class LoginPageComponent implements OnInit {
     this.authService.login(this.loginForm.email, this.loginForm.password).subscribe(data => {
       this.isLoading = false;
       this.tokenStorageService.saveToken(data.token);
+      this.authService.authEvent.emit();
       this.router.navigate(['']);
     }, (err) => {
       console.log(err.error.message);

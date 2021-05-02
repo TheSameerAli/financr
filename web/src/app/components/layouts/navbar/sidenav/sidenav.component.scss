@@ -3,6 +3,10 @@
   position: fixed;
   height: 100%;
   width: 20%;
+  @media(max-width: $md) {
+    width: 15%;
+  }
+
   background-color: white;
   -webkit-box-shadow: 6px 3px 12px -4px rgba(0,0,0,0.15);
     box-shadow: 6px 3px 12px -4px rgba(0,0,0,0.15);
@@ -12,11 +16,29 @@
     align-items: center;
     padding: .8rem;
 
+    @media(max-width: $md) {
+      paddding: .8rem 0 .8rem 0;
+    }
+
 
     .brand-title {
       color: $primary;
       font-weight: 500;
       font-size: 24px;
+
+      @media (max-width: $md) {
+        display: none;
+      }
+    }
+
+    .icon {
+      svg {
+        @media(max-width: $md) {
+          width: 45px;
+          height: 45px;
+        }
+      }
+
     }
   }
 
@@ -26,6 +48,10 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
+
+    @media (max-width: $md) {
+      display: none;
+    }
 
     .networth-text {
       font-size: 35px;
@@ -82,6 +108,12 @@
           .menuitem-icon {
             margin-right: 1rem;
             margin-left: 1rem;
+          }
+
+          .menu-text {
+            @media(max-width: $md) {
+              display: none;
+            }
           }
         }
       }

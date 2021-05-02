@@ -1,5 +1,5 @@
 import { TokenStorageService } from './token-storage.service';
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -12,11 +12,12 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class AuthService {
-
+  public authEvent: EventEmitter<any> = new EventEmitter<any>();
   constructor(private http: HttpClient, private tokenStorageService: TokenStorageService) { }
 
   logout():void {
     this.tokenStorageService.signOut();
+    this.authEvent.emit();
   }
 
   login(email, password): Observable<any> {

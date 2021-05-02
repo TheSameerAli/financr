@@ -1,3 +1,5 @@
+@import '../../../styles/variables';
+
 .figure-box {
   padding: 1rem 1rem .5rem 1rem;
   background-color: white;
@@ -6,20 +8,37 @@
     font-size: 24px;
     font-weight: 600;
     color: #858585;
+
+    @media(max-width: $md) {
+      font-size: 21px;
+    }
   }
 
   .figure {
     font-size: 42px;
+    @media(max-width: $md) {
+      font-size: 35px;
+    }
     font-weight: 600;
     color: #3F4343;
   }
 
   .change-description {
     margin-top: .3rem;
+
+    @media(max-width: $md) {
+      font-size: 14px;
+    }
   }
   .center {
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  &:hover {
+    transform: scale(1.05);
+    transition: transform .25s;
+
   }
 }

@@ -2,11 +2,23 @@
 
 .home-page {
   padding: 2rem;
+  @media (max-width: $md) {
+    padding: 1rem;
+
+  }
   padding-top: 4rem;
   .page-bar {
     padding: 0 3rem 0 3rem;
+    @media(max-width: $md) {
+      padding: 0 1.5rem 0 1.5rem;
+
+    }
     display: flex;
     justify-content: space-between;
+    @media(max-width: $md) {
+      flex-direction: column;
+      align-items: center;
+    }
     .page-title {
       color: $title-color;
       font-weight: 600;
@@ -31,6 +43,10 @@
 
   .page-content {
     padding: 0 3rem 0 3rem;
+    @media(max-width: $md) {
+      padding: 0 1rem 0 1rem;
+
+    }
 
     margin-top: 3rem;
   }
