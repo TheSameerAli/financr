@@ -1,53 +1,26 @@
 <div class="home-page">
-  <div class="side-nav">
-    <div class="brand">
-      <div class="icon">
-        <svg width="68" height="61" viewBox="0 0 68 61" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M20.465 43H14.115V12.3H34.565V17.9H20.465V25.7H33.515V31.25H20.465V43ZM45.1139 20.65V43H38.9139V20.65H45.1139ZM45.6639 14.2C45.6639 15.2333 45.2972 16.0833 44.5639 16.75C43.8639 17.4167 43.0139 17.75 42.0139 17.75C40.9805 17.75 40.0972 17.4167 39.3639 16.75C38.6639 16.0833 38.3139 15.2333 38.3139 14.2C38.3139 13.2 38.6805 12.3667 39.4139 11.7C40.1472 11 41.0139 10.65 42.0139 10.65C43.0139 10.65 43.8639 11 44.5639 11.7C45.2972 12.3667 45.6639 13.2 45.6639 14.2Z" fill="#145DA0"/>
-          <rect x="1.5" y="1.5" width="57" height="51" stroke="#2E8BC0" stroke-width="3"/>
-          <rect x="50" y="43" width="18" height="18" fill="white"/>
-          <rect x="50" y="43" width="18" height="18" fill="white"/>
-          </svg>
+  <div class="page-bar">
+      <h1 class="page-title">Overview</h1>
+      <div class="date-box">
+        24 Mar - 24 Apr
       </div>
-      <div class="brand-title">
-        Finance Management
-      </div>
-    </div>
-
-    <div class="networth-container">
-      <div class="networth-text">
-        £10,847.99
-      </div>
-      <div class="networth-description">
-        Total Networth
-      </div>
-    </div>
-
-    <div class="menu-items">
-      <ul>
-        <li class="active">
-          <a href="#">
-            <i-feather name="home" class="menuitem-icon"></i-feather> Dashboard
-          </a>
-        </li>
-
-        <li>
-          <a href="#">
-            <i-feather name="home" class="menuitem-icon"></i-feather> Dashboard
-          </a>
-        </li>
-
-        <li>
-          <a href="#">
-            <i-feather name="home" class="menuitem-icon"></i-feather> Dashboard
-          </a>
-        </li>
-
-      </ul>
-    </div>
   </div>
 
   <div class="page-content">
-    Page Content here
+    <div class="row">
+      <div class="col-md-4">
+        <app-figure-box [change]="-22" [figure]="1200" title="Income" descriptionColor="red" [isLoading]="false"></app-figure-box>
+      </div>
+
+      <div class="col-md-4">
+        <app-figure-box [change]="22" [figure]="323" title="Expenses" descriptionColor="green" [isLoading]="false"></app-figure-box>
+
+      </div>
+
+      <div class="col-md-4">
+        <app-figure-box [change]="0" [figure]="1200" title="Income" descriptionColor="red" [isLoading]="false"></app-figure-box>
+
+      </div>
+    </div>
   </div>
 </div>

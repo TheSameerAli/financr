@@ -6,3 +6,18 @@ body, html {
   font-family: 'Calibre';
   background-color: $background;
 }
+
+
+.red {
+  color: $red;
+  .f-icon {
+    stroke: $red;
+  }
+}
+
+.green {
+  color: $green;
+  .f-icon {
+    stroke: $green;
+  }
+}
