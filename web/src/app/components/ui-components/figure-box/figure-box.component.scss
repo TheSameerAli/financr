@@ -7,7 +7,7 @@
   h1 {
     font-size: 24px;
     font-weight: 600;
-    color: #858585;
+    color:$card-title-color;
 
     @media(max-width: $md) {
       font-size: 21px;

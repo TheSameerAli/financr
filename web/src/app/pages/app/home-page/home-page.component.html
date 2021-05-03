@@ -22,5 +22,40 @@
 
       </div>
     </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="networth-chart-container">
+          <div class="topbar-container">
+            <h1>Total Balance</h1>
+            <div class="timeselection-btns">
+                <ul>
+                  <li class="active">1H</li>
+                  <li>24H</li>
+                  <li>1W</li>
+                  <li>1Y</li>
+                  <li>ALL</li>
+                </ul>
+            </div>
+          </div>
+          <div class="networth-chart">
+            <ngx-charts-line-chart
+              [scheme]="colorScheme"
+              [legend]="false"
+              [xAxis]="xAxis"
+              [yAxis]="yAxis"
+              [timeline]="timeline"
+              [results]="data"
+              [showGridLines]="false"
+
+              (activate)="onActivate($event)"
+              (deactivate)="onDeactivate($event)"
+              >
+            </ngx-charts-line-chart>
+          </div>
+        </div>
+
+      </div>
+    </div>
   </div>
 </div>

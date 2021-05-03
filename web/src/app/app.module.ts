@@ -12,6 +12,8 @@ import { LoginPageComponent } from './pages/auth/login-page/login-page.component
 import { FeatherModule } from 'angular-feather';
 import { ArrowDownRight, ArrowUpRight, ArrowRightCircle, Home } from 'angular-feather/icons';
 import { LottieModule } from 'ngx-lottie';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { HomePageComponent } from './pages/app/home-page/home-page.component';
@@ -45,7 +47,9 @@ export function playerFactory() {
     FormsModule,
     HttpClientModule,
     FeatherModule.pick(icons),
-    LottieModule.forRoot({ player: playerFactory })
+    LottieModule.forRoot({ player: playerFactory }),
+    NgxChartsModule,
+    BrowserAnimationsModule
   ],
   providers: [authInterceptorProviders, AuthGuard],
   bootstrap: [AppComponent]
