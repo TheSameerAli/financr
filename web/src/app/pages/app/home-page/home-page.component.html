@@ -2,7 +2,10 @@
   <div class="page-bar">
       <h1 class="page-title">Overview</h1>
       <div class="date-box">
-        24 Mar - 24 Apr
+        <span>
+          {{timeFrame}}
+
+        </span>
       </div>
   </div>
 
@@ -18,7 +21,7 @@
       </div>
 
       <div class="col-md-4 mt-2">
-        <app-figure-box [change]="0" [figure]="1200" title="Income" descriptionColor="red" [isLoading]="false"></app-figure-box>
+        <app-figure-box [change]="0" [figure]="1200" title="Savings" descriptionColor="red" [isLoading]="false"></app-figure-box>
 
       </div>
     </div>

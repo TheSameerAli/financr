@@ -1,8 +1,9 @@
+import { environment } from './../../environments/environment';
 import { FinancialHealth } from './../models/data/financial-health';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-const API_ENDPOINT = 'http://localhost:5000'
+const API_ENDPOINT = environment.api;
 @Injectable({
   providedIn: 'root'
 })

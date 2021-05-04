@@ -55,7 +55,8 @@ namespace WebApi.Services
             var category =
                 await _accountCategories.FirstOrDefaultAsync(
                     ac => ac.Name == "Carry Over" && ac.AccountId == account.Id);
-            var transaction = new Transaction(initialBalance, "Initial balance", DateTimeOffset.Now, category.Id, account.Id);
+            var transaction = new Transaction(initialBalance, "Initial balance", DateTimeOffset.Now, 
+                category.Id, account.Id);
             await _transactions.AddAsync(transaction);
             await _uow.SaveChangesAsync();
             return account;
@@ -66,6 +67,7 @@ namespace WebApi.Services
             return await _accounts
                 .Where(a => a.UserId == userId)
                 .Include(a => a.Budget)
+                .Include(t => t.Transactions)
                 .ToListAsync();
         }
 

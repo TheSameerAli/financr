@@ -1,5 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
+import * as moment from 'moment';
 
 
 @Component({
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent implements OnInit {
-
+  public timeFrame: string = moment().subtract(1, 'month').format('DD MMM') + ' - ' + moment().format('DD MMM');
 
   multi: any[];
   view: any[] = [700, 300];
@@ -65,7 +66,7 @@ export class HomePageComponent implements OnInit {
           "name": "9"
         },
         {
-          "value": 2096,
+          "value": 1938,
           "name": "10"
         }
       ]
