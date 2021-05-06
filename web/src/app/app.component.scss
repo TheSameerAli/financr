@@ -1,0 +1,18 @@
+@import './styles/variables';
+.page-content {
+  margin-left: 237px;
+  width: calc(100% - 237px);
+  @media(max-width: $md) {
+    margin-left: 75px;
+    width: calc(100% - 75px);
+  }
+}
+
+
+.width-100 {
+  width: 100% !important;
+}
+
+.no-margin {
+  margin-left: 0px !important;
+}

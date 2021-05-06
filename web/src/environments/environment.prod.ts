@@ -1,4 +1,4 @@
 export const environment = {
-  production: true,
-  apiUri: 'https://api.financr.sameerali.dev'
+  api: 'http://localhost:4200',
+  production: true
 };

@@ -1,0 +1,27 @@
+<div class="figure-box">
+  <h1>{{title}}</h1>
+  <h2 *ngIf="!isLoading" class="figure">{{figure | currency: 'GBP'}}</h2>
+
+  <div *ngIf="isLoading" class="center">
+      <ng-lottie width="100px" height="100px" containerClass="loader-icon"
+      [options]="{path: '/assets/animations/lottie/loaders/lf30_editor_2ui6itzo.json'}"></ng-lottie>
+  </div>
+
+
+  <ng-container *ngIf="!isLoading">
+    <ng-container *ngIf="change !== 0">
+      <p class="change-description">
+        <span [class]="descriptionColor">
+          22% <ng-container *ngIf="change < 0"><i-feather name="arrow-down-right" class="f-icon"></i-feather></ng-container> <ng-container *ngIf="change > 0"><i-feather name="arrow-up-right" class="f-icon"></i-feather></ng-container>
+        </span> <ng-container *ngIf="change > 0">more</ng-container> <ng-container *ngIf="change < 0">less</ng-container> than last month
+      </p>
+    </ng-container>
+    <ng-container *ngIf="change === 0">
+      <p class="change-description">
+        There has been no change since last month
+      </p>
+    </ng-container>
+  </ng-container>
+
+
+</div>

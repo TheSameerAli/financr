@@ -1,9 +1,8 @@
-import { Title } from '@angular/platform-browser';
-import { AuthService } from './../../../services/user/auth.service';
-import { UserService } from './../../../services/user/user.service';
-import { User } from './../../../models/user';
+import { Router } from '@angular/router';
+import { TokenStorageService } from './../../../_services/token-storage.service';
+import { AuthService } from './../../../_services/auth.service';
+import { LoginFormViewModel } from './../../../models/view-models/login-form-view-model';
 import { Component, OnInit } from '@angular/core';
-import { Data, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
@@ -12,36 +11,33 @@ import { Data, Router } from '@angular/router';
 })
 export class LoginPageComponent implements OnInit {
   public isLoading = false;
-  public user: User;
-  public errorMessage: string;
-  constructor(
-    private userService: UserService,
-    private authService: AuthService,
-    private router: Router,
-    private titleService: Title) {
-    this.user = {
-      email: '',
-      id: '',
-      password: '',
-      token: ''
-    };
+  public loginForm: LoginFormViewModel = {
+    email: '',
+    password: ''
+  }
+  public isFailed = false;
+  public errorMessage = '';
+  constructor(private authService: AuthService,
+    private tokenStorageService: TokenStorageService,
+    private router: Router) { }
+
+  ngOnInit(): void {
   }
 
-  ngOnInit() {
-    this.titleService.setTitle('Login | Financr');
-  }
-
-  doLogin() {
+  login() {
     this.isLoading = true;
-    this.userService.authenticate(this.user.email, this.user.password).subscribe((data: User) => {
-      this.authService.provisionLogin(data);
+    this.isFailed = false;
+    this.authService.login(this.loginForm.email, this.loginForm.password).subscribe(data => {
       this.isLoading = false;
-      this.router.navigate(['/dashboard']);
+      this.tokenStorageService.saveToken(data.token);
+      this.authService.authEvent.emit();
+      this.router.navigate(['']);
     }, (err) => {
-      this.errorMessage = err.error.message;
-      setTimeout(() => { this.errorMessage = undefined; }, 3000);
+      console.log(err.error.message);
       this.isLoading = false;
-    });
+      this.isFailed = true;
+      this.errorMessage = err.error.message;
+    })
   }
 
 }

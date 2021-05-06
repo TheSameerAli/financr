@@ -25,7 +25,7 @@ namespace WebApi.Controller
             var user = _userService.Authenticate(request.Email, request.Password);
             if (user == null)
             {
-                return BadRequest(new {message = "Incorrect username or password"});
+                return BadRequest(new {message = "Invalid email address or password. Please try again."});
             }
 
             return Ok(user);

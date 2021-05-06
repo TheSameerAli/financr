@@ -1,22 +1,8 @@
-<div class="app">
-  <div *ngIf="isLoggedIn" class="logged-in-view">
-    <app-menu></app-menu>
-    <div class="columns">
-      <div class="column is-one-quarter left-sidebar has-margin-top-5 has-margin-left-5">
-        <app-left-sidebar></app-left-sidebar>
-      </div>
-  
-      <div class="column main-content has-margin-top-5 has-margin-right-5">
-        <div class="box">
-          <router-outlet></router-outlet>
-        </div>
-      </div>
-  
-    </div>
-  </div>
-  
-  <div *ngIf="!isLoggedIn" class="login-page-container">
-    <app-login-page></app-login-page>
+<div class="main-site">
+  <app-sidenav *ngIf="isLoggedIn"></app-sidenav>
+  <div class="page-content" [class.width-100]="!isLoggedIn" [class.no-margin]="!isLoggedIn">
+    <router-outlet></router-outlet>
+
   </div>
 
 </div>

@@ -1,76 +1,67 @@
-import { LoadingSpinnerComponent } from './components/partials/loading-spinner/loading-spinner.component';
-import { RecurringTransactionsTableComponent } from './pages/account/recurring-transactions-page/components/recurring-transactions-table/recurring-transactions-table.component';
-import { RecurringTransactionsPageComponent } from './pages/account/recurring-transactions-page/recurring-transactions-page.component';
-import { AccountSettingsPageComponent } from './pages/account/account-settings-page/account-settings-page.component';
-import { AccountPageMenuComponent } from './pages/account/components/account-page-menu/account-page-menu.component';
-import { UserService } from './services/user/user.service';
-import { User } from './models/user';
-import { AuthService } from './services/user/auth.service';
-import { APIInterceptor } from './interceptors/api.interceptor';
+import { AuthGuard } from './core/auth.guard';
+import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ChartsModule } from 'ng2-charts';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginPageComponent } from './pages/auth/login-page/login-page.component';
-import { DashboardPageComponent } from './pages/main/dashboard-page/dashboard-page.component';
-import { MenuComponent } from './layouts/header/menu/menu.component';
-import { AccountsPanelComponent } from './components/account/accounts-panel/accounts-panel.component';
-import { TransactionsPanelComponent } from './components/account/transactions-panel/transactions-panel.component';
-import { LeftSidebarComponent } from './layouts/sidebar/left-sidebar/left-sidebar.component';
-import { AccountPageComponent } from './pages/account/account-page/account-page.component';
-import { AccountCategoriesPageComponent } from './pages/account/account-categories-page/account-categories-page.component';
-import { WebModalComponent } from './components/partials/modals/web-modal/web-modal.component';
-import { TransactionsPageComponent } from './pages/account/transactions-page/transactions-page.component';
-import { ReportsPageComponent } from './pages/account/reports-page/reports-page.component';
-import { DatePipe, CurrencyPipe } from '@angular/common';
-import { FinancialBreakdownComponent } from './components/financial-components/financial-breakdown/financial-breakdown.component';
-import { LocalStorage } from './models/local-storage';
-import { KFormatterPipe } from './pipes/k-formatter.pipe';
+import { FeatherModule } from 'angular-feather';
+import { ArrowDownRight, ArrowUpRight, ArrowRightCircle, Home, ArrowRight, ArrowLeft } from 'angular-feather/icons';
+import { LottieModule } from 'ngx-lottie';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
-export function localStorageFactory() {
-  return localStorage;
+import { authInterceptorProviders } from './_helpers/auth.interceptor';
+import { HomePageComponent } from './pages/app/home-page/home-page.component';
+import { LogoutPageComponent } from './pages/auth/logout-page/logout-page.component';
+import { SidenavComponent } from './components/layouts/navbar/sidenav/sidenav.component';
+import { FigureBoxComponent } from './components/ui-components/figure-box/figure-box.component';
+import { AccountsListPageComponent } from './pages/app/accounts/accounts-list-page/accounts-list-page.component';
+import { AddAccountPageComponent } from './pages/app/accounts/add-account-page/add-account-page.component';
+import { AddAccountStep1Component } from './pages/app/accounts/add-account-page/steps/add-account-step1/add-account-step1.component';
+import { AddAccountStep2Component } from './pages/app/accounts/add-account-page/steps/add-account-step2/add-account-step2.component';
+
+const icons = {
+  ArrowRightCircle,
+  ArrowUpRight,
+  ArrowDownRight,
+  ArrowRight,
+  ArrowLeft,
+  Home
+};
+
+
+export function playerFactory() {
+  return import(/* webpackChunkName: 'lottie-web' */ 'lottie-web');
 }
-
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
-    DashboardPageComponent,
-    MenuComponent,
-    AccountsPanelComponent,
-    TransactionsPanelComponent,
-    LeftSidebarComponent,
-    AccountPageComponent,
-    AccountPageMenuComponent,
-    AccountCategoriesPageComponent,
-    WebModalComponent,
-    TransactionsPageComponent,
-    ReportsPageComponent,
-    FinancialBreakdownComponent,
-    AccountSettingsPageComponent,
-    RecurringTransactionsPageComponent,
-    RecurringTransactionsTableComponent,
-    LoadingSpinnerComponent,
-    KFormatterPipe
+    HomePageComponent,
+    LogoutPageComponent,
+    SidenavComponent,
+    FigureBoxComponent,
+    AccountsListPageComponent,
+    AddAccountPageComponent,
+    AddAccountStep1Component,
+    AddAccountStep2Component
   ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ChartsModule
+    FeatherModule.pick(icons),
+    LottieModule.forRoot({ player: playerFactory }),
+    NgxChartsModule,
+    BrowserAnimationsModule
   ],
-  providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass: APIInterceptor,
-    multi: true,
-  }, DatePipe, CurrencyPipe,
-  {provide: LocalStorage, useFactory: localStorageFactory}],
+  providers: [authInterceptorProviders, AuthGuard],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule { }

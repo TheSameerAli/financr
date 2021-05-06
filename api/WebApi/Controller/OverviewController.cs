@@ -22,5 +22,11 @@ namespace WebApi.Controller
         {
             return Ok(await _financialHealthService.GetFinancialHealth(UserId));
         }
+
+        [HttpGet("monthly-data")]
+        public async Task<IActionResult> GetMonthlyData()
+        {
+            return Ok();
+        } 
     }
 }
