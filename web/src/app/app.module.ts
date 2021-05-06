@@ -21,6 +21,8 @@ import { LogoutPageComponent } from './pages/auth/logout-page/logout-page.compon
 import { SidenavComponent } from './components/layouts/navbar/sidenav/sidenav.component';
 import { FigureBoxComponent } from './components/ui-components/figure-box/figure-box.component';
 import { AccountsListPageComponent } from './pages/app/accounts/accounts-list-page/accounts-list-page.component';
+import { AddAccountPageComponent } from './pages/app/accounts/add-account-page/add-account-page.component';
+import { AddAccountStep1Component } from './pages/app/accounts/add-account-page/steps/add-account-step1/add-account-step1.component';
 
 const icons = {
   ArrowRightCircle,
@@ -41,7 +43,9 @@ export function playerFactory() {
     LogoutPageComponent,
     SidenavComponent,
     FigureBoxComponent,
-    AccountsListPageComponent
+    AccountsListPageComponent,
+    AddAccountPageComponent,
+    AddAccountStep1Component
   ],
   imports: [
     BrowserModule,

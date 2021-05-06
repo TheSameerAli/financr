@@ -1,27 +1,30 @@
 <div class="home-page">
   <div class="page-bar">
-      <h1 class="page-title">Overview</h1>
-      <div class="date-box">
-        <span>
-          {{timeFrame}}
+    <h1 class="page-title">Overview</h1>
+    <div class="date-box">
+      <span>
+        {{timeFrame}}
 
-        </span>
-      </div>
+      </span>
+    </div>
   </div>
 
   <div class="page-content">
     <div class="row">
-      <div class="col-md-4 mt-2">
-        <app-figure-box [change]="-22" [figure]="1200" title="Income" descriptionColor="red" [isLoading]="false"></app-figure-box>
+      <div class="col-lg-4 mt-2">
+        <app-figure-box [change]="-22" [figure]="1200" title="Income" descriptionColor="red" [isLoading]="false">
+        </app-figure-box>
       </div>
 
-      <div class="col-md-4 mt-2">
-        <app-figure-box [change]="22" [figure]="323" title="Expenses" descriptionColor="green" [isLoading]="true"></app-figure-box>
+      <div class="col-lg-4 mt-2">
+        <app-figure-box [change]="22" [figure]="323" title="Expenses" descriptionColor="green" [isLoading]="true">
+        </app-figure-box>
 
       </div>
 
-      <div class="col-md-4 mt-2">
-        <app-figure-box [change]="0" [figure]="1200" title="Savings" descriptionColor="red" [isLoading]="false"></app-figure-box>
+      <div class="col-lg-4 mt-2">
+        <app-figure-box [change]="0" [figure]="1200" title="Savings" descriptionColor="red" [isLoading]="false">
+        </app-figure-box>
 
       </div>
     </div>
@@ -32,28 +35,19 @@
           <div class="topbar-container">
             <h1>Total Balance</h1>
             <div class="timeselection-btns">
-                <ul>
-                  <li class="active">1H</li>
-                  <li>24H</li>
-                  <li>1W</li>
-                  <li>1Y</li>
-                  <li>ALL</li>
-                </ul>
+              <ul>
+                <li class="active">1H</li>
+                <li>24H</li>
+                <li>1W</li>
+                <li>1Y</li>
+                <li>ALL</li>
+              </ul>
             </div>
           </div>
           <div class="networth-chart">
-            <ngx-charts-line-chart
-              [scheme]="colorScheme"
-              [legend]="false"
-              [xAxis]="xAxis"
-              [yAxis]="yAxis"
-              [timeline]="timeline"
-              [results]="data"
-              [showGridLines]="false"
-
-              (activate)="onActivate($event)"
-              (deactivate)="onDeactivate($event)"
-              >
+            <ngx-charts-line-chart [scheme]="colorScheme" [legend]="false" [xAxis]="xAxis" [yAxis]="yAxis"
+              [timeline]="timeline" [results]="data" [showGridLines]="false" (activate)="onActivate($event)"
+              (deactivate)="onDeactivate($event)">
             </ngx-charts-line-chart>
           </div>
         </div>
