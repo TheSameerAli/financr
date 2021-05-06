@@ -28,7 +28,7 @@ namespace WebApi.Services
         public async Task<FinancialHealth> GetFinancialHealth(Guid userId)
         {
             var personalWorth = await GetAccountsWorth(userId, AccountType.Current);
-            var businessWorth = await GetAccountsWorth(userId, AccountType.Business);
+            var businessWorth = await GetAccountsWorth(userId, AccountType.Investment);
             var savingsWorth = await GetAccountsWorth(userId, AccountType.Savings);
             var debts = await GetUserDebt(userId);
             return new FinancialHealth(personalWorth+businessWorth+savingsWorth+debts, 

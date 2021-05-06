@@ -3,13 +3,22 @@
     <div class="col-md-12">
       <div class="accounts-list-box" [class.full-height]="true">
         <div class="box-topbar">
-          <div class="title">
+          <div *ngIf="!isLoading" class="title">
             <h1>Create an account</h1>
           </div>
         </div>
 
-        <div class="create-account-steps">
-          <app-add-account-step1></app-add-account-step1>
+        <div class="create-account-steps" *ngIf="!isLoading">
+          <app-add-account-step1 (selection)="accountSelection($event)" *ngIf="step === 1" id="step1"></app-add-account-step1>
+          <app-add-account-step2 (previous)="step = 1" (next)="createAccount($event)" *ngIf="step === 2" id="step2"></app-add-account-step2>
+        </div>
+
+        <div *ngIf="isLoading" class="account-creation-loader">
+          <ng-lottie width="300px" height="250px" containerClass="loader-icon"
+          [options]="{path: '/assets/animations/lottie/loaders/25227-accountant.json'}"></ng-lottie>
+
+          <div class="loader-title">Creating Account</div>
+          <p class="loader-description">Hang on tight while we create your account</p>
         </div>
       </div>
     </div>

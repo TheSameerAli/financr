@@ -10,7 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginPageComponent } from './pages/auth/login-page/login-page.component';
 import { FeatherModule } from 'angular-feather';
-import { ArrowDownRight, ArrowUpRight, ArrowRightCircle, Home } from 'angular-feather/icons';
+import { ArrowDownRight, ArrowUpRight, ArrowRightCircle, Home, ArrowRight, ArrowLeft } from 'angular-feather/icons';
 import { LottieModule } from 'ngx-lottie';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
@@ -23,11 +23,14 @@ import { FigureBoxComponent } from './components/ui-components/figure-box/figure
 import { AccountsListPageComponent } from './pages/app/accounts/accounts-list-page/accounts-list-page.component';
 import { AddAccountPageComponent } from './pages/app/accounts/add-account-page/add-account-page.component';
 import { AddAccountStep1Component } from './pages/app/accounts/add-account-page/steps/add-account-step1/add-account-step1.component';
+import { AddAccountStep2Component } from './pages/app/accounts/add-account-page/steps/add-account-step2/add-account-step2.component';
 
 const icons = {
   ArrowRightCircle,
   ArrowUpRight,
   ArrowDownRight,
+  ArrowRight,
+  ArrowLeft,
   Home
 };
 
@@ -45,7 +48,8 @@ export function playerFactory() {
     FigureBoxComponent,
     AccountsListPageComponent,
     AddAccountPageComponent,
-    AddAccountStep1Component
+    AddAccountStep1Component,
+    AddAccountStep2Component
   ],
   imports: [
     BrowserModule,

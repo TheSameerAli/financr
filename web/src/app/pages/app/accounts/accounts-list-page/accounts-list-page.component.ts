@@ -10,6 +10,13 @@ import { Component, OnInit } from '@angular/core';
 export class AccountsListPageComponent implements OnInit {
   public accounts: Account[];
   public isLoading: boolean = false;
+  public accountIcons = {
+    0: '/assets/icons/bank.svg',
+    1: '/assets/icons/investment.svg',
+    2: '/assets/icons/savings.svg',
+    3: '/assets/icons/loan.svg'
+  }
+
   constructor(private accountSerice: AccountService) { }
 
   ngOnInit(): void {

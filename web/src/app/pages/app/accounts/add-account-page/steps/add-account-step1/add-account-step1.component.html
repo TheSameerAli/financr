@@ -5,7 +5,7 @@
   </div>
   <div class="account-types">
     <ul>
-      <li>
+      <li (click)="select(0)">
         <span class="account-icon">
           <svg version="1.1" id="Icons" xmlns="http://www.w3.org/2000/svg"
             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 32 32"
@@ -21,7 +21,7 @@
         </span>
         Current Account
       </li>
-      <li>
+      <li (click)="select(2)">
         <span class="account-icon">
           <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100.752 100.748"
@@ -56,7 +56,7 @@ c-0.814-1.514-1.239-3.2-1.239-4.955C46.773,15.728,51.48,11.02,57.267,11.02z" />
         </span>
         Savings Account
       </li>
-      <li>
+      <li (click)="select(1)">
         <span class="account-icon">
           <svg style="fill:#145DA0; stroke: #145DA0;" version="1.1" id="Layer_1"
             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -85,7 +85,7 @@ c0.168,0.656,0.759,1.092,1.406,1.092c0.119,0,0.241-0.015,0.362-0.046C95.604,65.9
         </span>
         Investment Account
       </li>
-      <li>
+      <li (click)="select(3)">
         <span class="account-icon">
           <svg id="Layer_1" data-name="Layer 1"
             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">

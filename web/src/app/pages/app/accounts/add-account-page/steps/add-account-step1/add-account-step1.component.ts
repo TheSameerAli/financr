@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-add-account-step1',
@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-account-step1.component.scss']
 })
 export class AddAccountStep1Component implements OnInit {
-
+  @Output('selection') selection = new EventEmitter();
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  select(type) {
+    this.selection.emit(type);
   }
 
 }

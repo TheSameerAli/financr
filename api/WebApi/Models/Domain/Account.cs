@@ -36,7 +36,7 @@ namespace WebApi.Models.Domain
     public enum AccountType
     {
         Current = 0,
-        Business = 1,
+        Investment = 1,
         Savings = 2,
         CreditCard = 3
     }
