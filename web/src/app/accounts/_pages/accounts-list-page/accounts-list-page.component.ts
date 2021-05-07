@@ -32,7 +32,7 @@ export class AccountsListPageComponent implements OnInit {
   }
 
   toAccount(id) {
-    this.router.navigate(['/account', id]);
+    this.router.navigate(['/accounts', id]);
   }
 
 }

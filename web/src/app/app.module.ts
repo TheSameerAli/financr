@@ -22,9 +22,9 @@ import { CommonModule } from '@angular/common';
   imports: [
     CommonModule,
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule,
     SharedModule
   ],
   providers: [

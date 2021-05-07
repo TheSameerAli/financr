@@ -10,7 +10,10 @@ import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
-  declarations: [LoginPageComponent, LogoutPageComponent],
+  declarations: [
+    LoginPageComponent,
+    LogoutPageComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,
