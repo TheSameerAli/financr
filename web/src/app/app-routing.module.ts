@@ -1,10 +1,10 @@
-import { AccountDetailsPageComponent } from './pages/app/accounts/account-details-page/account-details-page.component';
-import { AddAccountPageComponent } from './pages/app/accounts/add-account-page/add-account-page.component';
-import { AccountsListPageComponent } from './pages/app/accounts/accounts-list-page/accounts-list-page.component';
-import { AuthGuard } from './core/auth.guard';
-import { LogoutPageComponent } from './pages/auth/logout-page/logout-page.component';
-import { HomePageComponent } from './pages/app/home-page/home-page.component';
-import { LoginPageComponent } from './pages/auth/login-page/login-page.component';
+import { AuthGuard } from './authentication/_guards/auth.guard';
+import { AddAccountPageComponent } from './accounts/_pages/add-account-page/add-account-page.component';
+import { HomePageComponent } from './dashboard/_pages/home-page/home-page.component';
+import { LogoutPageComponent } from './authentication/_pages/logout-page/logout-page.component';
+import { LoginPageComponent } from './authentication/_pages/login-page/login-page.component';
+import { AccountDetailsPageComponent } from './accounts/_pages/account-details-page/account-details-page.component';
+import { AccountsListPageComponent } from './accounts/_pages/accounts-list-page/accounts-list-page.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -47,7 +47,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes),
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
