@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Account } from './../../../../models/data/account';
 import { AccountService } from './../../../../_services/account/account.service';
 import { Component, OnInit } from '@angular/core';
@@ -17,7 +18,7 @@ export class AccountsListPageComponent implements OnInit {
     3: '/assets/icons/loan.svg'
   }
 
-  constructor(private accountSerice: AccountService) { }
+  constructor(private accountSerice: AccountService, private router: Router) { }
 
   ngOnInit(): void {
     this.isLoading = true;
@@ -28,6 +29,10 @@ export class AccountsListPageComponent implements OnInit {
       console.log(err);
       this.isLoading = false;
     });
+  }
+
+  toAccount(id) {
+    this.router.navigate(['/account', id]);
   }
 
 }

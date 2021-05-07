@@ -1,3 +1,4 @@
+import { AccountDetailsPageComponent } from './pages/app/accounts/account-details-page/account-details-page.component';
 import { AddAccountPageComponent } from './pages/app/accounts/add-account-page/add-account-page.component';
 import { AccountsListPageComponent } from './pages/app/accounts/accounts-list-page/accounts-list-page.component';
 import { AuthGuard } from './core/auth.guard';
@@ -36,6 +37,11 @@ const routes: Routes = [
   {
     path: 'account/create',
     component: AddAccountPageComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'account/:id',
+    component: AccountDetailsPageComponent,
     canActivate: [AuthGuard]
   }
 ];

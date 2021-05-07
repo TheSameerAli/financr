@@ -24,6 +24,7 @@ import { AccountsListPageComponent } from './pages/app/accounts/accounts-list-pa
 import { AddAccountPageComponent } from './pages/app/accounts/add-account-page/add-account-page.component';
 import { AddAccountStep1Component } from './pages/app/accounts/add-account-page/steps/add-account-step1/add-account-step1.component';
 import { AddAccountStep2Component } from './pages/app/accounts/add-account-page/steps/add-account-step2/add-account-step2.component';
+import { AccountDetailsPageComponent } from './pages/app/accounts/account-details-page/account-details-page.component';
 
 const icons = {
   ArrowRightCircle,
@@ -49,7 +50,8 @@ export function playerFactory() {
     AccountsListPageComponent,
     AddAccountPageComponent,
     AddAccountStep1Component,
-    AddAccountStep2Component
+    AddAccountStep2Component,
+    AccountDetailsPageComponent
   ],
   imports: [
     BrowserModule,

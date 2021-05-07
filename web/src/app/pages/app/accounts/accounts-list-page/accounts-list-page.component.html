@@ -29,7 +29,7 @@
             </thead>
 
             <tbody>
-              <tr *ngFor="let account of accounts">
+              <tr (click)="toAccount(account.id)" *ngFor="let account of accounts">
                 <td>
                   <span class="account-icon"><img [src]="accountIcons[account.type]" alt=""></span>
                   <span class="account-text">{{account.name}}</span>

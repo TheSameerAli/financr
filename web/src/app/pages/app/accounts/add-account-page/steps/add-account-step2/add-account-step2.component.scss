@@ -31,15 +31,14 @@
     .balance-group {
       padding-top: 1rem;
       display: flex;
-      flex-direction: row;
       align-items: center;
-      justify-content: start;
+      justify-content: center;
       input {
         display: flex;
         color: $primary;
         border: none;
         font-size: 55px;
-        width: 100%;
+        text-align: center;
 
         &:focus{
           outline: none;
@@ -48,14 +47,16 @@
         &::placeholder {
           color: lighten($primary, 50%);
         }
+
       }
 
       .currency-symbol {
         font-size: 55px;
         color: $primary;
         justify-content: center;
-        align-items: center;
+        align-items: flex-end;
         display: flex;
+        // width: 100%;
 
       }
 
