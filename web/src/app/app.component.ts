@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
 
     this.authService.authEvent.subscribe(() => {
       this.isLoggedIn = !!this.tokenStorageService.getToken();
-    })
+    });
 
   }
 }

@@ -13,11 +13,11 @@ const routes: Routes = [
     pathMatch: 'exact'
   },
   {
-    path: 'account/create',
+    path: 'create',
     component: AddAccountPageComponent,
   },
   {
-    path: 'account/:id',
+    path: ':id',
     component: AccountDetailsPageComponent,
   }
 ];

@@ -1,9 +1,9 @@
+import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { IconsModule } from '../ui-modules/icons/icons.module';
 import { SidenavComponent } from './../shared/_components/sidenav/sidenav.component';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { AppLottieModule } from '../ui-modules/lottie/lottie.module';
 
 
@@ -13,11 +13,11 @@ import { AppLottieModule } from '../ui-modules/lottie/lottie.module';
     SidenavComponent,
   ],
   imports: [
-    CommonModule,
     IconsModule,
     NgxChartsModule,
     FormsModule,
-    AppLottieModule
+    AppLottieModule,
+    RouterModule,
   ],
   exports: [
     SidenavComponent,

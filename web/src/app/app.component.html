@@ -1,12 +1,8 @@
 <div class="main-site">
-  <ng-container *ngIf="isLoggedIn">
-    <app-sidenav></app-sidenav>
-
-  </ng-container>
+  <app-sidenav *ngIf="isLoggedIn"></app-sidenav>
 
   <div class="page-content" [class.width-100]="!isLoggedIn" [class.no-margin]="!isLoggedIn">
     <router-outlet></router-outlet>
-
   </div>
 
 </div>

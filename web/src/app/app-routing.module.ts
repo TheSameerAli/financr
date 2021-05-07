@@ -4,6 +4,11 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'home'
+  },
+  {
     path: 'auth',
     loadChildren: () => import('./authentication/authentication.module').then(a => a.AuthenticationModule)
   },
