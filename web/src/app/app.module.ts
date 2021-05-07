@@ -22,7 +22,10 @@ import { authInterceptorProviders } from './shared/_helpers/auth.interceptor';
     HttpClientModule,
     BrowserAnimationsModule
   ],
-  providers: [authInterceptorProviders, AuthGuard],
+  providers: [
+    authInterceptorProviders,
+    AuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

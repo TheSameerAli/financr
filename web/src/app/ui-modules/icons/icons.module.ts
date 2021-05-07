@@ -18,6 +18,6 @@ const icons = {
     CommonModule,
     FeatherModule.pick(icons)
   ],
-  exports: [IconsModule]
+  exports: [FeatherModule]
 })
 export class IconsModule { }

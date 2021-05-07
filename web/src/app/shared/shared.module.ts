@@ -1,9 +1,8 @@
-import { AppRoutingModule } from './../app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { IconsModule } from '../ui-modules/icons/icons.module';
 import { SidenavComponent } from './../shared/_components/sidenav/sidenav.component';
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AppLottieModule } from '../ui-modules/lottie/lottie.module';
 
@@ -18,7 +17,6 @@ import { AppLottieModule } from '../ui-modules/lottie/lottie.module';
     IconsModule,
     NgxChartsModule,
     FormsModule,
-    AppRoutingModule,
     AppLottieModule
   ],
   exports: [
@@ -26,7 +24,6 @@ import { AppLottieModule } from '../ui-modules/lottie/lottie.module';
     IconsModule,
     NgxChartsModule,
     FormsModule,
-    AppRoutingModule,
     AppLottieModule
   ],
 })

@@ -1,3 +1,4 @@
+import { AuthenticationRoutingModule } from './authentication-router.module';
 import { SharedModule } from './../shared/shared.module';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -13,6 +14,7 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     FormsModule,
+    AuthenticationRoutingModule,
     SharedModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
