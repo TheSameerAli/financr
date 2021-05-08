@@ -10,7 +10,7 @@ export function playerFactory() {
   declarations: [],
   imports: [
     CommonModule,
-    LottieModule.forRoot({ player: playerFactory }),
+  LottieModule.forRoot({ player: playerFactory }),
   ],
   exports: [LottieModule]
 })
