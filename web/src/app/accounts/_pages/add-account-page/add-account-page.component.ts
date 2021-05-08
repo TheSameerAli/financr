@@ -1,8 +1,9 @@
+import { Account } from './../../_models/account';
 import { getLoading } from './../../../shared/store/shared.selector';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { Component, OnInit } from '@angular/core';
-import { trigger, state, style, animate, transition } from '@angular/animations';
+import { trigger, style, animate, transition } from '@angular/animations';
 import { createAccountRequest } from '../../store/action/account.actions'
 import { AppState } from 'src/app/app.state';
 
@@ -37,12 +38,12 @@ export class AddAccountPageComponent implements OnInit {
     this.isLoading$ = this.store.select(getLoading);
   }
 
-  accountSelection(data) {
+  accountSelection(data: number) {
     this.accountType = data;
     this.step = 2;
   }
 
-  createAccount(data) {
+  createAccount(data: Account) {
     this.store.dispatch(createAccountRequest({
       name: data.name,
       type: this.accountType,

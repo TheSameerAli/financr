@@ -1,5 +1,4 @@
-import { SHARED_STATE_NAME } from './shared/store/shared.selector';
-import { AccountEffects } from './accounts/store/effects/account.effects';
+import { reducers, CustomSerialzer } from './store/reducers/index';
 import { EffectsModule } from '@ngrx/effects';
 import { SharedModule } from './shared/shared.module';
 import { AuthGuard } from './authentication/_guards/auth.guard';
@@ -16,13 +15,10 @@ import { authInterceptorProviders } from './shared/_helpers/auth.interceptor';
 import { CommonModule } from '@angular/common';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreRouterConnectingModule, RouterStateSerializer } from '@ngrx/router-store';
 import { environment } from '../environments/environment';
 
-import {SharedReducer} from './shared/store/shared.reducer';
 
-const appReducer = {
-  [SHARED_STATE_NAME]: SharedReducer
-}
 
 @NgModule({
   declarations: [
@@ -35,13 +31,15 @@ const appReducer = {
     AppRoutingModule,
     HttpClientModule,
     SharedModule,
-    StoreModule.forRoot(appReducer),
+    StoreModule.forRoot(reducers, {}),
+    StoreRouterConnectingModule.forRoot(),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     EffectsModule.forRoot()
   ],
   providers: [
     authInterceptorProviders,
-    AuthGuard
+    AuthGuard,
+    {provide: RouterStateSerializer, useClass: CustomSerialzer}
   ],
   bootstrap: [AppComponent]
 })

@@ -10,6 +10,6 @@ const _sharedReducer = createReducer(
   }
 }))
 
-export function SharedReducer(state, action) {
+export function sharedReducer(state, action) {
   return _sharedReducer(state, action);
 }
