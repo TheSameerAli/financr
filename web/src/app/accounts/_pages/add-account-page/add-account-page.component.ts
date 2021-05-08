@@ -1,7 +1,10 @@
-import { AccountService } from './../../_services/accounts.service';
-import { Router } from '@angular/router';
+import { getLoading } from './../../../shared/store/shared.selector';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
+import { createAccountRequest } from '../../store/action/account.actions'
+import { AppState } from 'src/app/app.state';
 
 @Component({
   selector: 'app-add-account-page',
@@ -25,10 +28,13 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 export class AddAccountPageComponent implements OnInit {
   public step: number = 1;
   public accountType: number;
-  public isLoading: boolean = false;
-  constructor(private accountService: AccountService, private router: Router) { }
+  public isLoading$: Observable<boolean>;
+  constructor(
+    private store: Store<AppState>
+  ) { }
 
   ngOnInit(): void {
+    this.isLoading$ = this.store.select(getLoading);
   }
 
   accountSelection(data) {
@@ -37,16 +43,13 @@ export class AddAccountPageComponent implements OnInit {
   }
 
   createAccount(data) {
-    let balance = data.balance;
-    let name = data.name;
-    let type = this.accountType;
-    this.isLoading = true;
-    this.accountService.createAccount(type, name, balance).subscribe(data => {
-      this.isLoading = false;
-      this.router.navigate(['/accounts']);
-    }, (err) => {
-      this.isLoading = false;
-    })
+    this.store.dispatch(createAccountRequest({
+      name: data.name,
+      type: this.accountType,
+      balance: data.balance,
+      userId: '',
+      transactions: []
+    }));
   }
 
 }

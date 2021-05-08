@@ -1,5 +1,5 @@
-import { Transaction } from './../../dashboard/_models/transaction';
-export interface Account {
+import { Transaction } from './transaction';
+export class Account {
   name: string;
   type: number;
   userId: string;
