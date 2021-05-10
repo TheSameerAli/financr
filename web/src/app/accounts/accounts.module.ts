@@ -10,7 +10,7 @@ import { SharedModule } from './../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { EffectsModule } from '@ngrx/effects';
 import { AccountEffects } from './store/effects/account.effects';
-import {accountReducer} from '../accounts/store/reducer/account.reducer';
+import {ACCOUNT_STATE_NAME, accountReducer} from '../accounts/store/reducer/account.reducer';
 
 
 
@@ -27,7 +27,7 @@ import {accountReducer} from '../accounts/store/reducer/account.reducer';
     CommonModule,
     SharedModule,
     AccountsRoutingModule,
-    StoreModule.forFeature('accounts', [accountReducer]),
+    StoreModule.forFeature(ACCOUNT_STATE_NAME, [accountReducer]),
     EffectsModule.forFeature([AccountEffects])
   ]
 })

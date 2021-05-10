@@ -1,5 +1,5 @@
+import { accountsIsLoadingSelector } from './../../store/selector/account.selectors';
 import { Account } from './../../_models/account';
-import { getLoading } from './../../../shared/store/shared.selector';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { Component, OnInit } from '@angular/core';
@@ -35,7 +35,7 @@ export class AddAccountPageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.isLoading$ = this.store.select(getLoading);
+    this.isLoading$ = this.store.select(accountsIsLoadingSelector);
   }
 
   accountSelection(data: number) {
@@ -45,11 +45,13 @@ export class AddAccountPageComponent implements OnInit {
 
   createAccount(data: Account) {
     this.store.dispatch(createAccountRequest({
-      name: data.name,
-      type: this.accountType,
-      balance: data.balance,
-      userId: '',
-      transactions: []
+      account: {
+        name: data.name,
+        type: this.accountType,
+        balance: data.balance,
+        userId: '',
+        transactions: []
+      }
     }));
   }
 

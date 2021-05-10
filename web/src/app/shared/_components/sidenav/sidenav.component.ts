@@ -1,6 +1,9 @@
-import { OverviewService } from './../../../dashboard/_services/overview.service';
-import { FinancialHealth } from './../../../dashboard/_models/financial-health';
+import { refreshFinancialHealthRequest } from './../../store/shared.actions';
+import { getLoading, getNetworth} from './../../store/shared.selector';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
 import { Component, OnInit } from '@angular/core';
+import { AppState } from 'src/app/app.state';
 
 @Component({
   selector: 'app-sidenav',
@@ -8,19 +11,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sidenav.component.scss']
 })
 export class SidenavComponent implements OnInit {
-  public financialHealth: FinancialHealth;
-  public networthLoading = true;
-  constructor(private overviewService: OverviewService) { }
+  public isLoading$: Observable<boolean>;
+  public networth$: Observable<number>;
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
-    this.networthLoading = true;
-    this.overviewService.getFinancialHealth().subscribe(data => {
-      this.financialHealth = data;
-      this.networthLoading = false;
-    }, (err) => {
-      console.log(err);
-      this.networthLoading = false;
-    })
+    this.store.dispatch(refreshFinancialHealthRequest());
+    this.isLoading$ = this.store.select(getLoading);
+    this.networth$ = this.store.select(getNetworth);
+
   }
 
 }

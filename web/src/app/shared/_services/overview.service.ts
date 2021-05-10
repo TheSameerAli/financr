@@ -1,5 +1,5 @@
-import { FinancialHealth } from './../_models/financial-health';
-import { environment } from './../../../environments/environment';
+import { FinancialHealth } from '../_models/financial-health';
+import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';

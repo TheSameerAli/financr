@@ -2,22 +2,22 @@ import { Account } from './../../_models/account';
 import { createReducer, on } from '@ngrx/store';
 import * as AccountActions from '../action/account.actions';
 
-export const accountFeatureKey = 'account';
+export const ACCOUNT_STATE_NAME = 'account';
 
 export interface AccountState {
   accounts: Account[];
+  isLoading: boolean;
 }
 
 export const initialState: AccountState = {
-  accounts: []
+  accounts: [],
+  isLoading: false,
 };
 
 
 export const accountReducer = createReducer(
-  AccountActions.loadAccountsRequest(),
-    on(AccountActions.createAccountRequest, (_, account) => ({})),
-    on(AccountActions.createAccountSuccess, (_, action) => action.type),
-    on(AccountActions.loadAccountsSuccess, (_, action) => action.accounts),
-
+  initialState,
+    on(AccountActions.loadAccountsSuccess, (_, action) => ({accounts: action.accounts, isLoading: false})),
+    on(AccountActions.accountSetIsLoading, (_, action) => ({accounts: _.accounts, isLoading: action.status}))
 );
 

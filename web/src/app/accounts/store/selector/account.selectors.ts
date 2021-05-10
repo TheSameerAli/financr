@@ -3,15 +3,19 @@ import * as fromAccount from '../reducer/account.reducer';
 
 
 export const selectAccountsState = createFeatureSelector<fromAccount.AccountState>(
-  fromAccount.accountFeatureKey,
+  fromAccount.ACCOUNT_STATE_NAME,
 );
 
-export const selectAccount = createSelector(
+export const selectAccounts = createSelector(
   selectAccountsState,
-  (state: fromAccount.AccountState) => state.accounts
+  (state: fromAccount.AccountState) => {
+    return state[0].accounts;
+  }
 )
 
-// export const createAccountSuccess = createSelector(
-//   selectAccountsState,
-//   (state: fromAccount.AccountState) => state.accounts
-// )
+export const accountsIsLoadingSelector = createSelector(
+  selectAccountsState,
+  (state: fromAccount.AccountState) => {
+    return state[0].isLoading
+  }
+)

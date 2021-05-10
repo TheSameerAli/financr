@@ -1,13 +1,12 @@
+import { accountsIsLoadingSelector, selectAccounts } from './../../store/selector/account.selectors';
 import { AccountState } from './../../store/reducer/account.reducer';
 import { Observable } from 'rxjs';
-import { AppState } from './../../../app.state';
 import { select, Store } from '@ngrx/store';
 import { Account } from './../../_models/account';
 import { AccountService } from './../../_services/accounts.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { loadAccountsRequest } from '../../store/action/account.actions';
-import { getLoading } from '../../../shared/store/shared.selector';
 
 
 @Component({
@@ -16,7 +15,7 @@ import { getLoading } from '../../../shared/store/shared.selector';
   styleUrls: ['./accounts-list-page.component.scss']
 })
 export class AccountsListPageComponent implements OnInit {
-  public accounts$: Observable<Account[]> = this.store.pipe(select(state => state.accounts));
+  public accounts$: Observable<Account[]>;
   public isLoading$: Observable<boolean>;
   public accountIcons = {
     0: '/assets/icons/bank.svg',
@@ -31,8 +30,15 @@ export class AccountsListPageComponent implements OnInit {
     private store: Store<AccountState>) { }
 
   ngOnInit(): void {
-    this.isLoading$ = this.store.select(getLoading);
     this.store.dispatch(loadAccountsRequest());
+    this.accounts$ = this.store.select(selectAccounts);
+    this.isLoading$ = this.store.select(accountsIsLoadingSelector);
+    this.accounts$.subscribe(data => {
+      console.log(data);
+    });
+    this.isLoading$.subscribe(data => {
+      console.log(data);
+    })
   }
 
   toAccount(id) {

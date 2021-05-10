@@ -1,8 +1,8 @@
 import { Router } from '@angular/router';
-import { setIsLoading } from './../../../shared/store/shared.actions';
+import { refreshFinancialHealthRequest } from './../../../shared/store/shared.actions';
 import { Store } from '@ngrx/store';
 import { switchMap, map } from 'rxjs/operators';
-import { loadAccountsRequest, loadAccountsSuccess, createAccountRequest, createAccountSuccess } from './../action/account.actions';
+import { loadAccountsRequest, loadAccountsSuccess, createAccountRequest, createAccountSuccess, accountSetIsLoading } from './../action/account.actions';
 import { AccountService } from './../../_services/accounts.service';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
@@ -23,11 +23,11 @@ export class AccountEffects {
     loadAccounts$ = createEffect(() => this.actions$.pipe(
       ofType(loadAccountsRequest),
       switchMap(() => {
-        this.store.dispatch(setIsLoading({status: true}));
+        this.store.dispatch(accountSetIsLoading({status: true}));
         return this.accountService.getAccounts().pipe(
           map((accounts) => {
-            this.store.dispatch(setIsLoading({status: false}));
-            return loadAccountsSuccess(accounts);
+            this.store.dispatch(accountSetIsLoading({status: false}));
+            return loadAccountsSuccess({accounts});
           })
         )
       })
@@ -36,10 +36,11 @@ export class AccountEffects {
     createAccount$ = createEffect(() => this.actions$.pipe(
       ofType(createAccountRequest),
       switchMap((action) => {
-        this.store.dispatch(setIsLoading({status: true}));
+        this.store.dispatch(accountSetIsLoading({status: true}));
         return this.accountService.createAccount(action.account.type, action.account.name, action.account.balance).pipe(
           map(() => {
-            this.store.dispatch(setIsLoading({status: false}));
+            this.store.dispatch(refreshFinancialHealthRequest());
+            this.store.dispatch(accountSetIsLoading({status: false}));
             this.router.navigate(['/accounts']);
             return createAccountSuccess();
           })
