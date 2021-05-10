@@ -1,0 +1,37 @@
+<div class="account-details-page">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="page-box">
+        <div class="box-topbar">
+          <div class="title">
+            <h1>Your Accounts</h1>
+          </div>
+        </div>
+
+        <div class="account-details">
+          <div class="page-content mt-2">
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link"  [routerLink]="['/accounts', accountId]" [routerLinkActiveOptions]="{exact: true}" [routerLinkActive]="'active'" >Overview</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link"  [routerLink]="['/accounts', accountId, 'transactions']" [routerLinkActive]="'active'" >Transactions</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link"  [routerLink]="['/accounts', accountId, 'settings']" [routerLinkActive]="'active'" >Settings</a>
+              </li>
+            </ul>
+            <div class="tab-content" id="pills-tabContent">
+              <div class="tab-pane fade show active" id="pills-overview" role="tabpanel" aria-labelledby="pills-overview-tab">
+
+                  <ng-content #body></ng-content>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -11,17 +11,24 @@ import { NgModule } from '@angular/core';
 import { EffectsModule } from '@ngrx/effects';
 import { AccountEffects } from './store/effects/account.effects';
 import {ACCOUNT_STATE_NAME, accountReducer} from '../accounts/store/reducer/account.reducer';
+import { AccountDetailsOverviewPageComponent } from './_pages/account-details/account-details-overview-page/account-details-overview-page.component';
+import { AccountDetailsTransactionsPageComponent } from './_pages/account-details/account-details-transactions-page/account-details-transactions-page.component';
+import { AccountDetailsSettingsPageComponent } from './_pages/account-details/account-details-settings-page/account-details-settings-page.component';
+import { AccountDetailsContainerComponent } from './_pages/account-details/_components/account-details-container/account-details-container.component';
 
 
 
 
 @NgModule({
   declarations: [
-    AccountDetailsPageComponent,
     AccountsListPageComponent,
     AddAccountPageComponent,
     AddAccountStep1Component,
-    AddAccountStep2Component
+    AddAccountStep2Component,
+    AccountDetailsOverviewPageComponent,
+    AccountDetailsTransactionsPageComponent,
+    AccountDetailsSettingsPageComponent,
+    AccountDetailsContainerComponent
   ],
   imports: [
     CommonModule,

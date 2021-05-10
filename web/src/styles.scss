@@ -94,3 +94,33 @@ body, html {
     }
 
 }
+
+// Pie chart styles
+.pie-chart-amount {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 600;
+  height: 300px;
+  width: 300px;
+  margin-top: -.5rem;
+}
+
+.pie-chart-spent-since {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  font-size: 18px;
+  height: 300px;
+  width: 300px;
+  margin-top: .9rem;
+
+}
+
+.ngx-charts {
+  position: relative;
+  z-index: 100000;
+}

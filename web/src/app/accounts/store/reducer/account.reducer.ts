@@ -17,7 +17,7 @@ export const initialState: AccountState = {
 
 export const accountReducer = createReducer(
   initialState,
-    on(AccountActions.loadAccountsSuccess, (_, action) => ({accounts: action.accounts, isLoading: false})),
-    on(AccountActions.accountSetIsLoading, (_, action) => ({accounts: _.accounts, isLoading: action.status}))
+    on(AccountActions.loadAccountsSuccess, (_, action) => ({..._, accounts: action.accounts})),
+    on(AccountActions.accountSetIsLoading, (_, action) => ({..._, isLoading: action.status}))
 );
 
