@@ -43,7 +43,7 @@
 
         .merchant-details {
           .merchant-logo {
-            img {
+            svg {
               width: 40px;
               height: 40px;
             }
@@ -96,6 +96,7 @@
   padding: 2rem;
   width: 350px;
   position: fixed;
+  overflow-y: auto;
   top: 0;
   right: 0;
   height: 100%;
@@ -228,5 +229,47 @@
         align-items: center;
       }
     }
+  }
+
+  .categories-selection {
+      list-style: none;
+      padding-left: 0;
+      margin-left: 0;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 1rem;
+
+      li {
+        display: inline-flex;
+        justify-content: space-between;
+        // margin-right: 1rem;
+        background-color: white;
+        color: $primary;
+        border: 1px solid $primary;
+        padding: .5rem .1rem .3rem 1rem;
+        border-radius: 50px;
+        margin-top: .5rem;
+        width: 100%;
+        cursor: pointer;
+
+        svg {
+          fill: white;
+          stroke: white;
+          width: 20px;
+          height: 20px;
+          padding-right: 10px;
+        }
+
+
+        &.active {
+          background-color: $primary;
+          color: white;
+        }
+        &:hover {
+          background-color: $primary;
+          color: white;
+        }
+      }
   }
 }

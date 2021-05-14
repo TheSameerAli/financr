@@ -31,6 +31,7 @@ namespace WebApi.Services
         {
             return await _accountCategories
                 .Where(ac => ac.AccountId == accountId)
+                .OrderBy(ac => ac.Name)
                 .ToListAsync();
         }
 

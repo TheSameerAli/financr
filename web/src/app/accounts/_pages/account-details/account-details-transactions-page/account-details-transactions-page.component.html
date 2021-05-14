@@ -28,7 +28,12 @@
           <tr (click)="openSingleTransactionBox(transaction.id)" *ngFor="let transaction of transactions">
             <td class="merchant-details">
               <span class="merchant-logo">
-                <img src="/assets/icons/default-transaction.svg" alt="">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 80" x="0px" y="0px">
+                  <g>
+                      <path
+                          d="M18.13,34.542a1.5,1.5,0,0,1-2.121,2.121L7.126,27.779a1.51,1.51,0,0,1-.328-.492l-.007-.023a1.484,1.484,0,0,1-.106-.547h0a1.489,1.489,0,0,1,.106-.548l.007-.022a1.5,1.5,0,0,1,.328-.493l8.883-8.883a1.5,1.5,0,0,1,2.121,2.121l-6.324,6.325H35.815a1.5,1.5,0,0,1,0,3H11.806Zm39.185,2.741h0a1.484,1.484,0,0,0-.106-.547l-.007-.023a1.51,1.51,0,0,0-.328-.492l-8.883-8.884a1.5,1.5,0,1,0-2.121,2.121l6.324,6.325H28.185a1.5,1.5,0,0,0,0,3H52.194L45.87,45.108a1.5,1.5,0,1,0,2.121,2.121l8.883-8.883a1.5,1.5,0,0,0,.328-.493l.007-.022A1.489,1.489,0,0,0,57.315,37.283Z" />
+                  </g>
+              </svg>
               </span>
               <span class="merchant-name">{{transaction.description}}</span>
             </td>
@@ -70,7 +75,13 @@
 
 <div *ngIf="singleTransactionBoxOpen" class="single-transaction-detail-container ">
   <div class="top-button">
-    <div (click)="closeSingleTransactionBox()" class="cancel-button">X</div>
+    <div (click)="closeSingleTransactionBox()" class="cancel-button">
+
+      <svg height="15px" viewBox="0 0 329.26933 329" width="15px" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="m194.800781 164.769531 128.210938-128.214843c8.34375-8.339844 8.34375-21.824219 0-30.164063-8.339844-8.339844-21.824219-8.339844-30.164063 0l-128.214844 128.214844-128.210937-128.214844c-8.34375-8.339844-21.824219-8.339844-30.164063 0-8.34375 8.339844-8.34375 21.824219 0 30.164063l128.210938 128.214843-128.210938 128.214844c-8.34375 8.339844-8.34375 21.824219 0 30.164063 4.15625 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921875-2.089844 15.082031-6.25l128.210937-128.214844 128.214844 128.214844c4.160156 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921874-2.089844 15.082031-6.25 8.34375-8.339844 8.34375-21.824219 0-30.164063zm0 0" />
+        </svg>
+    </div>
   </div>
 
   <hr>
@@ -111,7 +122,13 @@
 <div *ngIf="addTransactionBoxOpen" class="single-transaction-detail-container add-transaction-container">
   <div class="top-button">
     <div class="sidebox-title">Add Transaction</div>
-    <div (click)="closeAddTransactionBox()" class="cancel-button">X</div>
+    <div (click)="closeAddTransactionBox()" class="cancel-button">
+
+      <svg height="15px" viewBox="0 0 329.26933 329" width="15px" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="m194.800781 164.769531 128.210938-128.214843c8.34375-8.339844 8.34375-21.824219 0-30.164063-8.339844-8.339844-21.824219-8.339844-30.164063 0l-128.214844 128.214844-128.210937-128.214844c-8.34375-8.339844-21.824219-8.339844-30.164063 0-8.34375 8.339844-8.34375 21.824219 0 30.164063l128.210938 128.214843-128.210938 128.214844c-8.34375 8.339844-8.34375 21.824219 0 30.164063 4.15625 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921875-2.089844 15.082031-6.25l128.210937-128.214844 128.214844 128.214844c4.160156 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921874-2.089844 15.082031-6.25 8.34375-8.339844 8.34375-21.824219 0-30.164063zm0 0" />
+        </svg>
+    </div>
   </div>
 
   <hr>
@@ -119,7 +136,7 @@
   <div class="add-transaction-form">
     <div class="form-group">
       <label for="">Date</label>
-      <input [placeholder]="today | date: 'dd/mm/yyyy' " class="form-control shadow-none" type="text">
+      <input [placeholder]="today | date: 'dd/MM/yyyy' " class="form-control shadow-none" type="text">
     </div>
     <div class="form-group">
       <label for="">Description</label>
@@ -139,10 +156,31 @@
 
     <div class="form-group">
       <label for="">Category Selection</label>
-      <input class="form-control" type="text">
+      <div class="d-flex justify-content-center" *ngIf="isAccountCategoriesLoading">
+        <ng-lottie width="75px" height="75px" containerClass="loader-icon"
+        [options]="{path: '/assets/animations/lottie/loaders/331-loader-2-edited-black.json'}"></ng-lottie>
+      </div>
+      <ul *ngIf="!isAccountCategoriesLoading" class="categories-selection">
+        <li (click)="selectCategory(accountCategory)" [class.active]="selectedCategory?.id === accountCategory.id"
+          [id]="accountCategory.id" *ngFor="let accountCategory of accountCategories">
+          {{accountCategory.name}}
+
+          <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+            x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+            <g>
+              <path d="M504.502,75.496c-9.997-9.998-26.205-9.998-36.204,0L161.594,382.203L43.702,264.311c-9.997-9.998-26.205-9.997-36.204,0
+  c-9.998,9.997-9.998,26.205,0,36.203l135.994,135.992c9.994,9.997,26.214,9.99,36.204,0L504.502,111.7
+  C514.5,101.703,514.499,85.494,504.502,75.496z" />
+            </g>
+          </svg>
+        </li>
+      </ul>
     </div>
     <div class="text-right">
-      <button class="btn btn-primary-button w-50 mt-3">Create</button>
+      <button id="create-button" class="btn btn-primary-button w-50 mt-3">
+        Create
+
+      </button>
 
     </div>
   </div>

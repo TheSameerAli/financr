@@ -1,4 +1,4 @@
-import { Transaction } from './../../../_models/transaction';
+import { Transaction, AccountCategory } from './../../../_models/transaction';
 import { AccountService } from './../../../_services/accounts.service';
 import { Account } from './../../../_models/account';
 import { selectAccounts } from './../../../store/selector/account.selectors';
@@ -23,9 +23,14 @@ export class AccountDetailsTransactionsPageComponent implements OnInit, AfterVie
   public isSingleTransactionLoading: boolean = false;
   public transactionData: Transaction;
 
+  public accountCategories: AccountCategory[];
+  public isAccountCategoriesLoading: boolean = false;
+
   public today: Date = new Date();
 
-  public addTransactionBoxOpen: boolean = true;
+  public addTransactionBoxOpen: boolean = false;
+
+  public selectedCategory: AccountCategory;
   data = [
     {
       "name": "Germany",
@@ -97,7 +102,19 @@ export class AccountDetailsTransactionsPageComponent implements OnInit, AfterVie
   }
 
   openAddTransactionBox() {
+    this.isAccountCategoriesLoading = true;
     this.addTransactionBoxOpen = true;
+
+    this.accountService.getAccountCategories(this.accountId).subscribe(data => {
+      this.isAccountCategoriesLoading = false;
+      this.accountCategories = data;
+    }, (err) => {
+      this.isAccountCategoriesLoading = false;
+    })
+  }
+
+  selectCategory(accountCategory: AccountCategory) {
+    this.selectedCategory = accountCategory;
   }
 
 }

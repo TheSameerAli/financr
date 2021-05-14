@@ -16,7 +16,7 @@ namespace WebApi.Middlewares
 
         public async Task InvokeAsync(HttpContext context)
         {
-            Thread.Sleep(1000);
+            Thread.Sleep(500);
 
             // Call the next delegate/middleware in the pipeline
             await _next(context);

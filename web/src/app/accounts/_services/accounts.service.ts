@@ -1,4 +1,4 @@
-import { Transaction } from './../_models/transaction';
+import { AccountCategory, Transaction } from './../_models/transaction';
 import { Account } from './../_models/account';
 import { Observable } from 'rxjs';
 import { environment } from './../../../environments/environment';
@@ -24,6 +24,10 @@ export class AccountService {
 
   getAccount(accountId: string): Observable<Account> {
     return this.http.get<Account>(`${ACCOUNT_API}/${accountId}`);
+  }
+
+  getAccountCategories(accountId: string): Observable<AccountCategory[]> {
+    return this.http.get<AccountCategory[]>(`${ACCOUNT_API}/${accountId}/categories`);
   }
 
   createAccount(type: number, name: string, balance: number): Observable<Account> {
