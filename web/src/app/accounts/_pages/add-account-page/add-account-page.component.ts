@@ -46,6 +46,7 @@ export class AddAccountPageComponent implements OnInit {
   createAccount(data: Account) {
     this.store.dispatch(createAccountRequest({
       account: {
+        id: '',
         name: data.name,
         type: this.accountType,
         balance: data.balance,

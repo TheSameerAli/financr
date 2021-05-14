@@ -19,3 +19,9 @@ export const accountsIsLoadingSelector = createSelector(
     return state[0].isLoading
   }
 )
+
+export const selectTransactions = createSelector(
+  selectAccountsState,
+  (state: fromAccount.AccountState) => {
+  }
+)

@@ -1,5 +1,10 @@
 @import '../../../../styles/variables';
 
+.transactions-loader {
+  display: flex;
+  justify-content: center;
+}
+
 .transactions-page-container {
   display: grid;
   grid-template-columns: 3fr 1fr;
@@ -12,6 +17,7 @@
 
   .transaction-table {
     width: 100%;
+
     thead {
       tr {
         th {
@@ -29,6 +35,7 @@
           padding: 1rem;
           font-size: 22px;
         }
+
         &:hover {
           background-color: rgba(#000000, $alpha: 0.05);
           cursor: pointer;
@@ -40,6 +47,7 @@
               width: 40px;
               height: 40px;
             }
+
             margin-right: 1rem;
           }
         }
@@ -52,6 +60,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
     .your-balance {
       p {
         text-align: center;
@@ -69,6 +78,89 @@
 
 
   }
+}
+
+.overlay-black {
+  position: fixed;
+  top: 0;
+  left:0;
+  width: 100%;
+  height: 100%;
+  z-index: 999999;
+  background-color: rgba(#000000, $alpha: 0.5);
+}
 
 
+.single-transaction-detail-container {
+  background-color: white;
+  padding: 2rem;
+  width: 350px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  z-index: 1000000;
+  -webkit-box-shadow: -6px 0px 19px -4px rgba(0, 0, 0, 0.1);
+  box-shadow: -6px 0px 19px -4px rgba(0, 0, 0, 0.1);
+
+  animation: fadeInRight;
+  animation-duration: .25s;
+
+  .single-transaction-loader {
+    display: flex;
+    justify-content: center;
+  }
+
+  .top-button {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: flex-end;
+    .cancel-button {
+      cursor: pointer;
+      font-size: 20px;
+    }
+  }
+
+  .transaction-details {
+    .basic-data {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 1rem;
+
+      .merchant-icon {
+        width: 50px;
+        height: 50px;
+        border: 1px solid grey;
+        padding: .5rem;
+      }
+
+      .transaction-amount {
+        font-size: 30px;
+      }
+    }
+
+    .detailed-transaction-data {
+      padding-top: 2rem;
+      .transaction-description {
+        font-size: 24px;
+      }
+
+      .transaction-date {
+        font-size: 20px;
+      }
+
+      .transaction-category {
+        padding-top: 1rem;
+
+        .badge-primary {
+          padding: .5rem 1rem .5rem 1rem;
+          font-size: 18px;
+          font-weight: 600;
+        }
+      }
+
+    }
+  }
 }

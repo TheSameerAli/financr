@@ -1,15 +1,37 @@
 @import '../../../styles/variables';
 
+.login-page {
+  background-color: $primary;
+  height: 100vh;
+}
+
 .page-wave {
   width: 100%;
   position: absolute;
   left: 0;
   bottom: 0;
 
+  #wave {
+    fill: lighten($accent, 10%);
+  }
+
   @media (max-width: $sm) {
     display: none;
 
   }
+}
+
+#filler-box {
+  fill: $primary;
+}
+
+#logo-square {
+  stroke: $accent;
+}
+
+#logo-text {
+  stroke: darken($accent, 10%);
+  fill: darken($accent, 10%);
 }
 
 .nav-section {
@@ -31,6 +53,18 @@
   @media(max-width: 1200px) {
     display: none;
   }
+
+  #right-circle-1 {
+    fill: $accent;
+  }
+
+  #right-circle-2 {
+    fill: darken($accent, 40%);
+  }
+
+  #right-circle-3 {
+    fill: darken($accent, 30%);
+  }
 }
 
 .login-content {
@@ -46,7 +80,7 @@
   .login-title {
     font-size: 54px;
     font-weight: bold;
-    color: $title-color;
+    color: lighten($accent, 10%);
 
     @media(max-width: $sm) {
       font-size: 36px;
@@ -54,6 +88,7 @@
   }
 
   .login-description {
+    color: lighten($accent, 20%);
     font-size: 18px;
     @media(max-width: $sm) {
       font-size: 16px;
@@ -112,6 +147,11 @@
           display: flex;
           align-items: center;
           justify-content: center;
+        }
+
+        &:hover {
+          background-color: $accent;
+          color: darken($accent, 50%);
         }
 
       }

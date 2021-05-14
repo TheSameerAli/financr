@@ -5,6 +5,11 @@
   justify-content: center;
 }
 
+.account-icon {
+  stroke: $primary !important;
+  fill: $primary !important;
+}
+
 .account-types {
   ul {
     list-style: none;

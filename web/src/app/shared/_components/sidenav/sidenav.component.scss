@@ -1,5 +1,20 @@
 @import '../../../styles/variables';
 
+.logo {
+  #filler-box {
+    fill: $primary;
+  }
+
+  #logo-text {
+    fill: darken($accent, 10%);
+  }
+
+  #logo-square {
+    stroke: $accent;
+  }
+}
+
+
 .side-nav {
   position: fixed;
   height: 100%;
@@ -9,7 +24,7 @@
     width: 75px;
   }
 
-  background-color: white;
+  background-color: $primary;
   -webkit-box-shadow: 6px 3px 12px -4px rgba(0, 0, 0, 0.05);
   box-shadow: 6px 3px 12px -4px rgba(0, 0, 0, 0.05);
 
@@ -24,7 +39,7 @@
 
 
     .brand-title {
-      color: $primary;
+      color: $accent;
       font-weight: 500;
       font-size: 18px;
 
@@ -54,6 +69,8 @@
     @media (max-width: $md) {
       display: none;
     }
+
+    color: $sidebar-text-color;
 
     .networth-text {
       font-size: 28px;
@@ -86,8 +103,8 @@
         }
 
         svg {
-          fill: black;
-          stroke: black;
+          fill: $sidebar-text-color;
+          stroke: $sidebar-text-color;
           height: 20px;
           width: 20px;
           margin-right: 1rem;
@@ -96,31 +113,31 @@
 
 
         &:hover {
-          background-color: rgba($primary, 0.15);
-          border-right: 2px solid $primary;
-          color: $primary;
+          background-color: rgba(lighten($primary, 80%), 0.1);
+          border-right: 4px solid $accent;
+          color: $accent;
 
           svg {
-            fill: $primary;
-            stroke: $primary;
+            fill: $accent;
+            stroke: $accent;
           }
         }
 
         &.active {
-          background-color: rgba($primary, 0.15);
-          border-right: 2px solid $primary;
-          color: $primary;
+          background-color: rgba(lighten($primary, 100%), 0.1);
+          border-right: 4px solid $accent;
+          color: $accent;
 
           svg {
-            fill: $primary;
-            stroke: $primary;
+            fill: $accent;
+            stroke: $accent;
           }
         }
 
         font-weight: 500;
         font-size: 18px;
 
-        color: black;
+        color: $sidebar-text-color;
 
         &:hover {
           text-decoration: none !important;

@@ -1,3 +1,4 @@
+<div *ngIf="singleTransactionBoxOpen" class="overlay-black"></div>
 <app-account-details-container>
   <div class="transactions-page-container">
 
@@ -5,7 +6,13 @@
       <div class="table-search">
         <input class="form-control mb-3" placeholder="Search Transactions" type="text">
       </div>
-      <table class="transaction-table">
+
+      <div *ngIf="transactionsLoading" class="transactions-loader">
+        <ng-lottie width="100px" height="100px" containerClass="loader-icon"
+        [options]="{path: '/assets/animations/lottie/loaders/298-coins-outline-edited.json'}"></ng-lottie>
+      </div>
+
+      <table *ngIf="!transactionsLoading" class="transaction-table">
         <thead>
           <tr>
             <th>Merchant</th>
@@ -14,15 +21,16 @@
         </thead>
 
         <tbody>
-          <tr>
+          <tr (click)="openSingleTransactionBox(transaction.id)" *ngFor="let transaction of transactions">
             <td class="merchant-details">
               <span class="merchant-logo">
                 <img src="/assets/icons/default-transaction.svg" alt="">
               </span>
-              <span class="merchant-name">Amazon.com</span>
+              <span class="merchant-name">{{transaction.description}}</span>
             </td>
-            <td>£19.39</td>
+            <td>{{transaction.amount | currency: 'GBP'}}</td>
           </tr>
+
         </tbody>
       </table>
     </div>
@@ -47,4 +55,41 @@
   </div>
 
 </app-account-details-container>
+
+<div *ngIf="singleTransactionBoxOpen" class="single-transaction-detail-container ">
+  <div class="top-button">
+    <div (click)="closeSingleTransactionBox()" class="cancel-button">X</div>
+  </div>
+
+  <hr>
+
+  <div *ngIf="isSingleTransactionLoading" class="single-transaction-loader">
+    <ng-lottie width="150px" height="150px" containerClass="loader-icon"
+    [options]="{path: '/assets/animations/lottie/loaders/945-dividends-outline-edited.json'}"></ng-lottie>
+  </div>
+  <div *ngIf="!isSingleTransactionLoading  && transactionData" class="transaction-details">
+    {{transaction | json}}
+    <div class="basic-data">
+      <div class="merchant-icon">
+        <img src="/assets/icons/default-transaction.svg" alt="">
+      </div>
+      <div class="transaction-amount">
+
+        {{transactionData.amount | currency: 'GBP'}}
+      </div>
+    </div>
+    <div class="detailed-transaction-data">
+      <div class="transaction-description">
+        {{transactionData.description}}
+      </div>
+      <div class="transaction-date">
+        {{transactionData.transactionDate | date: 'short'}}
+      </div>
+
+      <div class="transaction-category">
+        <div class="badge badge-primary">{{transactionData.accountCategory.name}}</div>
+      </div>
+    </div>
+  </div>
+</div>
 

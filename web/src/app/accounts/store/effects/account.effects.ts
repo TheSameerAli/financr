@@ -2,7 +2,7 @@ import { Router } from '@angular/router';
 import { refreshFinancialHealthRequest } from './../../../shared/store/shared.actions';
 import { Store } from '@ngrx/store';
 import { switchMap, map } from 'rxjs/operators';
-import { loadAccountsRequest, loadAccountsSuccess, createAccountRequest, createAccountSuccess, accountSetIsLoading } from './../action/account.actions';
+import { loadAccountsRequest, loadAccountsSuccess, createAccountRequest, createAccountSuccess, accountSetIsLoading, loadAccountTransactionsRequest, loadAccountTransactionsSuccess } from './../action/account.actions';
 import { AccountService } from './../../_services/accounts.service';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
@@ -43,6 +43,19 @@ export class AccountEffects {
             this.store.dispatch(accountSetIsLoading({status: false}));
             this.router.navigate(['/accounts']);
             return createAccountSuccess();
+          })
+        )
+      })
+    ));
+
+    loadAccountTransactions$ = createEffect(() => this.actions$.pipe(
+      ofType(loadAccountTransactionsRequest),
+      switchMap((action) => {
+        this.store.dispatch(accountSetIsLoading({status: true}));
+        return this.accountService.getTransactions(action.accountId).pipe(
+          map((transactions) => {
+            this.store.dispatch(accountSetIsLoading({status: false}));
+            return loadAccountTransactionsSuccess({transactions});
           })
         )
       })
