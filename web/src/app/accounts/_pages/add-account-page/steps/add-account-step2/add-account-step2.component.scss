@@ -1,0 +1,94 @@
+@import '../../../../../styles/variables';
+
+.illustration {
+  display: flex;
+  justify-content: center;
+
+}
+
+.account-detail-form-container {
+  margin-top: 1rem;
+
+  .input-title {
+    font-size: 22px;
+    font-weight: 600;
+    color: rgba(black, 0.60);
+  }
+
+  .account-name {
+    border: none;
+    border-bottom: 1px solid lighten($primary, 50%);
+    font-size: 20px;
+    padding-top: 1rem;
+    border-radius: 0;
+    color: $primary;
+
+  }
+
+  .balance-group-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    .balance-group {
+      padding-top: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      input {
+        display: flex;
+        color: $primary;
+        border: none;
+        font-size: 55px;
+        text-align: center;
+
+        &:focus{
+          outline: none;
+        }
+
+        &::placeholder {
+          color: lighten($primary, 50%);
+        }
+
+      }
+
+      .currency-symbol {
+        font-size: 55px;
+        color: $primary;
+        justify-content: center;
+        align-items: flex-end;
+        display: flex;
+        // width: 100%;
+
+      }
+
+      .input-container {
+        display: inherit;
+        align-items: center;
+      }
+    }
+  }
+
+}
+
+.bottom-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-content: space-between;
+  width: 100%;
+
+  @media(max-width: $md){
+    .button-text {
+      display: none;
+    }
+    button {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      margin-right: 1rem;
+    }
+
+  }
+
+
+
+}

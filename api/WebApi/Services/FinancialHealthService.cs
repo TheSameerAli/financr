@@ -46,7 +46,7 @@ namespace WebApi.Services
             {
                 transactions.AddRange(await _transactions.Where(t => t.AccountId == account.Id).ToListAsync());
             }
-            return transactions.Sum(transaction => transaction.Income);
+            return transactions.Sum(transaction => transaction.Amount);
         }
 
         private async Task<double> GetUserDebt(Guid userId) 
@@ -63,7 +63,7 @@ namespace WebApi.Services
                 transactions.AddRange(account.Transactions);
             }
 
-            return transactions.Sum(t => t.Income);
+            return transactions.Sum(t => t.Amount);
 
         }
     }

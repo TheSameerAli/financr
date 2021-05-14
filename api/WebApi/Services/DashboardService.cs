@@ -75,12 +75,12 @@ namespace WebApi.Services
                     int.Parse(monthYear[0]), 1, 0, 0, 0);
                 if (networthMonths.Count > 0)
                 {
-                    networthMonths.Add(new MonthlyAmount(dateTime, t.Sum(tr => tr.Income) + networthMonths.LastOrDefault().Amount));
+                    networthMonths.Add(new MonthlyAmount(dateTime, t.Sum(tr => tr.Amount) + networthMonths.LastOrDefault().Amount));
 
                 }
                 else
                 {
-                    networthMonths.Add(new MonthlyAmount(dateTime, t.Sum(tr => tr.Income)));
+                    networthMonths.Add(new MonthlyAmount(dateTime, t.Sum(tr => tr.Amount)));
                 }
             }
 
@@ -100,14 +100,14 @@ namespace WebApi.Services
                 {
                     networthMonths.Add(
                         new MonthlyAmount(
-                            dateTime, t.Sum(tr => tr.Income < 0 ? tr.Income : 0) + 
+                            dateTime, t.Sum(tr => tr.Amount < 0 ? tr.Amount : 0) + 
                                       networthMonths.LastOrDefault().Amount));
 
                 }
                 else
                 {
                     networthMonths.Add(new MonthlyAmount(dateTime, 
-                        t.Sum(tr => tr.Income < 0 ? tr.Income : 0)));
+                        t.Sum(tr => tr.Amount < 0 ? tr.Amount : 0)));
                 }
             }
 
@@ -134,7 +134,7 @@ namespace WebApi.Services
             {
                 creditCardTransactions.AddRange(await _transactions.Where(t => t.AccountId == creditCardAccount.Id).ToListAsync());
             }
-            var debt = creditCardTransactions.Sum(cct => cct.Income);
+            var debt = creditCardTransactions.Sum(cct => cct.Amount);
             return new DashboardProfitLossCard(profit, income, outgoing, debt);
         }
     }

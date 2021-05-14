@@ -78,7 +78,7 @@ namespace WebApi.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     CreatedAt = table.Column<DateTimeOffset>(nullable: false),
-                    Income = table.Column<double>(nullable: false),
+                    Amount = table.Column<double>(nullable: false),
                     Description = table.Column<string>(nullable: true),
                     AccountId = table.Column<Guid>(nullable: false),
                     TransactionDate = table.Column<DateTimeOffset>(nullable: false),

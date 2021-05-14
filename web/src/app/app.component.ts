@@ -1,7 +1,6 @@
-import { AuthService } from './_services/auth.service';
-import { TokenStorageService } from './_services/token-storage.service';
+import { AuthService } from './authentication/_services/auth.service';
+import { TokenStorageService } from './authentication/_services/token-storage.service';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -17,9 +16,8 @@ export class AppComponent implements OnInit {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
 
     this.authService.authEvent.subscribe(() => {
-      console.log('login event');
       this.isLoggedIn = !!this.tokenStorageService.getToken();
-    })
+    });
 
   }
 }

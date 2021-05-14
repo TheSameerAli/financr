@@ -1,0 +1,65 @@
+<div *ngIf="(accounts$ | async) as accounts">
+  <div [class.no-accounts-container]="accounts && accounts.length === 0" class="accounts-list-page">
+    <div class="row">
+      <div class="col-md-12">
+        <div [class.full-height]="accounts && accounts.length === 0" class="accounts-list-box">
+          <div class="box-topbar">
+            <div class="title">
+              <h1>Your Accounts</h1>
+            </div>
+            <div *ngIf="accounts && accounts.length > 0" class="account-add-btn">
+              <a [routerLink]="['/accounts', 'create']" class="btn btn-add">
+                <svg height="426.66667pt" viewBox="0 0 426.66667 426.66667" width="426.66667pt" xmlns="http://www.w3.org/2000/svg"><path d="m405.332031 192h-170.664062v-170.667969c0-11.773437-9.558594-21.332031-21.335938-21.332031-11.773437 0-21.332031 9.558594-21.332031 21.332031v170.667969h-170.667969c-11.773437 0-21.332031 9.558594-21.332031 21.332031 0 11.777344 9.558594 21.335938 21.332031 21.335938h170.667969v170.664062c0 11.777344 9.558594 21.335938 21.332031 21.335938 11.777344 0 21.335938-9.558594 21.335938-21.335938v-170.664062h170.664062c11.777344 0 21.335938-9.558594 21.335938-21.335938 0-11.773437-9.558594-21.332031-21.335938-21.332031zm0 0"/></svg>
+                Create Account</a>
+            </div>
+          </div>
+
+
+          <div *ngIf="isLoading$ | async" class="page-loader">
+            <ng-lottie width="150px" height="150px" containerClass="loader-icon"
+            [options]="{path: '/assets/animations/lottie/loaders/945-dividends-outline-edited.json'}"></ng-lottie>
+          </div>
+
+          <div *ngIf="!(isLoading$ | async) && accounts && accounts.length > 0" class="accounts-list">
+            <table class="accounts-table">
+              <thead>
+                <tr>
+                  <th>Account</th>
+                  <th>Balance</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr (click)="toAccount(account.id)" *ngFor="let account of accounts">
+                  <td>
+                    <span class="account-icon"><img [src]="accountIcons[account.type]" alt=""></span>
+                    <span class="account-text">{{account.name}}</span>
+                  </td>
+                  <td class="account-balance">{{account.balance | currency: 'GBP'}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="no-accounts" *ngIf="!(isLoading$ | async) && accounts && accounts.length === 0">
+            <div class="no-account-icon">
+              <ng-lottie width="300px" height="250px" containerClass="loader-icon"
+              [options]="{path: '/assets/animations/lottie/loaders/31047-accounting.json'}"></ng-lottie>
+            </div>
+
+            <div class="no-account-description">
+              You haven't added any accounts yet, please click the button below to add your first account.
+            </div>
+
+            <div class="account-add-btn">
+              <a [routerLink]="['/accounts', 'create']" class="btn btn-add">
+                <svg height="426.66667pt" viewBox="0 0 426.66667 426.66667" width="426.66667pt" xmlns="http://www.w3.org/2000/svg"><path d="m405.332031 192h-170.664062v-170.667969c0-11.773437-9.558594-21.332031-21.335938-21.332031-11.773437 0-21.332031 9.558594-21.332031 21.332031v170.667969h-170.667969c-11.773437 0-21.332031 9.558594-21.332031 21.332031 0 11.777344 9.558594 21.335938 21.332031 21.335938h170.667969v170.664062c0 11.777344 9.558594 21.335938 21.332031 21.335938 11.777344 0 21.335938-9.558594 21.335938-21.335938v-170.664062h170.664062c11.777344 0 21.335938-9.558594 21.335938-21.335938 0-11.773437-9.558594-21.332031-21.335938-21.332031zm0 0"/></svg>
+                Create Account</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

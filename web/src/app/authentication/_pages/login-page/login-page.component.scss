@@ -1,0 +1,161 @@
+@import '../../../styles/variables';
+
+.login-page {
+  background-color: $primary;
+  height: 100vh;
+}
+
+.page-wave {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+
+  #wave {
+    fill: lighten($accent, 10%);
+  }
+
+  @media (max-width: $sm) {
+    display: none;
+
+  }
+}
+
+#filler-box {
+  fill: $primary;
+}
+
+#logo-square {
+  stroke: $accent;
+}
+
+#logo-text {
+  stroke: darken($accent, 10%);
+  fill: darken($accent, 10%);
+}
+
+.nav-section {
+  padding: 1rem;
+
+  @media (max-width: $sm) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+}
+
+.right-circle-design {
+  position: absolute;
+  top: 5%;
+  right: 0;
+
+  @media(max-width: 1200px) {
+    display: none;
+  }
+
+  #right-circle-1 {
+    fill: $accent;
+  }
+
+  #right-circle-2 {
+    fill: darken($accent, 40%);
+  }
+
+  #right-circle-3 {
+    fill: darken($accent, 30%);
+  }
+}
+
+.login-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  @media(max-width: $md) {
+    padding: 1rem;
+  }
+
+  .login-title {
+    font-size: 54px;
+    font-weight: bold;
+    color: lighten($accent, 10%);
+
+    @media(max-width: $sm) {
+      font-size: 36px;
+    }
+  }
+
+  .login-description {
+    color: lighten($accent, 20%);
+    font-size: 18px;
+    @media(max-width: $sm) {
+      font-size: 16px;
+    }
+  }
+
+
+
+  .login-box {
+    padding: 3rem;
+    background-color: white;
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    width: 608px;
+    height: 376px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    @media (max-width: $md) {
+      width: 100%;
+      padding: 1rem;
+
+    }
+
+    .login-form {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      width: 100%;
+
+      .form-group {
+        width: 100%;
+        padding-bottom: 1rem;
+
+        input {
+          padding: 1.5rem;
+          padding-top: 1.7rem;
+          font-size: 18px;
+        }
+      }
+
+      .btn-login {
+        background: $primary;
+        color: white;
+        width: 100%;
+        font-size: 24px;
+        text-transform: uppercase;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50px;
+
+        ng-lottie {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        &:hover {
+          background-color: $accent;
+          color: darken($accent, 50%);
+        }
+
+      }
+    }
+
+  }
+}

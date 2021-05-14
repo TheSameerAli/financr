@@ -1,47 +1,33 @@
-import { AddAccountPageComponent } from './pages/app/accounts/add-account-page/add-account-page.component';
-import { AccountsListPageComponent } from './pages/app/accounts/accounts-list-page/accounts-list-page.component';
-import { AuthGuard } from './core/auth.guard';
-import { LogoutPageComponent } from './pages/auth/logout-page/logout-page.component';
-import { HomePageComponent } from './pages/app/home-page/home-page.component';
-import { LoginPageComponent } from './pages/auth/login-page/login-page.component';
+import { AuthGuard } from './authentication/_guards/auth.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
-    canActivate: [AuthGuard],
-    pathMatch: 'full'
+    pathMatch: 'full',
+    redirectTo: 'home'
   },
   {
-    path: 'login',
-    component: LoginPageComponent
-  },
-  {
-    path: 'logout',
-    component: LogoutPageComponent,
-    canActivate: [AuthGuard]
+    path: 'auth',
+    loadChildren: () => import('./authentication/authentication.module').then(a => a.AuthenticationModule)
   },
   {
     path: 'home',
-    component: HomePageComponent,
+    loadChildren: () => import('./dashboard/dashboard.module').then(d => d.DashboardModule),
     canActivate: [AuthGuard]
   },
   {
     path: 'accounts',
-    component: AccountsListPageComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'account/create',
-    component: AddAccountPageComponent,
+    loadChildren: () => import('./accounts/accounts.module').then(a => a.AccountsModule),
     canActivate: [AuthGuard]
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes),
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

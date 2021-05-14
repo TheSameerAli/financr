@@ -1,0 +1,161 @@
+@import '../../../styles/variables';
+
+.logo {
+  #filler-box {
+    fill: $primary;
+  }
+
+  #logo-text {
+    fill: darken($accent, 10%);
+  }
+
+  #logo-square {
+    stroke: $accent;
+  }
+}
+
+
+.side-nav {
+  position: fixed;
+  height: 100%;
+  width: 237px;
+
+  @media(max-width: $md) {
+    width: 75px;
+  }
+
+  background-color: $primary;
+  -webkit-box-shadow: 6px 3px 12px -4px rgba(0, 0, 0, 0.05);
+  box-shadow: 6px 3px 12px -4px rgba(0, 0, 0, 0.05);
+
+  .brand {
+    display: flex;
+    align-items: center;
+    padding: .8rem;
+
+    @media(max-width: $md) {
+      paddding: .8rem 0 .8rem 0;
+    }
+
+
+    .brand-title {
+      color: $accent;
+      font-weight: 500;
+      font-size: 18px;
+
+      @media (max-width: $md) {
+        display: none;
+      }
+    }
+
+    .icon {
+      svg {
+        @media(max-width: $md) {
+          width: 45px;
+          height: 45px;
+        }
+      }
+
+    }
+  }
+
+  .networth-container {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+
+    @media (max-width: $md) {
+      display: none;
+    }
+
+    color: $sidebar-text-color;
+
+    .networth-text {
+      font-size: 28px;
+      font-weight: 600;
+    }
+
+    .networth-description {
+      font-weight: 500;
+    }
+  }
+
+  .menu-items {
+    margin-top: 2rem;
+
+    ul {
+      list-style: none;
+      margin-left: 0px;
+      padding-left: 0px;
+
+      a {
+        padding: .5rem;
+        width: 100%;
+        padding: 1rem 0 1rem 0;
+        display: inline-block;
+
+        @media (max-width: $md) {
+          display: flex;
+          justify-content: center;
+
+        }
+
+        svg {
+          fill: $sidebar-text-color;
+          stroke: $sidebar-text-color;
+          height: 20px;
+          width: 20px;
+          margin-right: 1rem;
+          margin-left: 1rem;
+        }
+
+
+        &:hover {
+          background-color: rgba(lighten($primary, 80%), 0.1);
+          border-right: 4px solid $accent;
+          color: $accent;
+
+          svg {
+            fill: $accent;
+            stroke: $accent;
+          }
+        }
+
+        &.active {
+          background-color: rgba(lighten($primary, 100%), 0.1);
+          border-right: 4px solid $accent;
+          color: $accent;
+
+          svg {
+            fill: $accent;
+            stroke: $accent;
+          }
+        }
+
+        font-weight: 500;
+        font-size: 18px;
+
+        color: $sidebar-text-color;
+
+        &:hover {
+          text-decoration: none !important;
+        }
+
+        .menuitem-icon {
+          height: 20px;
+          width: 20px;
+          margin-right: 1rem;
+          margin-left: 1rem;
+        }
+
+        .menu-text {
+          @media(max-width: $md) {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}

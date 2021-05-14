@@ -36,6 +36,12 @@ namespace WebApi.Controller
             return Ok(await _transactionService.GetAll(accountId));
         }
 
+        [HttpGet("{accountId}/transactions/{transactionId}")]
+        public async Task<IActionResult> GetTransactionById(Guid accountId, Guid transactionId)
+        {
+            return Ok(await _transactionService.GetTransactionById(transactionId));
+        }
+
         [HttpGet("subscriptions")]
         public async Task<IActionResult> GetUserSubscriptions() 
         {

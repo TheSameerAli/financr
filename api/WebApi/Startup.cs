@@ -19,6 +19,7 @@ using Newtonsoft.Json.Serialization;
 using WebApi.Configuration;
 using WebApi.Context;
 using WebApi.Controller;
+using WebApi.Middlewares;
 using WebApi.Models.Database;
 using WebApi.Models.Domain;
 using WebApi.Services;
@@ -105,6 +106,7 @@ namespace WebApi
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseMiddleware<DelayMiddleware>();
             }
             
             app.UseHangfireDashboard();
@@ -121,6 +123,7 @@ namespace WebApi
                     .AllowAnyMethod()
                     .AllowCredentials();
             });
+
             app.UseAuthentication();
             app.UseMvc();
         }
