@@ -5,5 +5,6 @@ export class Account {
   type: number;
   userId: string;
   balance: number;
+  availableBalance: number;
   transactions: Transaction[];
 }

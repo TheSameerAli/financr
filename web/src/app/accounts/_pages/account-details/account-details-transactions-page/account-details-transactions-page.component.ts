@@ -16,11 +16,16 @@ import { Observable } from 'rxjs';
 })
 export class AccountDetailsTransactionsPageComponent implements OnInit, AfterViewInit {
   public accountId: string;
+  public account: Account;
   public transactions: Transaction[];
-  public transactionsLoading: boolean = false;
+  public isLoading: boolean = false;
   public singleTransactionBoxOpen: boolean = false;
   public isSingleTransactionLoading: boolean = false;
   public transactionData: Transaction;
+
+  public today: Date = new Date();
+
+  public addTransactionBoxOpen: boolean = true;
   data = [
     {
       "name": "Germany",
@@ -56,14 +61,17 @@ export class AccountDetailsTransactionsPageComponent implements OnInit, AfterVie
   ngOnInit(): void {
     this.route.params.subscribe(p => {
       this.accountId = p['id'];
+      this.accountService.getAccount(this.accountId).subscribe(data => {
+        this.account = data;
+      })
     });
-    this.transactionsLoading = true;
+    this.isLoading = true;
     this.accountService.getTransactions(this.accountId).subscribe(data => {
       this.transactions = data;
-      this.transactionsLoading = false;
+      this.isLoading = false;
 
     }, (err) => {
-      this.transactionsLoading = false;
+      this.isLoading = false;
     });
   }
 
@@ -82,6 +90,14 @@ export class AccountDetailsTransactionsPageComponent implements OnInit, AfterVie
     this.transactionData = new Transaction();
     this.isSingleTransactionLoading = false;
     this.singleTransactionBoxOpen = false;
+  }
+
+  closeAddTransactionBox() {
+    this.addTransactionBoxOpen = false;
+  }
+
+  openAddTransactionBox() {
+    this.addTransactionBoxOpen = true;
   }
 
 }

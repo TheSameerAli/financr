@@ -22,6 +22,10 @@ export class AccountService {
     return this.http.get<Account[]>(`${ACCOUNT_API}/list`);
   }
 
+  getAccount(accountId: string): Observable<Account> {
+    return this.http.get<Account>(`${ACCOUNT_API}/${accountId}`);
+  }
+
   createAccount(type: number, name: string, balance: number): Observable<Account> {
     return this.http.post<Account>(`${ACCOUNT_API}/create`, {name: name, type: type, initialAmount: balance}, httpOptions);
   }

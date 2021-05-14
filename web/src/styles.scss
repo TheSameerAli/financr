@@ -82,6 +82,8 @@ body, html {
       height: 17px;
       margin-right: 1rem;
       margin-bottom: .4rem;
+      stroke: $primary;
+      fill: $primary;
     }
 
     &:hover {
@@ -90,6 +92,7 @@ body, html {
       color: white;
       svg {
         stroke: white;
+        fill: white;
       }
     }
 

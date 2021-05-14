@@ -164,3 +164,69 @@
     }
   }
 }
+
+
+.add-transaction-container {
+  .top-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .sidebox-title {
+      font-size: 20px;
+      color: $card-title-color;
+    }
+  }
+
+  .add-transaction-form {
+    input {
+      border: none;
+      border-bottom: 1px solid $primary;
+      border-radius: 0;
+    }
+  }
+
+
+  .balance-group-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    .balance-group {
+      padding-top: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      input {
+        display: flex;
+        color: $primary;
+        border: none;
+        font-size: 55px;
+        text-align: center;
+
+        &:focus{
+          outline: none;
+        }
+
+        &::placeholder {
+          color: lighten($primary, 50%);
+        }
+
+      }
+
+      .currency-symbol {
+        font-size: 55px;
+        color: $primary;
+        justify-content: center;
+        align-items: flex-end;
+        display: flex;
+        // width: 100%;
+
+      }
+
+      .input-container {
+        display: inherit;
+        align-items: center;
+      }
+    }
+  }
+}

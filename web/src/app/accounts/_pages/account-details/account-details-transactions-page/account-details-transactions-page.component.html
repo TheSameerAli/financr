@@ -1,18 +1,22 @@
-<div *ngIf="singleTransactionBoxOpen" class="overlay-black"></div>
+<div *ngIf="singleTransactionBoxOpen || addTransactionBoxOpen" class="overlay-black"></div>
 <app-account-details-container>
   <div class="transactions-page-container">
 
     <div class="main-content">
+      <div class="text-right mb-2">
+
+      </div>
+
       <div class="table-search">
         <input class="form-control mb-3" placeholder="Search Transactions" type="text">
       </div>
 
-      <div *ngIf="transactionsLoading" class="transactions-loader">
+      <div *ngIf="isLoading" class="transactions-loader">
         <ng-lottie width="100px" height="100px" containerClass="loader-icon"
-        [options]="{path: '/assets/animations/lottie/loaders/298-coins-outline-edited.json'}"></ng-lottie>
+          [options]="{path: '/assets/animations/lottie/loaders/298-coins-outline-edited.json'}"></ng-lottie>
       </div>
 
-      <table *ngIf="!transactionsLoading" class="transaction-table">
+      <table *ngIf="!isLoading" class="transaction-table">
         <thead>
           <tr>
             <th>Merchant</th>
@@ -36,20 +40,28 @@
     </div>
 
     <div class="right-sidebar">
+      <button class="btn btn-secondary-button mb-5" (click)="openAddTransactionBox()">
+        <svg height="426.66667pt" viewBox="0 0 426.66667 426.66667" width="426.66667pt"
+          xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="m405.332031 192h-170.664062v-170.667969c0-11.773437-9.558594-21.332031-21.335938-21.332031-11.773437 0-21.332031 9.558594-21.332031 21.332031v170.667969h-170.667969c-11.773437 0-21.332031 9.558594-21.332031 21.332031 0 11.777344 9.558594 21.335938 21.332031 21.335938h170.667969v170.664062c0 11.777344 9.558594 21.335938 21.332031 21.335938 11.777344 0 21.335938-9.558594 21.335938-21.335938v-170.664062h170.664062c11.777344 0 21.335938-9.558594 21.335938-21.335938 0-11.773437-9.558594-21.332031-21.335938-21.332031zm0 0" />
+        </svg>
+
+        New Transaction
+      </button>
 
       <div class="spending-chart">
         <div class="your-balance">
           <p>Your Balance</p>
-          <h1>£249.99</h1>
+          <h1 *ngIf="!isLoading && account">{{account.availableBalance | currency: 'GBP'}}</h1>
+          <div style="display: flex; justify-content: center" *ngIf="isLoading">
+            <ng-lottie width="75px" height="75px" containerClass="loader-icon"
+              [options]="{path: '/assets/animations/lottie/loaders/331-loader-2-edited-black.json'}"></ng-lottie>
+          </div>
+
         </div>
-        <ngx-charts-pie-chart
-        [view]="[300, 300]"
-        [legend]="false"
-        [results]="data"
-        [doughnut]="true"
-        [arcWidth]="0.15"
-        >
-          </ngx-charts-pie-chart>
+        <ngx-charts-pie-chart [view]="[300, 300]" [legend]="false" [results]="data" [doughnut]="true" [arcWidth]="0.15">
+        </ngx-charts-pie-chart>
       </div>
     </div>
   </div>
@@ -64,8 +76,8 @@
   <hr>
 
   <div *ngIf="isSingleTransactionLoading" class="single-transaction-loader">
-    <ng-lottie width="150px" height="150px" containerClass="loader-icon"
-    [options]="{path: '/assets/animations/lottie/loaders/945-dividends-outline-edited.json'}"></ng-lottie>
+    <ng-lottie width="100px" height="100px" containerClass="loader-icon"
+      [options]="{path: '/assets/animations/lottie/loaders/331-loader-2-edited-black.json'}"></ng-lottie>
   </div>
   <div *ngIf="!isSingleTransactionLoading  && transactionData" class="transaction-details">
     {{transaction | json}}
@@ -93,3 +105,45 @@
   </div>
 </div>
 
+
+
+
+<div *ngIf="addTransactionBoxOpen" class="single-transaction-detail-container add-transaction-container">
+  <div class="top-button">
+    <div class="sidebox-title">Add Transaction</div>
+    <div (click)="closeAddTransactionBox()" class="cancel-button">X</div>
+  </div>
+
+  <hr>
+
+  <div class="add-transaction-form">
+    <div class="form-group">
+      <label for="">Date</label>
+      <input [placeholder]="today | date: 'dd/mm/yyyy' " class="form-control shadow-none" type="text">
+    </div>
+    <div class="form-group">
+      <label for="">Description</label>
+      <input placeholder="What was this transaction for?" class="form-control shadow-none" type="text">
+    </div>
+
+    <div class="balance-group-container pt-3">
+      <span class="input-title">Amount</span>
+      <div class="form-group balance-group">
+        <div class="input-container">
+          <input class="form-control balance shadow-none" placeholder="0.00" type="text">
+
+        </div>
+      </div>
+
+    </div>
+
+    <div class="form-group">
+      <label for="">Category Selection</label>
+      <input class="form-control" type="text">
+    </div>
+    <div class="text-right">
+      <button class="btn btn-primary-button w-50 mt-3">Create</button>
+
+    </div>
+  </div>
+</div>
