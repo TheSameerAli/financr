@@ -1,13 +1,15 @@
 $background: #F2F5F9;
 $title-color: #436363;
-$primary: #325288;
-$accent: #ffffff;
+$primary: #5c4b99;
+$primary-dark: darken(#5c4b99, 20%);
+$accent: rgba(228, 228, 228, 0.856);
 $red: #D90000;
 $green: #10C300;
 $card-title-color: #858585;
 
 // Sidebar Settings
-$sidebar-text-color: rgb(255, 255, 255);
+$sidebar-bg: rgb(255, 255, 255);
+$sidebar-text: rgb(46, 46, 46);
 
 $md: 768px;
 $sm: 576px;

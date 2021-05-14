@@ -2,15 +2,15 @@
 
 .logo {
   #filler-box {
-    fill: $primary;
+    fill: $sidebar-bg;
   }
 
   #logo-text {
-    fill: darken($accent, 10%);
+    fill: darken($primary-dark, 10%);
   }
 
   #logo-square {
-    stroke: $accent;
+    stroke: $primary-dark;
   }
 }
 
@@ -24,7 +24,7 @@
     width: 75px;
   }
 
-  background-color: $primary;
+  background-color: $sidebar-bg;
   -webkit-box-shadow: 6px 3px 12px -4px rgba(0, 0, 0, 0.05);
   box-shadow: 6px 3px 12px -4px rgba(0, 0, 0, 0.05);
 
@@ -34,12 +34,12 @@
     padding: .8rem;
 
     @media(max-width: $md) {
-      paddding: .8rem 0 .8rem 0;
+      padding: .8rem 0 .8rem 0;
     }
 
 
     .brand-title {
-      color: $accent;
+      color: $primary-dark;
       font-weight: 500;
       font-size: 18px;
 
@@ -70,7 +70,7 @@
       display: none;
     }
 
-    color: $sidebar-text-color;
+    color: $primary-dark;
 
     .networth-text {
       font-size: 28px;
@@ -103,8 +103,8 @@
         }
 
         svg {
-          fill: $sidebar-text-color;
-          stroke: $sidebar-text-color;
+          fill: $primary-dark;
+          stroke: $primary-dark;
           height: 20px;
           width: 20px;
           margin-right: 1rem;
@@ -113,31 +113,31 @@
 
 
         &:hover {
-          background-color: rgba(lighten($primary, 80%), 0.1);
-          border-right: 4px solid $accent;
-          color: $accent;
+          background-color: rgba(darken($primary-dark, 20%), 0.1);
+          border-right: 4px solid $primary-dark;
+          color: $primary-dark;
 
           svg {
-            fill: $accent;
-            stroke: $accent;
+            fill: $primary-dark;
+            stroke: $primary-dark;
           }
         }
 
         &.active {
-          background-color: rgba(lighten($primary, 100%), 0.1);
-          border-right: 4px solid $accent;
-          color: $accent;
+          background-color: rgba(darken($primary-dark, 20%), 0.1);
+          border-right: 4px solid $primary-dark;
+          color: $primary-dark;
 
           svg {
-            fill: $accent;
-            stroke: $accent;
+            fill: $primary-dark;
+            stroke: $primary-dark;
           }
         }
 
         font-weight: 500;
         font-size: 18px;
 
-        color: $sidebar-text-color;
+        color: $primary-dark;
 
         &:hover {
           text-decoration: none !important;
