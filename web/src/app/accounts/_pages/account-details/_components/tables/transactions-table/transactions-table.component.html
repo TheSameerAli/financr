@@ -4,7 +4,7 @@
 
 <div *ngIf="(isLoading | async)" class="transactions-loader d-flex justify-content-center">
   <ng-lottie width="100px" height="100px" containerClass="loader-icon"
-    [options]="{path: '/assets/animations/lottie/loaders/298-coins-outline-edited.json'}"></ng-lottie>
+            [options]="{path: '/assets/animations/lottie/loaders/text-loading.json'}"></ng-lottie>
 </div>
 
 <table *ngIf="!(isLoading | async)" class="transaction-table">
@@ -28,7 +28,7 @@
         </span>
         <span class="merchant-name">{{transaction.description}}</span>
       </td>
-      <td>{{transaction.amount | currency: 'GBP'}}</td>
+      <td [class.red]="transaction.amount < 0" [class.green]="transaction.amount > 0">{{transaction.amount | currency: 'GBP'}}</td>
     </tr>
 
   </tbody>

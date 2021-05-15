@@ -1,3 +1,7 @@
+import { Observable } from 'rxjs';
+import { currentlyViewingAccountSelector, accountsIsLoadingSelector } from './../../../../store/selector/account.selectors';
+import { Store } from '@ngrx/store';
+import { AppState } from './../../../../../app.state';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,13 +12,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AccountDetailsContainerComponent implements OnInit {
   public accountId: string;
-  constructor(private route: ActivatedRoute) {
+  public account$: Observable<Account>;
+  public isLoading$: Observable<Account>;
+  constructor(private route: ActivatedRoute, private store: Store<AppState>) {
     this.route.params.subscribe(p => {
       this.accountId = p['id'];
-    })
+    });
   }
 
   ngOnInit(): void {
+    this.account$ = this.store.select(currentlyViewingAccountSelector);
+    this.isLoading$ = this.store.select(accountsIsLoadingSelector);
   }
 
 }

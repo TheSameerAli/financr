@@ -3,8 +3,13 @@
     <div class="col-md-12">
       <div class="page-box">
         <div class="box-topbar">
-          <div class="title">
-            <h1>Your Accounts</h1>
+          <div *ngIf="!(isLoading$ | async)" class="title">
+            <h1>{{(account$ | async).name}}</h1>
+          </div>
+          <div *ngIf="isLoading$ | async">
+            <ng-lottie width="50px" height="50px" containerClass="loader-icon"
+            [options]="{path: '/assets/animations/lottie/loaders/text-loading.json'}"></ng-lottie>
+
           </div>
         </div>
 
