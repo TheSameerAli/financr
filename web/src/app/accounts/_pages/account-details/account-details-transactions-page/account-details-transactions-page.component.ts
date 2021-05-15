@@ -19,18 +19,11 @@ export class AccountDetailsTransactionsPageComponent implements OnInit, AfterVie
   public account: Account;
   public transactions: Transaction[];
   public isLoading: boolean = false;
+
   public singleTransactionBoxOpen: boolean = false;
-  public isSingleTransactionLoading: boolean = false;
-  public transactionData: Transaction;
-
-  public accountCategories: AccountCategory[];
-  public isAccountCategoriesLoading: boolean = false;
-
-  public today: Date = new Date();
-
   public addTransactionBoxOpen: boolean = false;
+  public currentSelectedTransactionId: string = '';
 
-  public selectedCategory: AccountCategory;
   data = [
     {
       "name": "Germany",
@@ -82,18 +75,10 @@ export class AccountDetailsTransactionsPageComponent implements OnInit, AfterVie
 
   openSingleTransactionBox(transactionId: string) {
     this.singleTransactionBoxOpen = true;
-    this.isSingleTransactionLoading = true;
-    this.accountService.getTransaction(this.accountId, transactionId).subscribe(data => {
-      this.transactionData = data;
-      this.isSingleTransactionLoading = false;
-    }, (err) => {
-      this.isSingleTransactionLoading = false;
-    })
+    this.currentSelectedTransactionId = transactionId;
   }
 
   closeSingleTransactionBox() {
-    this.transactionData = new Transaction();
-    this.isSingleTransactionLoading = false;
     this.singleTransactionBoxOpen = false;
   }
 
@@ -102,19 +87,9 @@ export class AccountDetailsTransactionsPageComponent implements OnInit, AfterVie
   }
 
   openAddTransactionBox() {
-    this.isAccountCategoriesLoading = true;
     this.addTransactionBoxOpen = true;
-
-    this.accountService.getAccountCategories(this.accountId).subscribe(data => {
-      this.isAccountCategoriesLoading = false;
-      this.accountCategories = data;
-    }, (err) => {
-      this.isAccountCategoriesLoading = false;
-    })
   }
 
-  selectCategory(accountCategory: AccountCategory) {
-    this.selectedCategory = accountCategory;
-  }
+
 
 }

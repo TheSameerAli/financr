@@ -56,7 +56,7 @@ namespace WebApi.Controller
             {
                 throw new InvalidDataException("Transaction can not be in the future");
             }
-            return Ok(await _transactionService.Create(request.Income, request.Description, request.TransactionDate,
+            return Ok(await _transactionService.Create(request.Amount, request.Description, request.TransactionDate,
                 request.AccountCategoryId, accountId));
         }
 

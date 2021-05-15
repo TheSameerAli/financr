@@ -13,6 +13,8 @@ import {ACCOUNT_STATE_NAME, accountReducer} from '../accounts/store/reducer/acco
 import { AccountDetailsTransactionsPageComponent } from './_pages/account-details/account-details-transactions-page/account-details-transactions-page.component';
 import { AccountDetailsSettingsPageComponent } from './_pages/account-details/account-details-settings-page/account-details-settings-page.component';
 import { AccountDetailsContainerComponent } from './_pages/account-details/_components/account-details-container/account-details-container.component';
+import { AddTransactionPanelComponent } from './_pages/account-details/_components/panels/add-transaction-panel/add-transaction-panel.component';
+import { ViewTransactionPanelComponent } from './_pages/account-details/_components/panels/view-transaction-panel/view-transaction-panel.component';
 
 
 
@@ -25,7 +27,9 @@ import { AccountDetailsContainerComponent } from './_pages/account-details/_comp
     AddAccountStep2Component,
     AccountDetailsTransactionsPageComponent,
     AccountDetailsSettingsPageComponent,
-    AccountDetailsContainerComponent
+    AccountDetailsContainerComponent,
+    AddTransactionPanelComponent,
+    ViewTransactionPanelComponent
   ],
   imports: [
     CommonModule,

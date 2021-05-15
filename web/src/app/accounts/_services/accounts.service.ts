@@ -41,4 +41,13 @@ export class AccountService {
   getTransaction(accountId: string, transactionId: string) {
     return this.http.get<Transaction>(`${ACCOUNT_API}/${accountId}/transactions/${transactionId}`)
   }
+
+  createTransaction(accountId: string, amount: number, description: string, accountCategoryId: string, transactionDate: Date) {
+    return this.http.post<Transaction>(`${ACCOUNT_API}/${accountId}/transaction/create`, {
+      amount: amount,
+      description: description,
+      accountCategoryId: accountCategoryId,
+      transactionDate: transactionDate
+    }, httpOptions);
+  }
 }
