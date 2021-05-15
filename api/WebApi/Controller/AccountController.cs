@@ -46,7 +46,6 @@ namespace WebApi.Controller
             return Ok(await _accountService.SetBudget(request.Budget, accountId));
         }
 
-        
         [HttpPost("create")]
         public async Task<IActionResult> CreateAccount([FromBody] CreateAccountRequest request)
         {

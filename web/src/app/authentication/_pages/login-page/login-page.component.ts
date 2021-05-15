@@ -33,7 +33,6 @@ export class LoginPageComponent implements OnInit {
       this.authService.authEvent.emit();
       this.router.navigate(['']);
     }, (err) => {
-      console.log(err.error.message);
       this.isLoading = false;
       this.isFailed = true;
       this.errorMessage = err.error.message;

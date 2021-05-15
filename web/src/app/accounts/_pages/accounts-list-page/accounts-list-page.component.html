@@ -2,7 +2,7 @@
   <div [class.no-accounts-container]="accounts && accounts.length === 0" class="accounts-list-page">
     <div class="row">
       <div class="col-md-12">
-        <div [class.full-height]="accounts && accounts.length === 0" class="accounts-list-box">
+        <div [class.full-height]="(accounts && accounts.length === 0)" class="accounts-list-box">
           <div class="box-topbar">
             <div class="title">
               <h1>Your Accounts</h1>
@@ -16,8 +16,8 @@
 
 
           <div *ngIf="isLoading$ | async" class="page-loader">
-            <ng-lottie width="150px" height="150px" containerClass="loader-icon"
-            [options]="{path: '/assets/animations/lottie/loaders/945-dividends-outline-edited.json'}"></ng-lottie>
+            <ng-lottie width="100px" height="100px" containerClass="loader-icon"
+            [options]="{path: '/assets/animations/lottie/loaders/text-loading.json'}"></ng-lottie>
           </div>
 
           <div *ngIf="!(isLoading$ | async) && accounts && accounts.length > 0" class="accounts-list">

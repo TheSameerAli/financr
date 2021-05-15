@@ -51,7 +51,8 @@ export class AddAccountPageComponent implements OnInit {
         type: this.accountType,
         balance: data.balance,
         userId: '',
-        transactions: []
+        transactions: [],
+        availableBalance: 0
       }
     }));
   }

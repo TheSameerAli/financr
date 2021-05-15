@@ -1,0 +1,41 @@
+<div *ngIf="isOpen" class="single-transaction-detail-container ">
+  <div class="top-button">
+    <div (click)="closePanel()" class="cancel-button">
+
+      <svg height="15px" viewBox="0 0 329.26933 329" width="15px" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="m194.800781 164.769531 128.210938-128.214843c8.34375-8.339844 8.34375-21.824219 0-30.164063-8.339844-8.339844-21.824219-8.339844-30.164063 0l-128.214844 128.214844-128.210937-128.214844c-8.34375-8.339844-21.824219-8.339844-30.164063 0-8.34375 8.339844-8.34375 21.824219 0 30.164063l128.210938 128.214843-128.210938 128.214844c-8.34375 8.339844-8.34375 21.824219 0 30.164063 4.15625 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921875-2.089844 15.082031-6.25l128.210937-128.214844 128.214844 128.214844c4.160156 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921874-2.089844 15.082031-6.25 8.34375-8.339844 8.34375-21.824219 0-30.164063zm0 0" />
+        </svg>
+    </div>
+  </div>
+
+  <hr>
+
+  <div *ngIf="isLoading" class="single-transaction-loader">
+    <ng-lottie width="100px" height="100px" containerClass="loader-icon"
+      [options]="{path: '/assets/animations/lottie/loaders/331-loader-2-edited-black.json'}"></ng-lottie>
+  </div>
+  <div *ngIf="!isLoading  && transaction" class="transaction-details">
+    <div class="basic-data">
+      <div class="merchant-icon">
+        <img src="/assets/icons/default-transaction.svg" alt="">
+      </div>
+      <div class="transaction-amount">
+
+        {{transaction.amount | currency: 'GBP'}}
+      </div>
+    </div>
+    <div class="detailed-transaction-data">
+      <div class="transaction-description">
+        {{transaction.description}}
+      </div>
+      <div class="transaction-date">
+        {{transaction.transactionDate | date: 'fullDate'}}
+      </div>
+
+      <div class="transaction-category">
+        <div class="badge badge-primary">{{transaction.accountCategory.name}}</div>
+      </div>
+    </div>
+  </div>
+</div>

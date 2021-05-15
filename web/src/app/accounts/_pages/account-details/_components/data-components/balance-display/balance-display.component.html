@@ -1,0 +1,6 @@
+<p>Your Balance</p>
+<h1 *ngIf="!(isLoading | async) && (account | async)">{{(account | async).availableBalance | currency: 'GBP'}}</h1>
+<div style="display: flex; justify-content: center" *ngIf="isLoading | async">
+  <ng-lottie width="75px" height="75px" containerClass="loader-icon"
+    [options]="{path: '/assets/animations/lottie/loaders/331-loader-2-edited-black.json'}"></ng-lottie>
+</div>

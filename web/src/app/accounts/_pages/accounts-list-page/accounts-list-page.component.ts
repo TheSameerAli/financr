@@ -33,12 +33,6 @@ export class AccountsListPageComponent implements OnInit {
     this.store.dispatch(loadAccountsRequest());
     this.accounts$ = this.store.select(selectAccounts);
     this.isLoading$ = this.store.select(accountsIsLoadingSelector);
-    this.accounts$.subscribe(data => {
-      console.log(data);
-    });
-    this.isLoading$.subscribe(data => {
-      console.log(data);
-    })
   }
 
   toAccount(id) {

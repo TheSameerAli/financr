@@ -1,4 +1,4 @@
-import { Transaction } from './../_models/transaction';
+import { AccountCategory, Transaction } from './../_models/transaction';
 import { Account } from './../_models/account';
 import { Observable } from 'rxjs';
 import { environment } from './../../../environments/environment';
@@ -22,6 +22,14 @@ export class AccountService {
     return this.http.get<Account[]>(`${ACCOUNT_API}/list`);
   }
 
+  getAccount(accountId: string): Observable<Account> {
+    return this.http.get<Account>(`${ACCOUNT_API}/${accountId}`);
+  }
+
+  getAccountCategories(accountId: string): Observable<AccountCategory[]> {
+    return this.http.get<AccountCategory[]>(`${ACCOUNT_API}/${accountId}/categories`);
+  }
+
   createAccount(type: number, name: string, balance: number): Observable<Account> {
     return this.http.post<Account>(`${ACCOUNT_API}/create`, {name: name, type: type, initialAmount: balance}, httpOptions);
   }
@@ -32,5 +40,14 @@ export class AccountService {
 
   getTransaction(accountId: string, transactionId: string) {
     return this.http.get<Transaction>(`${ACCOUNT_API}/${accountId}/transactions/${transactionId}`)
+  }
+
+  createTransaction(accountId: string, amount: number, description: string, accountCategoryId: string, transactionDate: Date) {
+    return this.http.post<Transaction>(`${ACCOUNT_API}/${accountId}/transaction/create`, {
+      amount: amount,
+      description: description,
+      accountCategoryId: accountCategoryId,
+      transactionDate: transactionDate.toUTCString()
+    }, httpOptions);
   }
 }

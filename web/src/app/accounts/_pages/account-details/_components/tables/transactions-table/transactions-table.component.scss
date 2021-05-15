@@ -1,0 +1,41 @@
+@import '../../../../../../styles/variables';
+
+.transaction-table {
+  width: 100%;
+
+  thead {
+    tr {
+      th {
+        color: $card-title-color;
+        font-weight: 400;
+        font-size: 16px;
+        padding: 1rem;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      td {
+        padding: 1rem;
+        font-size: 22px;
+      }
+
+      &:hover {
+        background-color: rgba(#000000, $alpha: 0.05);
+        cursor: pointer;
+      }
+
+      .merchant-details {
+        .merchant-logo {
+          svg {
+            width: 40px;
+            height: 40px;
+          }
+
+          margin-right: 1rem;
+        }
+      }
+    }
+  }
+}
