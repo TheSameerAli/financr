@@ -16,61 +16,23 @@ import { Observable } from 'rxjs';
 })
 export class AccountDetailsTransactionsPageComponent implements OnInit, AfterViewInit {
   public accountId: string;
-  public account: Account;
-  public transactions: Transaction[];
-  public isLoading: boolean = false;
 
   public singleTransactionBoxOpen: boolean = false;
   public addTransactionBoxOpen: boolean = false;
   public currentSelectedTransactionId: string = '';
 
-  data = [
-    {
-      "name": "Germany",
-      "value": 8940000
-    },
-    {
-      "name": "USA",
-      "value": 5000000
-    },
-    {
-      "name": "Blah",
-      "value": 8940000
-    },
-    {
-      "name": "Blah2",
-      "value": 5000000
-    }
-  ]
-  constructor(private accountService: AccountService, private route: ActivatedRoute) { }
+
+  constructor(private route: ActivatedRoute) { }
 
   ngAfterViewInit(): void {
-    let pieChart = document.getElementsByClassName('ngx-charts-outer')[0];
-    let balanceDiv = document.createElement('div');
-    balanceDiv.classList.add('pie-chart-amount');
-    balanceDiv.innerText = '£13,382.99';
-    let spentSinceDiv = document.createElement('div');
-    spentSinceDiv.classList.add('pie-chart-spent-since');
-    spentSinceDiv.innerText = 'Spent since 28/02/2020';
-    pieChart.appendChild(balanceDiv);
-    pieChart.appendChild(spentSinceDiv);
+
   }
 
   ngOnInit(): void {
     this.route.params.subscribe(p => {
       this.accountId = p['id'];
-      this.accountService.getAccount(this.accountId).subscribe(data => {
-        this.account = data;
-      })
     });
-    this.isLoading = true;
-    this.accountService.getTransactions(this.accountId).subscribe(data => {
-      this.transactions = data;
-      this.isLoading = false;
 
-    }, (err) => {
-      this.isLoading = false;
-    });
   }
 
   openSingleTransactionBox(transactionId: string) {

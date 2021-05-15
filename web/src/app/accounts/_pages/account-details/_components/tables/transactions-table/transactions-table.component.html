@@ -1,0 +1,35 @@
+<div class="table-search">
+  <input class="form-control mb-3" placeholder="Search Transactions" type="text">
+</div>
+
+<div *ngIf="isLoading" class="transactions-loader d-flex justify-content-center">
+  <ng-lottie width="100px" height="100px" containerClass="loader-icon"
+    [options]="{path: '/assets/animations/lottie/loaders/298-coins-outline-edited.json'}"></ng-lottie>
+</div>
+
+<table *ngIf="!isLoading" class="transaction-table">
+  <thead>
+    <tr>
+      <th>Merchant</th>
+      <th>Amount</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr (click)="selectTransaction(transaction.id)" *ngFor="let transaction of transactions">
+      <td class="merchant-details">
+        <span class="merchant-logo">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 80" x="0px" y="0px">
+            <g>
+                <path
+                    d="M18.13,34.542a1.5,1.5,0,0,1-2.121,2.121L7.126,27.779a1.51,1.51,0,0,1-.328-.492l-.007-.023a1.484,1.484,0,0,1-.106-.547h0a1.489,1.489,0,0,1,.106-.548l.007-.022a1.5,1.5,0,0,1,.328-.493l8.883-8.883a1.5,1.5,0,0,1,2.121,2.121l-6.324,6.325H35.815a1.5,1.5,0,0,1,0,3H11.806Zm39.185,2.741h0a1.484,1.484,0,0,0-.106-.547l-.007-.023a1.51,1.51,0,0,0-.328-.492l-8.883-8.884a1.5,1.5,0,1,0-2.121,2.121l6.324,6.325H28.185a1.5,1.5,0,0,0,0,3H52.194L45.87,45.108a1.5,1.5,0,1,0,2.121,2.121l8.883-8.883a1.5,1.5,0,0,0,.328-.493l.007-.022A1.489,1.489,0,0,0,57.315,37.283Z" />
+            </g>
+        </svg>
+        </span>
+        <span class="merchant-name">{{transaction.description}}</span>
+      </td>
+      <td>{{transaction.amount | currency: 'GBP'}}</td>
+    </tr>
+
+  </tbody>
+</table>

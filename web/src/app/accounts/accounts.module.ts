@@ -15,6 +15,9 @@ import { AccountDetailsSettingsPageComponent } from './_pages/account-details/ac
 import { AccountDetailsContainerComponent } from './_pages/account-details/_components/account-details-container/account-details-container.component';
 import { AddTransactionPanelComponent } from './_pages/account-details/_components/panels/add-transaction-panel/add-transaction-panel.component';
 import { ViewTransactionPanelComponent } from './_pages/account-details/_components/panels/view-transaction-panel/view-transaction-panel.component';
+import { TransactionsTableComponent } from './_pages/account-details/_components/tables/transactions-table/transactions-table.component';
+import { BalanceDisplayComponent } from './_pages/account-details/_components/data-components/balance-display/balance-display.component';
+import { SpendingChartComponent } from './_pages/account-details/_components/data-components/spending-chart/spending-chart.component';
 
 
 
@@ -29,7 +32,10 @@ import { ViewTransactionPanelComponent } from './_pages/account-details/_compone
     AccountDetailsSettingsPageComponent,
     AccountDetailsContainerComponent,
     AddTransactionPanelComponent,
-    ViewTransactionPanelComponent
+    ViewTransactionPanelComponent,
+    TransactionsTableComponent,
+    BalanceDisplayComponent,
+    SpendingChartComponent,
   ],
   imports: [
     CommonModule,
