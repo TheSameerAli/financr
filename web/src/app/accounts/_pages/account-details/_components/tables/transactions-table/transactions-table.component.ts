@@ -15,12 +15,12 @@ export class TransactionsTableComponent implements OnInit {
   @Input() accountId: string;
   @Output() selection: EventEmitter<string> = new EventEmitter();
   public isLoading: Observable<boolean>;
-  public transactions: Observable<Transaction[]>;
+  public transactions$: Observable<{}>;
   constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
     this.isLoading = this.store.select(accountsIsLoadingSelector);
-    this.transactions = this.store.select(currentlyViewingAccountTransactionsSelector);
+    this.transactions$ = this.store.select(currentlyViewingAccountTransactionsSelector);
     this.store.dispatch(loadCurrentlyViewingAccountTransactionsRequest({accountId: this.accountId}));
   }
 
