@@ -3,15 +3,17 @@ import { loadCurrentlyViewingAccountTransactionsRequest, loadCurrentlyViewingAcc
 import { Store } from '@ngrx/store';
 import { AccountService } from './../../../../../_services/accounts.service';
 import { AccountCategory } from './../../../../../_models/transaction';
-import { Component, Input, OnInit, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, OnChanges, SimpleChanges, AfterViewInit } from '@angular/core';
 import { AppState } from 'src/app/app.state';
+import Pikaday from 'pikaday';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-add-transaction-panel',
   templateUrl: './add-transaction-panel.component.html',
   styleUrls: ['./add-transaction-panel.component.scss']
 })
-export class AddTransactionPanelComponent implements OnInit, OnChanges {
+export class AddTransactionPanelComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() isOpen: boolean = false;
   @Input() accountId: string;
   @Output() close: EventEmitter<any> = new EventEmitter();
@@ -29,11 +31,25 @@ export class AddTransactionPanelComponent implements OnInit, OnChanges {
   public selectedAmountType: number = 0;
 
   /// Form data below
-  public date: Date = new Date();
+  public transactionDate: string;
   public description: string = '';
   public amount: number;
 
   constructor(private accountService: AccountService, private store: Store<AppState>) { }
+
+  ngAfterViewInit(): void {
+    var picker = new Pikaday(
+      {
+        field: document.getElementById('datepicker'),
+        trigger: document.getElementById('datepicker'),
+        format: 'MM/DD/YYYY',
+        onSelect: (ev: Date) => {
+
+          this.transactionDate = moment(ev).format('MM/DD/YYYY');
+        }
+      }
+      );
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.isAccountCategoriesLoading = true;
@@ -55,7 +71,7 @@ export class AddTransactionPanelComponent implements OnInit, OnChanges {
   createTransaction() {
     this.isCreateLoading = true;
     let transactionAmount = this.selectedAmountType === 1 ? this.amount * -1 : this.amount;
-    this.accountService.createTransaction(this.accountId, transactionAmount, this.description, this.selectedCategory.id, this.date).subscribe(data => {
+    this.accountService.createTransaction(this.accountId, transactionAmount, this.description, this.selectedCategory.id, new Date(Date.parse(this.transactionDate))).subscribe(data => {
       this.store.dispatch(loadCurrentlyViewingAccountTransactionsRequest({accountId: this.accountId}));
       this.store.dispatch(loadCurrentlyViewingAccountRequest({accountId: this.accountId}));
       this.store.dispatch(refreshFinancialHealthRequest());
@@ -75,6 +91,7 @@ export class AddTransactionPanelComponent implements OnInit, OnChanges {
     this.selectedAmountType = 0;
     this.amount;
     this.description = '';
+    this.transactionDate;
     this.close.emit();
   }
 

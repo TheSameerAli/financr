@@ -1,4 +1,4 @@
-<div *ngIf="isOpen" class="add-transaction-panel-container add-transaction-container">
+<div [hidden]="!isOpen" class="add-transaction-panel-container add-transaction-container">
   <div class="top-button">
     <div class="sidebox-title">Add Transaction</div>
     <div (click)="closeBox()" class="cancel-button">
@@ -15,7 +15,7 @@
   <div class="add-transaction-form">
     <div class="form-group">
       <label for="">Date</label>
-      <input [placeholder]="today | date: 'dd/MM/yyyy' " class="form-control shadow-none" type="text">
+      <input [(ngModel)]="transactionDate" id="datepicker" [placeholder]="today | date: 'dd/MM/yyyy' " class="form-control shadow-none" type="text">
     </div>
     <div class="form-group">
       <label for="">Description</label>

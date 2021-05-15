@@ -21,7 +21,6 @@ import { SpendingChartComponent } from './_pages/account-details/_components/dat
 
 
 
-
 @NgModule({
   declarations: [
     AccountsListPageComponent,
@@ -42,7 +41,7 @@ import { SpendingChartComponent } from './_pages/account-details/_components/dat
     SharedModule,
     AccountsRoutingModule,
     StoreModule.forFeature(ACCOUNT_STATE_NAME, [accountReducer]),
-    EffectsModule.forFeature([AccountEffects])
+    EffectsModule.forFeature([AccountEffects]),
   ]
 })
 export class AccountsModule { }

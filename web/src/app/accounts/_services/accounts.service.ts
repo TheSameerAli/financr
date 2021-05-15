@@ -47,7 +47,7 @@ export class AccountService {
       amount: amount,
       description: description,
       accountCategoryId: accountCategoryId,
-      transactionDate: transactionDate
+      transactionDate: transactionDate.toUTCString()
     }, httpOptions);
   }
 }
