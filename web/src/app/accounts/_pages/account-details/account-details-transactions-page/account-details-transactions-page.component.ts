@@ -1,13 +1,8 @@
-import { Transaction, AccountCategory } from './../../../_models/transaction';
-import { AccountService } from './../../../_services/accounts.service';
-import { Account } from './../../../_models/account';
-import { selectAccounts } from './../../../store/selector/account.selectors';
-import { ActivatedRoute } from '@angular/router';
-import { loadAccountTransactionsRequest, loadAccountsRequest } from './../../../store/action/account.actions';
+import { loadCurrentlyViewingAccountRequest } from './../../../store/action/account.actions';
 import { Store } from '@ngrx/store';
-import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { AppState } from 'src/app/app.state';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-account-details-transactions-page',
@@ -22,7 +17,7 @@ export class AccountDetailsTransactionsPageComponent implements OnInit, AfterVie
   public currentSelectedTransactionId: string = '';
 
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private store: Store<AppState>) { }
 
   ngAfterViewInit(): void {
 
@@ -32,6 +27,8 @@ export class AccountDetailsTransactionsPageComponent implements OnInit, AfterVie
     this.route.params.subscribe(p => {
       this.accountId = p['id'];
     });
+
+    this.store.dispatch(loadCurrentlyViewingAccountRequest({accountId: this.accountId}));
 
   }
 

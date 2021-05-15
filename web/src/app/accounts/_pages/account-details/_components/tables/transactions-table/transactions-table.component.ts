@@ -1,6 +1,10 @@
+import { Observable } from 'rxjs';
+import { accountsIsLoadingSelector, currentlyViewingAccountTransactionsSelector } from './../../../../../store/selector/account.selectors';
+import { loadCurrentlyViewingAccountTransactionsRequest } from './../../../../../store/action/account.actions';
+import { Store } from '@ngrx/store';
 import { Transaction } from './../../../../../_models/transaction';
-import { AccountService } from './../../../../../_services/accounts.service';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { AppState } from 'src/app/app.state';
 
 @Component({
   selector: 'app-transactions-table',
@@ -10,19 +14,14 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 export class TransactionsTableComponent implements OnInit {
   @Input() accountId: string;
   @Output() selection: EventEmitter<string> = new EventEmitter();
-  public isLoading: boolean = false;
-  public transactions: Transaction[];
-  constructor(private accountService: AccountService) { }
+  public isLoading: Observable<boolean>;
+  public transactions: Observable<Transaction[]>;
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
-    this.isLoading = true;
-    this.accountService.getTransactions(this.accountId).subscribe(data => {
-      this.transactions = data;
-      this.isLoading = false;
-
-    }, (err) => {
-      this.isLoading = false;
-    });
+    this.isLoading = this.store.select(accountsIsLoadingSelector);
+    this.transactions = this.store.select(currentlyViewingAccountTransactionsSelector);
+    this.store.dispatch(loadCurrentlyViewingAccountTransactionsRequest({accountId: this.accountId}));
   }
 
   selectTransaction(transactionId) {

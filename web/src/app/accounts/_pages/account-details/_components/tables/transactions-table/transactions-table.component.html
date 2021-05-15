@@ -2,12 +2,12 @@
   <input class="form-control mb-3" placeholder="Search Transactions" type="text">
 </div>
 
-<div *ngIf="isLoading" class="transactions-loader d-flex justify-content-center">
+<div *ngIf="(isLoading | async)" class="transactions-loader d-flex justify-content-center">
   <ng-lottie width="100px" height="100px" containerClass="loader-icon"
     [options]="{path: '/assets/animations/lottie/loaders/298-coins-outline-edited.json'}"></ng-lottie>
 </div>
 
-<table *ngIf="!isLoading" class="transaction-table">
+<table *ngIf="!(isLoading | async)" class="transaction-table">
   <thead>
     <tr>
       <th>Merchant</th>
@@ -16,7 +16,7 @@
   </thead>
 
   <tbody>
-    <tr (click)="selectTransaction(transaction.id)" *ngFor="let transaction of transactions">
+    <tr (click)="selectTransaction(transaction.id)" *ngFor="let transaction of (transactions | async)">
       <td class="merchant-details">
         <span class="merchant-logo">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 80" x="0px" y="0px">

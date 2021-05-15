@@ -20,8 +20,16 @@ export const accountsIsLoadingSelector = createSelector(
   }
 )
 
-export const selectTransactions = createSelector(
+export const currentlyViewingAccountTransactionsSelector = createSelector(
   selectAccountsState,
   (state: fromAccount.AccountState) => {
+    return state[0].currentlyViewingAccount.transactions;
+  }
+)
+
+export const currentlyViewingAccountSelector = createSelector(
+  selectAccountsState,
+  (state: fromAccount.AccountState) => {
+    return state[0].currentlyViewingAccount.account;
   }
 )

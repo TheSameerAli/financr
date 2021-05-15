@@ -1,6 +1,10 @@
+import { refreshFinancialHealthRequest } from './../../../../../../shared/store/shared.actions';
+import { loadCurrentlyViewingAccountTransactionsRequest, loadCurrentlyViewingAccountRequest } from './../../../../../store/action/account.actions';
+import { Store } from '@ngrx/store';
 import { AccountService } from './../../../../../_services/accounts.service';
 import { AccountCategory } from './../../../../../_models/transaction';
 import { Component, Input, OnInit, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { AppState } from 'src/app/app.state';
 
 @Component({
   selector: 'app-add-transaction-panel',
@@ -29,7 +33,7 @@ export class AddTransactionPanelComponent implements OnInit, OnChanges {
   public description: string = '';
   public amount: number;
 
-  constructor(private accountService: AccountService) { }
+  constructor(private accountService: AccountService, private store: Store<AppState>) { }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.isAccountCategoriesLoading = true;
@@ -52,8 +56,11 @@ export class AddTransactionPanelComponent implements OnInit, OnChanges {
     this.isCreateLoading = true;
     let transactionAmount = this.selectedAmountType === 1 ? this.amount * -1 : this.amount;
     this.accountService.createTransaction(this.accountId, transactionAmount, this.description, this.selectedCategory.id, this.date).subscribe(data => {
+      this.store.dispatch(loadCurrentlyViewingAccountTransactionsRequest({accountId: this.accountId}));
+      this.store.dispatch(loadCurrentlyViewingAccountRequest({accountId: this.accountId}));
+      this.store.dispatch(refreshFinancialHealthRequest());
       this.isCreateLoading = false;
-      this.close.emit();
+      this.closeBox();
     }, (err) => {
       this.isCreateLoading = false;
     })
@@ -66,6 +73,8 @@ export class AddTransactionPanelComponent implements OnInit, OnChanges {
   closeBox() {
     this.selectedCategory = {id: '', name: ''};
     this.selectedAmountType = 0;
+    this.amount;
+    this.description = '';
     this.close.emit();
   }
 

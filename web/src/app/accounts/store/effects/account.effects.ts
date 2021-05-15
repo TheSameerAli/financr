@@ -1,14 +1,14 @@
+import { Transaction } from './../../_models/transaction';
+import { Account } from './../../_models/account';
 import { Router } from '@angular/router';
 import { refreshFinancialHealthRequest } from './../../../shared/store/shared.actions';
 import { Store } from '@ngrx/store';
 import { switchMap, map } from 'rxjs/operators';
-import { loadAccountsRequest, loadAccountsSuccess, createAccountRequest, createAccountSuccess, accountSetIsLoading, loadAccountTransactionsRequest, loadAccountTransactionsSuccess } from './../action/account.actions';
+import { loadAccountsRequest, loadAccountsSuccess, createAccountRequest, createAccountSuccess, accountSetIsLoading, loadCurrentlyViewingAccountRequest, loadCurrentlyViewingAccountSuccess, loadCurrentlyViewingAccountTransactionsRequest, loadCurrentlyViewingAccountTransactionsSuccess } from './../action/account.actions';
 import { AccountService } from './../../_services/accounts.service';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { AppState } from 'src/app/app.state';
-import { routerNavigationAction, ROUTER_REQUEST } from '@ngrx/router-store';
-
 
 @Injectable()
 export class AccountEffects {
@@ -48,14 +48,28 @@ export class AccountEffects {
       })
     ));
 
-    loadAccountTransactions$ = createEffect(() => this.actions$.pipe(
-      ofType(loadAccountTransactionsRequest),
+    loadCurrentlyViewingAccount$ = createEffect(() => this.actions$.pipe(
+      ofType(loadCurrentlyViewingAccountRequest),
+      switchMap((action) => {
+        this.store.dispatch(accountSetIsLoading({status: true}));
+        return this.accountService.getAccount(action.accountId).pipe(
+          map((account: Account) => {
+            this.store.dispatch(accountSetIsLoading({status: false}));
+            return loadCurrentlyViewingAccountSuccess({accountData: account});
+          })
+        )
+      })
+    ));
+
+
+    loadCurrentlyViewingAccountTransactions$ = createEffect(() => this.actions$.pipe(
+      ofType(loadCurrentlyViewingAccountTransactionsRequest),
       switchMap((action) => {
         this.store.dispatch(accountSetIsLoading({status: true}));
         return this.accountService.getTransactions(action.accountId).pipe(
-          map((transactions) => {
+          map((transactions: Transaction[]) => {
             this.store.dispatch(accountSetIsLoading({status: false}));
-            return loadAccountTransactionsSuccess({transactions});
+            return loadCurrentlyViewingAccountTransactionsSuccess({transactions: transactions});
           })
         )
       })
