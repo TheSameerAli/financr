@@ -60,6 +60,19 @@ namespace WebApi.Controller
                 request.AccountCategoryId, accountId));
         }
 
+        [HttpPut("{accountId}/transaction/{transactionId}/edit")]
+        public async Task<IActionResult> EditTransaction([FromBody] EditTransactionRequest request, Guid accountId,
+            Guid transactionId)
+        {
+            if (request.TransactionDate > DateTimeOffset.Now)
+            {
+                throw new InvalidCastException("Transacton can not be in the future");
+            }
+
+            return Ok(await _transactionService.Edit(request.Amount, request.Description, request.TransactionDate,
+                request.AccountCategoryId, transactionId));
+        }
+
         [HttpDelete("{accountId}/transaction/{transactionId}/delete")]
         public async Task<IActionResult> DeleteTransaction(Guid accountId, Guid transactionId)
         {

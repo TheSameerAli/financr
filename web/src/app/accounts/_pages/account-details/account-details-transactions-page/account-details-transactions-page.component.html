@@ -1,10 +1,10 @@
-<div *ngIf="singleTransactionBoxOpen || addTransactionBoxOpen" class="overlay-black"></div>
+<div *ngIf="singleTransactionBoxOpen || addTransactionBoxOpen || isEditTransactionPanelOpen" class="overlay-black"></div>
 <app-account-details-container>
   <div class="transactions-page-container">
 
     <div class="main-content">
 
-      <app-transactions-table (selection)="openSingleTransactionBox($event)" [accountId]="accountId"></app-transactions-table>
+      <app-transactions-table (openEdit)="openEditTransactionPanel($event)" (selection)="openSingleTransactionBox($event)" [accountId]="accountId"></app-transactions-table>
     </div>
 
     <div class="right-sidebar">
@@ -34,7 +34,10 @@
 [accountId]="accountId"
 (close)="closeSingleTransactionBox()"></app-view-transaction-panel>
 
-
+<app-edit-transaction-panel [isOpen]="isEditTransactionPanelOpen"
+[transactionId]="currentSelectedTransactionId"
+[accountId]="accountId"
+(close)="closeEditTransactionPanel()"></app-edit-transaction-panel>
 
 <app-add-transaction-panel
 [accountId]="accountId"

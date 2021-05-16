@@ -16,6 +16,7 @@ import { AppState } from 'src/app/app.state';
 export class TransactionsTableComponent implements OnInit {
   @Input() accountId: string;
   @Output() selection: EventEmitter<string> = new EventEmitter();
+  @Output() openEdit: EventEmitter<string> = new EventEmitter();
   public isLoading: Observable<boolean>;
   public transactions$: Observable<{}>;
   public isDeleteLoading: boolean = false;
