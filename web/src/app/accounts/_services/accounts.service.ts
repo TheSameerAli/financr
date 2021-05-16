@@ -50,4 +50,8 @@ export class AccountService {
       transactionDate: transactionDate.toUTCString()
     }, httpOptions);
   }
+
+  deleteTransaction(accountId: string, transactionId: string) {
+    return this.http.delete<any>(`${ACCOUNT_API}/${accountId}/transaction/${transactionId}/delete`)
+  }
 }

@@ -2,34 +2,64 @@
   <input class="form-control mb-3" placeholder="Search Transactions" type="text">
 </div>
 
-<div *ngIf="(isLoading | async)" class="transactions-loader d-flex justify-content-center">
+<div *ngIf="(isLoading | async) || isDeleteLoading" class="transactions-loader d-flex justify-content-center">
   <ng-lottie width="100px" height="100px" containerClass="loader-icon"
-            [options]="{path: '/assets/animations/lottie/loaders/text-loading.json'}"></ng-lottie>
+    [options]="{path: '/assets/animations/lottie/loaders/text-loading.json'}"></ng-lottie>
 </div>
 
-<table *ngIf="!(isLoading | async)" class="transaction-table">
+<table *ngIf="!(isLoading | async) && !isDeleteLoading" class="transaction-table">
   <ng-container *ngFor="let transactionDate of (transactions$ | async)">
     <thead>
       <tr>
         <th>{{transactionDate.date | date: 'longDate'}}</th>
         <th></th>
+        <th></th>
       </tr>
     </thead>
 
     <tbody>
-      <tr (click)="selectTransaction(transaction.id)" *ngFor="let transaction of transactionDate.transactions">
-        <td class="merchant-details">
+      <tr *ngFor="let transaction of transactionDate.transactions">
+        <td (click)="selectTransaction(transaction.id)" class="merchant-details">
           <span class="merchant-logo">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 80" x="0px" y="0px">
               <g>
-                  <path
-                      d="M18.13,34.542a1.5,1.5,0,0,1-2.121,2.121L7.126,27.779a1.51,1.51,0,0,1-.328-.492l-.007-.023a1.484,1.484,0,0,1-.106-.547h0a1.489,1.489,0,0,1,.106-.548l.007-.022a1.5,1.5,0,0,1,.328-.493l8.883-8.883a1.5,1.5,0,0,1,2.121,2.121l-6.324,6.325H35.815a1.5,1.5,0,0,1,0,3H11.806Zm39.185,2.741h0a1.484,1.484,0,0,0-.106-.547l-.007-.023a1.51,1.51,0,0,0-.328-.492l-8.883-8.884a1.5,1.5,0,1,0-2.121,2.121l6.324,6.325H28.185a1.5,1.5,0,0,0,0,3H52.194L45.87,45.108a1.5,1.5,0,1,0,2.121,2.121l8.883-8.883a1.5,1.5,0,0,0,.328-.493l.007-.022A1.489,1.489,0,0,0,57.315,37.283Z" />
+                <path
+                  d="M18.13,34.542a1.5,1.5,0,0,1-2.121,2.121L7.126,27.779a1.51,1.51,0,0,1-.328-.492l-.007-.023a1.484,1.484,0,0,1-.106-.547h0a1.489,1.489,0,0,1,.106-.548l.007-.022a1.5,1.5,0,0,1,.328-.493l8.883-8.883a1.5,1.5,0,0,1,2.121,2.121l-6.324,6.325H35.815a1.5,1.5,0,0,1,0,3H11.806Zm39.185,2.741h0a1.484,1.484,0,0,0-.106-.547l-.007-.023a1.51,1.51,0,0,0-.328-.492l-8.883-8.884a1.5,1.5,0,1,0-2.121,2.121l6.324,6.325H28.185a1.5,1.5,0,0,0,0,3H52.194L45.87,45.108a1.5,1.5,0,1,0,2.121,2.121l8.883-8.883a1.5,1.5,0,0,0,.328-.493l.007-.022A1.489,1.489,0,0,0,57.315,37.283Z" />
               </g>
-          </svg>
+            </svg>
           </span>
           <span class="merchant-name">{{transaction.description}}</span>
         </td>
-        <td [class.red]="transaction.amount < 0" [class.green]="transaction.amount > 0">{{transaction.amount | currency: 'GBP'}}</td>
+        <td (click)="selectTransaction(transaction.id)" [class.red]="transaction.amount < 0" [class.green]="transaction.amount > 0">
+          {{transaction.amount | currency: 'GBP'}}</td>
+        <td (click)="return;" id="dropdownMenuLink" data-toggle="dropdown" class="text-right">
+          <svg class="more-icon" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+            x="0px" y="0px" viewBox="0 0 384 384" style="enable-background:new 0 0 384 384;" xml:space="preserve">
+            <g>
+              <g>
+                <circle cx="192" cy="42.667" r="42.667" />
+              </g>
+            </g>
+            <g>
+              <g>
+                <circle cx="192" cy="192" r="42.667" />
+              </g>
+            </g>
+            <g>
+              <g>
+                <circle cx="192" cy="341.333" r="42.667" />
+              </g>
+            </g>
+          </svg>
+        </td>
+
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <a class="dropdown-item" href="#">Edit</a>
+          <button class="dropdown-item" (click)="deleteTransaction(transaction.id)">
+              <ng-container *ngIf="!isDeleteLoading">Delete</ng-container>
+
+          </button>
+        </div>
       </tr>
 
     </tbody>
