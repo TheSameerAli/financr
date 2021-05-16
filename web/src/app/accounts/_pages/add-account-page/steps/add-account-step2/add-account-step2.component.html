@@ -6,22 +6,27 @@
 
   <div class="account-detail-form-container">
     <div class="account-detail-form">
-
-      <div class="form-group mt-2">
-        <input [(ngModel)]="accountName" class="form-control account-name shadow-none" placeholder="Account Name"
-          type="text">
-      </div>
-      <div class="balance-group-container pt-3">
-        <span class="input-title">Initial Balance</span>
-        <span class="input-description">Enter the initial balance you'd like your account to start with.</span>
-        <div class="form-group balance-group">
-          <div class="input-container">
-            <input [(ngModel)]="initialBalance" class="form-control balance shadow-none" placeholder="0.00" type="text">
-
-          </div>
+      <form [formGroup]="accountForm">
+        <div class="form-group mt-2">
+          <input formControlName="accountName" [class.is-invalid]="accountName.touched && accountName.invalid" class="form-control account-name shadow-none" placeholder="Account Name"
+            type="text">
+            <div *ngIf="accountName.touched && accountName.invalid" class="invalid-feedback">
+              Please provide a name for this account.
+            </div>
         </div>
+        <div class="balance-group-container pt-3">
+          <span class="input-title">Initial Balance</span>
+          <span class="input-description">Enter the initial balance you'd like your account to start with.</span>
+          <div class="form-group balance-group">
+            <div class="input-container">
+              <input formControlName="initialBalance" class="form-control balance shadow-none" placeholder="0.00" type="text">
 
-      </div>
+            </div>
+          </div>
+
+        </div>
+      </form>
+
     </div>
   </div>
 
@@ -29,7 +34,7 @@
     <button (click)="previousSelection()" class="btn btn-secondary-button">
       <i-feather name="arrow-left" class="button-icon"></i-feather> <span class="button-text pl-2">Previous</span>
     </button>
-    <button (click)="nextSelection()" class="btn btn-primary-button"><span class="button-text pr-3">Create</span>
+    <button [disabled]="accountForm.invalid" (click)="nextSelection()" class="btn btn-primary-button"><span class="button-text pr-3">Create</span>
       <i-feather name="arrow-right" class="button-icon"></i-feather>
     </button>
   </div>

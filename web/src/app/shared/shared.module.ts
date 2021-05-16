@@ -2,7 +2,7 @@ import { SharedEffects } from './store/shared.effect';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { IconsModule } from '../ui-modules/icons/icons.module';
 import { SidenavComponent } from './../shared/_components/sidenav/sidenav.component';
@@ -21,6 +21,7 @@ import { sharedReducer } from './store/shared.reducer';
     NgxChartsModule,
     FormsModule,
     AppLottieModule,
+    ReactiveFormsModule,
     RouterModule,
     StoreModule.forFeature('shared', [sharedReducer]),
     EffectsModule.forFeature([SharedEffects])
@@ -30,7 +31,8 @@ import { sharedReducer } from './store/shared.reducer';
     IconsModule,
     NgxChartsModule,
     FormsModule,
-    AppLottieModule
+    AppLottieModule,
+    ReactiveFormsModule
   ],
 })
 export class SharedModule { }
