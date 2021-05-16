@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-account-step2',
@@ -8,11 +9,23 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class AddAccountStep2Component implements OnInit {
   @Output('previous') previous = new EventEmitter();
   @Output('next') next = new EventEmitter();
-  public accountName: string = '';
-  public initialBalance: string = '';
-  constructor() { }
+
+  accountForm: FormGroup;
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.accountForm = this.formBuilder.group({
+      accountName: ['', [Validators.required, Validators.minLength(2)]],
+      initialBalance: ['', [Validators.required, Validators.pattern('^[0-9.]*$')]]
+    });
+  }
+
+  get accountName() {
+    return this.accountForm.get('accountName');
+  }
+
+  get initialBalance() {
+    return this.accountForm.get('initialBalance');
   }
 
   previousSelection() {
@@ -20,7 +33,7 @@ export class AddAccountStep2Component implements OnInit {
   }
 
   nextSelection() {
-    this.next.emit({'name': this.accountName, 'balance': this.initialBalance});
+    this.next.emit({'name': this.accountForm.get('accountName').value, 'balance': this.accountForm.get('initialBalance').value});
   }
 
 
