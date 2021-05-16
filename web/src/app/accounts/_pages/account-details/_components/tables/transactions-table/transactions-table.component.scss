@@ -24,6 +24,11 @@
       &:hover {
         background-color: rgba(#000000, $alpha: 0.05);
         cursor: pointer;
+
+        .more-icon {
+          stroke:rgba(#000000, $alpha: 0.5);
+          fill:rgba(#000000, $alpha: 0.5);
+        }
       }
 
       .merchant-details {
@@ -36,6 +41,13 @@
           margin-right: 1rem;
         }
       }
+    }
+
+    .more-icon {
+      width: 20px;
+      height: 20px;
+      stroke:rgba(#000000, $alpha: 0.0);
+      fill:rgba(#000000, $alpha: 0.0);
     }
   }
 }
