@@ -18,7 +18,7 @@ export class AccountDetailsTransactionsPageComponent implements OnInit, AfterVie
   public currentSelectedTransactionId: string = '';
 
 
-  constructor(private route: ActivatedRoute, private store: Store<AppState>) { }
+  constructor(private route: ActivatedRoute) { }
 
   ngAfterViewInit(): void {
 
@@ -29,7 +29,7 @@ export class AccountDetailsTransactionsPageComponent implements OnInit, AfterVie
       this.accountId = p['id'];
     });
 
-    this.store.dispatch(loadCurrentlyViewingAccountRequest({accountId: this.accountId}));
+
 
   }
 
