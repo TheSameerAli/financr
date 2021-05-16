@@ -1,5 +1,6 @@
+import { loadCurrentlyViewingAccountRequest } from './../../../../store/action/account.actions';
 import { Observable } from 'rxjs';
-import { currentlyViewingAccountSelector, accountsIsLoadingSelector } from './../../../../store/selector/account.selectors';
+import { currentlyViewingAccountSelector, accountsIsLoadingSelector, currentlyViewingAccountLoadingSelector } from './../../../../store/selector/account.selectors';
 import { Store } from '@ngrx/store';
 import { AppState } from './../../../../../app.state';
 import { ActivatedRoute } from '@angular/router';
@@ -22,7 +23,14 @@ export class AccountDetailsContainerComponent implements OnInit {
 
   ngOnInit(): void {
     this.account$ = this.store.select(currentlyViewingAccountSelector);
-    this.isLoading$ = this.store.select(accountsIsLoadingSelector);
+    this.isLoading$ = this.store.select(currentlyViewingAccountLoadingSelector);
+
+    this.account$.subscribe(account => {
+      console.log(account);
+      if (account === undefined || account.id !== this.accountId) {
+        this.store.dispatch(loadCurrentlyViewingAccountRequest({accountId: this.accountId}));
+      }
+    }).unsubscribe();
   }
 
 }

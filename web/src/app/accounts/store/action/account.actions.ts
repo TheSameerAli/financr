@@ -17,7 +17,7 @@ const LOAD_CURRENTLY_VIEWING_ACCOUNT_TRANSACTIONS_SUCCESS = '[Account] load curr
 
 
 const ACCOUNT_SET_IS_LOADING = '[Account] account set is loading';
-
+const SET_CURRENTLY_VIEWING_ACCOUNT_LOADING = '[Account] currently viewing account set is loading';
 
 export const loadAccountsRequest = createAction(LOAD_ACCOUNT_REQUEST_ACTION);
 export const loadAccountsSuccess = createAction(LOAD_ACCOUNT_SUCCESS_ACTION, props<{accounts: Account[]}>());
@@ -34,4 +34,5 @@ export const loadCurrentlyViewingAccountTransactionsRequest = createAction(LOAD_
 export const loadCurrentlyViewingAccountTransactionsSuccess = createAction(LOAD_CURRENTLY_VIEWING_ACCOUNT_TRANSACTIONS_SUCCESS, props<{transactions: Transaction[]}>());
 
 export const accountSetIsLoading = createAction(ACCOUNT_SET_IS_LOADING, props<{status: boolean}>());
+export const currentlyViewingAccountSetLoading = createAction(SET_CURRENTLY_VIEWING_ACCOUNT_LOADING, props<{status: boolean}>());
 
