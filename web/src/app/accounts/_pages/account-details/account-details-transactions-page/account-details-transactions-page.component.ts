@@ -14,6 +14,7 @@ export class AccountDetailsTransactionsPageComponent implements OnInit, AfterVie
 
   public singleTransactionBoxOpen: boolean = false;
   public addTransactionBoxOpen: boolean = false;
+  public isEditTransactionPanelOpen: boolean = false;
   public currentSelectedTransactionId: string = '';
 
 
@@ -47,6 +48,16 @@ export class AccountDetailsTransactionsPageComponent implements OnInit, AfterVie
 
   openAddTransactionBox() {
     this.addTransactionBoxOpen = true;
+  }
+
+  openEditTransactionPanel(transactionId: string) {
+    console.log(transactionId);
+    this.isEditTransactionPanelOpen = true;
+    this.currentSelectedTransactionId = transactionId;
+  }
+
+  closeEditTransactionPanel() {
+    this.isEditTransactionPanelOpen = false;
   }
 
 

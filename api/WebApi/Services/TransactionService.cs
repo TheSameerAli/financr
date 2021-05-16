@@ -15,6 +15,9 @@ namespace WebApi.Services
         Task<List<Transaction>> GetAll(Guid accountId);
         Task<Transaction> GetTransactionById(Guid transactionId);
         Task<List<Transaction>> GetAllByDate(Guid accountId, DateTimeOffset date);
+
+        Task<Transaction> Edit(double income, string description, DateTimeOffset transactionDate,
+            Guid accountCategoryId, Guid transactionId);
         Task<bool> DeleteTransaction(Guid transactionId);
         Task RunRecurringTransactions();
 
@@ -70,6 +73,18 @@ namespace WebApi.Services
                 .OrderByDescending(t => t.TransactionDate)
                 .ThenByDescending(t => t.CreatedAt)
                 .ToListAsync();
+        }
+
+        public async Task<Transaction> Edit(double income, string description, DateTimeOffset transactionDate, Guid accountCategoryId,
+            Guid transactionId)
+        {
+            var transaction = await _transactions.FirstOrDefaultAsync(t => t.Id == transactionId);
+            transaction.Amount = income;
+            transaction.Description = description;
+            transaction.AccountCategoryId = accountCategoryId;
+            transaction.TransactionDate = transactionDate;
+            await _uow.SaveChangesAsync();
+            return transaction;
         }
 
         public async Task<bool> DeleteTransaction(Guid transactionId)

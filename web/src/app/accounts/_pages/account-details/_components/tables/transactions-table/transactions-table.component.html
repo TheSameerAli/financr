@@ -54,7 +54,7 @@
         </td>
 
         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-          <a class="dropdown-item" href="#">Edit</a>
+          <button class="dropdown-item" (click)="openEdit.emit(transaction.id)">Edit</button>
           <button class="dropdown-item" (click)="deleteTransaction(transaction.id)">
               <ng-container *ngIf="!isDeleteLoading">Delete</ng-container>
 
