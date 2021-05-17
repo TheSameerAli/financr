@@ -1,4 +1,4 @@
 export const environment = {
-  api: 'http://prod.api.financr.app',
+  api: 'https://prod.api.financr.app',
   production: true
 };
