@@ -1,0 +1,96 @@
+name: Build-Deploy
+
+on:
+  push:
+    branches: [master, FIN-35]
+
+  workflow_dispatch:
+    inputs:
+      name:
+        description: "Manual build and deploy"
+        required: true
+        default: "Manual build and deploy action"
+
+jobs:
+  build-docker-frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Login to GitHub Package Registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login https://docker.pkg.github.com -u "${{ github.actor }}" --password-stdin
+
+      - name: Build Docker Image
+        run: docker build -t docker.pkg.github.com/thesameerali/financr/financr-frontend:latest web
+
+      - name: Docker push
+        run: docker push docker.pkg.github.com/thesameerali/financr/financr-frontend:latest
+
+  deploy-image-frontend:
+    needs: build-docker-frontend
+    runs-on: ubuntu-latest
+    steps:
+      - name: executing remote ssh commands using ssh key
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+
+          script: |
+            export containerName="financr-frontend"
+            export imageName="docker.pkg.github.com/thesameerali/financr/financr-frontend:latest"
+            export systemPort="8040"
+            export appPort="80"
+            echo "$containerName"
+            echo "$imageName"
+            echo "$systemPort"
+            echo "$appPort"
+            echo "${{ secrets.GITHUB_TOKEN }}" | docker login https://docker.pkg.github.com -u "${{ github.actor }}" --password-stdin
+            docker stop $containerName || true && docker rm $containerName || true  
+            docker rmi $(docker image ls -q $imageName) || true
+            docker pull $imageName
+            docker run -d -p $systemPort:$appPort --name $containerName $imageName
+
+  build-docker-api:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Login to GitHub Package Registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login https://docker.pkg.github.com -u "${{ github.actor }}" --password-stdin
+
+      - name: Build Docker Image
+        run: docker build -t docker.pkg.github.com/thesameerali/financr/financr-api:latest web
+
+      - name: Docker push
+        run: docker push docker.pkg.github.com/thesameerali/financr/financr-api:latest
+
+  deploy-image-api:
+    needs: build-docker-api
+    runs-on: ubuntu-latest
+    steps:
+      - name: executing remote ssh commands using ssh key
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+
+          script: |
+            export containerName="financr-api"
+            export imageName="docker.pkg.github.com/thesameerali/financr/financr-api:latest"
+            export systemPort="8041"
+            export appPort="80"
+            export connectionString=${{ secrets.CONNECTION_STRING }}
+            echo "$containerName"
+            echo "$imageName"
+            echo "$systemPort"
+            echo "$appPort"
+            echo "${{ secrets.GITHUB_TOKEN }}" | docker login https://docker.pkg.github.com -u "${{ github.actor }}" --password-stdin
+            docker stop $containerName || true && docker rm $containerName || true  
+            docker rmi $(docker image ls -q $imageName) || true
+            docker pull $imageName
+            docker run -d -p $systemPort:$appPort --name $containerName -env ConnectionStrings__DefaultConnection="$connectionString" $imageName
