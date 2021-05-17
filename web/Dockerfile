@@ -1,19 +1,13 @@
-FROM node:10-alpine as buildContainer
-WORKDIR /app
-COPY ./package.json ./package-lock.json /app/
+### STAGE 1: Build ###
+FROM node:12.7-alpine AS build
+WORKDIR /usr/src/app
+COPY package.json package-lock.json ./
 RUN npm install
-COPY . /app
-RUN npm run build:ssr
+COPY . .
+RUN npm run build --prod
 
 
-
-FROM node:8-alpine
-WORKDIR /app
-
-# Get all the code needed to run the app
-COPY --from=buildContainer /app/dist /app/dist
-RUN npm install -g pm2
-
-
-# Serve the app
-CMD ["node", "dist/server.js"]
+### STAGE 2: Run ###
+FROM nginx:1.17.1-alpine
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY --from=build /usr/src/app/dist/financr-api /usr/share/nginx/html
