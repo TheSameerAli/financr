@@ -21,10 +21,10 @@ jobs:
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login https://docker.pkg.github.com -u "${{ github.actor }}" --password-stdin
 
       - name: Build Docker Image
-        run: docker build -t docker.pkg.github.com/thesameerali/financr/financr_frontend:latest web
+        run: docker build -t docker.pkg.github.com/thesameerali/financr/financrfrontend:latest web
 
       - name: Docker push
-        run: docker push docker.pkg.github.com/thesameerali/financr/financr_frontend:latest
+        run: docker push docker.pkg.github.com/thesameerali/financr/financrfrontend:latest
 
   deploy-image-frontend:
     needs: build-docker-frontend
@@ -39,8 +39,8 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
 
           script: |
-            export containerName="financr_frontend"
-            export imageName="docker.pkg.github.com/thesameerali/financr/financr_frontend:latest"
+            export containerName="financrfrontend"
+            export imageName="docker.pkg.github.com/thesameerali/financr/financrfrontend:latest"
             export systemPort="8040"
             export appPort="80"
             echo "$containerName"
@@ -62,10 +62,10 @@ jobs:
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login https://docker.pkg.github.com -u "${{ github.actor }}" --password-stdin
 
       - name: Build Docker Image
-        run: docker build -t docker.pkg.github.com/thesameerali/financr/financr_api:latest api
+        run: docker build -t docker.pkg.github.com/thesameerali/financr/financrapi:latest api
 
       - name: Docker push
-        run: docker push docker.pkg.github.com/thesameerali/financr/financr_api:latest
+        run: docker push docker.pkg.github.com/thesameerali/financr/financrapi:latest
 
   deploy-image-api:
     needs: build-docker-api
@@ -80,8 +80,8 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
 
           script: |
-            export containerName="financr_api"
-            export imageName="docker.pkg.github.com/thesameerali/financr/financr_api:latest"
+            export containerName="financrapi"
+            export imageName="docker.pkg.github.com/thesameerali/financr/financrapi:latest"
             export systemPort="8041"
             export appPort="80"
             export connectionString=${{ secrets.CONNECTION_STRING }}
