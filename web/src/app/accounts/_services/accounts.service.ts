@@ -1,3 +1,4 @@
+import { SpendingChart } from './../_models/spending-chart';
 import { AccountCategory, Transaction } from './../_models/transaction';
 import { Account } from './../_models/account';
 import { Observable } from 'rxjs';
@@ -40,6 +41,10 @@ export class AccountService {
 
   getTransaction(accountId: string, transactionId: string) {
     return this.http.get<Transaction>(`${ACCOUNT_API}/${accountId}/transactions/${transactionId}`)
+  }
+
+  getSpendingChart(accountId: string) {
+    return this.http.get<SpendingChart>(`${ACCOUNT_API}/${accountId}/spending-chart`);
   }
 
   createTransaction(accountId: string, amount: number, description: string, accountCategoryId: string, transactionDate: Date) {

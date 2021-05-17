@@ -1,6 +1,6 @@
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { refreshFinancialHealthRequest } from './../../../../../../shared/store/shared.actions';
-import { loadCurrentlyViewingAccountTransactionsRequest, loadCurrentlyViewingAccountRequest } from './../../../../../store/action/account.actions';
+import { loadCurrentlyViewingAccountTransactionsRequest, loadCurrentlyViewingAccountRequest, loadSpendingChartRequest } from './../../../../../store/action/account.actions';
 import { Store } from '@ngrx/store';
 import { AccountService } from './../../../../../_services/accounts.service';
 import { AccountCategory } from './../../../../../_models/transaction';
@@ -100,6 +100,7 @@ export class AddTransactionPanelComponent implements OnInit, OnChanges, AfterVie
       this.store.dispatch(loadCurrentlyViewingAccountTransactionsRequest({accountId: this.accountId}));
       this.store.dispatch(loadCurrentlyViewingAccountRequest({accountId: this.accountId}));
       this.store.dispatch(refreshFinancialHealthRequest());
+      this.store.dispatch(loadSpendingChartRequest({accountId: this.accountId}));
       this.isCreateLoading = false;
       this.closeBox();
     }, (err) => {

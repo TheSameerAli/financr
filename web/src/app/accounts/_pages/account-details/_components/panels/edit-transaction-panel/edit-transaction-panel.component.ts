@@ -1,3 +1,4 @@
+import { loadSpendingChartRequest } from './../../../../../store/action/account.actions';
 import { Transaction } from './../../../../../_models/transaction';
 import { refreshFinancialHealthRequest } from '../../../../../../shared/store/shared.actions';
 import { loadCurrentlyViewingAccountTransactionsRequest, loadCurrentlyViewingAccountRequest } from '../../../../../store/action/account.actions';
@@ -98,6 +99,7 @@ export class EditTransactionPanelComponent implements OnInit, OnChanges, AfterVi
       this.store.dispatch(loadCurrentlyViewingAccountTransactionsRequest({accountId: this.accountId}));
       this.store.dispatch(loadCurrentlyViewingAccountRequest({accountId: this.accountId}));
       this.store.dispatch(refreshFinancialHealthRequest());
+      this.store.dispatch(loadSpendingChartRequest({accountId: this.accountId}));
       this.isEditLoading = false;
       this.closeBox();
     }, (err) => {

@@ -4,7 +4,7 @@ import { AddAccountStep2Component } from './_pages/add-account-page/steps/add-ac
 import { AddAccountStep1Component } from './_pages/add-account-page/steps/add-account-step1/add-account-step1.component';
 import { AddAccountPageComponent } from './_pages/add-account-page/add-account-page.component';
 import { AccountsListPageComponent } from './_pages/accounts-list-page/accounts-list-page.component';
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 import { AccountsRoutingModule } from './accounts-routing.module';
 import { SharedModule } from './../shared/shared.module';
 import { NgModule } from '@angular/core';
@@ -44,6 +44,7 @@ import { SpendingChartComponent } from './_pages/account-details/_components/dat
     AccountsRoutingModule,
     StoreModule.forFeature(ACCOUNT_STATE_NAME, [accountReducer]),
     EffectsModule.forFeature([AccountEffects]),
-  ]
+  ],
+  providers: [CurrencyPipe]
 })
 export class AccountsModule { }

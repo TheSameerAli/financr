@@ -9,6 +9,7 @@ using WebApi.Context;
 using WebApi.Models.Database;
 using WebApi.Models.Database.Account;
 using WebApi.Models.Domain;
+using WebApi.Models.Domain.Charts;
 using Account = WebApi.Models.Database.Account.Account;
 using Transaction = WebApi.Models.Database.Transaction;
 
@@ -20,6 +21,7 @@ namespace WebApi.Services
         Task<List<Account>> GetAccounts(Guid userId);
         Task<Account> GetAccount(Guid accountId);
         Task<AccountBudget> SetBudget(double budget, Guid accountId);
+        Task<AccountSpendingChart> GetSpendingChart(Guid accountId);
 
 
     }
@@ -95,6 +97,33 @@ namespace WebApi.Services
             accountBudget.Budget = budget;
             await _uow.SaveChangesAsync();
             return accountBudget;
+        }
+
+        public async Task<AccountSpendingChart> GetSpendingChart(Guid accountId)
+        {
+            // Get the since date
+            var date = DateTimeOffset.Now.AddMonths(-1);
+            // Get expense transactions since that date
+            var expenseTransactions = await _transactions
+                .Where(t => t.AccountId == accountId)
+                .Where(t => t.Amount < 0)
+                .Where(t => t.TransactionDate >= date)
+                .ToListAsync();
+            // Group the transactions by category
+            var tr = expenseTransactions.GroupBy(t => t.AccountCategoryId).ToList();
+            var spendingChart = new AccountSpendingChart() {Data = new List<AccountSpendingChartData>()};
+
+            foreach (var t in tr)
+            {
+                spendingChart.Data.Add(new AccountSpendingChartData()
+                {
+                    Name = _accountCategories.FirstOrDefault(ac => ac.Id == t.Key)?.Name,
+                    Value = t.Sum(trr => trr.Amount) * -1
+                });
+            }
+
+            return spendingChart;
+
         }
 
         private async Task<bool> AddDefaultCategories(Guid accountId)

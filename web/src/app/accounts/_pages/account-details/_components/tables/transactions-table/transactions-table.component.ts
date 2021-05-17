@@ -2,7 +2,7 @@ import { refreshFinancialHealthRequest } from './../../../../../../shared/store/
 import { AccountService } from './../../../../../_services/accounts.service';
 import { Observable } from 'rxjs';
 import { accountsIsLoadingSelector, currentlyViewingAccountTransactionsSelector } from './../../../../../store/selector/account.selectors';
-import { loadCurrentlyViewingAccountTransactionsRequest, loadCurrentlyViewingAccountRequest } from './../../../../../store/action/account.actions';
+import { loadCurrentlyViewingAccountTransactionsRequest, loadCurrentlyViewingAccountRequest, loadSpendingChartRequest } from './../../../../../store/action/account.actions';
 import { Store } from '@ngrx/store';
 import { Transaction } from './../../../../../_models/transaction';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
@@ -39,6 +39,7 @@ export class TransactionsTableComponent implements OnInit {
       this.store.dispatch(loadCurrentlyViewingAccountTransactionsRequest({accountId: this.accountId}));
       this.store.dispatch(loadCurrentlyViewingAccountRequest({accountId: this.accountId}));
       this.store.dispatch(refreshFinancialHealthRequest());
+      this.store.dispatch(loadSpendingChartRequest({accountId: this.accountId}));
     }, (err) => {
       this.isDeleteLoading = false;
     });

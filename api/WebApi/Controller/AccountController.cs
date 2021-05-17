@@ -33,6 +33,13 @@ namespace WebApi.Controller
             return Ok(await _accountService.GetAccounts(UserId));
         }
 
+        [HttpGet("{accountId}/spending-chart")]
+        // Gets the monthly spending chart for the account
+        public async Task<IActionResult> GetSpendingChart(Guid accountId)
+        {
+            return Ok(await _accountService.GetSpendingChart(accountId));
+        }
+
         [HttpGet("{accountId}")]
         public async Task<IActionResult> GetAccountData(Guid accountId)
         {
