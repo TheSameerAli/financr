@@ -11,4 +11,5 @@ export class Transaction {
 export interface AccountCategory {
   id: string;
   name: string;
+  type: number;
 }

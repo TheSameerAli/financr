@@ -33,7 +33,10 @@ export class AddAccountStep2Component implements OnInit {
   }
 
   nextSelection() {
-    this.next.emit({'name': this.accountForm.get('accountName').value, 'balance': this.accountForm.get('initialBalance').value});
+    if (this.accountForm.valid) {
+      this.next.emit({'name': this.accountForm.get('accountName').value, 'balance': this.accountForm.get('initialBalance').value});
+
+    }
   }
 
 

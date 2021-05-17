@@ -132,3 +132,8 @@ body, html {
 .pika-single {
   z-index: 1000000000000000000;
 }
+
+
+.is-invalid {
+  border-bottom: 1px solid $red !important;
+}

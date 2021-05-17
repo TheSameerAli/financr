@@ -1,4 +1,4 @@
-<div class="table-search">
+<div *ngIf="!(isLoading | async) && (transactions$ | async).length > 0" class="table-search">
   <input class="form-control mb-3" placeholder="Search Transactions" type="text">
 </div>
 
@@ -7,7 +7,15 @@
     [options]="{path: '/assets/animations/lottie/loaders/text-loading.json'}"></ng-lottie>
 </div>
 
-<table *ngIf="!(isLoading | async) && !isDeleteLoading" class="transaction-table">
+<ng-container *ngIf="!(isLoading | async) && (transactions$ | async).length === 0">
+  <div class="d-flex flex-column align-items-center">
+      <img width="300px" height="300px" src="/assets/illustrations/no-transactions.svg" alt="">
+      <h3>No transactions found</h3>
+      <p>No transactions were found on this account. Please add a new transaction.</p>
+  </div>
+</ng-container>
+
+<table *ngIf="!(isLoading | async) && !isDeleteLoading && (transactions$ | async).length > 0" class="transaction-table">
   <ng-container *ngFor="let transactionDate of (transactions$ | async)">
     <thead>
       <tr>
