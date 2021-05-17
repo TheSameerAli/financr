@@ -94,4 +94,4 @@ jobs:
             docker stop $containerName || true && docker rm $containerName || true  
             docker rmi $(docker image ls -q $imageName) || true
             docker pull $imageName
-            docker run -d -p $systemPort:$appPort --name $containerName -env ConnectionStrings__DefaultConnection="$connectionString" $imageName
+            docker run -d -p $systemPort:$appPort --name $containerName --env ConnectionStrings__DefaultConnection="$connectionString" $imageName
