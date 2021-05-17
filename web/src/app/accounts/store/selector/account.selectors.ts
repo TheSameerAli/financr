@@ -29,6 +29,13 @@ export const currentlyViewingAccountLoadingSelector = createSelector(
   }
 )
 
+export const spendingChartSelector = createSelector(
+  selectAccountsState,
+  (state: fromAccount.AccountState) => {
+    return state[0].currentlyViewingAccount.spendingChart;
+  }
+)
+
 export const currentlyViewingAccountTransactionsSelector = createSelector(
   selectAccountsState,
   (state: fromAccount.AccountState) => {

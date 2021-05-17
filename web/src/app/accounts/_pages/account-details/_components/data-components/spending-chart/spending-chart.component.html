@@ -1,2 +1,5 @@
-<ngx-charts-pie-chart [view]="[300, 300]" [legend]="false" [results]="data" [doughnut]="true" [arcWidth]="0.15">
-</ngx-charts-pie-chart>
+<div [hidden]="(!(data$ | async) && (data$ | async).data.length === 0) || (isLoading$ | async)">
+  <ngx-charts-pie-chart [view]="[300, 300]" [legend]="false" [results]="(data$ | async).data" [doughnut]="true" [arcWidth]="0.15">
+  </ngx-charts-pie-chart>
+</div>
+

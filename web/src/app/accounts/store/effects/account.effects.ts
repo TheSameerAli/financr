@@ -1,10 +1,11 @@
+import { SpendingChart } from './../../_models/spending-chart';
 import { Transaction } from './../../_models/transaction';
 import { Account } from './../../_models/account';
 import { Router } from '@angular/router';
 import { refreshFinancialHealthRequest } from './../../../shared/store/shared.actions';
 import { Store } from '@ngrx/store';
 import { switchMap, map } from 'rxjs/operators';
-import { loadAccountsRequest, loadAccountsSuccess, createAccountRequest, createAccountSuccess, accountSetIsLoading, loadCurrentlyViewingAccountRequest, loadCurrentlyViewingAccountSuccess, loadCurrentlyViewingAccountTransactionsRequest, loadCurrentlyViewingAccountTransactionsSuccess, currentlyViewingAccountSetLoading } from './../action/account.actions';
+import { loadAccountsRequest, loadAccountsSuccess, createAccountRequest, createAccountSuccess, accountSetIsLoading, loadCurrentlyViewingAccountRequest, loadCurrentlyViewingAccountSuccess, loadCurrentlyViewingAccountTransactionsRequest, loadCurrentlyViewingAccountTransactionsSuccess, currentlyViewingAccountSetLoading, loadSpendingChartRequest, loadSpendingChartSuccess } from './../action/account.actions';
 import { AccountService } from './../../_services/accounts.service';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
@@ -70,6 +71,24 @@ export class AccountEffects {
           map((transactions: Transaction[]) => {
             this.store.dispatch(accountSetIsLoading({status: false}));
             return loadCurrentlyViewingAccountTransactionsSuccess({transactions: transactions});
+          })
+        )
+      })
+    ));
+
+    loadSpendingChart$ = createEffect(() => this.actions$.pipe(
+      ofType(loadSpendingChartRequest),
+      switchMap((action) => {
+        this.store.dispatch(accountSetIsLoading({status: true}));
+        return this.accountService.getSpendingChart(action.accountId).pipe(
+          map((spendingChart: SpendingChart) => {
+            if (spendingChart.data.length === 0) {
+              spendingChart = {
+                data: [{name: 'none', value: 0.0000000000001}]
+              }
+            }
+            this.store.dispatch(accountSetIsLoading({status: false}));
+            return loadSpendingChartSuccess({spendingChart: spendingChart});
           })
         )
       })

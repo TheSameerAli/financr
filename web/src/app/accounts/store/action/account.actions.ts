@@ -1,3 +1,4 @@
+import { SpendingChart } from './../../_models/spending-chart';
 import { Account } from './../../_models/account';
 import { createAction, props } from '@ngrx/store';
 import { Transaction } from '../../_models/transaction';
@@ -13,7 +14,10 @@ const LOAD_CURRENTLY_VIEWING_ACCOUNT_REQUEST = '[Account] load currently viewing
 const LOAD_CURRENTLY_VIEWING_ACCOUNT_SUCCESS = '[Account] load currently viewing account success';
 
 const LOAD_CURRENTLY_VIEWING_ACCOUNT_TRANSACTIONS_REQUEST = '[Account] load currently viewing account transaction request';
-const LOAD_CURRENTLY_VIEWING_ACCOUNT_TRANSACTIONS_SUCCESS = '[Account] load currently viewing account transaction success'
+const LOAD_CURRENTLY_VIEWING_ACCOUNT_TRANSACTIONS_SUCCESS = '[Account] load currently viewing account transaction success';
+
+const LOAD_SPENDING_CHART_REQUEST = '[Account] load spending chart request';
+const LOAD_SPENDING_CHART_SUCCESS = '[Account] load spending chart success';
 
 
 const ACCOUNT_SET_IS_LOADING = '[Account] account set is loading';
@@ -32,6 +36,9 @@ export const loadCurrentlyViewingAccountSuccess = createAction(LOAD_CURRENTLY_VI
 
 export const loadCurrentlyViewingAccountTransactionsRequest = createAction(LOAD_CURRENTLY_VIEWING_ACCOUNT_TRANSACTIONS_REQUEST, props<{accountId: string}>());
 export const loadCurrentlyViewingAccountTransactionsSuccess = createAction(LOAD_CURRENTLY_VIEWING_ACCOUNT_TRANSACTIONS_SUCCESS, props<{transactions: Transaction[]}>());
+
+export const loadSpendingChartRequest = createAction(LOAD_SPENDING_CHART_REQUEST, props<{accountId: string}>());
+export const loadSpendingChartSuccess = createAction(LOAD_SPENDING_CHART_SUCCESS, props<{spendingChart: SpendingChart}>());
 
 export const accountSetIsLoading = createAction(ACCOUNT_SET_IS_LOADING, props<{status: boolean}>());
 export const currentlyViewingAccountSetLoading = createAction(SET_CURRENTLY_VIEWING_ACCOUNT_LOADING, props<{status: boolean}>());

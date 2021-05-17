@@ -1,3 +1,4 @@
+import { SpendingChart } from './../../_models/spending-chart';
 import {
   Transaction
 } from './../../_models/transaction';
@@ -19,6 +20,7 @@ export interface AccountState {
     account: Account;
     transactions: Transaction[];
     isAccountLoading: boolean,
+    spendingChart: SpendingChart
 
   }
 }
@@ -30,6 +32,7 @@ export const initialState: AccountState = {
     account: undefined,
     transactions: [],
     isAccountLoading: false,
+    spendingChart: {data: []}
   }
 };
 
@@ -79,4 +82,13 @@ export const accountReducer = createReducer(
       }
     }
   }),
+  on(AccountActions.loadSpendingChartSuccess, (_, action: {spendingChart: SpendingChart}) => {
+    return {
+      ..._,
+      currentlyViewingAccount: {
+        ..._.currentlyViewingAccount,
+        spendingChart: action.spendingChart
+      }
+    }
+  })
 );
