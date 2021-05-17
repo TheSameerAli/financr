@@ -1,3 +1,4 @@
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { refreshFinancialHealthRequest } from './../../../../../../shared/store/shared.actions';
 import { loadCurrentlyViewingAccountTransactionsRequest, loadCurrentlyViewingAccountRequest } from './../../../../../store/action/account.actions';
 import { Store } from '@ngrx/store';
@@ -21,21 +22,39 @@ export class AddTransactionPanelComponent implements OnInit, OnChanges, AfterVie
   public accountCategories: AccountCategory[];
   public isAccountCategoriesLoading: boolean = false;
 
-  public selectedCategory: AccountCategory;
-
-
-  public today: Date = new Date();
-
   public isCreateLoading: boolean = false;
 
-  public selectedAmountType: number = 0;
+  public addTransactionForm: FormGroup;
 
-  /// Form data below
-  public transactionDate: string;
-  public description: string = '';
-  public amount: number;
+  constructor(
+    private accountService: AccountService,
+    private store: Store<AppState>,
+    private formBuilder: FormBuilder) { }
 
-  constructor(private accountService: AccountService, private store: Store<AppState>) { }
+  get amount() {
+    return this.addTransactionForm.get('amount');
+  }
+
+  get description() {
+    return this.addTransactionForm.get('description');
+  }
+
+  get transactionDate() {
+    return this.addTransactionForm.get('transactionDate');
+  }
+
+  get selectedAmountType() {
+    return this.addTransactionForm.get('selectedAmountType');
+  }
+
+  get selectedCategory() {
+    return this.addTransactionForm.get('selectedCategory');
+  }
+
+  ngOnInit(): void {
+    this.initialiseForm();
+  }
+
 
   ngAfterViewInit(): void {
     var picker = new Pikaday(
@@ -45,7 +64,9 @@ export class AddTransactionPanelComponent implements OnInit, OnChanges, AfterVie
         format: 'MM/DD/YYYY',
         onSelect: (ev: Date) => {
 
-          this.transactionDate = moment(ev).format('MM/DD/YYYY');
+          this.addTransactionForm.patchValue({
+            transactionDate: moment(ev).format('MM/DD/YYYY'),
+          });
         }
       }
       );
@@ -63,16 +84,19 @@ export class AddTransactionPanelComponent implements OnInit, OnChanges, AfterVie
   }
 
   selectCategory(accountCategory: AccountCategory) {
-    this.selectedCategory = accountCategory;
+    this.addTransactionForm.patchValue({
+      selectedCategory: accountCategory
+    });
+    console.log(this.addTransactionForm);
   }
 
-  ngOnInit(): void {
-  }
+
 
   createTransaction() {
     this.isCreateLoading = true;
-    let transactionAmount = this.selectedAmountType === 1 ? this.amount * -1 : this.amount;
-    this.accountService.createTransaction(this.accountId, transactionAmount, this.description, this.selectedCategory.id, new Date(Date.parse(this.transactionDate))).subscribe(data => {
+    let transactionAmount = this.selectedAmountType.value === 1 ? this.amount.value * -1 : this.amount.value;
+    this.accountService.createTransaction(this.accountId, transactionAmount, this.description.value,
+      this.selectedCategory.value.id, new Date(Date.parse(this.transactionDate.value))).subscribe(data => {
       this.store.dispatch(loadCurrentlyViewingAccountTransactionsRequest({accountId: this.accountId}));
       this.store.dispatch(loadCurrentlyViewingAccountRequest({accountId: this.accountId}));
       this.store.dispatch(refreshFinancialHealthRequest());
@@ -84,16 +108,24 @@ export class AddTransactionPanelComponent implements OnInit, OnChanges, AfterVie
   }
 
   selectAmountType(type) {
-    this.selectedAmountType = type;
+    this.addTransactionForm.patchValue({
+      selectedAmountType: type
+    });
   }
 
   closeBox() {
-    this.selectedCategory = {id: '', name: '', type: 0};
-    this.selectedAmountType = 0;
-    this.amount = undefined;
-    this.description = '';
-    this.transactionDate = moment(new Date()).format('MM/DD/YYYY');
+    this.initialiseForm();
     this.close.emit();
+  }
+
+  initialiseForm() {
+    this.addTransactionForm = this.formBuilder.group({
+      amount: ['', [Validators.required, Validators.min(0.01)]],
+      description: ['', [Validators.required, Validators.minLength(2)]],
+      transactionDate: [moment(new Date()).format('MM/DD/YYYY'), [Validators.required]],
+      selectedAmountType: [0, [Validators.required]],
+      selectedCategory: [undefined, [Validators.required]]
+    });
   }
 
 }
