@@ -49,6 +49,7 @@ export class AddTransactionPanelComponent implements OnInit, OnChanges, AfterVie
         }
       }
       );
+      picker.setDate(new Date());
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -87,7 +88,7 @@ export class AddTransactionPanelComponent implements OnInit, OnChanges, AfterVie
   }
 
   closeBox() {
-    this.selectedCategory = {id: '', name: ''};
+    this.selectedCategory = {id: '', name: '', type: 0};
     this.selectedAmountType = 0;
     this.amount;
     this.description = '';

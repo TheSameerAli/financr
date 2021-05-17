@@ -39,10 +39,12 @@ export class EditTransactionPanelComponent implements OnInit, OnChanges, AfterVi
   public description: string = '';
   public amount: number;
 
+  picker;
+
   constructor(private accountService: AccountService, private store: Store<AppState>) { }
 
   ngAfterViewInit(): void {
-    var picker = new Pikaday(
+    this.picker = new Pikaday(
       {
         field: document.getElementById('datepicker-' + this.transactionId),
         trigger: document.getElementById('datepicker-' + this.transactionId),
@@ -73,6 +75,7 @@ export class EditTransactionPanelComponent implements OnInit, OnChanges, AfterVi
       }
       // check the selected category
       this.transactionDate = moment(data.transactionDate).format('MM/DD/YYYY');
+      this.picker.setDate(new Date(Date.parse(this.transactionDate)));
       this.selectedCategory = data.accountCategory;
       this.description = data.description;
       this.isLoading = false;
@@ -107,7 +110,7 @@ export class EditTransactionPanelComponent implements OnInit, OnChanges, AfterVi
   }
 
   closeBox() {
-    this.selectedCategory = {id: '', name: ''};
+    this.selectedCategory = {id: '', name: '', type: 0};
     this.selectedAmountType = 0;
     this.amount;
     this.description = '';
