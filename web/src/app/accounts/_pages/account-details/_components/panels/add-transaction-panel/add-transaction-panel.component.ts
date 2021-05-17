@@ -90,9 +90,9 @@ export class AddTransactionPanelComponent implements OnInit, OnChanges, AfterVie
   closeBox() {
     this.selectedCategory = {id: '', name: '', type: 0};
     this.selectedAmountType = 0;
-    this.amount;
+    this.amount = undefined;
     this.description = '';
-    this.transactionDate;
+    this.transactionDate = moment(new Date()).format('MM/DD/YYYY');
     this.close.emit();
   }
 
