@@ -10,6 +10,7 @@
   position: absolute;
   left: 0;
   bottom: 0;
+  display: none;
 
   #wave {
     fill: lighten($accent, 10%);
@@ -153,6 +154,7 @@
           background-color: $accent;
           color: darken($accent, 50%);
         }
+
 
       }
     }
