@@ -1,3 +1,4 @@
+import { TitleService } from './../../../shared/_services/title.service';
 
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
@@ -81,12 +82,12 @@ export class HomePageComponent implements OnInit {
     domain: ['#145DA0']
   };
 
-  constructor() {
+  constructor(private titleService: TitleService) {
     Object.assign(this, { multi: this.multi });
   }
 
   ngOnInit(): void {
-
+    this.titleService.setTitle('Dashboard');
   }
 
   onActivate(data): void {

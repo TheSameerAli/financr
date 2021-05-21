@@ -1,3 +1,4 @@
+import { TitleService } from './../../../shared/_services/title.service';
 import { accountsIsLoadingSelector, selectAccounts } from './../../store/selector/account.selectors';
 import { AccountState } from './../../store/reducer/account.reducer';
 import { Observable } from 'rxjs';
@@ -27,9 +28,11 @@ export class AccountsListPageComponent implements OnInit {
   constructor(
     private accountService: AccountService,
     private router: Router,
-    private store: Store<AccountState>) { }
+    private store: Store<AccountState>,
+    private titleService: TitleService) { }
 
   ngOnInit(): void {
+    this.titleService.setTitle('Accounts')
     this.store.dispatch(loadAccountsRequest());
     this.accounts$ = this.store.select(selectAccounts);
     this.isLoading$ = this.store.select(accountsIsLoadingSelector);

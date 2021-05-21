@@ -1,3 +1,4 @@
+import { TitleService } from './../../../shared/_services/title.service';
 import { LoginFormViewModel } from './../../_models/login-form-view-model';
 import { TokenStorageService } from './../../_services/token-storage.service';
 import { AuthService } from './../../_services/auth.service';
@@ -18,13 +19,15 @@ export class LoginPageComponent implements OnInit {
   constructor(private authService: AuthService,
     private tokenStorageService: TokenStorageService,
     private router: Router,
-    private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder,
+    private titleService: TitleService) { }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
       username: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(3)]]
     })
+    this.titleService.setTitle('Login');
   }
 
   get username() {
@@ -39,7 +42,7 @@ export class LoginPageComponent implements OnInit {
     if (!this.loginForm.invalid) {
       this.isLoading = true;
       this.isFailed = false;
-      
+
       this.authService.login(this.username.value, this.password.value).subscribe(data => {
         this.isLoading = false;
         this.tokenStorageService.saveToken(data.token);

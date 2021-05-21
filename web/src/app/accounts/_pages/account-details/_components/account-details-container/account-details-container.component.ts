@@ -1,3 +1,4 @@
+import { TitleService } from './../../../../../shared/_services/title.service';
 import { loadCurrentlyViewingAccountRequest } from './../../../../store/action/account.actions';
 import { Observable } from 'rxjs';
 import { currentlyViewingAccountSelector, accountsIsLoadingSelector, currentlyViewingAccountLoadingSelector } from './../../../../store/selector/account.selectors';
@@ -15,7 +16,7 @@ export class AccountDetailsContainerComponent implements OnInit {
   public accountId: string;
   public account$: Observable<Account>;
   public isLoading$: Observable<Account>;
-  constructor(private route: ActivatedRoute, private store: Store<AppState>) {
+  constructor(private route: ActivatedRoute, private store: Store<AppState>, private titleService: TitleService) {
     this.route.params.subscribe(p => {
       this.accountId = p['id'];
     });
@@ -24,12 +25,13 @@ export class AccountDetailsContainerComponent implements OnInit {
   ngOnInit(): void {
     this.account$ = this.store.select(currentlyViewingAccountSelector);
     this.isLoading$ = this.store.select(currentlyViewingAccountLoadingSelector);
+    this.titleService.setTitle('Account details');
 
     this.account$.subscribe(account => {
-      console.log(account);
       if (account === undefined || account.id !== this.accountId) {
         this.store.dispatch(loadCurrentlyViewingAccountRequest({accountId: this.accountId}));
       }
+
     }).unsubscribe();
   }
 

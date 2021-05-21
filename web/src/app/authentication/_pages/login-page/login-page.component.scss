@@ -151,8 +151,8 @@
         }
 
         &:hover {
-          background-color: $accent;
-          color: darken($accent, 50%);
+          background-color: darken($primary, 10%);
+          color: lighten($accent, 50%);
         }
 
 

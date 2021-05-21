@@ -1,3 +1,4 @@
+import { TitleService } from './../../../shared/_services/title.service';
 import { accountsIsLoadingSelector } from './../../store/selector/account.selectors';
 import { Account } from './../../_models/account';
 import { Observable } from 'rxjs';
@@ -31,10 +32,12 @@ export class AddAccountPageComponent implements OnInit {
   public accountType: number;
   public isLoading$: Observable<boolean>;
   constructor(
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private titleService: TitleService
   ) { }
 
   ngOnInit(): void {
+    this.titleService.setTitle('New Account');
     this.isLoading$ = this.store.select(accountsIsLoadingSelector);
   }
 
