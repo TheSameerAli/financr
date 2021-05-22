@@ -1,3 +1,5 @@
+import { DashboardData } from './../../_models/dashboard.data';
+import { DashboardService } from './../../_services/dashboard.service';
 import { TitleService } from './../../../shared/_services/title.service';
 
 import { Component, OnInit } from '@angular/core';
@@ -11,6 +13,9 @@ import * as moment from 'moment';
 })
 export class HomePageComponent implements OnInit {
   public timeFrame: string = moment().subtract(1, 'month').format('DD MMM') + ' - ' + moment().format('DD MMM');
+
+  public dashboardData: DashboardData;
+  public isDashboardDataLoading: boolean = false;
 
   multi: any[];
   view: any[] = [700, 300];
@@ -82,12 +87,23 @@ export class HomePageComponent implements OnInit {
     domain: ['#145DA0']
   };
 
-  constructor(private titleService: TitleService) {
+  constructor(private titleService: TitleService, private dashboardService: DashboardService) {
     Object.assign(this, { multi: this.multi });
   }
 
   ngOnInit(): void {
     this.titleService.setTitle('Dashboard');
+    this.loadDashboardData();
+  }
+
+  loadDashboardData() {
+    this.isDashboardDataLoading = true;
+    this.dashboardService.getDashboardData().subscribe((data: DashboardData) => {
+      this.dashboardData = data;
+      this.isDashboardDataLoading = false;
+    }, (err) => {
+      this.isDashboardDataLoading = false;
+    });
   }
 
   onActivate(data): void {

@@ -2,27 +2,27 @@
 {
     public class DashboardData
     {
-        public DashboardProfitLossCard ProfitLossCard { get; set; }
-
-        public DashboardData(DashboardProfitLossCard profitLossCard)
+        public FigureCard Income { get; set; }
+        public FigureCard Expenses { get; set; }
+        public FigureCard Savings { get; set; }
+        
+        public DashboardData(FigureCard income, FigureCard expenses, FigureCard savings)
         {
-            ProfitLossCard = profitLossCard;
+            Income = income;
+            Expenses = expenses;
+            Savings = savings;
         }
     }
 
-    public class DashboardProfitLossCard
+    public class FigureCard
     {
-        public DashboardProfitLossCard(double profit, double income, double outgoing, double debt)
-        {
-            Profit = profit;
-            Income = income;
-            Outgoing = outgoing;
-            Debt = debt;
-        }
+        public double Value { get; set; }
+        public double PercentageChange { get; set; }
 
-        public double Profit { get; set; }
-        public double Income { get; set; }
-        public double Outgoing { get; set; }
-        public double Debt { get; set; }
+        public FigureCard(double value, double percentageChange)
+        {
+            Value = value;
+            PercentageChange = percentageChange;
+        }
     }
 }
