@@ -12,18 +12,18 @@
   <div class="page-content">
     <div class="row">
       <div class="col-lg-4 mt-2">
-        <app-figure-box [change]="-22" [figure]="1200" title="Income" descriptionColor="red" [isLoading]="false">
+        <app-figure-box [change]="dashboardData?.income?.percentageChange" [figure]="dashboardData?.income?.value" title="Income" [isLoading]="isDashboardDataLoading">
         </app-figure-box>
       </div>
 
       <div class="col-lg-4 mt-2">
-        <app-figure-box [change]="22" [figure]="323" title="Expenses" descriptionColor="green" [isLoading]="true">
+        <app-figure-box [change]="dashboardData?.expenses?.percentageChange" [figure]="dashboardData?.expenses?.value * -1" title="Expenses" [isLoading]="isDashboardDataLoading">
         </app-figure-box>
 
       </div>
 
       <div class="col-lg-4 mt-2">
-        <app-figure-box [change]="0" [figure]="1200" title="Savings" descriptionColor="red" [isLoading]="false">
+        <app-figure-box [change]="dashboardData?.savings?.percentageChange" [figure]="dashboardData?.savings?.value" title="Savings" [isLoading]="isDashboardDataLoading">
         </app-figure-box>
 
       </div>
