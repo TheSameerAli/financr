@@ -47,6 +47,7 @@ namespace WebApi
             services.AddScoped<IDashboardService, DashboardService>();
             services.AddScoped<IRecurringTransactionsService, RecurringTransactionsService>();
             services.AddScoped<IChartingService, ChartingService>();
+            services.AddScoped<IReportService, ReportService>();
 
             
             // Hangfire configuration

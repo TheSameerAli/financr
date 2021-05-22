@@ -1,14 +1,14 @@
 @import '../../../styles/variables';
 
 .home-page {
-  padding: 2rem;
+  padding: 2rem 3% 2rem 3%;
   @media (max-width: $md) {
     padding: 1rem;
 
   }
   padding-top: 4rem;
   .page-bar {
-    padding: 0 3rem 0 3rem;
+    padding: 0 3% 0 3%;
     @media(max-width: $md) {
       padding: 0 1.5rem 0 1.5rem;
 

@@ -1,1 +1,108 @@
-<p>reports-home-page works!</p>
+<div class="reports-page-container pt-3">
+  <div class="reports-page container p-5">
+    <div class="heading-bar d-flex justify-content-between align-items-center">
+      <h2>Reports</h2>
+      <div class="export-button">
+        <button class="btn btn-secondary-button pr-5 pl-5">Export</button>
+      </div>
+    </div>
+
+    <div class="settings-box mt-5">
+      <div class="date-selection d-flex flex-column mb-3">
+        <p class="input-label">Date Range</p>
+        <div class="d-flex flex-row">
+          <input [id]="'from-date-picker'" type="text" class="form-control ml-2 mr-2" placeholder="From" name="" id="">
+          <input [id]="'to-date-picker'" type="text" class="form-control ml-2 mr-2" placeholder="To" name="" id="">
+        </div>
+
+      </div>
+      <div class="account-selection d-flex flex-column mb-3 mt-3">
+        <p class="input-label">Select Account</p>
+        <select [(ngModel)]="accountId" class="form-control ml-2 mr-2" name="" id="">
+          <option value="all">All Accounts</option>
+          <option *ngFor="let account of accounts" [value]="account.id">{{account.name}}</option>
+        </select>
+      </div>
+      <div class="update-report-button d-flex justify-content-end">
+        <button (click)="loadData()" class="btn btn-primary-button pr-5 pl-5">Update Report</button>
+      </div>
+    </div>
+
+    <div *ngIf="isLoading" class="d-flex justify-content-center mt-3">
+      <ng-lottie width="100px" height="100px" containerClass="loader-icon"
+      [options]="{path: '/assets/animations/lottie/loaders/text-loading.json'}"></ng-lottie>
+    </div>
+
+    <div *ngIf="reportData && !isLoading">
+      <div class="summary-box">
+        <div class="financial-data">
+          <div class="value-figure-box">
+            <span class="value-title">Income</span>
+            <span class="value-figure green">{{reportData?.summary?.income | currency: 'GBP'}}</span>
+          </div>
+
+          <div class="value-symbol">-</div>
+
+          <div class="value-figure-box">
+            <span class="value-title">Expenses</span>
+            <span class="value-figure red">{{reportData?.summary?.expenses * -1 | currency: 'GBP'}}</span>
+          </div>
+
+          <div class="value-symbol">=</div>
+
+          <div class="value-figure-box">
+            <span class="value-title">Total Profit/Loss</span>
+            <span [class.red]="reportData?.summary?.total < 0" [class.green]="reportData?.summary?.total > 0" class="value-figure">
+              {{reportData?.summary?.total | currency: 'GBP'}}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="accounts-table-detailed">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Income</th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let categoryIncomeTransaction of incomeTransactions">
+              <td>{{categoryIncomeTransaction.categoryName}}</td>
+              <td class="text-right green">{{categoryIncomeTransaction.total | currency: 'GBP'}}</td>
+            </tr>
+            <tr>
+              <td class="text-right"> <strong></strong></td>
+              <td class="text-right"> <strong>{{reportData?.summary?.income | currency: 'GBP'}}</strong></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Expenses</th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let categoryExpensesTransaction of expenseTransactions">
+              <td>{{categoryExpensesTransaction.categoryName}}</td>
+              <td class="text-right red">{{categoryExpensesTransaction.total * -1 | currency: 'GBP'}}</td>
+            </tr>
+
+            <tr>
+              <td class="text-right"> <strong></strong></td>
+              <td class="text-right"> <strong>{{reportData?.summary?.expenses * -1 | currency: 'GBP'}}</strong> </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+</div>
