@@ -86,6 +86,10 @@ namespace WebApi.Services
 
         private double _calcPercChange(double oldValue, double newValue)
         {
+            if (oldValue == 0 && newValue == 0)
+            {
+                return 0;
+            } 
             if (oldValue == 0 && newValue != 0)
             {
                 return 100;
