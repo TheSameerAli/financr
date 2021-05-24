@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace WebApi.Models.Domain.Charts
 {
@@ -10,7 +11,7 @@ namespace WebApi.Models.Domain.Charts
 
     public class NetworthChartData
     {
-        public string Name { get; set; }
-        public string Value { get; set; }
+        public DateTimeOffset Name { get; set; }
+        public double Value { get; set; }
     }
 }

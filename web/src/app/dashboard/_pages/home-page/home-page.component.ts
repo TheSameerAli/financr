@@ -1,8 +1,20 @@
-import { DashboardData } from './../../_models/dashboard.data';
-import { DashboardService } from './../../_services/dashboard.service';
-import { TitleService } from './../../../shared/_services/title.service';
+import {
+  NetworthChart
+} from './../../_models/networth-chart';
+import {
+  DashboardData
+} from './../../_models/dashboard.data';
+import {
+  DashboardService
+} from './../../_services/dashboard.service';
+import {
+  TitleService
+} from './../../../shared/_services/title.service';
 
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
 import * as moment from 'moment';
 
 
@@ -17,83 +29,65 @@ export class HomePageComponent implements OnInit {
   public dashboardData: DashboardData;
   public isDashboardDataLoading: boolean = false;
 
+  public networthCharts: NetworthChart[];
+  public selectedTimeframe: string = '1Y';
+
   multi: any[];
-  view: any[] = [700, 300];
 
   // options
-  legend: boolean = true;
-  showLabels: boolean = true;
-  animations: boolean = true;
-  xAxis: boolean = true;
-  yAxis: boolean = true;
-  showYAxisLabel: boolean = true;
-  showXAxisLabel: boolean = true;
-  xAxisLabel: string = 'Year';
-  yAxisLabel: string = 'Population';
-  timeline: boolean = true;
-  data = [
-    {
-      "name": "Burundi",
-      "series": [
-        {
-          "value": 2670,
-          "name": "1"
-        },
-        {
-          "value": 5095,
-          "name": "2"
-        },
-        {
-          "value": 4172,
-          "name": "3"
-        },
-        {
-          "value": 4402,
-          "name": "4"
-        },
-        {
-          "value": 2096,
-          "name": "5"
-        },
-        {
-          "value": 2670,
-          "name": "6"
-        },
-        {
-          "value": 5095,
-          "name": "7"
-        },
-        {
-          "value": 4172,
-          "name": "8"
-        },
-        {
-          "value": 4402,
-          "name": "9"
-        },
-        {
-          "value": 1938,
-          "name": "10"
-        }
-      ]
-    },
-
-
-
-
-  ];
+  chartData = [{
+    "name": "Balance",
+    "series": []
+  }, ];
 
   colorScheme = {
     domain: ['#145DA0']
   };
 
   constructor(private titleService: TitleService, private dashboardService: DashboardService) {
-    Object.assign(this, { multi: this.multi });
+    Object.assign(this, {
+      multi: this.multi
+    });
   }
 
   ngOnInit(): void {
     this.titleService.setTitle('Dashboard');
     this.loadDashboardData();
+    this.loadNetworthChart();
+  }
+
+  loadNetworthChart() {
+    this.dashboardService.getNetworthChart().subscribe((data: NetworthChart[]) => {
+      this.networthCharts = data;
+      this.selectChart(this.selectedTimeframe);
+    })
+  }
+
+  selectChart(time: string) {
+    this.chartData[0].series = [];
+    setTimeout(() => {
+      let d;
+      if (time === '24H') {
+        d = this.networthCharts.find(nc => nc.timeframe === time).chartData.map(data => {
+          console.log(data.name);
+          return {
+            name: moment(Date.parse(data.name)).format('LT'),
+            value: data.value
+          }
+        })
+      } else {
+        d = this.networthCharts.find(nc => nc.timeframe === time).chartData.map(data => {
+          return {
+            name: moment(Date.parse(data.name)).format('L'),
+            value: data.value
+          }
+        })
+      }
+
+      this.chartData[0].series = d;
+      this.selectedTimeframe = time;
+    }, 100);
+
   }
 
   loadDashboardData() {

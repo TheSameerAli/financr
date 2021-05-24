@@ -20,7 +20,7 @@ namespace WebApi.Controller
         [HttpGet("networth")]
         public async Task<IActionResult> GetNetworthChart()
         {
-            return Ok(await _chartingService.GetNetworthChart());
+            return Ok(await _chartingService.GetNetworthChart(UserId));
         }
     }
 }
