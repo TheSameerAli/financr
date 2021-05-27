@@ -9,12 +9,14 @@ import { SidenavComponent } from './../shared/_components/sidenav/sidenav.compon
 import { NgModule } from '@angular/core';
 import { AppLottieModule } from '../ui-modules/lottie/lottie.module';
 import { sharedReducer } from './store/shared.reducer';
+import { DefaultLoaderComponent } from './_components/layouts/loaders/default-loader/default-loader.component';
 
 
 
 @NgModule({
   declarations: [
     SidenavComponent,
+    DefaultLoaderComponent,
   ],
   imports: [
     IconsModule,
@@ -32,7 +34,8 @@ import { sharedReducer } from './store/shared.reducer';
     NgxChartsModule,
     FormsModule,
     AppLottieModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DefaultLoaderComponent
   ],
 })
 export class SharedModule { }

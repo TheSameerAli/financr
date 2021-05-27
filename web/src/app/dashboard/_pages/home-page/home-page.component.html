@@ -36,14 +36,18 @@
             <h1>Total Balance</h1>
             <div class="timeselection-btns">
               <ul>
-                <li (click)="selectChart('24H')" [class.active]="selectedTimeframe === '24H'">24H</li>
                 <li (click)="selectChart('1W')" [class.active]="selectedTimeframe === '1W'">1W</li>
                 <li (click)="selectChart('1Y')" [class.active]="selectedTimeframe === '1Y'">1Y</li>
+                <li (click)="selectChart('5Y')" [class.active]="selectedTimeframe === '5Y'">5Y</li>
                 <li (click)="selectChart('ALL')" [class.active]="selectedTimeframe === 'ALL'">ALL</li>
               </ul>
             </div>
           </div>
-          <div *ngIf="chartData[0].series.length > 0" class="networth-chart">
+          <div *ngIf="isChartLoading" class="loader d-flex justify-content-center align-items-center">
+            <app-default-loader></app-default-loader>
+          </div>
+          <div *ngIf="!isChartLoading && chartData[0].series.length > 0" class="networth-chart">
+
             <ngx-charts-line-chart [scheme]="colorScheme" [legend]="false" [xAxis]="true" [yAxis]="true"
               [timeline]="true" [results]="chartData" [showGridLines]="false" (activate)="onActivate($event)"
               (deactivate)="onDeactivate($event)">

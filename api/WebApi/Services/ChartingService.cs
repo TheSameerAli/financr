@@ -30,16 +30,6 @@ namespace WebApi.Services
         public async Task<List<NetworthChart>> GetNetworthChart(Guid userId)
         {
             var charts = new List<NetworthChart>();
-            // Construct the chart of 24 hours
-            charts.Add(
-                new NetworthChart()
-                {
-                    Timeframe = "24H",
-                    ChartData = await _constructChart(
-                        DateTimeOffset.Now.AddDays(-1), DateTimeOffset.Now, TimeSpan.FromHours(1), userId 
-                        )
-                }
-                );
 
             // Construct the chart for 1 week
             
@@ -64,14 +54,34 @@ namespace WebApi.Services
                 }
             );
             
+            // Construct the chart of 5 year
+            charts.Add(
+                new NetworthChart()
+                {
+                    Timeframe = "5Y",
+                    ChartData = await _constructChart(
+                        DateTimeOffset.Now.AddYears(-5), DateTimeOffset.Now, TimeSpan.FromDays(365), userId 
+                    )
+                }
+            );
+            
             // Construct the chart for all times
             var firstTransaction = await _getFirstTransaction(userId);
+            DateTimeOffset startDate;
+            if (firstTransaction.TransactionDate >= DateTimeOffset.Now.AddDays(-365))
+            {
+                startDate = DateTimeOffset.Now.AddDays(-1825); // 5 Years
+            }
+            else
+            {
+                startDate = firstTransaction.TransactionDate;
+            }
             charts.Add(
                 new NetworthChart()
                 {
                     Timeframe = "ALL",
                     ChartData = await _constructChart(
-                        firstTransaction.TransactionDate, DateTimeOffset.Now, TimeSpan.FromDays(365), userId 
+                        startDate, DateTimeOffset.Now, TimeSpan.FromDays(365), userId 
                     )
                 }
             );
@@ -122,14 +132,25 @@ namespace WebApi.Services
                 {
                     pSum = previousSum;
                 }
-                var transactionSum = pSum + transactions
+
+                var newTransaction = transactions
                     .Where(t => t.TransactionDate >= touched && t.TransactionDate <= touched.Add(step))
-                    .Where(t => t.TransactionDate >= start && t.TransactionDate <= end)
-                    .ToList()
-                    .Sum(t => t.Amount);
+                    // .Where(t => t.TransactionDate >= start && t.TransactionDate <= end)
+                    .ToList();
+                    // .Sum(t => t.Amount);
+                var transactionSum = pSum + newTransaction.Sum(t => t.Amount);
+                var transactionDate = touched.Add(step);    
+                if (transactionSum == previousSum)
+                {
+                    if (newTransaction.FirstOrDefault() != null)
+                    {
+                        transactionDate = newTransaction.FirstOrDefault().TransactionDate;
+                    }
+                    
+                }
                 var nwcData = new NetworthChartData()
                 {
-                    Name = touched,
+                    Name = transactionDate,
                     Value = transactionSum
                 };
                 networthChartData.Add(nwcData);
@@ -141,7 +162,7 @@ namespace WebApi.Services
                 }
             }
 
-            return networthChartData.OrderByDescending(ncd => ncd.Name).ToList();
+            return networthChartData.OrderBy(ncd => ncd.Name).ToList();
 
 
         }

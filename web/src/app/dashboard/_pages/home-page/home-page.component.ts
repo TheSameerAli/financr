@@ -29,8 +29,10 @@ export class HomePageComponent implements OnInit {
   public dashboardData: DashboardData;
   public isDashboardDataLoading: boolean = false;
 
+  public isChartLoading: boolean = false;
+
   public networthCharts: NetworthChart[];
-  public selectedTimeframe: string = '1Y';
+  public selectedTimeframe: string = '1W';
 
   multi: any[];
 
@@ -57,35 +59,28 @@ export class HomePageComponent implements OnInit {
   }
 
   loadNetworthChart() {
+    this.isChartLoading = true;
     this.dashboardService.getNetworthChart().subscribe((data: NetworthChart[]) => {
       this.networthCharts = data;
       this.selectChart(this.selectedTimeframe);
+      this.isChartLoading = false;
     })
   }
 
   selectChart(time: string) {
     this.chartData[0].series = [];
+    this.isChartLoading = true;
     setTimeout(() => {
-      let d;
-      if (time === '24H') {
-        d = this.networthCharts.find(nc => nc.timeframe === time).chartData.map(data => {
-          console.log(data.name);
-          return {
-            name: moment(Date.parse(data.name)).format('LT'),
-            value: data.value
-          }
-        })
-      } else {
-        d = this.networthCharts.find(nc => nc.timeframe === time).chartData.map(data => {
-          return {
-            name: moment(Date.parse(data.name)).format('L'),
-            value: data.value
-          }
-        })
-      }
+      let d = this.networthCharts.find(nc => nc.timeframe === time).chartData.map(data => {
+        return {
+          name: moment(Date.parse(data.name)).format('L'),
+          value: data.value
+        }
+      })
 
       this.chartData[0].series = d;
       this.selectedTimeframe = time;
+      this.isChartLoading = false;
     }, 100);
 
   }
