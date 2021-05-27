@@ -96,11 +96,11 @@
           color: $card-title-color;
 
           &.active {
-            color: lighten($primary, 20%);
+            color: darken($primary, 20%);
           }
 
           &:hover {
-            color: lighten($primary, 20%);
+            color: darken($primary, 20%) !important;
           }
 
         }
