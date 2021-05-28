@@ -1,6 +1,26 @@
-<p>Your Balance</p>
-<h1 *ngIf="!(isLoading | async) && (account | async)">{{(account | async).availableBalance | currency: 'GBP'}}</h1>
-<div style="display: flex; justify-content: center" *ngIf="isLoading | async">
-  <ng-lottie width="75px" height="75px" containerClass="loader-icon"
-    [options]="{path: '/assets/animations/lottie/loaders/331-loader-2-edited-black.json'}"></ng-lottie>
+<div class="your-balance-card">
+  <div class="your-balance-card-data" *ngIf="!(isLoading | async) && (account | async)">
+    <div class="total-balance">
+      <p class="text-center">Total Balance</p>
+      <h1>{{(account | async).availableBalance | currency: 'GBP'}}</h1>
+    </div>
+  </div>
+
+
+  <div *ngIf="!(isLoading | async) && (account | async)" class="income-expenses">
+    <div class="income">
+      <p>Income</p>
+      <h2>{{(account | async).totalIncome | currency: 'GBP'}}</h2>
+    </div>
+
+    <div class="expense">
+      <p>Expenses</p>
+      <h2>{{(account | async).totalOutgoings * -1 | currency: 'GBP'}}</h2>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-center align-items-center" *ngIf="(isLoading | async)">
+    <app-default-loader [width]="50" [height]="50"></app-default-loader>
+  </div>
+
 </div>

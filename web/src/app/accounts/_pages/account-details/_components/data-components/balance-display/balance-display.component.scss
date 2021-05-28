@@ -1,14 +1,31 @@
 @import '../../../../../../styles/variables';
-p {
-  text-align: center;
-  color: $title-color;
-  font-size: 25px;
-  font-weight: 600;
-}
+$card-color: #14213d;
 
-h1 {
-  text-align: center;
-  font-weight: 600;
-  font-size: 30px;
-}
 
+.your-balance-card {
+  margin-bottom: 1rem;
+  background-color: $card-color;
+  border-radius: 20px;
+  padding: 1rem;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  p {
+    margin-bottom: 0;
+  }
+
+  .income-expenses {
+    padding: 1rem 1rem 1rem .5rem;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    h2 {
+      font-size: 20px;
+    }
+  }
+}
