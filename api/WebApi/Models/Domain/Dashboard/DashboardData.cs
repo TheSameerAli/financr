@@ -6,11 +6,14 @@
         public FigureCard Expenses { get; set; }
         public FigureCard Savings { get; set; }
         
-        public DashboardData(FigureCard income, FigureCard expenses, FigureCard savings)
+        public FigureCard Investments { get; set; }
+        
+        public DashboardData(FigureCard income, FigureCard expenses, FigureCard savings, FigureCard investments)
         {
             Income = income;
             Expenses = expenses;
             Savings = savings;
+            Investments = investments;
         }
     }
 

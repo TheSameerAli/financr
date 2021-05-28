@@ -11,19 +11,25 @@
 
   <div class="page-content">
     <div class="row">
-      <div class="col-lg-4 mt-2">
+      <div class="col-xl-3 mt-2">
         <app-figure-box [change]="dashboardData?.income?.percentageChange" [figure]="dashboardData?.income?.value" title="Income" [isLoading]="isDashboardDataLoading">
         </app-figure-box>
       </div>
 
-      <div class="col-lg-4 mt-2">
+      <div class="col-xl-3 mt-2">
         <app-figure-box [change]="dashboardData?.expenses?.percentageChange" [figure]="dashboardData?.expenses?.value * -1" title="Expenses" [isLoading]="isDashboardDataLoading">
         </app-figure-box>
 
       </div>
 
-      <div class="col-lg-4 mt-2">
+      <div class="col-xl-3 mt-2">
         <app-figure-box [change]="dashboardData?.savings?.percentageChange" [figure]="dashboardData?.savings?.value" title="Savings" [isLoading]="isDashboardDataLoading">
+        </app-figure-box>
+
+      </div>
+
+      <div class="col-xl-3 mt-2">
+        <app-figure-box [change]="dashboardData?.investments?.percentageChange" [figure]="dashboardData?.investments?.value" title="Investments" [isLoading]="isDashboardDataLoading">
         </app-figure-box>
 
       </div>

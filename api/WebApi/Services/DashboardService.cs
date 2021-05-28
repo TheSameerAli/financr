@@ -80,8 +80,14 @@ namespace WebApi.Services
                     lastMonthsSnapshot.Where(t => t.Account.Type == AccountType.Savings).Sum(t => t.Amount), 
                     thisMonthsSnapshot.Where(t => t.Account.Type == AccountType.Savings).Sum(t => t.Amount)
                 ));
+            
+            var investmentsCard = new FigureCard(thisMonthsSnapshot.Where(t => t.Account.Type == AccountType.Savings).Sum(t => t.Amount),
+                _calcPercChange(
+                    lastMonthsSnapshot.Where(t => t.Account.Type == AccountType.Investment).Sum(t => t.Amount), 
+                    thisMonthsSnapshot.Where(t => t.Account.Type == AccountType.Investment).Sum(t => t.Amount)
+                ));
 
-            return new DashboardData(incomeCard, expenseCard, savingsCard);
+            return new DashboardData(incomeCard, expenseCard, savingsCard, investmentsCard);
         }
 
         private double _calcPercChange(double oldValue, double newValue)
