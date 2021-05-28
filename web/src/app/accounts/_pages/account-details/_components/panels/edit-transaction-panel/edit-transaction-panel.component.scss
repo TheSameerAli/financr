@@ -76,7 +76,7 @@
         }
 
         &::placeholder {
-          color: lighten($primary, 50%);
+          color: rgba($primary, 0.3);
         }
 
       }

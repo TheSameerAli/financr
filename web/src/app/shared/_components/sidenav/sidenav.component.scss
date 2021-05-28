@@ -1,16 +1,18 @@
 @import '../../../styles/variables';
 
+$sidenav-text: rgb(230, 230, 230);
+
 .logo {
   #filler-box {
-    fill: $sidebar-bg;
+    fill: $primary-dark;
   }
 
   #logo-text {
-    fill: darken($primary-dark, 10%);
+    fill: $sidenav-text;
   }
 
   #logo-square {
-    stroke: $primary-dark;
+    stroke: $sidenav-text;
   }
 }
 
@@ -26,7 +28,7 @@
     width: 75px;
   }
 
-  background-color: $sidebar-bg;
+  background-color: $primary-dark;
   -webkit-box-shadow: 6px 3px 12px -4px rgba(0, 0, 0, 0.05);
   box-shadow: 6px 3px 12px -4px rgba(0, 0, 0, 0.05);
   .bottom {
@@ -46,8 +48,8 @@
 
 
     .brand-title {
-      color: $primary-dark;
-      font-weight: 500;
+      color: $sidenav-text;
+      font-weight: 400;
       font-size: 18px;
 
       @media (max-width: $md) {
@@ -77,15 +79,15 @@
       display: none;
     }
 
-    color: $primary-dark;
+    color: $sidenav-text;
 
     .networth-text {
       font-size: 28px;
-      font-weight: 600;
+      font-weight: 400;
     }
 
     .networth-description {
-      font-weight: 500;
+      font-weight: 400;
     }
   }
 
@@ -111,8 +113,8 @@
         }
 
         svg {
-          fill: $primary-dark;
-          stroke: $primary-dark;
+          fill: $sidenav-text;
+          stroke: $sidenav-text;
           height: 20px;
           width: 20px;
           margin-right: 1rem;
@@ -121,31 +123,31 @@
 
 
         &:hover {
-          background-color: rgba(darken($primary-dark, 20%), 0.1);
-          border-right: 4px solid $primary-dark;
-          color: $primary-dark;
+          background-color: rgba(darken($sidenav-text, 20%), 0.1);
+          border-right: 4px solid $sidenav-text;
+          color: $sidenav-text;
 
           svg {
-            fill: $primary-dark;
-            stroke: $primary-dark;
+            fill: $sidenav-text;
+            stroke: $sidenav-text;
           }
         }
 
         &.active {
-          background-color: rgba(darken($primary-dark, 20%), 0.1);
-          border-right: 4px solid $primary-dark;
-          color: $primary-dark;
+          background-color: rgba(darken($sidenav-text, 20%), 0.1);
+          border-right: 4px solid $sidenav-text;
+          color: $sidenav-text;
 
           svg {
-            fill: $primary-dark;
-            stroke: $primary-dark;
+            fill: $sidenav-text;
+            stroke: $sidenav-text;
           }
         }
 
-        font-weight: 500;
-        font-size: 18px;
+        font-weight: 400;
+        font-size: 16px;
 
-        color: $primary-dark;
+        color: $sidenav-text;
 
         &:hover {
           text-decoration: none !important;

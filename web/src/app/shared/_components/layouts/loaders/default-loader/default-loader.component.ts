@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-default-loader',
@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./default-loader.component.scss']
 })
 export class DefaultLoaderComponent implements OnInit {
-
+  @Input('width') width: number = 100;
+  @Input('height') height: number = 100;
   constructor() { }
 
   ngOnInit(): void {
