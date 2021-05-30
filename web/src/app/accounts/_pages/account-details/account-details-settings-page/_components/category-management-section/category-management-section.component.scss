@@ -8,6 +8,19 @@
   margin-bottom: 0px;
   padding: 1rem;
   border: 1px solid #ccc;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .add-btn {
+    padding-right: 0px;
+    background-color: $primary;
+    svg {
+      fill: white;
+      stroke: white;
+    }
+  }
 }
 
 .category-list {
