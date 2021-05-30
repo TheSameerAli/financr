@@ -14,6 +14,7 @@ namespace WebApi.Services
         Task<List<AccountCategory>> GetAccountCategories(Guid accountId);
         Task<AccountCategory> CreateAccountCategory(string name, AccountCategoryType type, Guid accountId);
         Task<bool> DeleteCategory(Guid accountCategoryId);
+        Task<AccountCategory> EditCategory(string name, Guid categoryId, Guid accountId);
     }
     
     
@@ -21,10 +22,12 @@ namespace WebApi.Services
     {
         private readonly IUnitOfWork _uow;
         private readonly DbSet<AccountCategory> _accountCategories;
+        private readonly DbSet<Transaction> _transactions;
         public AccountCategoryService(IUnitOfWork uow)
         {
             _uow = uow;
             _accountCategories = _uow.Set<AccountCategory>();
+            _transactions = _uow.Set<Transaction>();
         }
         
         public async Task<List<AccountCategory>> GetAccountCategories(Guid accountId)
@@ -43,6 +46,14 @@ namespace WebApi.Services
             return accountCategory;
         }
 
+        public async Task<AccountCategory> EditCategory(string name, Guid categoryId, Guid accountId)
+        {
+            var accountCategory = await _accountCategories.Where(ac => ac.Id == categoryId).FirstOrDefaultAsync();
+            accountCategory.Name = name;
+            await _uow.SaveChangesAsync();
+            return accountCategory;
+        }
+
         public async Task<bool> DeleteCategory(Guid accountCategoryId)
         {
             var accountCategory = await _accountCategories.FirstOrDefaultAsync(ac => ac.Id == accountCategoryId);
@@ -50,6 +61,9 @@ namespace WebApi.Services
             {
                 return false;
             }
+            var transactions = await _transactions.Where(t => t.AccountId == accountCategory.AccountId).ToListAsync();
+            _transactions.RemoveRange(transactions);
+            await _uow.SaveChangesAsync();
             _accountCategories.Remove(accountCategory);
             await _uow.SaveChangesAsync();
             return true;

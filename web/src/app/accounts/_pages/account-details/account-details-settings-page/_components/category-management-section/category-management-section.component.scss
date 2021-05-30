@@ -1,0 +1,54 @@
+@import '../../../../../../styles/variables';
+.category-heading {
+  font-size: 24px;
+  color: white;
+  font-weight: 400;
+  text-align: left;
+  background-color: $primary-dark;
+  margin-bottom: 0px;
+  padding: 1rem;
+  border: 1px solid #ccc;
+}
+
+.category-list {
+  list-style: none;
+  margin-left: 0px;
+  padding-left: 0px;
+  width: 100%;
+  height: 500px;
+  overflow-y: auto;
+  .category-list-item {
+    width: 100%;
+    padding: .5rem 0 .5rem 0;
+    margin-top: .2rem;
+    font-size: 18px;
+    display: flex;
+    justify-content: space-between;
+    &:hover {
+      background-color: rgba($color: #000000, $alpha: .1)
+    }
+
+    li {
+      margin-left: 1rem;
+    }
+
+    .options-menu {
+      svg {
+        height: 20px;
+        width: 20px;
+        cursor: pointer;
+        margin-right: 10px;
+        stroke: rgb(172, 172, 172);
+        fill: rgb(172, 172, 172);
+
+        &:hover {
+          stroke: $primary;
+          fill: $primary;
+        }
+      }
+    }
+  }
+}
+
+
+

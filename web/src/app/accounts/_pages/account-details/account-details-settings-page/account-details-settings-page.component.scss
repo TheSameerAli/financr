@@ -1,0 +1,58 @@
+@import '../../../../styles/variables';
+
+// Nav pills tab style
+.settings-menu {
+  .menu-list {
+      .nav-pills {
+        .nav-link {
+          margin-top: 10px;
+          svg {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+          }
+          color: black;
+          width: 100% !important;
+          border-radius: 0;
+          font-size: 18px;
+          &.active {
+            background: none;
+            border-right: 2px solid $primary-dark;
+            color: $primary;
+            svg {
+              fill: $primary;
+              stroke: $primary;
+            }
+          }
+          &:hover {
+            background: none;
+            border-right: 2px solid $primary-dark;
+            text-decoration: none;
+          }
+        }
+
+        .nav-link-red {
+          color: $red;
+          svg {
+            stroke: $red;
+            fill: $red;
+          }
+          &.active {
+            background: none;
+            border-right: 2px solid darken($red, 10%);
+            color: $red;
+            svg {
+              fill: $red;
+              stroke: $red;
+            }
+          }
+          &:hover {
+            background: none;
+            border-right: 2px solid darken($red, 10%);
+            text-decoration: none;
+          }
+        }
+      }
+  }
+
+}
