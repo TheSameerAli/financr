@@ -31,6 +31,14 @@ export class AccountService {
     return this.http.get<AccountCategory[]>(`${ACCOUNT_API}/${accountId}/categories`);
   }
 
+  createAccountCategory(name: string, type: number, accountId: string) {
+    return this.http.post(`${ACCOUNT_API}/${accountId}/category/create`, {name: name, type: type}, httpOptions);
+  }
+
+  editAccountCategory(name: string, categoryId: string, accountId: string) {
+    return this.http.patch(`${ACCOUNT_API}/${accountId}/category/${categoryId}/edit`, {name: name}, httpOptions);
+  }
+
   createAccount(type: number, name: string, balance: number): Observable<Account> {
     return this.http.post<Account>(`${ACCOUNT_API}/create`, {name: name, type: type, initialAmount: balance}, httpOptions);
   }

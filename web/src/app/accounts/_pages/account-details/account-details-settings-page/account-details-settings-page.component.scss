@@ -1,0 +1,27 @@
+@import '../../../../styles/variables';
+
+.settings-menu {
+  .menu-list {
+    ul {
+      .nav-pills {
+        .nav-link {
+          width: 100% !important;
+          padding: 1rem;
+          border-radius: 10px;
+          &.active {
+            background-color: $primary-dark !important;
+            color: white;
+          }
+          &:hover {
+            background-color: $primary-dark !important;
+            color: white;
+            text-decoration: none;
+          }
+        }
+      }
+
+    }
+  }
+
+}
+

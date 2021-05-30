@@ -19,6 +19,7 @@ import { ViewTransactionPanelComponent } from './_pages/account-details/_compone
 import { TransactionsTableComponent } from './_pages/account-details/_components/tables/transactions-table/transactions-table.component';
 import { BalanceDisplayComponent } from './_pages/account-details/_components/data-components/balance-display/balance-display.component';
 import { SpendingChartComponent } from './_pages/account-details/_components/data-components/spending-chart/spending-chart.component';
+import { CategoryManagementSectionComponent } from './_pages/account-details/account-details-settings-page/_components/category-management-section/category-management-section.component';
 
 
 
@@ -37,6 +38,7 @@ import { SpendingChartComponent } from './_pages/account-details/_components/dat
     TransactionsTableComponent,
     BalanceDisplayComponent,
     SpendingChartComponent,
+    CategoryManagementSectionComponent,
   ],
   imports: [
     CommonModule,

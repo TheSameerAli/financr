@@ -37,6 +37,13 @@ namespace WebApi.Controller
             return Ok(await _accountCategoryService.GetAccountCategories(accountId));
         }
 
+        [HttpPatch("{accountId}/category/{categoryId}/edit")]
+        public async Task<IActionResult> EditAccountCategory([FromBody] CreateAccountCategoryRequest request,
+            Guid accountId, Guid categoryId)
+        {
+            return Ok(await _accountCategoryService.EditCategory(request.Name, categoryId, accountId));
+        }
+
         [HttpDelete("{accountId}/category/{accountCategoryId}/delete")]
         public async Task<IActionResult> DeleteCategory(Guid accountId, Guid accountCategoryId)
         {

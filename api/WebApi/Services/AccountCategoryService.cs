@@ -14,6 +14,7 @@ namespace WebApi.Services
         Task<List<AccountCategory>> GetAccountCategories(Guid accountId);
         Task<AccountCategory> CreateAccountCategory(string name, AccountCategoryType type, Guid accountId);
         Task<bool> DeleteCategory(Guid accountCategoryId);
+        Task<AccountCategory> EditCategory(string name, Guid categoryId, Guid accountId);
     }
     
     
@@ -39,6 +40,14 @@ namespace WebApi.Services
         {
             var accountCategory = new AccountCategory(name, type, accountId);
             await _accountCategories.AddAsync(accountCategory);
+            await _uow.SaveChangesAsync();
+            return accountCategory;
+        }
+
+        public async Task<AccountCategory> EditCategory(string name, Guid categoryId, Guid accountId)
+        {
+            var accountCategory = await _accountCategories.Where(ac => ac.Id == categoryId).FirstOrDefaultAsync();
+            accountCategory.Name = name;
             await _uow.SaveChangesAsync();
             return accountCategory;
         }
