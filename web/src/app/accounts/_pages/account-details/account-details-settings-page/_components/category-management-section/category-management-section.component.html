@@ -36,7 +36,7 @@
 
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                   <button class="dropdown-item" data-toggle="modal" (click)="selectEditCategory(category.id)" data-target="#editCategoryModal">Edit</button>
-                  <button class="dropdown-item">
+                  <button class="dropdown-item" data-toggle="modal" (click)="selectDeleteCategory(category.id)" data-target="#deleteCategoryConfirmModal">
                       <ng-container>Delete</ng-container>
 
                   </button>
@@ -105,7 +105,7 @@
 
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                   <button class="dropdown-item" data-toggle="modal" (click)="selectEditCategory(category.id)" data-target="#editCategoryModal">Edit</button>
-                  <button class="dropdown-item">
+                  <button class="dropdown-item" data-toggle="modal" (click)="selectDeleteCategory(category.id)" data-target="#deleteCategoryConfirmModal">
                       <ng-container>Delete</ng-container>
 
                   </button>
@@ -193,6 +193,30 @@
             class="btn btn-primary-button" data-dismiss="modal">Save</button>
         </div>
       </form>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="deleteCategoryConfirmModal" tabindex="-1" aria-labelledby="deleteCategoryConfirmModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteCategoryConfirmModalLabel">Confirm Delete</h5>
+        <button (click)="deselectDeleteCategory()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <div class="modal-body">
+          By deleting this category, all the transactions under this category will also be deleted. This action is <strong>irreversible</strong>. Are you sure you want to delete this category?
+        </div>
+
+        <div class="modal-footer">
+          <button (click)="deselectDeleteCategory()" type="button" class="btn btn-primary-button" data-dismiss="modal">Cancel</button>
+          <button (click)="deleteCategory()" type="button"
+            class="btn btn-danger-button" data-dismiss="modal">Delete</button>
+        </div>
 
     </div>
   </div>

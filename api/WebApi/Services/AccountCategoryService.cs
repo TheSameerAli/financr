@@ -22,10 +22,12 @@ namespace WebApi.Services
     {
         private readonly IUnitOfWork _uow;
         private readonly DbSet<AccountCategory> _accountCategories;
+        private readonly DbSet<Transaction> _transactions;
         public AccountCategoryService(IUnitOfWork uow)
         {
             _uow = uow;
             _accountCategories = _uow.Set<AccountCategory>();
+            _transactions = _uow.Set<Transaction>();
         }
         
         public async Task<List<AccountCategory>> GetAccountCategories(Guid accountId)
@@ -59,6 +61,9 @@ namespace WebApi.Services
             {
                 return false;
             }
+            var transactions = await _transactions.Where(t => t.AccountId == accountCategory.AccountId).ToListAsync();
+            _transactions.RemoveRange(transactions);
+            await _uow.SaveChangesAsync();
             _accountCategories.Remove(accountCategory);
             await _uow.SaveChangesAsync();
             return true;

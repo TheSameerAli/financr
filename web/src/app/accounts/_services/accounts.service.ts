@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { environment } from './../../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AotCompiler } from '@angular/compiler';
 
 const ACCOUNT_API = `${environment.api}/account`;
 const httpOptions = {
@@ -37,6 +38,10 @@ export class AccountService {
 
   editAccountCategory(name: string, categoryId: string, accountId: string) {
     return this.http.patch(`${ACCOUNT_API}/${accountId}/category/${categoryId}/edit`, {name: name}, httpOptions);
+  }
+
+  deleteAccountCategory(categoryId: string, accountId: string) {
+    return this.http.delete(`${ACCOUNT_API}/${accountId}/category/${categoryId}/delete`);
   }
 
   createAccount(type: number, name: string, balance: number): Observable<Account> {

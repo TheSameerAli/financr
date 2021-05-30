@@ -1,3 +1,5 @@
+import { refreshFinancialHealthRequest } from './../../../../../../shared/store/shared.actions';
+import { loadCurrentlyViewingAccountRequest } from './../../../../../store/action/account.actions';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AccountCategory } from './../../../../../_models/transaction';
 import { AccountService } from './../../../../../_services/accounts.service';
@@ -20,6 +22,7 @@ export class CategoryManagementSectionComponent implements OnInit {
   public addSelectedCategoryType: number = 0;
   public addCategoryForm: FormGroup;
   public editCategoryForm: FormGroup;
+  public selectedForDeleteId: string;
   constructor(private store: Store<AppState>,
     private accountService: AccountService,
     private formBuilder: FormBuilder) { }
@@ -70,6 +73,7 @@ export class CategoryManagementSectionComponent implements OnInit {
   editCategory() {
     let categoryId = this.editCategoryForm.get('id').value;
     let name = this.editCategoryForm.get('name').value;
+    this.isLoading = true;
     this.accountService.editAccountCategory(name, categoryId, this.accountId).subscribe(data => {
       this.getCategories();
     }, (err) => {
@@ -80,6 +84,27 @@ export class CategoryManagementSectionComponent implements OnInit {
   selectEditCategory(id: string) {
     let category = this.categories.find(c => c.id === id);
     this.editCategoryForm.setValue({name: category.name, id: category.id});
+  }
+
+  selectDeleteCategory(id: string) {
+    this.selectedForDeleteId = id;
+  }
+
+  deselectDeleteCategory() {
+    this.selectedForDeleteId = '';
+  }
+
+  deleteCategory() {
+    this.isLoading = true;
+    this.accountService.deleteAccountCategory(this.selectedForDeleteId, this.accountId).subscribe(data => {
+      this.store.dispatch(loadCurrentlyViewingAccountRequest({accountId: this.accountId}));
+      this.store.dispatch(refreshFinancialHealthRequest());
+      this.selectedForDeleteId = '';
+      this.getCategories();
+    }, (err) => {
+      this.selectedForDeleteId = '';
+      console.log('Unable to delete the selected category');
+    })
   }
 
 }
