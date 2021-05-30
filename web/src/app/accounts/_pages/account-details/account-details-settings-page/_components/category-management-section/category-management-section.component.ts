@@ -61,6 +61,7 @@ export class CategoryManagementSectionComponent implements OnInit {
     let type = this.addSelectedCategoryType;
     let name = this.addName.value;
     if (!this.addCategoryForm.invalid) {
+      this.isLoading = true;
       this.accountService.createAccountCategory(name, type, this.accountId).subscribe(data => {
         this.getCategories();
       }, (err) => {
