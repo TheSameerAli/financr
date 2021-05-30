@@ -2,7 +2,40 @@
 
 // Nav pills tab style
 .settings-menu {
+
+  .s-container {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    grid-column-gap: 1rem;
+
+    @media(max-width: 1310px) {
+      display: flex;
+      padding-bottom: 1rem;
+
+
+      .nav-pills {
+        display: flex;
+        flex-direction: row;
+
+        .nav-link {
+          width: auto !important;
+          &.active {
+            border-right: none !important;
+            border-bottom: 2px solid $primary;
+          }
+
+          &:hover {
+            border-right: none !important;
+            border-bottom: 2px solid $primary;
+          }
+        }
+      }
+
+    }
+  }
+
   .menu-list {
+    width: 100%;
       .nav-pills {
         .nav-link {
           margin-top: 10px;
@@ -12,9 +45,9 @@
             margin-right: 10px;
           }
           color: black;
-          width: 100% !important;
           border-radius: 0;
           font-size: 18px;
+          width: 100%;
           &.active {
             background: none;
             border-right: 2px solid $primary-dark;
@@ -54,5 +87,12 @@
         }
       }
   }
+
+
+
+  .tab-content-container {
+    width: 100%;
+  }
+
 
 }
