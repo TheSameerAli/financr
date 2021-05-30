@@ -13,7 +13,7 @@ namespace WebApi.Models.Database.Account
         public Guid UserId { get; set; }
         public virtual User User { get; set; }
 
-        public double Balance => Transactions.Sum(t => t.Amount);
+        public double Balance => Transactions?.Sum(t => t.Amount) ?? 0;
         
         public virtual List<Transaction> Transactions { get; set; }
         public virtual List<AccountCategory> Categories { get; set; }

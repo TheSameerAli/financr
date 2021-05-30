@@ -16,11 +16,12 @@ namespace WebApi.Models.Domain
         
         public AccountBudget Budget { get; set; }
 
-        public double AvailableBalance => Transactions.Sum(transaction => transaction.Amount);
+        public double AvailableBalance => Transactions?.Sum(transaction => transaction.Amount) ?? 0;
+        
         public double TotalIncome 
-            => Transactions.Where(transaction => transaction.Amount > 0).Sum(transaction => transaction.Amount);
+            => Transactions?.Where(transaction => transaction.Amount > 0).Sum(transaction => transaction.Amount) ?? 0;
         public double TotalOutgoings 
-            => Transactions.Where(transaction => transaction.Amount < 0).Sum(transaction => transaction.Amount);
+            => Transactions?.Where(transaction => transaction.Amount < 0).Sum(transaction => transaction.Amount) ?? 0;
 
         public Account(Guid id, string name, AccountType type, Guid userId, List<Transaction> transactions, AccountBudget budget)
         {
