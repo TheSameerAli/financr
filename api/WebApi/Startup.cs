@@ -112,10 +112,7 @@ namespace WebApi
             
             app.UseHangfireDashboard();
             
-            using (var scope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
-            {
-                scope.ServiceProvider.GetRequiredService<ApplicationDbContext>().Database.Migrate();
-            }
+            
             
             app.UseCors(options =>
             {

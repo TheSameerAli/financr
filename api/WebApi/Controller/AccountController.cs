@@ -47,6 +47,12 @@ namespace WebApi.Controller
             return Ok(new Account(account.Id, account.Name, account.Type, account.UserId, account.Transactions, account.Budget));
         }
 
+        [HttpPatch("{accountId}/set-currency")]
+        public async Task<IActionResult> SetAccountCurrency([FromBody] SetCurrencyRequest request, Guid accountId)
+        {
+            return Ok(await _accountService.ChangeCurrency(request.Currency, accountId));
+        }
+
         [HttpPost("{accountId}/budget")]
         public async Task<IActionResult> SetAccountBudget(Guid accountId, SetAccountBudgetRequest request)
         {

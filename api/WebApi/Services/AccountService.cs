@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Transactions;
@@ -21,6 +22,7 @@ namespace WebApi.Services
         Task<List<Account>> GetAccounts(Guid userId);
         Task<Account> GetAccount(Guid accountId);
         Task<AccountBudget> SetBudget(double budget, Guid accountId);
+        Task<AccountPreferences> ChangeCurrency(string currency, Guid accountId);
         Task<AccountSpendingChart> GetSpendingChart(Guid accountId);
 
 
@@ -32,6 +34,7 @@ namespace WebApi.Services
         private readonly DbSet<Transaction> _transactions;
         private readonly DbSet<AccountCategory> _accountCategories;
         private readonly DbSet<AccountBudget> _accountBudgets;
+        private readonly DbSet<AccountPreferences> _accountPreferences;
         private readonly IAccountCategoryService _accountCategoryService;
         public AccountService(IUnitOfWork uow, IAccountCategoryService accountCategoryService)
         {
@@ -41,6 +44,7 @@ namespace WebApi.Services
             _accountBudgets = _uow.Set<AccountBudget>();
             _accountCategoryService = accountCategoryService;
             _accountCategories = _uow.Set<AccountCategory>();
+            _accountPreferences = _uow.Set<AccountPreferences>();
         }
         public async Task<Account> Create(string name, AccountType type, Guid userId, double initialBalance)
         {
@@ -50,6 +54,9 @@ namespace WebApi.Services
             }
             var account = new Account(name, type, userId);
             await _accounts.AddAsync(account);
+            await _uow.SaveChangesAsync();
+            var preferences = new AccountPreferences("GBP", account.Id);
+            await _accountPreferences.AddAsync(preferences);
             await _uow.SaveChangesAsync();
             await AddDefaultCategories(account.Id);
 
@@ -97,6 +104,18 @@ namespace WebApi.Services
             accountBudget.Budget = budget;
             await _uow.SaveChangesAsync();
             return accountBudget;
+        }
+
+        public async Task<AccountPreferences> ChangeCurrency(string currency, Guid accountId)
+        {
+            if (!Currencies.IsValid(currency))
+            {
+                throw new InvalidDataException("Invalid currency provided. Either the currency does not exist or is not supported by the system");
+            } 
+            var preferences = await _accountPreferences.Where(ap => ap.AccountId == accountId).FirstOrDefaultAsync();
+            preferences.Currency = currency;
+            await _uow.SaveChangesAsync();
+            return preferences;
         }
 
         public async Task<AccountSpendingChart> GetSpendingChart(Guid accountId)
