@@ -44,7 +44,19 @@ namespace WebApi.Controller
         public async Task<IActionResult> GetAccountData(Guid accountId)
         {
             var account = await _accountService.GetAccount(accountId);
-            return Ok(new Account(account.Id, account.Name, account.Type, account.UserId, account.Transactions, account.Budget));
+            return Ok(new Account(account.Id, account.Name, account.Type, account.UserId, account.Transactions, account.Budget, account.Preferences));
+        }
+
+        [HttpGet("{accountId}/preferences")]
+        public async Task<IActionResult> GetAccountPreferences(Guid accountId)
+        {
+            return Ok(await _accountService.GetAccountPreferences(accountId));
+        }
+
+        [HttpPatch("{accountId}/set-currency")]
+        public async Task<IActionResult> SetAccountCurrency([FromBody] SetCurrencyRequest request, Guid accountId)
+        {
+            return Ok(await _accountService.ChangeCurrency(request.Currency, accountId));
         }
 
         [HttpPost("{accountId}/budget")]

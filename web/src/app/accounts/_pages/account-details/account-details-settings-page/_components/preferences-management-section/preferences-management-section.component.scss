@@ -1,0 +1,13 @@
+@import '../../../../../../styles/variables';
+.preferences-container {
+  min-height: 50vh;
+  .preference-section {
+    h2 {
+      font-size: 20px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid rgba(lighten($primary, 30%), 0.5);
+      margin-bottom: 1rem;
+      color: $primary;
+    }
+  }
+}

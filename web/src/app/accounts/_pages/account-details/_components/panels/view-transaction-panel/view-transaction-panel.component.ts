@@ -1,6 +1,11 @@
+import { currentlyViewingAccountPreferencesSelector } from './../../../../../store/selector/account.selectors';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { AccountService } from './../../../../../_services/accounts.service';
 import { Transaction } from './../../../../../_models/transaction';
 import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
+import { AccountPreferences } from 'src/app/accounts/_models/account-preferences';
+import { AppState } from 'src/app/app.state';
 
 @Component({
   selector: 'app-view-transaction-panel',
@@ -14,11 +19,13 @@ export class ViewTransactionPanelComponent implements OnInit, OnChanges {
   @Input() accountId: string;
   @Output() close: EventEmitter<any> = new EventEmitter();
   public isLoading: boolean = false;
-  constructor(private accountService: AccountService) {
+  public accountPreferences: Observable<AccountPreferences>;
+  constructor(private accountService: AccountService, private store: Store<AppState>) {
 
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    this.accountPreferences = this.store.select(currentlyViewingAccountPreferencesSelector);
     this.loadTransaction(this.transactionId);
   }
 
@@ -38,6 +45,8 @@ export class ViewTransactionPanelComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
+    this.accountPreferences = this.store.select(currentlyViewingAccountPreferencesSelector);
+
   }
 
 }

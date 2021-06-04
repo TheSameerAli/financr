@@ -34,7 +34,7 @@
                     <span class="account-icon"><img [src]="accountIcons[account.type]" alt=""></span>
                     <span class="account-text">{{account.name}}</span>
                   </td>
-                  <td class="account-balance">{{account.balance | currency: 'GBP'}}</td>
+                  <td class="account-balance">{{account.balance | currency: account.preferences.currency: account.preferences.currencyData.symbolNative}}</td>
                 </tr>
               </tbody>
             </table>

@@ -10,6 +10,7 @@ import { NgModule } from '@angular/core';
 import { AppLottieModule } from '../ui-modules/lottie/lottie.module';
 import { sharedReducer } from './store/shared.reducer';
 import { DefaultLoaderComponent } from './_components/layouts/loaders/default-loader/default-loader.component';
+import { ToastrModule } from 'ngx-toastr';
 
 
 
@@ -26,7 +27,9 @@ import { DefaultLoaderComponent } from './_components/layouts/loaders/default-lo
     ReactiveFormsModule,
     RouterModule,
     StoreModule.forFeature('shared', [sharedReducer]),
-    EffectsModule.forFeature([SharedEffects])
+    EffectsModule.forFeature([SharedEffects]),
+    ToastrModule.forRoot()
+
   ],
   exports: [
     SidenavComponent,
@@ -35,7 +38,8 @@ import { DefaultLoaderComponent } from './_components/layouts/loaders/default-lo
     FormsModule,
     AppLottieModule,
     ReactiveFormsModule,
-    DefaultLoaderComponent
+    DefaultLoaderComponent,
+    ToastrModule
   ],
 })
 export class SharedModule { }

@@ -19,6 +19,8 @@ namespace WebApi.Models.Database.Account
         public virtual List<AccountCategory> Categories { get; set; }
         
         public virtual AccountBudget Budget { get; set; }
+        
+        public virtual AccountPreferences Preferences { get; set; }
 
         public Account(string name, AccountType type, Guid userId)
         {

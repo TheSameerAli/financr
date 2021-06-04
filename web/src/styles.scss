@@ -2,6 +2,7 @@
 @import 'app/styles/fonts';
 @import 'app/styles/variables';
 @import 'pikaday/css/pikaday.css';
+@import '~ngx-toastr/toastr';
 
 body, html {
   font-family: 'Calibre';
