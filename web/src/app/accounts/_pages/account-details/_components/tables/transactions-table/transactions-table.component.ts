@@ -1,12 +1,13 @@
 import { refreshFinancialHealthRequest } from './../../../../../../shared/store/shared.actions';
 import { AccountService } from './../../../../../_services/accounts.service';
 import { Observable } from 'rxjs';
-import { accountsIsLoadingSelector, currentlyViewingAccountTransactionsSelector } from './../../../../../store/selector/account.selectors';
+import { accountsIsLoadingSelector, currentlyViewingAccountTransactionsSelector, currentlyViewingAccountPreferencesSelector } from './../../../../../store/selector/account.selectors';
 import { loadCurrentlyViewingAccountTransactionsRequest, loadCurrentlyViewingAccountRequest, loadSpendingChartRequest } from './../../../../../store/action/account.actions';
 import { Store } from '@ngrx/store';
 import { Transaction } from './../../../../../_models/transaction';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { AppState } from 'src/app/app.state';
+import { AccountPreferences } from 'src/app/accounts/_models/account-preferences';
 
 @Component({
   selector: 'app-transactions-table',
@@ -20,11 +21,13 @@ export class TransactionsTableComponent implements OnInit {
   public isLoading: Observable<boolean>;
   public transactions$: Observable<{}>;
   public isDeleteLoading: boolean = false;
+  public accountPreferences: Observable<AccountPreferences>;
   constructor(private store: Store<AppState>, private accountService: AccountService) { }
 
   ngOnInit(): void {
     this.isLoading = this.store.select(accountsIsLoadingSelector);
     this.transactions$ = this.store.select(currentlyViewingAccountTransactionsSelector);
+    this.accountPreferences = this.store.select(currentlyViewingAccountPreferencesSelector);
     this.store.dispatch(loadCurrentlyViewingAccountTransactionsRequest({accountId: this.accountId}));
   }
 

@@ -1,4 +1,4 @@
-import { accountsIsLoadingSelector } from './../../../../../store/selector/account.selectors';
+import { accountsIsLoadingSelector, currentlyViewingAccountPreferencesSelector } from './../../../../../store/selector/account.selectors';
 import { loadSpendingChartRequest } from './../../../../../store/action/account.actions';
 import { SpendingChart } from './../../../../../_models/spending-chart';
 import { Observable } from 'rxjs';
@@ -9,6 +9,7 @@ import { spendingChartSelector } from 'src/app/accounts/store/selector/account.s
 import _, { map} from 'underscore';
 import { CurrencyPipe } from '@angular/common';
 import * as moment from 'moment';
+import { AccountPreferences } from 'src/app/accounts/_models/account-preferences';
 
 @Component({
   selector: 'app-spending-chart',
@@ -19,6 +20,7 @@ export class SpendingChartComponent implements OnInit, AfterViewInit, OnChanges 
   @Input() accountId: string;
   data$: Observable<SpendingChart>;
   isLoading$: Observable<boolean>;
+  accountPreferences$: Observable<AccountPreferences>;
   constructor(private store: Store<AppState>, private cp: CurrencyPipe) { }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -33,25 +35,28 @@ export class SpendingChartComponent implements OnInit, AfterViewInit, OnChanges 
 
     this.data$ = this.store.select(spendingChartSelector);
     this.isLoading$ = this.store.select(accountsIsLoadingSelector);
+    this.accountPreferences$ = this.store.select(currentlyViewingAccountPreferencesSelector);
+    this.accountPreferences$.subscribe(preferences => {
+      this.data$.subscribe(data => {
 
-    this.data$.subscribe(data => {
+        // Remove previous els
+        this.removeElementsByClass('pie-chart-amount');
+        this.removeElementsByClass('pie-chart-spent-since');
 
-      // Remove previous els
-      this.removeElementsByClass('pie-chart-amount');
-      this.removeElementsByClass('pie-chart-spent-since');
+        let pieChart = document.getElementsByClassName('ngx-charts-outer')[0];
+        let balanceDiv = document.createElement('div');
+        balanceDiv.classList.add('pie-chart-amount');
+        balanceDiv.innerText = this.cp.transform(this.sum(data.data), preferences.currency, preferences.currencyData.symbolNative);
+        let spentSinceDiv = document.createElement('div');
+        spentSinceDiv.classList.add('pie-chart-spent-since');
+        spentSinceDiv.innerText = 'Spent since ' + moment(new Date().setMonth(new Date().getMonth() - 1)).format('MM/DD/YYYY');
+        pieChart.appendChild(balanceDiv);
+        pieChart.appendChild(spentSinceDiv);
+        this.sum(data.data);
 
-      let pieChart = document.getElementsByClassName('ngx-charts-outer')[0];
-      let balanceDiv = document.createElement('div');
-      balanceDiv.classList.add('pie-chart-amount');
-      balanceDiv.innerText = this.cp.transform(this.sum(data.data), 'GBP');
-      let spentSinceDiv = document.createElement('div');
-      spentSinceDiv.classList.add('pie-chart-spent-since');
-      spentSinceDiv.innerText = 'Spent since ' + moment(new Date().setMonth(new Date().getMonth() - 1)).format('MM/DD/YYYY');
-      pieChart.appendChild(balanceDiv);
-      pieChart.appendChild(spentSinceDiv);
-      this.sum(data.data);
+      });
+    })
 
-    });
   }
 
 

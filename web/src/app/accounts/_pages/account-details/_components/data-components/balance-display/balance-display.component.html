@@ -2,7 +2,7 @@
   <div class="your-balance-card-data" *ngIf="!(isLoading | async) && (account | async)">
     <div class="total-balance">
       <p class="text-center">Total Balance</p>
-      <h1>{{(account | async).availableBalance | currency: 'GBP'}}</h1>
+      <h1>{{(account | async).availableBalance | currency: (accountPreferences | async).currency: (accountPreferences | async).currencyData.symbolNative}}</h1>
     </div>
   </div>
 
@@ -10,12 +10,12 @@
   <div *ngIf="!(isLoading | async) && (account | async)" class="income-expenses">
     <div class="income">
       <p>Income</p>
-      <h2>{{(account | async).totalIncome | currency: 'GBP'}}</h2>
+      <h2>{{(account | async).totalIncome | currency: (accountPreferences | async).currency: (accountPreferences | async).currencyData.symbolNative}}</h2>
     </div>
 
     <div class="expense">
       <p>Expenses</p>
-      <h2>{{(account | async).totalOutgoings * -1 | currency: 'GBP'}}</h2>
+      <h2>{{(account | async).totalOutgoings * -1 | currency: (accountPreferences | async).currency: (accountPreferences | async).currencyData.symbolNative}}</h2>
     </div>
   </div>
 

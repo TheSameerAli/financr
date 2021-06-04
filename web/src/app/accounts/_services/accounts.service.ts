@@ -1,3 +1,5 @@
+import { AccountPreferences } from './../_models/account-preferences';
+import { Currency } from './../_models/currency';
 import { SpendingChart } from './../_models/spending-chart';
 import { AccountCategory, Transaction } from './../_models/transaction';
 import { Account } from './../_models/account';
@@ -8,6 +10,7 @@ import { Injectable } from '@angular/core';
 import { AotCompiler } from '@angular/compiler';
 
 const ACCOUNT_API = `${environment.api}/account`;
+const CURRENCY_ENDPOINT = `${environment.api}/currency`;
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
@@ -56,8 +59,20 @@ export class AccountService {
     return this.http.get<Transaction>(`${ACCOUNT_API}/${accountId}/transactions/${transactionId}`)
   }
 
+  getAllCurrencies(): Observable<Currency[]> {
+    return this.http.get<Currency[]>(`${CURRENCY_ENDPOINT}/list`);
+  }
+
+  getAccountPreferences(accountId: string): Observable<AccountPreferences> {
+    return this.http.get<AccountPreferences>(`${ACCOUNT_API}/${accountId}/preferences`);
+  }
+
   getSpendingChart(accountId: string) {
     return this.http.get<SpendingChart>(`${ACCOUNT_API}/${accountId}/spending-chart`);
+  }
+
+  saveAccountPreferences(accountId: string, currencyCode: string) {
+    return this.http.patch(`${ACCOUNT_API}/${accountId}/set-currency`, {currency: currencyCode}, httpOptions);
   }
 
   createTransaction(accountId: string, amount: number, description: string, accountCategoryId: string, transactionDate: Date) {

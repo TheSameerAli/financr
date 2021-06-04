@@ -22,7 +22,8 @@ namespace WebApi.Services
         Task<List<Account>> GetAccounts(Guid userId);
         Task<Account> GetAccount(Guid accountId);
         Task<AccountBudget> SetBudget(double budget, Guid accountId);
-        Task<AccountPreferences> ChangeCurrency(string currency, Guid accountId);
+        Task<AccountPreferences> ChangeCurrency(string currencyCode, Guid accountId);
+        Task<AccountPreferences> GetAccountPreferences(Guid accountId);
         Task<AccountSpendingChart> GetSpendingChart(Guid accountId);
 
 
@@ -77,6 +78,7 @@ namespace WebApi.Services
                 .Where(a => a.UserId == userId)
                 .Include(a => a.Budget)
                 .Include(t => t.Transactions)
+                .Include(t => t.Preferences)
                 .ToListAsync();
         }
 
@@ -85,6 +87,7 @@ namespace WebApi.Services
             return await _accounts
                 .Include(a => a.Transactions)
                 .Include(ac => ac.Budget)
+                .Include(ac => ac.Preferences)
                 .FirstOrDefaultAsync(a => a.Id == accountId);
         }
         
@@ -116,6 +119,11 @@ namespace WebApi.Services
             preferences.Currency = currency;
             await _uow.SaveChangesAsync();
             return preferences;
+        }
+
+        public async Task<AccountPreferences> GetAccountPreferences(Guid accountId)
+        {
+            return await _accountPreferences.FirstOrDefaultAsync(a => a.AccountId == accountId);
         }
 
         public async Task<AccountSpendingChart> GetSpendingChart(Guid accountId)

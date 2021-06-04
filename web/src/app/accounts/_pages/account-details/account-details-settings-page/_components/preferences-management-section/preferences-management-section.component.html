@@ -1,0 +1,27 @@
+<div class="preferences mt-3">
+  <div class="preferences-container p-3 shadow-sm container">
+    <div class="preference-section">
+      <h2>Account Settings</h2>
+      <div *ngIf="!isLoading" class="form-group preferences-fields">
+        <label for="exampleFormControlSelect1">Change Currency</label>
+        <select [(ngModel)]="selectedCurrencyCode" class="form-control" id="exampleFormControlSelect1">
+          <option [selected]="preferences.currency === currency.code" [value]="currency.code" *ngFor="let currency of currencies">{{currency.name}} ({{currency.symbolNative}})</option>
+        </select>
+        <div class="text-right mt-2">
+          <button (click)="savePreferences()" [disabled]="isButtonLoading" class="btn btn-primary-button">
+            <ng-container *ngIf="isButtonLoading">
+              <app-default-loader [width]="25" [height]="25"></app-default-loader>
+            </ng-container>
+            <ng-container *ngIf="!isButtonLoading">
+              Save
+            </ng-container>
+
+          </button>
+        </div>
+      </div>
+      <div *ngIf="isLoading" class="d-flex justify-content-center">
+        <app-default-loader></app-default-loader>
+      </div>
+    </div>
+  </div>
+</div>

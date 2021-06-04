@@ -1,3 +1,4 @@
+import { AccountPreferences } from './account-preferences';
 import { Transaction } from './transaction';
 export class Account {
   id: string;
@@ -9,4 +10,5 @@ export class Account {
   totalIncome: number;
   totalOutgoings: number;
   transactions: Transaction[];
+  preferences: AccountPreferences;
 }

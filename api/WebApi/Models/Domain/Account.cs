@@ -15,6 +15,8 @@ namespace WebApi.Models.Domain
         public List<Transaction> Transactions { get; set; }
         
         public AccountBudget Budget { get; set; }
+        
+        public AccountPreferences Preferences { get; set; }
 
         public double AvailableBalance => Transactions?.Sum(transaction => transaction.Amount) ?? 0;
         
@@ -23,7 +25,7 @@ namespace WebApi.Models.Domain
         public double TotalOutgoings 
             => Transactions?.Where(transaction => transaction.Amount < 0).Sum(transaction => transaction.Amount) ?? 0;
 
-        public Account(Guid id, string name, AccountType type, Guid userId, List<Transaction> transactions, AccountBudget budget)
+        public Account(Guid id, string name, AccountType type, Guid userId, List<Transaction> transactions, AccountBudget budget, AccountPreferences preferences)
         {
             Id = id;
             Name = name;
@@ -31,6 +33,7 @@ namespace WebApi.Models.Domain
             UserId = userId;
             Transactions = transactions;
             Budget = budget;
+            Preferences = preferences;
         }
     }
 

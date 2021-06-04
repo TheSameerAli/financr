@@ -18,7 +18,7 @@ namespace WebApi.Configuration
 
         public static bool IsValid(string currency)
         {
-            return GetCurrencies().Any(c => c.Symbol == currency);
+            return GetCurrencies().Any(c => c.Code == currency);
         }
     }
 }
