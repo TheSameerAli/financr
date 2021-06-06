@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using WebApi.Models.Database;
 using WebApi.Models.Database.Account;
@@ -20,11 +21,17 @@ namespace WebApi.Models.Domain
 
         public double AvailableBalance => Transactions?.Sum(transaction => transaction.Amount) ?? 0;
         
+        [NotMapped]
+        public virtual double ConvertedBalance { get; set; }
+        
         public double TotalIncome 
             => Transactions?.Where(transaction => transaction.Amount > 0).Sum(transaction => transaction.Amount) ?? 0;
         public double TotalOutgoings 
             => Transactions?.Where(transaction => transaction.Amount < 0).Sum(transaction => transaction.Amount) ?? 0;
-
+        
+        public virtual double ConvertedTotalIncome { get; set; }
+        public virtual double ConvertedTotalExpense { get; set; }
+        
         public Account(Guid id, string name, AccountType type, Guid userId, List<Transaction> transactions, AccountBudget budget, AccountPreferences preferences)
         {
             Id = id;

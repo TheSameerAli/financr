@@ -11,5 +11,6 @@ namespace WebApi.Models.Domain.Charts
     {
         public string Name { get; set; }
         public double Value { get; set; }
+        public double ConvertedValue { get; set; }
     }
 }

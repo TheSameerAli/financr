@@ -6,6 +6,7 @@ export class Transaction {
   transactionDate: Date;
   accountCategoryId: string;
   accountCategory: AccountCategory;
+  convertedAmount: number;
 }
 
 export interface AccountCategory {

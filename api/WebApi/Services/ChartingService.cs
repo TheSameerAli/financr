@@ -21,11 +21,15 @@ namespace WebApi.Services
         private readonly IUnitOfWork _uow;
         private readonly DbSet<Account> _accounts;
         private readonly DbSet<Transaction> _transactions;
-        public ChartingService(IUnitOfWork uow)
+        private readonly IUserService _userService;
+        private readonly ICurrencyConversionService _currencyConversionService;
+        public ChartingService(IUnitOfWork uow, IUserService userService, ICurrencyConversionService currencyConversionService)
         {
             _uow = uow;
             _accounts = _uow.Set<Account>();
             _transactions = _uow.Set<Transaction>();
+            _userService = userService;
+            _currencyConversionService = currencyConversionService;
         }
         public async Task<List<NetworthChart>> GetNetworthChart(Guid userId)
         {
@@ -91,7 +95,9 @@ namespace WebApi.Services
 
         private async Task<Transaction> _getFirstTransaction(Guid userId)
         {
+            var userPreferences = await _userService.GetPreferences(userId);
             var accounts = await _accounts
+                .Include(a => a.Preferences)
                 .Where(a => a.UserId == userId)
                 .ToListAsync();
 
@@ -99,8 +105,19 @@ namespace WebApi.Services
 
             foreach (var account in accounts)
             {
-                transactions.AddRange(await _transactions
-                    .Where(t => t.AccountId == account.Id).ToListAsync());
+                var accountTransactions = await _transactions
+                    .Where(t => t.AccountId == account.Id).AsNoTracking().ToListAsync();
+
+                if (account.Preferences.Currency != userPreferences.Currency)
+                {
+                    var pair = $"{account.Preferences.Currency}_{userPreferences.Currency}";
+                    foreach (var accountTransaction in accountTransactions)
+                    {
+                        accountTransaction.Amount =
+                            await _currencyConversionService.Convert(pair, accountTransaction.Amount);
+                    }
+                }
+                transactions.AddRange(accountTransactions);
             }
 
             return transactions.OrderBy(t => t.TransactionDate).FirstOrDefault();
@@ -110,16 +127,30 @@ namespace WebApi.Services
             TimeSpan step, Guid userId)
         {
             var accounts = await _accounts
+                .Include(a => a.Preferences)
                 .Where(a => a.UserId == userId)
                 .ToListAsync();
 
             var transactions = new List<Transaction>();
             var networthChartData = new List<NetworthChartData>();
+            
+            var userPreferences = await _userService.GetPreferences(userId);
 
             foreach (var account in accounts)
             {
-                transactions.AddRange(await _transactions
-                    .Where(t => t.AccountId == account.Id).ToListAsync());
+                var accountTransactions = await _transactions
+                    .Where(t => t.AccountId == account.Id).AsNoTracking().ToListAsync();
+
+                if (account.Preferences.Currency != userPreferences.Currency)
+                {
+                    var pair = $"{account.Preferences.Currency}_{userPreferences.Currency}";
+                    foreach (var accountTransaction in accountTransactions)
+                    {
+                        accountTransaction.Amount =
+                            await _currencyConversionService.Convert(pair, accountTransaction.Amount);
+                    }
+                }
+                transactions.AddRange(accountTransactions);
             }
 
             bool completed = false;

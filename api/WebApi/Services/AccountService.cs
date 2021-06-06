@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -38,7 +39,9 @@ namespace WebApi.Services
         private readonly DbSet<AccountPreferences> _accountPreferences;
         private readonly IAccountCategoryService _accountCategoryService;
         private readonly DbSet<UserPreferences> _userPreferences;
-        public AccountService(IUnitOfWork uow, IAccountCategoryService accountCategoryService)
+        private readonly IUserService _userService;
+        private readonly ICurrencyConversionService _currencyConversionService;
+        public AccountService(IUnitOfWork uow, IAccountCategoryService accountCategoryService, IUserService userService, ICurrencyConversionService currencyConversionService)
         {
             _uow = uow;
             _accounts = _uow.Set<Account>();
@@ -48,6 +51,8 @@ namespace WebApi.Services
             _accountCategories = _uow.Set<AccountCategory>();
             _accountPreferences = _uow.Set<AccountPreferences>();
             _userPreferences = _uow.Set<UserPreferences>();
+            _userService = userService;
+            _currencyConversionService = currencyConversionService;
         }
         public async Task<Account> Create(string name, AccountType type, Guid userId, double initialBalance)
         {
@@ -77,12 +82,24 @@ namespace WebApi.Services
 
         public async Task<List<Account>> GetAccounts(Guid userId)
         {
-            return await _accounts
+            var userPreferences = await _userService.GetPreferences(userId);
+            var accounts =  await _accounts
                 .Where(a => a.UserId == userId)
                 .Include(a => a.Budget)
                 .Include(t => t.Transactions)
                 .Include(t => t.Preferences)
                 .ToListAsync();
+            foreach (var account in accounts)
+            {
+                if (account.Preferences.Currency != userPreferences.Currency)
+                {
+                    account.ConvertedBalance =
+                        await _currencyConversionService.Convert(
+                            $"{account.Preferences.Currency}_{userPreferences.Currency}", account.Balance);
+                }
+            }
+
+            return accounts;
         }
 
         public async Task<Account> GetAccount(Guid accountId)
@@ -142,14 +159,33 @@ namespace WebApi.Services
             // Group the transactions by category
             var tr = expenseTransactions.GroupBy(t => t.AccountCategoryId).ToList();
             var spendingChart = new AccountSpendingChart() {Data = new List<AccountSpendingChartData>()};
+            var account = await _accounts.Where(a => a.Id == accountId)
+                .Include(a => a.Preferences)
+                .FirstOrDefaultAsync();
+            var userPreferences = await _userService.GetPreferences(account.UserId); 
 
             foreach (var t in tr)
             {
-                spendingChart.Data.Add(new AccountSpendingChartData()
+                if (account.Preferences.Currency != userPreferences.Currency)
                 {
-                    Name = _accountCategories.FirstOrDefault(ac => ac.Id == t.Key)?.Name,
-                    Value = t.Sum(trr => trr.Amount) * -1
-                });
+                    var pair = $"{account.Preferences.Currency}_{userPreferences.Currency}";
+                    spendingChart.Data.Add(new AccountSpendingChartData()
+                    {
+                        Name = _accountCategories.FirstOrDefault(ac => ac.Id == t.Key)?.Name,
+                        Value = t.Sum(trr => trr.Amount) * -1,
+                        ConvertedValue = await _currencyConversionService.Convert(pair, t.Sum(trr => trr.Amount) * -1)
+                    });
+                }
+                else
+                {
+                    spendingChart.Data.Add(new AccountSpendingChartData()
+                    {
+                        Name = _accountCategories.FirstOrDefault(ac => ac.Id == t.Key)?.Name,
+                        Value = t.Sum(trr => trr.Amount) * -1,
+                        ConvertedValue = 0
+                    });
+                }
+                
             }
 
             return spendingChart;

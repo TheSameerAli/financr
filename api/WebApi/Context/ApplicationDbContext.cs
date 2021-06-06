@@ -14,6 +14,7 @@
         public DbSet<RecurringTransaction> RecurringTransactions { get; set; }
         public DbSet<RecurringTransactionsLog> RecurringTransactionsLogs { get; set; }
         public DbSet<AccountCategory> AccountCategories { get; set; }
+        public DbSet<CurrencyConversionRate> CurrencyConversionRates { get; set; }
         public DbSet<AccountPreferences> AccountPreferences { get; set; }
         public ApplicationDbContext()
         {

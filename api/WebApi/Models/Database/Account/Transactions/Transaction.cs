@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 using WebApi.Models.Database.Account;
 using WebApi.Models.Database.Base;
 
@@ -7,6 +8,8 @@ namespace WebApi.Models.Database
     public class Transaction : BaseModel
     {
         public double Amount { get; set; }
+        [NotMapped]
+        public virtual double ConvertedAmount { get; set; }
         public string Description { get; set; }
         public Guid AccountId { get; set; }
         public DateTimeOffset TransactionDate { get; set; }
