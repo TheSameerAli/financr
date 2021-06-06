@@ -1,4 +1,4 @@
-import { refreshUserPreferencesRequest } from './../../../shared/store/shared.actions';
+import { refreshUserPreferencesRequest, refreshFinancialHealthRequest } from './../../../shared/store/shared.actions';
 import { Store } from '@ngrx/store';
 import { ToastrService } from 'ngx-toastr';
 import { UserPreferences } from './../../_models/user-preferences';
@@ -47,6 +47,7 @@ export class UserPreferencesPageComponent implements OnInit {
     this.userPreferencesService.changeCurrency(this.selectedCurrency).subscribe(data => {
       this.isButtonLoading = false;
       this.store.dispatch(refreshUserPreferencesRequest());
+      this.store.dispatch(refreshFinancialHealthRequest());
       this.toastr.success('Changes have been saved successfully.', 'Saved!');
     }, (err) => {
       this.isButtonLoading = false;

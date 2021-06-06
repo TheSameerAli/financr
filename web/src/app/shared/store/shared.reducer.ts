@@ -8,21 +8,23 @@ const _sharedReducer = createReducer(
   initialState,
   on(setFinancialHealthLoading, (state, action) => {
     return {
+      ...state,
       financialHealthState: {
         isLoading: action.status,
         financialHealth: state.financialHealthState.financialHealth,
       },
-      ...state
+
     };
   },
   ),
   on(refreshFinancialHealthDone, (state, health) => {
     return {
+      ...state,
       financialHealthState: {
         isLoading: state.financialHealthState.isLoading,
         financialHealth: health
       },
-      ...state
+
     };
   }),
   on(refreshUserPreferencesDone, (state, userPreferences) => {
