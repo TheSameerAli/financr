@@ -1,3 +1,4 @@
+import { AccountPreferences } from 'src/app/accounts/_models/account-preferences';
 import { TitleService } from './../../../shared/_services/title.service';
 import { accountsIsLoadingSelector } from './../../store/selector/account.selectors';
 import { Account } from './../../_models/account';
@@ -57,7 +58,8 @@ export class AddAccountPageComponent implements OnInit {
         transactions: [],
         availableBalance: 0,
         totalIncome: 0,
-        totalOutgoings: 0
+        totalOutgoings: 0,
+        preferences: {} as AccountPreferences
       }
     }));
   }

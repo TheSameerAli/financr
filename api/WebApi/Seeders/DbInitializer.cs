@@ -12,6 +12,8 @@ namespace WebApi.Seeders
             var seeders = new List<ISeeder>
             {
                 new UserSeeder(),
+                new AccountPreferenceSeeder(),
+                new UserPreferencesSeeder()
             };
 
             foreach (var seeder in seeders)

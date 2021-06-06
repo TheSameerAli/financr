@@ -8,11 +8,14 @@
     public class ApplicationDbContext : DbContext, IUnitOfWork
     {
         public DbSet<User> Users { get; set; } 
+        public DbSet<UserPreferences> UserPreferences { get; set; }
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<RecurringTransaction> RecurringTransactions { get; set; }
         public DbSet<RecurringTransactionsLog> RecurringTransactionsLogs { get; set; }
         public DbSet<AccountCategory> AccountCategories { get; set; }
+        public DbSet<CurrencyConversionRate> CurrencyConversionRates { get; set; }
+        public DbSet<AccountPreferences> AccountPreferences { get; set; }
         public ApplicationDbContext()
         {
         }
@@ -34,6 +37,14 @@
             modelBuilder.Entity<User>(o =>
             {
                 o.HasMany(u => u.Accounts);
+                o.HasOne(u => u.Preferences);
+            });
+            #endregion
+            
+            #region UserPreferences
+            modelBuilder.Entity<UserPreferences>(o =>
+            {
+                o.HasOne(u => u.User);
             });
             #endregion
 
@@ -44,6 +55,7 @@
                 o.HasMany(a => a.Categories);
                 o.HasOne(a => a.User);
                 o.HasOne(a => a.Budget);
+                o.HasOne(a => a.Preferences);
             });
             #endregion
             
@@ -71,11 +83,18 @@
             });
             #endregion
             
-            #region Transaction
+            #region RecurringTransaction
             modelBuilder.Entity<RecurringTransaction>(o =>
             {
                 o.HasOne(rt => rt.Account);
                 o.HasOne(rt => rt.AccountCategory);
+            });
+            #endregion
+            
+            #region AccountPreferences
+            modelBuilder.Entity<AccountPreferences>(o =>
+            {
+                o.HasOne(rt => rt.Account);
             });
             #endregion
         }

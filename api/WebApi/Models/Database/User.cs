@@ -10,6 +10,7 @@ namespace WebApi.Models.Database
         public string Password { get; set; }
         
         public virtual List<Account.Account> Accounts { get; set; }
+        public virtual UserPreferences Preferences { get; set; }
         
         public User() {}
 

@@ -22,7 +22,7 @@
       </div>
       <div class="transaction-amount">
 
-        {{transaction.amount | currency: 'GBP'}}
+        {{transaction.amount | currency: (accountPreferences | async).currency: (accountPreferences | async).currencyData.symbolNative}}
       </div>
     </div>
     <div class="detailed-transaction-data">

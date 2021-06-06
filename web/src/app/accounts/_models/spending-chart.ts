@@ -5,4 +5,5 @@ export interface SpendingChart {
 export interface SpendingChartData {
   name: string;
   value: number;
+  convertedValue: number;
 }

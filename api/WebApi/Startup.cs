@@ -48,6 +48,7 @@ namespace WebApi
             services.AddScoped<IRecurringTransactionsService, RecurringTransactionsService>();
             services.AddScoped<IChartingService, ChartingService>();
             services.AddScoped<IReportService, ReportService>();
+            services.AddScoped<ICurrencyConversionService, CurrencyConversionService>();
 
             
             // Hangfire configuration
@@ -112,10 +113,7 @@ namespace WebApi
             
             app.UseHangfireDashboard();
             
-            using (var scope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
-            {
-                scope.ServiceProvider.GetRequiredService<ApplicationDbContext>().Database.Migrate();
-            }
+            
             
             app.UseCors(options =>
             {

@@ -1,3 +1,4 @@
+import { AccountPreferences } from './../_models/account-preferences';
 import { SpendingChart } from './../_models/spending-chart';
 import { AccountCategory, Transaction } from './../_models/transaction';
 import { Account } from './../_models/account';
@@ -56,8 +57,18 @@ export class AccountService {
     return this.http.get<Transaction>(`${ACCOUNT_API}/${accountId}/transactions/${transactionId}`)
   }
 
+
+
+  getAccountPreferences(accountId: string): Observable<AccountPreferences> {
+    return this.http.get<AccountPreferences>(`${ACCOUNT_API}/${accountId}/preferences`);
+  }
+
   getSpendingChart(accountId: string) {
     return this.http.get<SpendingChart>(`${ACCOUNT_API}/${accountId}/spending-chart`);
+  }
+
+  saveAccountPreferences(accountId: string, currencyCode: string) {
+    return this.http.patch(`${ACCOUNT_API}/${accountId}/set-currency`, {currency: currencyCode}, httpOptions);
   }
 
   createTransaction(accountId: string, amount: number, description: string, accountCategoryId: string, transactionDate: Date) {

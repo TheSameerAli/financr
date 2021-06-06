@@ -19,22 +19,39 @@ namespace WebApi.Services
     {
         private readonly DbSet<Account> _accounts;
         private readonly DbSet<Transaction> _transactions;
+        private readonly IUserService _userService;
+        private readonly ICurrencyConversionService _currencyConversionService;
         private readonly IUnitOfWork _uow;
 
-        public ReportService(IUnitOfWork uow)
+        public ReportService(IUnitOfWork uow, IUserService userService, ICurrencyConversionService currencyConversionService)
         {
             _uow = uow;
             _accounts = _uow.Set<Account>();
             _transactions = _uow.Set<Transaction>();
+            _userService = userService;
+            _currencyConversionService = currencyConversionService;
         }
         
         public async Task<GeneralReport> GetAccountReport(DateTimeOffset startDate, DateTimeOffset endDate, Guid accountId, Guid userId)
         {
+            var account = await _accounts.Include(a => a.Preferences).Where(a => a.Id == accountId)
+                .FirstOrDefaultAsync();
+            var userPreferences = await _userService.GetPreferences(userId);
             var transactions = await _transactions
                 .Where(t => t.AccountId == accountId)
                 .Where(t => t.TransactionDate >= startDate && t.TransactionDate <= endDate)
                 .Include(t => t.AccountCategory)
+                .AsNoTracking()
                 .ToListAsync();
+
+            if (account.Preferences.Currency != userPreferences.Currency)
+            {
+                var pair = $"{account.Preferences.Currency}_{userPreferences.Currency}";
+                foreach (var transaction in transactions)
+                {
+                    transaction.Amount = await _currencyConversionService.Convert(pair, transaction.Amount);
+                }
+            }
             
             var summary = new GeneralReportSummary(transactions.Where(t => t.Amount > 0).Sum(t => t.Amount), 
                 transactions.Where(t => t.Amount < 0).Sum(t => t.Amount));
@@ -66,7 +83,9 @@ namespace WebApi.Services
         public async Task<GeneralReport> GetAllAccountReport(DateTimeOffset startDate, DateTimeOffset endDate, Guid userId)
         {
             var transactions = new List<Transaction>();
-            var accounts = await _accounts.Where(a => a.UserId == userId).ToListAsync();
+            var accounts = await _accounts.Include(a => a.Preferences).Where(a => a.UserId == userId).ToListAsync();
+            
+            var userPreferences = await _userService.GetPreferences(userId);
 
             foreach (var account in accounts)
             {
@@ -74,7 +93,18 @@ namespace WebApi.Services
                     .Where(t => t.AccountId == account.Id)
                     .Where(t => t.TransactionDate >= startDate && t.TransactionDate <= endDate)
                     .Include(t => t.AccountCategory)
+                    .AsNoTracking()
                     .ToListAsync();
+                
+                if (account.Preferences.Currency != userPreferences.Currency)
+                {
+                    var pair = $"{account.Preferences.Currency}_{userPreferences.Currency}";
+                    foreach (var transaction in tr)
+                    {
+                        transaction.Amount = await _currencyConversionService.Convert(pair, transaction.Amount);
+                    }
+                }
+                
                 transactions.AddRange(tr);
             }
             

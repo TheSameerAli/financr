@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Hangfire;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -25,6 +26,10 @@ namespace WebApi
                 var services = scope.ServiceProvider;
                 try
                 {
+                    using (services.GetService<IServiceScopeFactory>().CreateScope())
+                    {
+                        scope.ServiceProvider.GetRequiredService<ApplicationDbContext>().Database.Migrate();
+                    }
                     var context = services.GetRequiredService<ApplicationDbContext>();
                     Task.Run(() => DbInitializer.Seed(context)).Wait();
                     var transactionService = services.GetRequiredService<ITransactionService>();

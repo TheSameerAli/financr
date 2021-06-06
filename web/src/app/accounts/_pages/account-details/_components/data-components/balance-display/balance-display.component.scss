@@ -13,6 +13,14 @@ $card-color: #14213d;
   align-items: center;
   flex-direction: column;
 
+  h1 {
+    padding-bottom: 0px !important;
+    margin-bottom: 0px !important;
+  }
+  .converted-total-balance {
+    font-size: 20px;
+  }
+
   p {
     margin-bottom: 0;
   }
@@ -26,6 +34,7 @@ $card-color: #14213d;
 
     h2 {
       font-size: 20px;
+      margin-bottom: 0px;
     }
   }
 }

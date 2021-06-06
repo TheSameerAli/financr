@@ -16,7 +16,7 @@ namespace WebApi.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasDefaultSchema("Financr")
-                .HasAnnotation("ProductVersion", "2.2.3-servicing-35854")
+                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -79,6 +79,41 @@ namespace WebApi.Migrations
                     b.ToTable("AccountCategories");
                 });
 
+            modelBuilder.Entity("WebApi.Models.Database.Account.AccountPreferences", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid>("AccountId");
+
+                    b.Property<DateTimeOffset>("CreatedAt");
+
+                    b.Property<string>("Currency");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AccountId")
+                        .IsUnique();
+
+                    b.ToTable("AccountPreferences");
+                });
+
+            modelBuilder.Entity("WebApi.Models.Database.CurrencyConversionRate", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTimeOffset>("CreatedAt");
+
+                    b.Property<string>("Pair");
+
+                    b.Property<double>("Rate");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CurrencyConversionRates");
+                });
+
             modelBuilder.Entity("WebApi.Models.Database.RecurringTransaction", b =>
                 {
                     b.Property<Guid>("Id")
@@ -130,11 +165,11 @@ namespace WebApi.Migrations
 
                     b.Property<Guid>("AccountId");
 
+                    b.Property<double>("Amount");
+
                     b.Property<DateTimeOffset>("CreatedAt");
 
                     b.Property<string>("Description");
-
-                    b.Property<double>("Income");
 
                     b.Property<DateTimeOffset>("TransactionDate");
 
@@ -163,6 +198,25 @@ namespace WebApi.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("WebApi.Models.Database.UserPreferences", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTimeOffset>("CreatedAt");
+
+                    b.Property<string>("Currency");
+
+                    b.Property<Guid>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("UserPreferences");
+                });
+
             modelBuilder.Entity("WebApi.Models.Database.Account.Account", b =>
                 {
                     b.HasOne("WebApi.Models.Database.User", "User")
@@ -184,6 +238,14 @@ namespace WebApi.Migrations
                     b.HasOne("WebApi.Models.Database.Account.Account", "Account")
                         .WithMany("Categories")
                         .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("WebApi.Models.Database.Account.AccountPreferences", b =>
+                {
+                    b.HasOne("WebApi.Models.Database.Account.Account", "Account")
+                        .WithOne("Preferences")
+                        .HasForeignKey("WebApi.Models.Database.Account.AccountPreferences", "AccountId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -210,6 +272,14 @@ namespace WebApi.Migrations
                     b.HasOne("WebApi.Models.Database.Account.Account", "Account")
                         .WithMany("Transactions")
                         .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("WebApi.Models.Database.UserPreferences", b =>
+                {
+                    b.HasOne("WebApi.Models.Database.User", "User")
+                        .WithOne("Preferences")
+                        .HasForeignKey("WebApi.Models.Database.UserPreferences", "UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

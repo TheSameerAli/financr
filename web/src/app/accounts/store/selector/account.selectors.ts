@@ -52,6 +52,12 @@ export const currentlyViewingAccountSelector = createSelector(
   }
 )
 
+export const currentlyViewingAccountPreferencesSelector = createSelector(
+  selectAccountsState,
+  (state: fromAccount.AccountState) => {
+    return state[0].currentlyViewingAccount.account?.preferences;
+  }
+)
 const arrayReverseObj = (obj) => {
   let newArray = []
 

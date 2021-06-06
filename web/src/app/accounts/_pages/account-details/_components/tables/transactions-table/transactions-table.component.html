@@ -39,8 +39,14 @@
           <span class="merchant-name">{{transaction.description}}</span>
         </td>
         <td (click)="selectTransaction(transaction.id)" [class.red]="transaction.amount < 0" [class.green]="transaction.amount > 0">
-          {{transaction.amount | currency: 'GBP'}}</td>
-        <td (click)="return;" id="dropdownMenuLink" data-toggle="dropdown" class="text-right">
+          {{transaction.amount | currency: (accountPreferences | async).currency: (accountPreferences | async).currencyData.symbolNative}}
+          <ng-container *ngIf="(accountPreferences | async).currency != (userPreferences | async).currency">
+            ({{transaction.convertedAmount | currency: (userPreferences | async).currency: (userPreferences | async).currencyData.symbolNative}})
+          </ng-container>
+
+        </td>
+
+          <td (click)="return;" id="dropdownMenuLink" data-toggle="dropdown" class="text-right">
           <svg class="more-icon" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
             x="0px" y="0px" viewBox="0 0 384 384" style="enable-background:new 0 0 384 384;" xml:space="preserve">
             <g>
