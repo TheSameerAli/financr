@@ -1,3 +1,4 @@
+import { UserPreferences } from './../settings/_models/user-preferences';
 import { FinancialHealth } from './_models/financial-health';
 export interface SharedState {
   financialHealthState: FinancialHealthState
@@ -6,6 +7,7 @@ export interface SharedState {
 export interface FinancialHealthState {
   financialHealth: FinancialHealth,
   isLoading: boolean;
+  userPreferences: UserPreferences
 }
 
 export const initialState: SharedState = {
@@ -16,6 +18,7 @@ export const initialState: SharedState = {
       businessAccountsWorth: 0,
       savingsAccountsWorth: 0,
     },
-    isLoading: false
+    isLoading: false,
+    userPreferences: {} as UserPreferences
   }
 }

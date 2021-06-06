@@ -1,6 +1,7 @@
+import { UserPreferencesService } from './../../settings/_services/user-preferences.service';
 import { AppState } from './../../app.state';
 import { Store } from '@ngrx/store';
-import { setFinancialHealthLoading, refreshFinancialHealthDone, refreshFinancialHealthRequest } from './shared.actions';
+import { setFinancialHealthLoading, refreshFinancialHealthDone, refreshFinancialHealthRequest, refreshUserPreferencesRequest, refreshUserPreferencesDone } from './shared.actions';
 import { switchMap, map } from 'rxjs/operators';
 import { createEffect, ofType, Actions } from '@ngrx/effects';
 import { OverviewService } from './../_services/overview.service';
@@ -11,7 +12,8 @@ export class SharedEffects {
   constructor(
     private overviewService: OverviewService,
     private store: Store<AppState>,
-    private actions$: Actions) {
+    private actions$: Actions,
+    private userPreferencesService: UserPreferencesService) {
   }
 
   refreshNetworth$ = createEffect(() => this.actions$.pipe(
@@ -26,6 +28,19 @@ export class SharedEffects {
       )
     })
   ));
+
+  refreshUserPreferences$ = createEffect(() => this.actions$.pipe(
+    ofType(refreshUserPreferencesRequest),
+    switchMap(() => {
+      return this.userPreferencesService.getPreferences().pipe(
+        map((userPreferences) => {
+          return refreshUserPreferencesDone(userPreferences);
+        })
+      )
+    })
+  ));
+
+
 
 
 }

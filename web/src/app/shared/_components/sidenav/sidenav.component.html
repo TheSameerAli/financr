@@ -20,7 +20,7 @@
         <app-default-loader [width]="50" [height]="50"></app-default-loader>
       </ng-container>
       <ng-container *ngIf="!(isLoading$ | async)">
-        {{(networth$ | async) | currency: 'GBP'}}
+        {{(networth$ | async) | currency: (userPreferences | async).currency: (userPreferences | async).currencyData.symbolNative}}
       </ng-container>
 
     </div>

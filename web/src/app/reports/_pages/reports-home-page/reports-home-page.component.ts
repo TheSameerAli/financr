@@ -1,3 +1,7 @@
+import { Store } from '@ngrx/store';
+import { getUserPreferences } from './../../../shared/store/shared.selector';
+import { UserPreferences } from './../../../settings/_models/user-preferences';
+import { Observable } from 'rxjs';
 import { accountReducer } from './../../../accounts/store/reducer/account.reducer';
 import { GeneralReport } from './../../_models/general.report';
 import { ReportService } from './../../_services/report.service';
@@ -7,6 +11,7 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import Pikaday from 'pikaday';
 import * as moment from 'moment';
 import * as _ from 'lodash';
+import { AppState } from 'src/app/app.state';
 
 const DATE_FORMAT = 'MM/DD/YYYY'
 
@@ -23,6 +28,7 @@ export class ReportsHomePageComponent implements OnInit, AfterViewInit {
 
   public accountId: string = 'all';
   public accounts: {id: string, name: string}[];
+  public userPreferences: Observable<UserPreferences>;
 
   private incomeTransactions: {categoryName: string, total: number}[] = [];
   private expenseTransactions: {categoryName: string, total: number}[] = [];
@@ -31,7 +37,8 @@ export class ReportsHomePageComponent implements OnInit, AfterViewInit {
     private titleService: TitleService,
     private route: ActivatedRoute,
     private router: Router,
-    private reportService: ReportService
+    private reportService: ReportService,
+    private store: Store<AppState>
     ) {
     let startDate = moment(new Date().setMonth(new Date().getMonth() - 1)).format(DATE_FORMAT).toString();
     let endDate = moment(new Date()).format(DATE_FORMAT).toString();
@@ -125,6 +132,7 @@ export class ReportsHomePageComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.titleService.setTitle('Report');
+    this.userPreferences = this.store.select(getUserPreferences);
 
   }
 

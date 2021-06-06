@@ -1,9 +1,12 @@
+import { refreshUserPreferencesRequest } from './../../../shared/store/shared.actions';
+import { Store } from '@ngrx/store';
 import { ToastrService } from 'ngx-toastr';
 import { UserPreferences } from './../../_models/user-preferences';
 import { UserPreferencesService } from './../../_services/user-preferences.service';
 import { Currency } from './../../../shared/_models/currency';
 import { CurrencyService } from './../../../shared/_services/currency.service';
 import { Component, OnInit } from '@angular/core';
+import { AppState } from 'src/app/app.state';
 
 @Component({
   selector: 'app-user-preferences-page',
@@ -20,7 +23,8 @@ export class UserPreferencesPageComponent implements OnInit {
   constructor(
     private currencyService: CurrencyService,
     private userPreferencesService: UserPreferencesService,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService,
+    private store: Store<AppState>) { }
 
   ngOnInit(): void {
     this.isLoading = true;
@@ -42,6 +46,7 @@ export class UserPreferencesPageComponent implements OnInit {
     this.isButtonLoading = true;
     this.userPreferencesService.changeCurrency(this.selectedCurrency).subscribe(data => {
       this.isButtonLoading = false;
+      this.store.dispatch(refreshUserPreferencesRequest());
       this.toastr.success('Changes have been saved successfully.', 'Saved!');
     }, (err) => {
       this.isButtonLoading = false;

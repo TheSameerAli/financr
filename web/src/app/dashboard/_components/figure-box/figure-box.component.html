@@ -1,6 +1,6 @@
 <div class="figure-box">
   <h1>{{title}}</h1>
-  <h2 *ngIf="!isLoading" class="figure">{{figure | currency: 'GBP'}}</h2>
+  <h2 *ngIf="!isLoading" class="figure">{{figure | currency: (userPreferences | async).currency: (userPreferences | async).currencyData.symbolNative}}</h2>
 
   <div *ngIf="isLoading" class="center">
     <ng-lottie width="100px" height="100px" containerClass="loader-icon"
