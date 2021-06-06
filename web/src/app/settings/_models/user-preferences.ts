@@ -1,6 +1,6 @@
 import { Currency } from './../../shared/_models/currency';
-export interface AccountPreferences {
+export interface UserPreferences {
   currency: string;
+  userId: string;
   currencyData: Currency;
-  accountId: string;
 }

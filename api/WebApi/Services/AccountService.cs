@@ -37,6 +37,7 @@ namespace WebApi.Services
         private readonly DbSet<AccountBudget> _accountBudgets;
         private readonly DbSet<AccountPreferences> _accountPreferences;
         private readonly IAccountCategoryService _accountCategoryService;
+        private readonly DbSet<UserPreferences> _userPreferences;
         public AccountService(IUnitOfWork uow, IAccountCategoryService accountCategoryService)
         {
             _uow = uow;
@@ -46,6 +47,7 @@ namespace WebApi.Services
             _accountCategoryService = accountCategoryService;
             _accountCategories = _uow.Set<AccountCategory>();
             _accountPreferences = _uow.Set<AccountPreferences>();
+            _userPreferences = _uow.Set<UserPreferences>();
         }
         public async Task<Account> Create(string name, AccountType type, Guid userId, double initialBalance)
         {
@@ -56,7 +58,8 @@ namespace WebApi.Services
             var account = new Account(name, type, userId);
             await _accounts.AddAsync(account);
             await _uow.SaveChangesAsync();
-            var preferences = new AccountPreferences("GBP", account.Id);
+            var userPreferences = await _userPreferences.Where(up => up.UserId == userId).FirstOrDefaultAsync();
+            var preferences = new AccountPreferences(userPreferences.Currency, account.Id);
             await _accountPreferences.AddAsync(preferences);
             await _uow.SaveChangesAsync();
             await AddDefaultCategories(account.Id);

@@ -38,14 +38,14 @@
         <div class="financial-data">
           <div class="value-figure-box">
             <span class="value-title">Income</span>
-            <span class="value-figure green">{{reportData?.summary?.income | currency: 'GBP'}}</span>
+            <span class="value-figure green">{{reportData?.summary?.income | currency: (userPreferences | async).currency: (userPreferences | async).currencyData.symbolNative}}</span>
           </div>
 
           <div class="value-symbol">-</div>
 
           <div class="value-figure-box">
             <span class="value-title">Expenses</span>
-            <span class="value-figure red">{{reportData?.summary?.expenses * -1 | currency: 'GBP'}}</span>
+            <span class="value-figure red">{{reportData?.summary?.expenses * -1 | currency: (userPreferences | async).currency: (userPreferences | async).currencyData.symbolNative}}</span>
           </div>
 
           <div class="value-symbol">=</div>
@@ -53,7 +53,7 @@
           <div class="value-figure-box">
             <span class="value-title">Total Profit/Loss</span>
             <span [class.red]="reportData?.summary?.total < 0" [class.green]="reportData?.summary?.total > 0" class="value-figure">
-              {{reportData?.summary?.total | currency: 'GBP'}}
+              {{reportData?.summary?.total | currency: (userPreferences | async).currency: (userPreferences | async).currencyData.symbolNative}}
             </span>
           </div>
         </div>
@@ -71,11 +71,11 @@
           <tbody>
             <tr *ngFor="let categoryIncomeTransaction of incomeTransactions">
               <td>{{categoryIncomeTransaction.categoryName}}</td>
-              <td class="text-right green">{{categoryIncomeTransaction.total | currency: 'GBP'}}</td>
+              <td class="text-right green">{{categoryIncomeTransaction.total | currency: (userPreferences | async).currency: (userPreferences | async).currencyData.symbolNative}}</td>
             </tr>
             <tr>
               <td class="text-right"> <strong></strong></td>
-              <td class="text-right"> <strong>{{reportData?.summary?.income | currency: 'GBP'}}</strong></td>
+              <td class="text-right"> <strong>{{reportData?.summary?.income | currency: (userPreferences | async).currency: (userPreferences | async).currencyData.symbolNative}}</strong></td>
             </tr>
           </tbody>
         </table>
@@ -91,12 +91,12 @@
           <tbody>
             <tr *ngFor="let categoryExpensesTransaction of expenseTransactions">
               <td>{{categoryExpensesTransaction.categoryName}}</td>
-              <td class="text-right red">{{categoryExpensesTransaction.total * -1 | currency: 'GBP'}}</td>
+              <td class="text-right red">{{categoryExpensesTransaction.total * -1 | currency: (userPreferences | async).currency: (userPreferences | async).currencyData.symbolNative}}</td>
             </tr>
 
             <tr>
               <td class="text-right"> <strong></strong></td>
-              <td class="text-right"> <strong>{{reportData?.summary?.expenses * -1 | currency: 'GBP'}}</strong> </td>
+              <td class="text-right"> <strong>{{reportData?.summary?.expenses * -1 | currency: (userPreferences | async).currency: (userPreferences | async).currencyData.symbolNative}}</strong> </td>
             </tr>
           </tbody>
         </table>

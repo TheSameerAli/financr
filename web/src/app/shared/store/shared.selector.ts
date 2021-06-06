@@ -12,3 +12,8 @@ export const getLoading = createSelector(getSharedState, (state) => {
 export const getNetworth = createSelector(getSharedState, (state) => {
   return state[0].financialHealthState.financialHealth.totalNetWorth;
 });
+
+
+export const getUserPreferences = createSelector(getSharedState, (state) => {
+  return state[0].userPreferences;
+})

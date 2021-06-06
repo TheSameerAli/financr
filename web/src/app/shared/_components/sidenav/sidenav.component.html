@@ -20,7 +20,7 @@
         <app-default-loader [width]="50" [height]="50"></app-default-loader>
       </ng-container>
       <ng-container *ngIf="!(isLoading$ | async)">
-        {{(networth$ | async) | currency: 'GBP'}}
+        {{(networth$ | async) | currency: (userPreferences | async).currency: (userPreferences | async).currencyData.symbolNative}}
       </ng-container>
 
     </div>
@@ -148,7 +148,7 @@
           <span class="menu-text">Help</span>
         </a>
 
-        <a class="custom-menu-item dropright" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a [routerLinkActive]="['active']" class="custom-menu-item dropright" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
           <svg height="512pt" viewBox="0 0 512 512" width="512pt" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -156,9 +156,10 @@
             <path
               d="m256 271c49.625 0 90-40.375 90-90v-30c0-49.625-40.375-90-90-90s-90 40.375-90 90v30c0 49.625 40.375 90 90 90zm-60-120c0-33.085938 26.914062-60 60-60s60 26.914062 60 60v30c0 33.085938-26.914062 60-60 60s-60-26.914062-60-60zm0 0" />
           </svg>
-          <span class="menu-text">Account</span>
+          <span  class="menu-text">Account</span>
           <div class="dropdown-menu">
             <a class="dropdown-item" href="#">Profile Settings</a>
+            <a class="dropdown-item" [routerLink]="['/settings', 'preferences']">Preferences</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" [routerLink]="['/auth', 'logout']">Logout</a>
           </div>
@@ -170,3 +171,4 @@
 
 
 </div>
+
