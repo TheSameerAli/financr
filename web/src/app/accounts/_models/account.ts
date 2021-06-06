@@ -11,4 +11,7 @@ export class Account {
   totalOutgoings: number;
   transactions: Transaction[];
   preferences: AccountPreferences;
+  convertedBalance: number;
+  totalConvertedIncome: number;
+  totalConvertedOutgoings: number;
 }

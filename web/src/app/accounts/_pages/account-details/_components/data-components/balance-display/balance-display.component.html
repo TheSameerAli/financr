@@ -3,6 +3,12 @@
     <div class="total-balance">
       <p class="text-center">Total Balance</p>
       <h1>{{(account | async).availableBalance | currency: (accountPreferences | async).currency: (accountPreferences | async).currencyData.symbolNative}}</h1>
+      <ng-container *ngIf="(accountPreferences | async).currency != (userPreferences | async).currency">
+        <div class="d-flex converted-total-balance justify-content-center text-center">
+          ({{(account | async).convertedBalance | currency: (userPreferences | async).currency: (userPreferences | async).currencyData.symbolNative}})
+        </div>
+      </ng-container>
+
     </div>
   </div>
 
@@ -11,11 +17,22 @@
     <div class="income">
       <p>Income</p>
       <h2>{{(account | async).totalIncome | currency: (accountPreferences | async).currency: (accountPreferences | async).currencyData.symbolNative}}</h2>
+      <ng-container *ngIf="(accountPreferences | async).currency != (userPreferences | async).currency">
+        <div class="d-flex converted-breakdown-balance justify-content-center text-center">
+          ({{(account | async).convertedTotalIncome | currency: (userPreferences | async).currency: (userPreferences | async).currencyData.symbolNative}})
+        </div>
+      </ng-container>
+
     </div>
 
     <div class="expense">
       <p>Expenses</p>
       <h2>{{(account | async).totalOutgoings * -1 | currency: (accountPreferences | async).currency: (accountPreferences | async).currencyData.symbolNative}}</h2>
+      <ng-container *ngIf="(accountPreferences | async).currency != (userPreferences | async).currency">
+        <div class="d-flex converted-breakdown-balance justify-content-center text-center">
+          ({{(account | async).convertedTotalExpense | currency: (userPreferences | async).currency: (userPreferences | async).currencyData.symbolNative}})
+        </div>
+      </ng-container>
     </div>
   </div>
 

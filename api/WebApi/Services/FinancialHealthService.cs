@@ -19,11 +19,15 @@ namespace WebApi.Services
         private readonly IUnitOfWork _uow;
         private DbSet<Transaction> _transactions;
         private DbSet<Account> _accounts;
-        public FinancialHealthService(IUnitOfWork uow)
+        private IUserService _userService;
+        private ICurrencyConversionService _currencyConversionService;
+        public FinancialHealthService(IUnitOfWork uow, IUserService userService, ICurrencyConversionService currencyConversionService)
         {
             _uow = uow;
             _transactions = _uow.Set<Transaction>();
             _accounts = _uow.Set<Account>();
+            _userService = userService;
+            _currencyConversionService = currencyConversionService;
         }   
         public async Task<FinancialHealth> GetFinancialHealth(Guid userId)
         {
@@ -38,13 +42,25 @@ namespace WebApi.Services
 
         private async Task<double> GetAccountsWorth(Guid userId, AccountType type)
         {
+            var userPreferences = await _userService.GetPreferences(userId);
             var accounts = await _accounts
+                .Include(a =>a.Preferences)
                 .Where(a => a.UserId == userId && a.Type == type)
                 .ToListAsync();
             var transactions = new List<Transaction>();
             foreach (var account in accounts)
             {
-                transactions.AddRange(await _transactions.Where(t => t.AccountId == account.Id).ToListAsync());
+                var accountTransactions = await _transactions.Where(t => t.AccountId == account.Id).AsNoTracking().ToListAsync();
+                if (account.Preferences.Currency != userPreferences.Currency)
+                {
+                    var pair = $"{account.Preferences.Currency}_{userPreferences.Currency}";
+                    foreach (var transaction in accountTransactions)
+                    {
+                        transaction.Amount = await _currencyConversionService.Convert(pair, transaction.Amount);
+                    }
+                    
+                }
+                transactions.AddRange(accountTransactions);
             }
             return transactions.Sum(transaction => transaction.Amount);
         }

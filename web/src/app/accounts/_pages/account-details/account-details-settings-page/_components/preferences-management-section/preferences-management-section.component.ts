@@ -1,3 +1,4 @@
+import { refreshFinancialHealthRequest } from './../../../../../../shared/store/shared.actions';
 import { Currency } from './../../../../../../shared/_models/currency';
 import { CurrencyService } from './../../../../../../shared/_services/currency.service';
 import { loadCurrentlyViewingAccountRequest } from './../../../../../store/action/account.actions';
@@ -55,6 +56,7 @@ export class PreferencesManagementSectionComponent implements OnInit {
       this.isButtonLoading = false;
       this.toastr.success('Preferences have been saved', 'Saved!');
       this.store.dispatch(loadCurrentlyViewingAccountRequest({accountId: this.accountId}));
+      this.store.dispatch(refreshFinancialHealthRequest());
     }, (err) => {
       this.isButtonLoading = false;
       this.toastr.error('Error saving preferences. Please try again later.', 'Error');

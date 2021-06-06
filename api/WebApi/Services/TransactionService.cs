@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using WebApi.Context;
 using WebApi.Models.Database;
+using WebApi.Models.Database.Account;
 using WebApi.Utilities;
 
 namespace WebApi.Services
@@ -28,15 +29,21 @@ namespace WebApi.Services
         private readonly DbSet<Transaction> _transactions;
         private readonly DbSet<RecurringTransactionsLog> _recurringTransactionsLogs;
         private readonly IRecurringTransactionsService _recurringTransactionsService;
+        private readonly DbSet<Account> _accounts;
+        private readonly IUserService _userService;
+        private readonly ICurrencyConversionService _currencyConversionService;
         
         
-        public TransactionService(IUnitOfWork uow, IRecurringTransactionsService recurringTransactionsService)
+        public TransactionService(IUnitOfWork uow, IRecurringTransactionsService recurringTransactionsService,
+            IUserService userService, ICurrencyConversionService currencyConversionService)
         {
             _uow = uow;
             _transactions = _uow.Set<Transaction>();
             _recurringTransactionsService = recurringTransactionsService;
             _recurringTransactionsLogs = _uow.Set<RecurringTransactionsLog>();
-
+            _accounts = _uow.Set<Account>();
+            _userService = userService;
+            _currencyConversionService = currencyConversionService;
         }
 
         public async Task<Transaction> Create(double income, string description, DateTimeOffset transactionDate, Guid accountCategoryId, Guid accountId)
@@ -49,12 +56,27 @@ namespace WebApi.Services
 
         public async Task<List<Transaction>> GetAll(Guid accountId)
         {
-            return await _transactions
+            var transactions = await _transactions
                 .Where(t => t.AccountId == accountId)
                 .Include(t => t.AccountCategory)
                 .OrderByDescending(t => t.TransactionDate)
                 .ThenByDescending(t => t.CreatedAt)
                 .ToListAsync();
+            var account = await _accounts.Include(a => a.Preferences)
+                .Where(a => a.Id == accountId).FirstOrDefaultAsync();
+            var userPreferences = await _userService.GetPreferences(account.UserId);
+            var accountPreferences = account.Preferences;
+            foreach (var transaction in transactions)
+            {
+                if (userPreferences.Currency != accountPreferences.Currency)
+                {
+                    transaction.ConvertedAmount =
+                        await _currencyConversionService.Convert(
+                            $"{accountPreferences.Currency}_{userPreferences.Currency}", transaction.Amount);
+                }
+            }
+
+            return transactions;
         }
 
         public async Task<Transaction> GetTransactionById(Guid transactionId)

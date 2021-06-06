@@ -61,7 +61,7 @@ namespace WebApi.Services
             {
                 return false;
             }
-            var transactions = await _transactions.Where(t => t.AccountId == accountCategory.AccountId).ToListAsync();
+            var transactions = await _transactions.Where(t => t.AccountCategoryId == accountCategory.Id).ToListAsync();
             _transactions.RemoveRange(transactions);
             await _uow.SaveChangesAsync();
             _accountCategories.Remove(accountCategory);

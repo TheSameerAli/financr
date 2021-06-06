@@ -34,7 +34,13 @@
                     <span class="account-icon"><img [src]="accountIcons[account.type]" alt=""></span>
                     <span class="account-text">{{account.name}}</span>
                   </td>
-                  <td class="account-balance">{{account.balance | currency: account.preferences.currency: account.preferences.currencyData.symbolNative}}</td>
+                  <td class="account-balance">
+                    {{account.balance | currency: account.preferences.currency: account.preferences.currencyData.symbolNative}}
+                    <ng-container *ngIf="(userPreferences | async).currency != account.preferences.currency">
+                      (~ {{account.convertedBalance | currency: (userPreferences | async).currency: (userPreferences | async).currencyData.symbolNative}})
+                    </ng-container>
+
+                  </td>
                 </tr>
               </tbody>
             </table>

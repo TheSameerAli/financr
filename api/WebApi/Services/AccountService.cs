@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -38,7 +39,9 @@ namespace WebApi.Services
         private readonly DbSet<AccountPreferences> _accountPreferences;
         private readonly IAccountCategoryService _accountCategoryService;
         private readonly DbSet<UserPreferences> _userPreferences;
-        public AccountService(IUnitOfWork uow, IAccountCategoryService accountCategoryService)
+        private readonly IUserService _userService;
+        private readonly ICurrencyConversionService _currencyConversionService;
+        public AccountService(IUnitOfWork uow, IAccountCategoryService accountCategoryService, IUserService userService, ICurrencyConversionService currencyConversionService)
         {
             _uow = uow;
             _accounts = _uow.Set<Account>();
@@ -48,6 +51,8 @@ namespace WebApi.Services
             _accountCategories = _uow.Set<AccountCategory>();
             _accountPreferences = _uow.Set<AccountPreferences>();
             _userPreferences = _uow.Set<UserPreferences>();
+            _userService = userService;
+            _currencyConversionService = currencyConversionService;
         }
         public async Task<Account> Create(string name, AccountType type, Guid userId, double initialBalance)
         {
@@ -77,12 +82,24 @@ namespace WebApi.Services
 
         public async Task<List<Account>> GetAccounts(Guid userId)
         {
-            return await _accounts
+            var userPreferences = await _userService.GetPreferences(userId);
+            var accounts =  await _accounts
                 .Where(a => a.UserId == userId)
                 .Include(a => a.Budget)
                 .Include(t => t.Transactions)
                 .Include(t => t.Preferences)
                 .ToListAsync();
+            foreach (var account in accounts)
+            {
+                if (account.Preferences.Currency != userPreferences.Currency)
+                {
+                    account.ConvertedBalance =
+                        await _currencyConversionService.Convert(
+                            $"{account.Preferences.Currency}_{userPreferences.Currency}", account.Balance);
+                }
+            }
+
+            return accounts;
         }
 
         public async Task<Account> GetAccount(Guid accountId)

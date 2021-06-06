@@ -1,3 +1,5 @@
+import { getUserPreferences } from './../../../shared/store/shared.selector';
+import { UserPreferences } from './../../../settings/_models/user-preferences';
 import { TitleService } from './../../../shared/_services/title.service';
 import { accountsIsLoadingSelector, selectAccounts } from './../../store/selector/account.selectors';
 import { AccountState } from './../../store/reducer/account.reducer';
@@ -18,6 +20,7 @@ import { loadAccountsRequest } from '../../store/action/account.actions';
 export class AccountsListPageComponent implements OnInit {
   public accounts$: Observable<Account[]>;
   public isLoading$: Observable<boolean>;
+  public userPreferences: Observable<UserPreferences>;
   public accountIcons = {
     0: '/assets/icons/bank.svg',
     1: '/assets/icons/investment.svg',
@@ -29,13 +32,14 @@ export class AccountsListPageComponent implements OnInit {
     private accountService: AccountService,
     private router: Router,
     private store: Store<AccountState>,
-    private titleService: TitleService) { }
+    private titleService: TitleService,) { }
 
   ngOnInit(): void {
     this.titleService.setTitle('Accounts')
     this.store.dispatch(loadAccountsRequest());
     this.accounts$ = this.store.select(selectAccounts);
     this.isLoading$ = this.store.select(accountsIsLoadingSelector);
+    this.userPreferences = this.store.select(getUserPreferences);
   }
 
   toAccount(id) {
