@@ -1,8 +1,9 @@
+import { Currency } from './../../../../../../shared/_models/currency';
+import { CurrencyService } from './../../../../../../shared/_services/currency.service';
 import { loadCurrentlyViewingAccountRequest } from './../../../../../store/action/account.actions';
 import { AppState } from './../../../../../../app.state';
 import { Store } from '@ngrx/store';
 import { AccountPreferences } from './../../../../../_models/account-preferences';
-import { Currency } from './../../../../../_models/currency';
 import { AccountService } from './../../../../../_services/accounts.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
@@ -19,7 +20,7 @@ export class PreferencesManagementSectionComponent implements OnInit {
   public currencies: Currency[];
   public preferences: AccountPreferences;
   public selectedCurrencyCode: string;
-  constructor(private accountService: AccountService, private toastr: ToastrService, private store: Store<AppState>) { }
+  constructor(private accountService: AccountService, private toastr: ToastrService, private store: Store<AppState>, private currencyService: CurrencyService) { }
 
   ngOnInit(): void {
     this.loadCurrentPreferences();
@@ -27,7 +28,7 @@ export class PreferencesManagementSectionComponent implements OnInit {
 
   loadCurrencies() {
     this.isLoading = true;
-    this.accountService.getAllCurrencies().subscribe((data: Currency[]) => {
+    this.currencyService.getAllCurrencies().subscribe((data: Currency[]) => {
       this.currencies = data;
       this.selectedCurrencyCode = data.find(c => c.code === this.preferences.currency).code;
       this.isLoading = false;

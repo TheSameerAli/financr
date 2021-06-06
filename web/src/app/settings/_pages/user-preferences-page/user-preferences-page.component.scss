@@ -1,0 +1,32 @@
+@import '../../../styles/variables';
+
+.preferences-page-container {
+  padding: 0 3% 0 3%;
+}
+
+.preferences-page {
+  background-color: white;
+  padding: 1rem 2rem 1rem 2rem;
+  min-height: 100vh;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.15);
+
+  .heading-bar {
+    h2 {
+      color: $card-title-color;
+      font-weight: 600;
+      font-size: 26px;
+    }
+  }
+
+}
+
+.sections {
+  .section-heading {
+    font-size: 20px;
+    color: $primary;
+    border-bottom: 1px solid rgba($primary, 0.3) ;
+    width: 100%;
+    padding: .5rem 0 .5rem 0;
+    margin: 2rem 0 2rem 0;
+  }
+}

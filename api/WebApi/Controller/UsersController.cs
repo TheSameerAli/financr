@@ -1,7 +1,9 @@
 ﻿using System.Security.Cryptography.X509Certificates;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http;
+using WebApi.Controller.Base;
 using WebApi.Models.DTO.Requests;
 using WebApi.Services;
 
@@ -10,7 +12,7 @@ namespace WebApi.Controller
     [ApiController]
     [Authorize]
     [Route("user")]
-    public class UsersController : ControllerBase
+    public class UsersController : BaseController
     {
         private IUserService _userService;
 
@@ -30,6 +32,18 @@ namespace WebApi.Controller
             }
 
             return Ok(user);
+        }
+
+        [HttpPatch("change-currency")]
+        public async Task<IActionResult> ChangeCurrency([FromBody] SetCurrencyRequest request)
+        {
+            return Ok(await _userService.ChangeCurrency(request.Currency, UserId));
+        }
+
+        [HttpGet("preferences")]
+        public async Task<IActionResult> GetUserPreferences()
+        {
+            return Ok(await _userService.GetPreferences(UserId));
         }
     }
 }

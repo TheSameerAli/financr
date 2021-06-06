@@ -1,0 +1,40 @@
+<div class="preferences-page-container pt-3">
+  <div class="preferences-page p-5">
+    <div class="heading-bar d-flex justify-content-between align-items-center">
+      <h2>User Preferences</h2>
+    </div>
+
+    <div class="user-preferences-settings-container">
+      <div class="sections">
+        <div *ngIf="!isLoading" id="currency-section">
+          <h2 class="section-heading">Currency Setting</h2>
+          <div class="section-body">
+            <div class="form-group">
+              <label for="">Change Currency</label>
+              <select [(ngModel)]="selectedCurrency" class="form-control" name="" id="">
+                <option [selected]="currency.code === preferences.currency" *ngFor="let currency of currencies" [value]="currency.code">{{currency.name}} ({{currency.symbolNative}})</option>
+              </select>
+            </div>
+            <div class="text-right">
+              <button (click)="changeCurrency()" class="btn btn-primary-button">
+                <ng-container *ngIf="isButtonLoading">
+                  <app-default-loader [width]="25" [height]="25"></app-default-loader>
+                </ng-container>
+                <ng-container *ngIf="!isButtonLoading">Save</ng-container>
+
+              </button>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="isLoading" class="d-flex justify-content-center">
+          <app-default-loader></app-default-loader>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+</div>
+
+

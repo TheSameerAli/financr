@@ -1,4 +1,4 @@
-import { Currency } from './currency';
+import { Currency } from './../../shared/_models/currency';
 export interface AccountPreferences {
   currency: string;
   currencyData: Currency;
