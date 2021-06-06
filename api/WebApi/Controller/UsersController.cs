@@ -8,6 +8,7 @@ using WebApi.Services;
 namespace WebApi.Controller
 {
     [ApiController]
+    [Authorize]
     [Route("user")]
     public class UsersController : ControllerBase
     {

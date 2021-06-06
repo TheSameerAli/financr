@@ -8,6 +8,7 @@
     public class ApplicationDbContext : DbContext, IUnitOfWork
     {
         public DbSet<User> Users { get; set; } 
+        public DbSet<UserPreferences> UserPreferences { get; set; }
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<RecurringTransaction> RecurringTransactions { get; set; }
@@ -35,6 +36,14 @@
             modelBuilder.Entity<User>(o =>
             {
                 o.HasMany(u => u.Accounts);
+                o.HasOne(u => u.Preferences);
+            });
+            #endregion
+            
+            #region UserPreferences
+            modelBuilder.Entity<UserPreferences>(o =>
+            {
+                o.HasOne(u => u.User);
             });
             #endregion
 
