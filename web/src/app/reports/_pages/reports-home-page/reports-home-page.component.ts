@@ -125,8 +125,8 @@ export class ReportsHomePageComponent implements OnInit, AfterViewInit {
       queryParams: {startDate: startDate, endDate: endDate}
     });
 
-    this.startDate = this.route.snapshot.queryParams['startDate'];
-    this.endDate = this.route.snapshot.queryParams['endDate'];
+    this.startDate = startDate;
+    this.endDate = endDate;
 
   }
 
