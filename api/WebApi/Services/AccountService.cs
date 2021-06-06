@@ -159,14 +159,33 @@ namespace WebApi.Services
             // Group the transactions by category
             var tr = expenseTransactions.GroupBy(t => t.AccountCategoryId).ToList();
             var spendingChart = new AccountSpendingChart() {Data = new List<AccountSpendingChartData>()};
+            var account = await _accounts.Where(a => a.Id == accountId)
+                .Include(a => a.Preferences)
+                .FirstOrDefaultAsync();
+            var userPreferences = await _userService.GetPreferences(account.UserId); 
 
             foreach (var t in tr)
             {
-                spendingChart.Data.Add(new AccountSpendingChartData()
+                if (account.Preferences.Currency != userPreferences.Currency)
                 {
-                    Name = _accountCategories.FirstOrDefault(ac => ac.Id == t.Key)?.Name,
-                    Value = t.Sum(trr => trr.Amount) * -1
-                });
+                    var pair = $"{account.Preferences.Currency}_{userPreferences.Currency}";
+                    spendingChart.Data.Add(new AccountSpendingChartData()
+                    {
+                        Name = _accountCategories.FirstOrDefault(ac => ac.Id == t.Key)?.Name,
+                        Value = t.Sum(trr => trr.Amount) * -1,
+                        ConvertedValue = await _currencyConversionService.Convert(pair, t.Sum(trr => trr.Amount) * -1)
+                    });
+                }
+                else
+                {
+                    spendingChart.Data.Add(new AccountSpendingChartData()
+                    {
+                        Name = _accountCategories.FirstOrDefault(ac => ac.Id == t.Key)?.Name,
+                        Value = t.Sum(trr => trr.Amount) * -1,
+                        ConvertedValue = 0
+                    });
+                }
+                
             }
 
             return spendingChart;
