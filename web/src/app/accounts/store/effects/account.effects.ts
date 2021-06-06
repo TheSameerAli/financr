@@ -84,7 +84,7 @@ export class AccountEffects {
           map((spendingChart: SpendingChart) => {
             if (spendingChart.data.length === 0) {
               spendingChart = {
-                data: [{name: 'none', value: 0.0000000000001}]
+                data: [{name: 'none', value: 0.0000000000001, convertedValue: 0.0000000000001}]
               }
             }
             this.store.dispatch(accountSetIsLoading({status: false}));
