@@ -59,7 +59,10 @@ export class AddAccountPageComponent implements OnInit {
         availableBalance: 0,
         totalIncome: 0,
         totalOutgoings: 0,
-        preferences: {} as AccountPreferences
+        preferences: {} as AccountPreferences,
+        convertedBalance: 0,
+        totalConvertedIncome: 0,
+        totalConvertedOutgoings: 0
       }
     }));
   }
