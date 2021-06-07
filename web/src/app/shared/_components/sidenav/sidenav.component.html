@@ -113,7 +113,8 @@
           <span class="menu-text">Reports</span>
         </a>
 
-        <a class="custom-menu-item" href="#" [routerLinkActive]="['active']">
+        <a class="custom-menu-item" href="#" [routerLink]="['/settings', 'preferences']"
+          [routerLinkActive]="['active']">
 
           <svg id="Layer_1" enable-background="new 0 0 24 24" height="512" viewBox="0 0 24 24" width="512"
             xmlns="http://www.w3.org/2000/svg">
@@ -144,11 +145,12 @@
               d="m256 512c-141.164062 0-256-114.835938-256-256s114.835938-256 256-256 256 114.835938 256 256-114.835938 256-256 256zm0-480c-123.519531 0-224 100.480469-224 224s100.480469 224 224 224 224-100.480469 224-224-100.480469-224-224-224zm0 0" />
             <path
               d="m256 314.667969c-8.832031 0-16-7.167969-16-16v-21.546875c0-20.308594 12.886719-38.507813 32.042969-45.269532 25.492187-8.980468 42.625-36.140624 42.625-55.851562 0-32.363281-26.304688-58.667969-58.667969-58.667969s-58.667969 26.304688-58.667969 58.667969c0 8.832031-7.167969 16-16 16s-16-7.167969-16-16c0-49.984375 40.664063-90.667969 90.667969-90.667969s90.667969 40.683594 90.667969 90.667969c0 35.585938-28.097657 73.367188-63.980469 86.039062-6.398438 2.238282-10.6875 8.316407-10.6875 15.101563v21.527344c0 8.832031-7.167969 16-16 16zm0 0" />
-            </svg>
+          </svg>
           <span class="menu-text">Help</span>
         </a>
 
-        <a [routerLinkActive]="['active']" class="custom-menu-item dropright" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a [routerLinkActive]="['active']" class="custom-menu-item dropright" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
 
           <svg height="512pt" viewBox="0 0 512 512" width="512pt" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -156,10 +158,9 @@
             <path
               d="m256 271c49.625 0 90-40.375 90-90v-30c0-49.625-40.375-90-90-90s-90 40.375-90 90v30c0 49.625 40.375 90 90 90zm-60-120c0-33.085938 26.914062-60 60-60s60 26.914062 60 60v30c0 33.085938-26.914062 60-60 60s-60-26.914062-60-60zm0 0" />
           </svg>
-          <span  class="menu-text">Account</span>
+          <span class="menu-text">Account</span>
           <div class="dropdown-menu">
             <a class="dropdown-item" href="#">Profile Settings</a>
-            <a class="dropdown-item" [routerLink]="['/settings', 'preferences']">Preferences</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" [routerLink]="['/auth', 'logout']">Logout</a>
           </div>
@@ -171,4 +172,3 @@
 
 
 </div>
-
