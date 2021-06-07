@@ -52,9 +52,11 @@ export class SpendingChartComponent implements OnInit, AfterViewInit, OnChanges 
           let pieChart = document.getElementsByClassName('ngx-charts-outer')[0];
           let balanceDiv = document.createElement('div');
           balanceDiv.classList.add('pie-chart-amount', 'text-center');
-          balanceDiv.innerText = this.cp.transform(this.sum(data.data), aPreferences.currency, aPreferences.currencyData.symbolNative) + '\n' +
-          '(' + this.cp.transform(this.sumConverted(data.data), uPreferences.currency, uPreferences.currencyData.symbolNative) + ')';
-          ;
+          let convertedText = '';
+          if (aPreferences.currency != uPreferences.currency) {
+            convertedText = '\n' + '(' + this.cp.transform(this.sumConverted(data.data), uPreferences.currency, uPreferences.currencyData.symbolNative) + ')';
+          }
+          balanceDiv.innerText = this.cp.transform(this.sum(data.data), aPreferences.currency, aPreferences.currencyData.symbolNative) + convertedText;
           let spentSinceDiv = document.createElement('div');
           spentSinceDiv.classList.add('pie-chart-spent-since');
           spentSinceDiv.innerText = 'Spent since ' + moment(new Date().setMonth(new Date().getMonth() - 1)).format('MM/DD/YYYY');
