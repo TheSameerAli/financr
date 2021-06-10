@@ -18,6 +18,7 @@ namespace WebApi.Services
     public interface IUserService
     {
         User Authenticate(string email, string password);
+        Task<Models.Database.User> Create(string email, string password);
         Task<UserPreferences> ChangeCurrency(string currencyCode, Guid userId);
         Task<UserPreferences> GetPreferences(Guid userId);
     }
@@ -61,6 +62,31 @@ namespace WebApi.Services
             var userToReturn = new User(user.Id, user.Email, tokenHandler.WriteToken(token));
             return userToReturn;
         }
+
+        public async Task<Models.Database.User> Create(string email, string password)
+        {
+            var pwdHasher = new PasswordHasher();
+
+            var user = new Models.Database.User()
+            {
+                Email = email,
+                Password = pwdHasher.Hash(password)
+            };
+            await _users.AddAsync(user);
+            await _uow.SaveChangesAsync().ConfigureAwait(false);
+            
+            var userPreferences = new UserPreferences()
+            {
+                UserId = user.Id,
+                Currency = "GBP"
+            };
+
+            await _userPreferences.AddAsync(userPreferences);
+            await _uow.SaveChangesAsync();
+            
+            return user;
+        }
+
 
         public async Task<UserPreferences> ChangeCurrency(string currencyCode, Guid userId)
         {

@@ -41,7 +41,11 @@ namespace WebApi.Services
         private readonly DbSet<UserPreferences> _userPreferences;
         private readonly IUserService _userService;
         private readonly ICurrencyConversionService _currencyConversionService;
-        public AccountService(IUnitOfWork uow, IAccountCategoryService accountCategoryService, IUserService userService, ICurrencyConversionService currencyConversionService)
+        public AccountService(
+            IUnitOfWork uow, 
+            IAccountCategoryService accountCategoryService, 
+            IUserService userService, 
+            ICurrencyConversionService currencyConversionService)
         {
             _uow = uow;
             _accounts = _uow.Set<Account>();
@@ -77,6 +81,10 @@ namespace WebApi.Services
                 category.Id, account.Id);
             await _transactions.AddAsync(transaction);
             await _uow.SaveChangesAsync();
+
+            account = await _accounts
+                .Include(a => a.Preferences)
+                .Include(a => a.Transactions).FirstOrDefaultAsync(a => a.Id == account.Id);
             return account;
         }
 

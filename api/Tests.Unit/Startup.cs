@@ -1,57 +1,51 @@
 ﻿using System;
 using System.Text;
 using Hangfire;
-using Hangfire.SqlServer;
+using Hangfire.MemoryStorage;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using WebApi.Configuration;
 using WebApi.Context;
 using WebApi.Middlewares;
 
-namespace WebApi
+namespace Tests.Unit
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private IConfiguration Configuration { get; }
+        private IWebHostEnvironment CurrentEnvironment { get; set; }
+
+        public Startup(IConfiguration configuration, IWebHostEnvironment appEnv)
         {
             Configuration = configuration;
+            CurrentEnvironment = appEnv;
         }
 
-        private IConfiguration Configuration { get; }
         // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            GlobalConfiguration.Configuration.UseMemoryStorage();
             services.AddCoreServices();
-            // Hangfire configuration
-            JobStorage.Current = new SqlServerStorage(Configuration.GetConnectionString("DefaultConnection"), 
-                new SqlServerStorageOptions());
-            services.AddHangfire(x => x.UseSqlServerStorage(
-                Configuration.GetConnectionString("DefaultConnection"))
+            
+            services.AddHangfire(x => x.UseMemoryStorage()
             );
             services.AddHangfireServer();
-            // Hangfire configuration ends
-            
+
             
             services.AddDbContext<ApplicationDbContext>(options =>
             {
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection"),
-                    serverDbContextOptionsBuilder =>
-                    {
-                        var minutes = (int) TimeSpan.FromMinutes(3).TotalSeconds;
-                        serverDbContextOptionsBuilder.CommandTimeout(minutes);
-                        serverDbContextOptionsBuilder.EnableRetryOnFailure();
+                options.UseInMemoryDatabase(Guid.NewGuid().ToString());
 
-                    }
-                );
             });
+            
             
             services.AddCors(options =>
             {
@@ -61,7 +55,7 @@ namespace WebApi
                         .AllowAnyHeader());
             });
             
-            var key = Encoding.ASCII.GetBytes(AppSettings.Secret);
+            var key = Encoding.ASCII.GetBytes("thisisjustatestingenvironment-thekeyisnotimportant");
             services.AddAuthenticationService(key);
             
             services.AddControllers()
@@ -70,7 +64,6 @@ namespace WebApi
                     options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
                     options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
                 });
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -78,22 +71,9 @@ namespace WebApi
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
                 app.UseMiddleware<DelayMiddleware>();
             }
             
-            app.UseHangfireDashboard();
-            
-            
-            
-            app.UseCors("CorsPolicy");
-            app.UseRouting();
-            app.UseAuthentication();
-            app.UseAuthorization();
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
         }
     }
 }
