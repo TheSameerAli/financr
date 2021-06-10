@@ -8,7 +8,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using WebApi.Configuration;
 using WebApi.Context;
 using WebApi.Middlewares;
@@ -18,9 +21,9 @@ namespace Tests.Unit
     public class Startup
     {
         private IConfiguration Configuration { get; }
-        private IHostingEnvironment CurrentEnvironment { get; set; }
+        private IWebHostEnvironment CurrentEnvironment { get; set; }
 
-        public Startup(IConfiguration configuration, IHostingEnvironment appEnv)
+        public Startup(IConfiguration configuration, IWebHostEnvironment appEnv)
         {
             Configuration = configuration;
             CurrentEnvironment = appEnv;
@@ -44,30 +47,27 @@ namespace Tests.Unit
             });
             
             
-            var key = Encoding.ASCII.GetBytes("thisisjustatestingenvironmentsoitsfine");
-            services.AddAuthentication(x =>
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader());
+            });
+            
+            var key = Encoding.ASCII.GetBytes("thisisjustatestingenvironment-thekeyisnotimportant");
+            services.AddAuthenticationService(key);
+            
+            services.AddControllers()
+                .AddNewtonsoftJson(options =>
                 {
-                    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                })
-                .AddJwtBearer(x =>
-                {
-                    x.RequireHttpsMetadata = false;
-                    x.SaveToken = true;
-                    x.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        ValidateIssuerSigningKey = true,
-                        IssuerSigningKey = new SymmetricSecurityKey(key),
-                        ValidateIssuer = false,
-                        ValidateAudience = false
-                    };
+                    options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
                 });
-
-            services.AddMvcService();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {

@@ -52,11 +52,11 @@ namespace WebApi.Configuration
         public static IServiceCollection AddMvcService(this IServiceCollection services)
         {
             services.AddMvc()
-                .AddJsonOptions(options => {
+                .AddNewtonsoftJson(options =>
+                {
                     options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
                     options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-                })
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+                });
             return services;
         }
     }
