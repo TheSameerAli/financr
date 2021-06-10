@@ -77,6 +77,10 @@ namespace WebApi.Services
                 category.Id, account.Id);
             await _transactions.AddAsync(transaction);
             await _uow.SaveChangesAsync();
+
+            account = await _accounts
+                .Include(a => a.Preferences)
+                .Include(a => a.Transactions).FirstOrDefaultAsync(a => a.Id == account.Id);
             return account;
         }
 
