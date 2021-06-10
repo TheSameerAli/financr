@@ -41,7 +41,11 @@ namespace WebApi.Services
         private readonly DbSet<UserPreferences> _userPreferences;
         private readonly IUserService _userService;
         private readonly ICurrencyConversionService _currencyConversionService;
-        public AccountService(IUnitOfWork uow, IAccountCategoryService accountCategoryService, IUserService userService, ICurrencyConversionService currencyConversionService)
+        public AccountService(
+            IUnitOfWork uow, 
+            IAccountCategoryService accountCategoryService, 
+            IUserService userService, 
+            ICurrencyConversionService currencyConversionService)
         {
             _uow = uow;
             _accounts = _uow.Set<Account>();

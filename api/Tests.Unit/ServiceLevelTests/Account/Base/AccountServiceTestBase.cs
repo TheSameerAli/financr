@@ -1,4 +1,6 @@
-﻿using WebApi.Services;
+﻿using Moq;
+using WebApi.Context;
+using WebApi.Services;
 
 namespace Tests.Unit.ServiceLevelTests.Account.Base
 {
@@ -8,7 +10,16 @@ namespace Tests.Unit.ServiceLevelTests.Account.Base
 
         public AccountServiceTestBase()
         {
-            _accountService = _helper.GetService<IAccountService>();
+            var currencyConversionServiceMock = new Mock<ICurrencyConversionService>();
+            currencyConversionServiceMock.Setup(ccsm =>
+                ccsm.Convert(It.IsAny<string>(), It.IsAny<double>())).ReturnsAsync(0);
+            
+            _accountService = new AccountService(
+                _helper.GetService<IUnitOfWork>(),
+                _helper.GetService<IAccountCategoryService>(),
+                _helper.GetService<IUserService>(),
+                currencyConversionServiceMock.Object
+                );
         }
     }
 }
