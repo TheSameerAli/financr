@@ -7,6 +7,7 @@
     &lt;/And&gt;&#xD;
     &lt;TestAncestor&gt;&#xD;
       &lt;TestId&gt;xUnit::F23674B9-8259-4C67-976E-84C99ECDC6EE::.NETCoreApp,Version=v5.0::Tests.Unit.ServiceLevelTests.Account.CreateAccountTests&lt;/TestId&gt;&#xD;
+      &lt;TestId&gt;xUnit::F23674B9-8259-4C67-976E-84C99ECDC6EE::.NETCoreApp,Version=v5.0::Tests.Unit.ServiceLevelTests.Account.GetAccountTests&lt;/TestId&gt;&#xD;
     &lt;/TestAncestor&gt;&#xD;
   &lt;/Or&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
