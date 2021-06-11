@@ -48,7 +48,7 @@ namespace WebApi.Controller
         [HttpGet("{accountId}")]
         public async Task<IActionResult> GetAccountData(Guid accountId)
         {
-            var account = await _accountService.GetAccount(accountId);
+            var account = await _accountService.GetAccount(accountId, UserId);
             var accountResp = new Account(account.Id, account.Name, account.Type, account.UserId, account.Transactions,
                 account.Budget, account.Preferences);
             var userPreferences = await _userService.GetPreferences(UserId);

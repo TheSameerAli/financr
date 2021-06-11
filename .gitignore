@@ -11,3 +11,4 @@ obj/
 .vscode/
 .vscode
 appsettings.json
+TestResults/

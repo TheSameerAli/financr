@@ -21,7 +21,7 @@ namespace WebApi.Services
     {
         Task<Account> Create(string name, AccountType type, Guid userId, double initialBalance);
         Task<List<Account>> GetAccounts(Guid userId);
-        Task<Account> GetAccount(Guid accountId);
+        Task<Account> GetAccount(Guid accountId, Guid userId);
         Task<AccountBudget> SetBudget(double budget, Guid accountId);
         Task<AccountPreferences> ChangeCurrency(string currencyCode, Guid accountId);
         Task<AccountPreferences> GetAccountPreferences(Guid accountId);
@@ -110,13 +110,23 @@ namespace WebApi.Services
             return accounts;
         }
 
-        public async Task<Account> GetAccount(Guid accountId)
+        public async Task<Account> GetAccount(Guid accountId, Guid userId)
         {
-            return await _accounts
+            var userPreferences = await _userService.GetPreferences(userId);
+            var account = await _accounts
                 .Include(a => a.Transactions)
                 .Include(ac => ac.Budget)
                 .Include(ac => ac.Preferences)
                 .FirstOrDefaultAsync(a => a.Id == accountId);
+            
+            if (account.Preferences.Currency != userPreferences.Currency)
+            {
+                account.ConvertedBalance =
+                    await _currencyConversionService.Convert(
+                        $"{account.Preferences.Currency}_{userPreferences.Currency}", account.Balance);
+            }
+
+            return account;
         }
         
 

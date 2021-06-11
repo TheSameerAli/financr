@@ -5,6 +5,10 @@ on:
     branches:
       - master
 
+  push:
+    branches:
+      - master
+
 jobs:
   api-unit-tests:
     runs-on: ubuntu-latest
@@ -22,4 +26,13 @@ jobs:
       - name: Display dotnet version
         run: dotnet --version
       - name: Test with the dotnet CLI
-        run: dotnet test api/Tests.Unit/
+        run: cd ./api/Tests.Unit && dotnet test /p:CollectCoverage=true /p:CoverletOutput=TestResults/ /p:CoverletOutputFormat=lcov
+      - name: Upload CodeCov Data
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
+          files: ./api/Tests.Unit/TestResults/coverage.info # optional
+          flags: unittests # optional
+          name: api-unit-tests # optional
+          fail_ci_if_error: true # optional (default = false)
+          verbose: true # optional (default = false)
