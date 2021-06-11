@@ -59,6 +59,11 @@
               (deactivate)="onDeactivate($event)">
             </ngx-charts-line-chart>
           </div>
+
+          <div style="height: 100%; font-size: 22px;" class="d-flex justify-content-center"
+           *ngIf="!isChartLoading && chartData[0].series.length === 0">
+            <p class="pt-3">No transactional data is found on this account</p>
+          </div>
         </div>
 
       </div>
