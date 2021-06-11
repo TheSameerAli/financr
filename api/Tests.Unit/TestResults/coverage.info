@@ -1,0 +1,4895 @@
+SF:F:\financr\api\WebApi\Program.cs
+FN:21,System.Void WebApi.Program::Main(System.String[])
+FNDA:0,System.Void WebApi.Program::Main(System.String[])
+DA:22,0
+DA:23,0
+DA:24,0
+DA:25,0
+DA:26,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+DA:32,0
+DA:33,0
+DA:34,0
+DA:35,0
+DA:36,0
+DA:37,0
+DA:38,0
+DA:39,0
+DA:40,0
+DA:41,0
+DA:42,0
+DA:43,0
+DA:44,0
+DA:45,0
+DA:46,0
+DA:47,0
+FN:49,Microsoft.AspNetCore.Hosting.IWebHostBuilder WebApi.Program::CreateWebHostBuilder(System.String[])
+FNDA:0,Microsoft.AspNetCore.Hosting.IWebHostBuilder WebApi.Program::CreateWebHostBuilder(System.String[])
+DA:50,0
+DA:51,0
+LF:27
+LH:0
+BRF:0
+BRH:0
+FNF:2
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Startup.cs
+FN:25,Microsoft.Extensions.Configuration.IConfiguration WebApi.Startup::get_Configuration()
+FNDA:0,Microsoft.Extensions.Configuration.IConfiguration WebApi.Startup::get_Configuration()
+DA:26,0
+FN:29,System.Void WebApi.Startup::ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+FNDA:0,System.Void WebApi.Startup::ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+DA:30,0
+DA:31,0
+DA:33,0
+DA:34,0
+DA:35,0
+DA:36,0
+DA:37,0
+DA:38,0
+DA:42,0
+DA:43,0
+DA:44,0
+DA:45,0
+DA:46,0
+DA:47,0
+DA:48,0
+DA:49,0
+DA:50,0
+DA:51,0
+DA:52,0
+DA:53,0
+DA:54,0
+DA:56,0
+DA:57,0
+DA:58,0
+DA:59,0
+DA:60,0
+DA:61,0
+DA:62,0
+DA:64,0
+DA:65,0
+DA:67,0
+DA:68,0
+DA:69,0
+DA:70,0
+DA:71,0
+DA:72,0
+DA:74,0
+FN:77,System.Void WebApi.Startup::Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)
+FNDA:0,System.Void WebApi.Startup::Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)
+DA:78,0
+DA:79,0
+DA:80,0
+DA:81,0
+DA:82,0
+DA:83,0
+DA:85,0
+DA:89,0
+DA:90,0
+DA:91,0
+DA:92,0
+DA:93,0
+DA:94,0
+DA:95,0
+DA:96,0
+DA:97,0
+BRDA:79,9,0,0
+BRDA:79,9,1,0
+FN:20,System.Void WebApi.Startup::.ctor(Microsoft.Extensions.Configuration.IConfiguration)
+FNDA:0,System.Void WebApi.Startup::.ctor(Microsoft.Extensions.Configuration.IConfiguration)
+DA:21,0
+DA:22,0
+DA:23,0
+DA:24,0
+LF:58
+LH:0
+BRF:2
+BRH:0
+FNF:4
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Utilities\RecurringTransactions.cs
+FN:7,System.DateTimeOffset WebApi.Utilities.RecurringTransactions::NextDate(System.DateTimeOffset,System.Int32,System.DateTimeOffset)
+FNDA:8,System.DateTimeOffset WebApi.Utilities.RecurringTransactions::NextDate(System.DateTimeOffset,System.Int32,System.DateTimeOffset)
+DA:8,8
+DA:9,8
+DA:10,8
+DA:11,2
+DA:12,2
+DA:15,6
+DA:16,2
+DA:17,2
+DA:20,4
+DA:21,4
+DA:23,4
+DA:24,8
+BRDA:10,25,0,2
+BRDA:10,25,1,6
+BRDA:15,51,0,2
+BRDA:15,51,1,4
+LF:12
+LH:12
+BRF:4
+BRH:4
+FNF:1
+FNH:1
+end_of_record
+SF:F:\financr\api\WebApi\Utilities\Hasher\HasingOptions.cs
+FN:4,System.Int32 WebApi.Utilities.Hasher.HasingOptions::get_Iterations()
+FNDA:29,System.Int32 WebApi.Utilities.Hasher.HasingOptions::get_Iterations()
+DA:5,29
+LF:1
+LH:1
+BRF:0
+BRH:0
+FNF:1
+FNH:1
+end_of_record
+SF:F:\financr\api\WebApi\Utilities\Hasher\PasswordHasher.cs
+FN:12,System.String WebApi.Utilities.Hasher.PasswordHasher::Hash(System.String)
+FNDA:14,System.String WebApi.Utilities.Hasher.PasswordHasher::Hash(System.String)
+DA:13,14
+DA:14,14
+DA:15,14
+DA:16,14
+DA:17,14
+DA:18,14
+DA:19,14
+DA:20,14
+DA:21,14
+DA:23,14
+DA:25,14
+FN:27,System.ValueTuple`2<System.Boolean,System.Boolean> WebApi.Utilities.Hasher.PasswordHasher::Check(System.String,System.String)
+FNDA:0,System.ValueTuple`2<System.Boolean,System.Boolean> WebApi.Utilities.Hasher.PasswordHasher::Check(System.String,System.String)
+DA:28,0
+DA:29,0
+DA:31,0
+DA:32,0
+DA:33,0
+DA:34,0
+DA:37,0
+DA:38,0
+DA:39,0
+DA:41,0
+DA:43,0
+DA:44,0
+DA:45,0
+DA:46,0
+DA:47,0
+DA:48,0
+DA:49,0
+DA:51,0
+DA:53,0
+DA:55,0
+BRDA:31,25,0,0
+BRDA:31,25,1,0
+LF:31
+LH:11
+BRF:2
+BRH:0
+FNF:2
+FNH:1
+end_of_record
+SF:F:\financr\api\WebApi\Services\AccountCategoryService.cs
+FN:25,System.Void WebApi.Services.AccountCategoryService::.ctor(WebApi.Context.IUnitOfWork)
+FNDA:13,System.Void WebApi.Services.AccountCategoryService::.ctor(WebApi.Context.IUnitOfWork)
+DA:26,13
+DA:27,13
+DA:28,13
+DA:29,13
+DA:30,13
+DA:31,13
+FN:33,System.Void WebApi.Services.AccountCategoryService/<GetAccountCategories>d__4::MoveNext()
+FNDA:0,System.Void WebApi.Services.AccountCategoryService/<GetAccountCategories>d__4::MoveNext()
+DA:34,0
+DA:35,0
+DA:36,0
+DA:37,0
+DA:38,0
+DA:39,0
+FN:41,System.Void WebApi.Services.AccountCategoryService/<CreateAccountCategory>d__5::MoveNext()
+FNDA:112,System.Void WebApi.Services.AccountCategoryService/<CreateAccountCategory>d__5::MoveNext()
+DA:42,112
+DA:43,112
+DA:44,112
+DA:45,112
+DA:46,112
+DA:47,112
+FN:49,System.Void WebApi.Services.AccountCategoryService/<EditCategory>d__6::MoveNext()
+FNDA:0,System.Void WebApi.Services.AccountCategoryService/<EditCategory>d__6::MoveNext()
+DA:50,0
+DA:51,0
+DA:52,0
+DA:53,0
+DA:54,0
+DA:55,0
+FN:57,System.Void WebApi.Services.AccountCategoryService/<DeleteCategory>d__7::MoveNext()
+FNDA:0,System.Void WebApi.Services.AccountCategoryService/<DeleteCategory>d__7::MoveNext()
+DA:58,0
+DA:59,0
+DA:60,0
+DA:61,0
+DA:62,0
+DA:64,0
+DA:65,0
+DA:66,0
+DA:67,0
+DA:68,0
+DA:69,0
+DA:70,0
+BRDA:60,358,0,0
+BRDA:60,358,1,0
+LF:36
+LH:12
+BRF:2
+BRH:0
+FNF:5
+FNH:2
+end_of_record
+SF:F:\financr\api\WebApi\Services\AccountService.cs
+FN:43,System.Void WebApi.Services.AccountService::.ctor(WebApi.Context.IUnitOfWork,WebApi.Services.IAccountCategoryService,WebApi.Services.IUserService,WebApi.Services.ICurrencyConversionService)
+FNDA:13,System.Void WebApi.Services.AccountService::.ctor(WebApi.Context.IUnitOfWork,WebApi.Services.IAccountCategoryService,WebApi.Services.IUserService,WebApi.Services.ICurrencyConversionService)
+DA:44,13
+DA:45,13
+DA:46,13
+DA:47,13
+DA:48,13
+DA:49,13
+DA:50,13
+DA:51,13
+DA:52,13
+DA:53,13
+DA:54,13
+DA:55,13
+DA:56,13
+DA:57,13
+DA:58,13
+DA:59,13
+DA:60,13
+FN:167,System.Guid WebApi.Services.AccountService/<>c::<GetSpendingChart>b__17_0(WebApi.Models.Database.Transaction)
+FNDA:0,System.Guid WebApi.Services.AccountService/<>c::<GetSpendingChart>b__17_0(WebApi.Models.Database.Transaction)
+DA:168,0
+FN:182,System.Double WebApi.Services.AccountService/<>c::<GetSpendingChart>b__17_7(WebApi.Models.Database.Transaction)
+FNDA:0,System.Double WebApi.Services.AccountService/<>c::<GetSpendingChart>b__17_7(WebApi.Models.Database.Transaction)
+DA:183,0
+FN:183,System.Double WebApi.Services.AccountService/<>c::<GetSpendingChart>b__17_8(WebApi.Models.Database.Transaction)
+FNDA:0,System.Double WebApi.Services.AccountService/<>c::<GetSpendingChart>b__17_8(WebApi.Models.Database.Transaction)
+DA:184,0
+FN:191,System.Double WebApi.Services.AccountService/<>c::<GetSpendingChart>b__17_10(WebApi.Models.Database.Transaction)
+FNDA:0,System.Double WebApi.Services.AccountService/<>c::<GetSpendingChart>b__17_10(WebApi.Models.Database.Transaction)
+DA:192,0
+FN:61,System.Void WebApi.Services.AccountService/<Create>d__11::MoveNext()
+FNDA:8,System.Void WebApi.Services.AccountService/<Create>d__11::MoveNext()
+DA:62,8
+DA:63,8
+DA:64,0
+DA:65,0
+DA:67,8
+DA:68,8
+DA:69,8
+DA:70,8
+DA:71,8
+DA:72,8
+DA:73,8
+DA:74,8
+DA:76,11
+DA:77,5
+DA:78,5
+DA:79,5
+DA:80,5
+DA:81,5
+DA:82,5
+DA:83,5
+DA:85,5
+DA:86,5
+DA:87,5
+DA:88,5
+DA:89,8
+BRDA:63,152,0,0
+BRDA:63,152,1,8
+BRDA:76,1143,0,5
+BRDA:76,1143,1,3
+BRDA:76,1172,0,3
+BRDA:76,1172,1,5
+FN:91,System.Void WebApi.Services.AccountService/<GetAccounts>d__12::MoveNext()
+FNDA:5,System.Void WebApi.Services.AccountService/<GetAccounts>d__12::MoveNext()
+DA:92,5
+DA:93,5
+DA:94,5
+DA:95,5
+DA:96,5
+DA:97,5
+DA:98,5
+DA:99,5
+DA:100,29
+DA:101,7
+DA:102,7
+DA:103,2
+DA:104,2
+DA:105,2
+DA:106,2
+DA:107,2
+DA:108,7
+DA:110,5
+DA:111,5
+BRDA:100,983,1,7
+BRDA:102,758,0,2
+BRDA:102,758,1,7
+BRDA:100,983,0,5
+FN:113,System.Void WebApi.Services.AccountService/<GetAccount>d__13::MoveNext()
+FNDA:0,System.Void WebApi.Services.AccountService/<GetAccount>d__13::MoveNext()
+DA:114,0
+DA:115,0
+DA:116,0
+DA:117,0
+DA:118,0
+DA:119,0
+DA:120,0
+FN:123,System.Void WebApi.Services.AccountService/<SetBudget>d__14::MoveNext()
+FNDA:0,System.Void WebApi.Services.AccountService/<SetBudget>d__14::MoveNext()
+DA:124,0
+DA:125,0
+DA:126,0
+DA:127,0
+DA:128,0
+DA:129,0
+DA:130,0
+DA:131,0
+DA:132,0
+DA:135,0
+DA:136,0
+DA:137,0
+DA:138,0
+BRDA:127,348,0,0
+BRDA:127,348,1,0
+FN:140,System.Void WebApi.Services.AccountService/<ChangeCurrency>d__15::MoveNext()
+FNDA:0,System.Void WebApi.Services.AccountService/<ChangeCurrency>d__15::MoveNext()
+DA:141,0
+DA:142,0
+DA:143,0
+DA:144,0
+DA:146,0
+DA:147,0
+DA:148,0
+DA:149,0
+DA:150,0
+BRDA:142,73,0,0
+BRDA:142,73,1,0
+FN:152,System.Void WebApi.Services.AccountService/<GetAccountPreferences>d__16::MoveNext()
+FNDA:0,System.Void WebApi.Services.AccountService/<GetAccountPreferences>d__16::MoveNext()
+DA:153,0
+DA:154,0
+DA:155,0
+FN:157,System.Void WebApi.Services.AccountService/<GetSpendingChart>d__17::MoveNext()
+FNDA:0,System.Void WebApi.Services.AccountService/<GetSpendingChart>d__17::MoveNext()
+DA:158,0
+DA:160,0
+DA:162,0
+DA:163,0
+DA:164,0
+DA:165,0
+DA:166,0
+DA:169,0
+DA:170,0
+DA:171,0
+DA:172,0
+DA:173,0
+DA:175,0
+DA:176,0
+DA:177,0
+DA:178,0
+DA:179,0
+DA:180,0
+DA:181,0
+DA:182,0
+DA:185,0
+DA:186,0
+DA:188,0
+DA:189,0
+DA:190,0
+DA:191,0
+DA:193,0
+DA:194,0
+DA:195,0
+DA:197,0
+DA:199,0
+DA:201,0
+BRDA:175,2141,1,0
+BRDA:177,1246,0,0
+BRDA:180,1488,0,0
+BRDA:180,1488,1,0
+BRDA:177,1246,1,0
+BRDA:189,2014,0,0
+BRDA:189,2014,1,0
+BRDA:175,2141,0,0
+FN:203,System.Void WebApi.Services.AccountService/<AddDefaultCategories>d__18::MoveNext()
+FNDA:8,System.Void WebApi.Services.AccountService/<AddDefaultCategories>d__18::MoveNext()
+DA:204,8
+DA:205,200
+DA:206,88
+DA:207,88
+DA:208,88
+DA:209,88
+DA:211,72
+DA:212,24
+DA:213,24
+DA:214,24
+DA:215,24
+DA:217,8
+DA:218,8
+BRDA:205,212,1,88
+BRDA:205,212,0,8
+BRDA:211,444,1,24
+BRDA:211,444,0,8
+LF:142
+LH:72
+BRF:26
+BRH:13
+FNF:13
+FNH:4
+end_of_record
+SF:F:\financr\api\WebApi\Services\ChartingService.cs
+FN:25,System.Void WebApi.Services.ChartingService::.ctor(WebApi.Context.IUnitOfWork,WebApi.Services.IUserService,WebApi.Services.ICurrencyConversionService)
+FNDA:0,System.Void WebApi.Services.ChartingService::.ctor(WebApi.Context.IUnitOfWork,WebApi.Services.IUserService,WebApi.Services.ICurrencyConversionService)
+DA:26,0
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+DA:32,0
+DA:33,0
+FN:34,System.Void WebApi.Services.ChartingService/<GetNetworthChart>d__6::MoveNext()
+FNDA:0,System.Void WebApi.Services.ChartingService/<GetNetworthChart>d__6::MoveNext()
+DA:35,0
+DA:36,0
+DA:40,0
+DA:41,0
+DA:42,0
+DA:43,0
+DA:44,0
+DA:45,0
+DA:46,0
+DA:47,0
+DA:48,0
+DA:51,0
+DA:52,0
+DA:53,0
+DA:54,0
+DA:55,0
+DA:56,0
+DA:57,0
+DA:58,0
+DA:59,0
+DA:62,0
+DA:63,0
+DA:64,0
+DA:65,0
+DA:66,0
+DA:67,0
+DA:68,0
+DA:69,0
+DA:70,0
+DA:73,0
+DA:75,0
+DA:76,0
+DA:77,0
+DA:78,0
+DA:80,0
+DA:81,0
+DA:82,0
+DA:83,0
+DA:84,0
+DA:85,0
+DA:86,0
+DA:87,0
+DA:88,0
+DA:89,0
+DA:90,0
+DA:91,0
+DA:93,0
+DA:94,0
+BRDA:75,1050,0,0
+BRDA:75,1050,1,0
+FN:122,System.DateTimeOffset WebApi.Services.ChartingService/<>c::<_getFirstTransaction>b__7_0(WebApi.Models.Database.Transaction)
+FNDA:0,System.DateTimeOffset WebApi.Services.ChartingService/<>c::<_getFirstTransaction>b__7_0(WebApi.Models.Database.Transaction)
+DA:123,0
+FN:160,System.Double WebApi.Services.ChartingService/<>c::<_constructChart>b__8_5(WebApi.Models.Database.Transaction)
+FNDA:0,System.Double WebApi.Services.ChartingService/<>c::<_constructChart>b__8_5(WebApi.Models.Database.Transaction)
+DA:161,0
+FN:171,System.Double WebApi.Services.ChartingService/<>c::<_constructChart>b__8_7(WebApi.Models.Database.Transaction)
+FNDA:0,System.Double WebApi.Services.ChartingService/<>c::<_constructChart>b__8_7(WebApi.Models.Database.Transaction)
+DA:172,0
+FN:195,System.DateTimeOffset WebApi.Services.ChartingService/<>c::<_constructChart>b__8_0(WebApi.Models.Domain.Charts.NetworthChartData)
+FNDA:0,System.DateTimeOffset WebApi.Services.ChartingService/<>c::<_constructChart>b__8_0(WebApi.Models.Domain.Charts.NetworthChartData)
+DA:196,0
+FN:96,System.Void WebApi.Services.ChartingService/<_getFirstTransaction>d__7::MoveNext()
+FNDA:0,System.Void WebApi.Services.ChartingService/<_getFirstTransaction>d__7::MoveNext()
+DA:97,0
+DA:98,0
+DA:99,0
+DA:100,0
+DA:101,0
+DA:102,0
+DA:104,0
+DA:106,0
+DA:107,0
+DA:108,0
+DA:109,0
+DA:111,0
+DA:112,0
+DA:113,0
+DA:114,0
+DA:115,0
+DA:116,0
+DA:117,0
+DA:118,0
+DA:119,0
+DA:120,0
+DA:121,0
+DA:124,0
+BRDA:106,1350,1,0
+BRDA:111,965,0,0
+BRDA:114,1256,1,0
+BRDA:114,1256,0,0
+BRDA:111,965,1,0
+BRDA:106,1350,0,0
+FN:167,System.Boolean WebApi.Services.ChartingService/<>c__DisplayClass8_0::<_constructChart>b__6(WebApi.Models.Database.Transaction)
+FNDA:0,System.Boolean WebApi.Services.ChartingService/<>c__DisplayClass8_0::<_constructChart>b__6(WebApi.Models.Database.Transaction)
+DA:168,0
+BRDA:168,17,0,0
+BRDA:168,17,1,0
+FN:127,System.Void WebApi.Services.ChartingService/<_constructChart>d__8::MoveNext()
+FNDA:0,System.Void WebApi.Services.ChartingService/<_constructChart>d__8::MoveNext()
+DA:128,0
+DA:129,0
+DA:130,0
+DA:131,0
+DA:132,0
+DA:134,0
+DA:135,0
+DA:137,0
+DA:139,0
+DA:140,0
+DA:141,0
+DA:142,0
+DA:144,0
+DA:145,0
+DA:146,0
+DA:147,0
+DA:148,0
+DA:149,0
+DA:150,0
+DA:151,0
+DA:152,0
+DA:153,0
+DA:154,0
+DA:156,0
+DA:157,0
+DA:158,0
+DA:159,0
+DA:160,0
+DA:162,0
+DA:163,0
+DA:164,0
+DA:165,0
+DA:167,0
+DA:169,0
+DA:170,0
+DA:173,0
+DA:174,0
+DA:175,0
+DA:176,0
+DA:177,0
+DA:178,0
+DA:179,0
+DA:181,0
+DA:182,0
+DA:183,0
+DA:184,0
+DA:185,0
+DA:186,0
+DA:187,0
+DA:188,0
+DA:189,0
+DA:190,0
+DA:191,0
+DA:192,0
+DA:193,0
+DA:194,0
+DA:199,0
+BRDA:139,1376,1,0
+BRDA:144,990,0,0
+BRDA:147,1282,1,0
+BRDA:147,1282,0,0
+BRDA:144,990,1,0
+BRDA:139,1376,0,0
+BRDA:159,2012,1,0
+BRDA:161,1482,0,0
+BRDA:161,1482,1,0
+BRDA:162,1590,0,0
+BRDA:162,1590,1,0
+BRDA:167,1625,0,0
+BRDA:167,1625,1,0
+BRDA:174,1782,0,0
+BRDA:176,1803,0,0
+BRDA:176,1803,1,0
+BRDA:174,1782,1,0
+BRDA:190,1961,0,0
+BRDA:190,1961,1,0
+BRDA:159,2012,0,0
+LF:141
+LH:0
+BRF:30
+BRH:0
+FNF:9
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Services\CurrencyConversionService.cs
+FN:24,System.Void WebApi.Services.CurrencyConversionService::.ctor(WebApi.Context.IUnitOfWork,Microsoft.Extensions.Configuration.IConfiguration)
+FNDA:0,System.Void WebApi.Services.CurrencyConversionService::.ctor(WebApi.Context.IUnitOfWork,Microsoft.Extensions.Configuration.IConfiguration)
+DA:25,0
+DA:26,0
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+FN:31,System.Void WebApi.Services.CurrencyConversionService/<Convert>d__4::MoveNext()
+FNDA:0,System.Void WebApi.Services.CurrencyConversionService/<Convert>d__4::MoveNext()
+DA:32,0
+DA:33,0
+DA:34,0
+DA:35,0
+FN:37,System.Void WebApi.Services.CurrencyConversionService/<GetPairValue>d__5::MoveNext()
+FNDA:0,System.Void WebApi.Services.CurrencyConversionService/<GetPairValue>d__5::MoveNext()
+DA:38,0
+DA:39,0
+DA:40,0
+DA:41,0
+DA:42,0
+DA:43,0
+DA:46,0
+DA:47,0
+BRDA:41,422,0,0
+BRDA:41,422,1,0
+FN:49,System.Void WebApi.Services.CurrencyConversionService/<AddPairValue>d__6::MoveNext()
+FNDA:0,System.Void WebApi.Services.CurrencyConversionService/<AddPairValue>d__6::MoveNext()
+DA:50,0
+DA:51,0
+DA:52,0
+DA:53,0
+DA:54,0
+FN:56,System.Void WebApi.Services.CurrencyConversionService/<RequestPairValue>d__7::MoveNext()
+FNDA:0,System.Void WebApi.Services.CurrencyConversionService/<RequestPairValue>d__7::MoveNext()
+DA:57,0
+DA:59,0
+DA:60,0
+DA:61,0
+DA:62,0
+DA:63,0
+DA:64,0
+DA:65,0
+DA:66,0
+DA:67,0
+LF:33
+LH:0
+BRF:2
+BRH:0
+FNF:5
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Services\DashboardService.cs
+FN:116,System.Double WebApi.Services.DashboardService::_calcPercChange(System.Double,System.Double)
+FNDA:0,System.Double WebApi.Services.DashboardService::_calcPercChange(System.Double,System.Double)
+DA:117,0
+DA:118,0
+DA:119,0
+DA:120,0
+DA:122,0
+DA:123,0
+DA:124,0
+DA:126,0
+DA:127,0
+BRDA:118,11,0,0
+BRDA:118,11,1,0
+BRDA:118,30,0,0
+BRDA:118,30,1,0
+BRDA:122,55,0,0
+BRDA:122,55,1,0
+BRDA:122,77,0,0
+BRDA:122,77,1,0
+FN:25,System.Void WebApi.Services.DashboardService::.ctor(WebApi.Context.IUnitOfWork,WebApi.Services.IUserService,WebApi.Services.ICurrencyConversionService)
+FNDA:0,System.Void WebApi.Services.DashboardService::.ctor(WebApi.Context.IUnitOfWork,WebApi.Services.IUserService,WebApi.Services.ICurrencyConversionService)
+DA:26,0
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+DA:32,0
+DA:33,0
+FN:85,System.Boolean WebApi.Services.DashboardService/<>c::<GetDashboardData>b__6_0(WebApi.Models.Database.Transaction)
+FNDA:0,System.Boolean WebApi.Services.DashboardService/<>c::<GetDashboardData>b__6_0(WebApi.Models.Database.Transaction)
+DA:86,0
+FN:87,System.Boolean WebApi.Services.DashboardService/<>c::<GetDashboardData>b__6_2(WebApi.Models.Database.Transaction)
+FNDA:0,System.Boolean WebApi.Services.DashboardService/<>c::<GetDashboardData>b__6_2(WebApi.Models.Database.Transaction)
+DA:88,0
+FN:88,System.Boolean WebApi.Services.DashboardService/<>c::<GetDashboardData>b__6_4(WebApi.Models.Database.Transaction)
+FNDA:0,System.Boolean WebApi.Services.DashboardService/<>c::<GetDashboardData>b__6_4(WebApi.Models.Database.Transaction)
+DA:89,0
+FN:92,System.Boolean WebApi.Services.DashboardService/<>c::<GetDashboardData>b__6_6(WebApi.Models.Database.Transaction)
+FNDA:0,System.Boolean WebApi.Services.DashboardService/<>c::<GetDashboardData>b__6_6(WebApi.Models.Database.Transaction)
+DA:93,0
+FN:94,System.Boolean WebApi.Services.DashboardService/<>c::<GetDashboardData>b__6_8(WebApi.Models.Database.Transaction)
+FNDA:0,System.Boolean WebApi.Services.DashboardService/<>c::<GetDashboardData>b__6_8(WebApi.Models.Database.Transaction)
+DA:95,0
+FN:95,System.Boolean WebApi.Services.DashboardService/<>c::<GetDashboardData>b__6_10(WebApi.Models.Database.Transaction)
+FNDA:0,System.Boolean WebApi.Services.DashboardService/<>c::<GetDashboardData>b__6_10(WebApi.Models.Database.Transaction)
+DA:96,0
+FN:98,System.Boolean WebApi.Services.DashboardService/<>c::<GetDashboardData>b__6_12(WebApi.Models.Database.Transaction)
+FNDA:0,System.Boolean WebApi.Services.DashboardService/<>c::<GetDashboardData>b__6_12(WebApi.Models.Database.Transaction)
+DA:99,0
+FN:100,System.Boolean WebApi.Services.DashboardService/<>c::<GetDashboardData>b__6_14(WebApi.Models.Database.Transaction)
+FNDA:0,System.Boolean WebApi.Services.DashboardService/<>c::<GetDashboardData>b__6_14(WebApi.Models.Database.Transaction)
+DA:101,0
+FN:101,System.Boolean WebApi.Services.DashboardService/<>c::<GetDashboardData>b__6_16(WebApi.Models.Database.Transaction)
+FNDA:0,System.Boolean WebApi.Services.DashboardService/<>c::<GetDashboardData>b__6_16(WebApi.Models.Database.Transaction)
+DA:102,0
+FN:104,System.Boolean WebApi.Services.DashboardService/<>c::<GetDashboardData>b__6_18(WebApi.Models.Database.Transaction)
+FNDA:0,System.Boolean WebApi.Services.DashboardService/<>c::<GetDashboardData>b__6_18(WebApi.Models.Database.Transaction)
+DA:105,0
+FN:106,System.Boolean WebApi.Services.DashboardService/<>c::<GetDashboardData>b__6_20(WebApi.Models.Database.Transaction)
+FNDA:0,System.Boolean WebApi.Services.DashboardService/<>c::<GetDashboardData>b__6_20(WebApi.Models.Database.Transaction)
+DA:107,0
+FN:107,System.Boolean WebApi.Services.DashboardService/<>c::<GetDashboardData>b__6_22(WebApi.Models.Database.Transaction)
+FNDA:0,System.Boolean WebApi.Services.DashboardService/<>c::<GetDashboardData>b__6_22(WebApi.Models.Database.Transaction)
+DA:108,0
+FN:36,System.Void WebApi.Services.DashboardService/<GetDashboardData>d__6::MoveNext()
+FNDA:0,System.Void WebApi.Services.DashboardService/<GetDashboardData>d__6::MoveNext()
+DA:37,0
+DA:38,0
+DA:39,0
+DA:41,0
+DA:42,0
+DA:44,0
+DA:45,0
+DA:47,0
+DA:48,0
+DA:49,0
+DA:50,0
+DA:51,0
+DA:52,0
+DA:53,0
+DA:54,0
+DA:55,0
+DA:56,0
+DA:57,0
+DA:58,0
+DA:59,0
+DA:60,0
+DA:61,0
+DA:62,0
+DA:64,0
+DA:65,0
+DA:66,0
+DA:67,0
+DA:68,0
+DA:69,0
+DA:70,0
+DA:72,0
+DA:73,0
+DA:74,0
+DA:75,0
+DA:76,0
+DA:78,0
+DA:79,0
+DA:80,0
+DA:85,0
+DA:87,0
+DA:90,0
+DA:91,0
+DA:92,0
+DA:94,0
+DA:97,0
+DA:98,0
+DA:100,0
+DA:103,0
+DA:106,0
+DA:109,0
+DA:113,0
+DA:114,0
+BRDA:49,2630,1,0
+BRDA:49,692,1,0
+BRDA:49,692,2,0
+BRDA:64,1939,0,0
+BRDA:49,692,3,0
+BRDA:67,2231,1,0
+BRDA:67,2231,0,0
+BRDA:49,692,4,0
+BRDA:72,2511,1,0
+BRDA:72,2511,0,0
+BRDA:64,1939,1,0
+BRDA:49,692,0,0
+BRDA:49,2630,0,0
+LF:81
+LH:0
+BRF:21
+BRH:0
+FNF:15
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Services\FinancialHealthService.cs
+FN:23,System.Void WebApi.Services.FinancialHealthService::.ctor(WebApi.Context.IUnitOfWork,WebApi.Services.IUserService,WebApi.Services.ICurrencyConversionService)
+FNDA:0,System.Void WebApi.Services.FinancialHealthService::.ctor(WebApi.Context.IUnitOfWork,WebApi.Services.IUserService,WebApi.Services.ICurrencyConversionService)
+DA:24,0
+DA:25,0
+DA:26,0
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+FN:32,System.Void WebApi.Services.FinancialHealthService/<GetFinancialHealth>d__6::MoveNext()
+FNDA:0,System.Void WebApi.Services.FinancialHealthService/<GetFinancialHealth>d__6::MoveNext()
+DA:33,0
+DA:34,0
+DA:35,0
+DA:36,0
+DA:37,0
+DA:38,0
+DA:39,0
+DA:40,0
+FN:64,System.Double WebApi.Services.FinancialHealthService/<>c::<GetAccountsWorth>b__7_0(WebApi.Models.Database.Transaction)
+FNDA:0,System.Double WebApi.Services.FinancialHealthService/<>c::<GetAccountsWorth>b__7_0(WebApi.Models.Database.Transaction)
+DA:65,0
+FN:81,System.Double WebApi.Services.FinancialHealthService/<>c::<GetUserDebt>b__8_0(WebApi.Models.Database.Transaction)
+FNDA:0,System.Double WebApi.Services.FinancialHealthService/<>c::<GetUserDebt>b__8_0(WebApi.Models.Database.Transaction)
+DA:82,0
+FN:43,System.Void WebApi.Services.FinancialHealthService/<GetAccountsWorth>d__7::MoveNext()
+FNDA:0,System.Void WebApi.Services.FinancialHealthService/<GetAccountsWorth>d__7::MoveNext()
+DA:44,0
+DA:45,0
+DA:46,0
+DA:47,0
+DA:48,0
+DA:49,0
+DA:50,0
+DA:51,0
+DA:52,0
+DA:53,0
+DA:54,0
+DA:55,0
+DA:56,0
+DA:57,0
+DA:58,0
+DA:59,0
+DA:60,0
+DA:62,0
+DA:63,0
+DA:64,0
+DA:66,0
+BRDA:51,1468,1,0
+BRDA:54,1083,0,0
+BRDA:57,1374,1,0
+BRDA:57,1374,0,0
+BRDA:54,1083,1,0
+BRDA:51,1468,0,0
+FN:68,System.Void WebApi.Services.FinancialHealthService/<GetUserDebt>d__8::MoveNext()
+FNDA:0,System.Void WebApi.Services.FinancialHealthService/<GetUserDebt>d__8::MoveNext()
+DA:69,0
+DA:70,0
+DA:71,0
+DA:72,0
+DA:73,0
+DA:75,0
+DA:77,0
+DA:78,0
+DA:79,0
+DA:80,0
+DA:84,0
+BRDA:77,526,1,0
+BRDA:77,526,0,0
+LF:50
+LH:0
+BRF:8
+BRH:0
+FNF:6
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Services\RecurringTransactionsService.cs
+FN:26,System.Void WebApi.Services.RecurringTransactionsService::.ctor(WebApi.Context.IUnitOfWork)
+FNDA:0,System.Void WebApi.Services.RecurringTransactionsService::.ctor(WebApi.Context.IUnitOfWork)
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+DA:32,0
+FN:33,System.Void WebApi.Services.RecurringTransactionsService/<GetAll>d__4::MoveNext()
+FNDA:0,System.Void WebApi.Services.RecurringTransactionsService/<GetAll>d__4::MoveNext()
+DA:34,0
+DA:35,0
+DA:36,0
+FN:38,System.Void WebApi.Services.RecurringTransactionsService/<GetAll>d__5::MoveNext()
+FNDA:0,System.Void WebApi.Services.RecurringTransactionsService/<GetAll>d__5::MoveNext()
+DA:39,0
+DA:40,0
+DA:41,0
+DA:42,0
+DA:43,0
+DA:44,0
+FN:47,System.Void WebApi.Services.RecurringTransactionsService/<Create>d__6::MoveNext()
+FNDA:0,System.Void WebApi.Services.RecurringTransactionsService/<Create>d__6::MoveNext()
+DA:48,0
+DA:49,0
+DA:50,0
+DA:51,0
+DA:53,0
+DA:54,0
+DA:55,0
+DA:56,0
+DA:57,0
+BRDA:49,40,0,0
+BRDA:49,40,1,0
+FN:59,System.Void WebApi.Services.RecurringTransactionsService/<Delete>d__7::MoveNext()
+FNDA:0,System.Void WebApi.Services.RecurringTransactionsService/<Delete>d__7::MoveNext()
+DA:60,0
+DA:61,0
+DA:62,0
+DA:63,0
+DA:64,0
+DA:65,0
+FN:67,System.Void WebApi.Services.RecurringTransactionsService/<GetAllSubscriptions>d__8::MoveNext()
+FNDA:0,System.Void WebApi.Services.RecurringTransactionsService/<GetAllSubscriptions>d__8::MoveNext()
+DA:68,0
+DA:69,0
+DA:70,0
+DA:71,0
+DA:72,0
+DA:73,0
+DA:74,0
+DA:75,0
+DA:76,0
+DA:77,0
+BRDA:71,784,1,0
+BRDA:71,784,0,0
+LF:40
+LH:0
+BRF:4
+BRH:0
+FNF:6
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Services\ReportService.cs
+FN:25,System.Void WebApi.Services.ReportService::.ctor(WebApi.Context.IUnitOfWork,WebApi.Services.IUserService,WebApi.Services.ICurrencyConversionService)
+FNDA:0,System.Void WebApi.Services.ReportService::.ctor(WebApi.Context.IUnitOfWork,WebApi.Services.IUserService,WebApi.Services.ICurrencyConversionService)
+DA:26,0
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+DA:32,0
+DA:33,0
+FN:55,System.Boolean WebApi.Services.ReportService/<>c::<GetAccountReport>b__6_0(WebApi.Models.Database.Transaction)
+FNDA:0,System.Boolean WebApi.Services.ReportService/<>c::<GetAccountReport>b__6_0(WebApi.Models.Database.Transaction)
+DA:56,0
+FN:56,System.Boolean WebApi.Services.ReportService/<>c::<GetAccountReport>b__6_2(WebApi.Models.Database.Transaction)
+FNDA:0,System.Boolean WebApi.Services.ReportService/<>c::<GetAccountReport>b__6_2(WebApi.Models.Database.Transaction)
+DA:57,0
+FN:75,System.String WebApi.Services.ReportService/<>c::<GetAccountReport>b__6_4(WebApi.Models.Domain.Reports.GeneralReportTransaction)
+FNDA:0,System.String WebApi.Services.ReportService/<>c::<GetAccountReport>b__6_4(WebApi.Models.Domain.Reports.GeneralReportTransaction)
+DA:76,0
+FN:76,System.String WebApi.Services.ReportService/<>c::<GetAccountReport>b__6_5(WebApi.Models.Domain.Reports.GeneralReportTransaction)
+FNDA:0,System.String WebApi.Services.ReportService/<>c::<GetAccountReport>b__6_5(WebApi.Models.Domain.Reports.GeneralReportTransaction)
+DA:77,0
+FN:110,System.Boolean WebApi.Services.ReportService/<>c::<GetAllAccountReport>b__7_0(WebApi.Models.Database.Transaction)
+FNDA:0,System.Boolean WebApi.Services.ReportService/<>c::<GetAllAccountReport>b__7_0(WebApi.Models.Database.Transaction)
+DA:111,0
+FN:111,System.Boolean WebApi.Services.ReportService/<>c::<GetAllAccountReport>b__7_2(WebApi.Models.Database.Transaction)
+FNDA:0,System.Boolean WebApi.Services.ReportService/<>c::<GetAllAccountReport>b__7_2(WebApi.Models.Database.Transaction)
+DA:112,0
+FN:131,System.String WebApi.Services.ReportService/<>c::<GetAllAccountReport>b__7_4(WebApi.Models.Domain.Reports.GeneralReportTransaction)
+FNDA:0,System.String WebApi.Services.ReportService/<>c::<GetAllAccountReport>b__7_4(WebApi.Models.Domain.Reports.GeneralReportTransaction)
+DA:132,0
+FN:132,System.String WebApi.Services.ReportService/<>c::<GetAllAccountReport>b__7_5(WebApi.Models.Domain.Reports.GeneralReportTransaction)
+FNDA:0,System.String WebApi.Services.ReportService/<>c::<GetAllAccountReport>b__7_5(WebApi.Models.Domain.Reports.GeneralReportTransaction)
+DA:133,0
+FN:35,System.Void WebApi.Services.ReportService/<GetAccountReport>d__6::MoveNext()
+FNDA:0,System.Void WebApi.Services.ReportService/<GetAccountReport>d__6::MoveNext()
+DA:36,0
+DA:37,0
+DA:38,0
+DA:39,0
+DA:40,0
+DA:41,0
+DA:42,0
+DA:43,0
+DA:44,0
+DA:45,0
+DA:47,0
+DA:48,0
+DA:49,0
+DA:50,0
+DA:51,0
+DA:52,0
+DA:53,0
+DA:54,0
+DA:59,0
+DA:60,0
+DA:62,0
+DA:63,0
+DA:64,0
+DA:65,0
+DA:66,0
+DA:67,0
+DA:68,0
+DA:69,0
+DA:71,0
+DA:72,0
+DA:73,0
+DA:74,0
+DA:75,0
+DA:80,0
+DA:81,0
+BRDA:47,1144,0,0
+BRDA:50,1431,1,0
+BRDA:50,1431,0,0
+BRDA:47,1144,1,0
+BRDA:62,1884,1,0
+BRDA:66,1771,0,0
+BRDA:66,1771,1,0
+BRDA:71,1825,0,0
+BRDA:71,1825,1,0
+BRDA:62,1884,0,0
+FN:83,System.Void WebApi.Services.ReportService/<GetAllAccountReport>d__7::MoveNext()
+FNDA:0,System.Void WebApi.Services.ReportService/<GetAllAccountReport>d__7::MoveNext()
+DA:84,0
+DA:85,0
+DA:86,0
+DA:88,0
+DA:90,0
+DA:91,0
+DA:92,0
+DA:93,0
+DA:94,0
+DA:95,0
+DA:96,0
+DA:97,0
+DA:99,0
+DA:100,0
+DA:101,0
+DA:102,0
+DA:103,0
+DA:104,0
+DA:105,0
+DA:106,0
+DA:108,0
+DA:109,0
+DA:114,0
+DA:115,0
+DA:117,0
+DA:118,0
+DA:119,0
+DA:120,0
+DA:121,0
+DA:122,0
+DA:123,0
+DA:124,0
+DA:126,0
+DA:127,0
+DA:128,0
+DA:129,0
+DA:130,0
+DA:134,0
+DA:135,0
+BRDA:90,1646,1,0
+BRDA:99,1260,0,0
+BRDA:102,1552,1,0
+BRDA:102,1552,0,0
+BRDA:99,1260,1,0
+BRDA:90,1646,0,0
+BRDA:117,2091,1,0
+BRDA:121,1978,0,0
+BRDA:121,1978,1,0
+BRDA:126,2032,0,0
+BRDA:126,2032,1,0
+BRDA:117,2091,0,0
+LF:90
+LH:0
+BRF:22
+BRH:0
+FNF:11
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Services\TransactionService.cs
+FN:36,System.Void WebApi.Services.TransactionService::.ctor(WebApi.Context.IUnitOfWork,WebApi.Services.IRecurringTransactionsService,WebApi.Services.IUserService,WebApi.Services.ICurrencyConversionService)
+FNDA:0,System.Void WebApi.Services.TransactionService::.ctor(WebApi.Context.IUnitOfWork,WebApi.Services.IRecurringTransactionsService,WebApi.Services.IUserService,WebApi.Services.ICurrencyConversionService)
+DA:37,0
+DA:38,0
+DA:39,0
+DA:40,0
+DA:41,0
+DA:42,0
+DA:43,0
+DA:44,0
+DA:45,0
+DA:46,0
+DA:47,0
+FN:49,System.Void WebApi.Services.TransactionService/<Create>d__8::MoveNext()
+FNDA:0,System.Void WebApi.Services.TransactionService/<Create>d__8::MoveNext()
+DA:50,0
+DA:51,0
+DA:52,0
+DA:53,0
+DA:54,0
+DA:55,0
+FN:57,System.Void WebApi.Services.TransactionService/<GetAll>d__9::MoveNext()
+FNDA:0,System.Void WebApi.Services.TransactionService/<GetAll>d__9::MoveNext()
+DA:58,0
+DA:59,0
+DA:60,0
+DA:61,0
+DA:62,0
+DA:63,0
+DA:64,0
+DA:65,0
+DA:66,0
+DA:67,0
+DA:68,0
+DA:69,0
+DA:70,0
+DA:71,0
+DA:72,0
+DA:73,0
+DA:74,0
+DA:75,0
+DA:76,0
+DA:77,0
+DA:79,0
+DA:80,0
+BRDA:69,1318,1,0
+BRDA:71,1097,0,0
+BRDA:71,1097,1,0
+BRDA:69,1318,0,0
+FN:82,System.Void WebApi.Services.TransactionService/<GetTransactionById>d__10::MoveNext()
+FNDA:0,System.Void WebApi.Services.TransactionService/<GetTransactionById>d__10::MoveNext()
+DA:83,0
+DA:84,0
+DA:85,0
+DA:86,0
+DA:87,0
+DA:88,0
+FN:90,System.Void WebApi.Services.TransactionService/<GetAllByDate>d__11::MoveNext()
+FNDA:0,System.Void WebApi.Services.TransactionService/<GetAllByDate>d__11::MoveNext()
+DA:91,0
+DA:92,0
+DA:93,0
+DA:94,0
+DA:95,0
+DA:96,0
+DA:97,0
+DA:98,0
+FN:101,System.Void WebApi.Services.TransactionService/<Edit>d__12::MoveNext()
+FNDA:0,System.Void WebApi.Services.TransactionService/<Edit>d__12::MoveNext()
+DA:102,0
+DA:103,0
+DA:104,0
+DA:105,0
+DA:106,0
+DA:107,0
+DA:108,0
+DA:109,0
+DA:110,0
+FN:112,System.Void WebApi.Services.TransactionService/<DeleteTransaction>d__13::MoveNext()
+FNDA:0,System.Void WebApi.Services.TransactionService/<DeleteTransaction>d__13::MoveNext()
+DA:113,0
+DA:114,0
+DA:115,0
+DA:116,0
+DA:117,0
+DA:119,0
+DA:120,0
+DA:121,0
+DA:122,0
+BRDA:115,325,0,0
+BRDA:115,325,1,0
+FN:124,System.Void WebApi.Services.TransactionService/<RunRecurringTransactions>d__14::MoveNext()
+FNDA:0,System.Void WebApi.Services.TransactionService/<RunRecurringTransactions>d__14::MoveNext()
+DA:125,0
+DA:126,0
+DA:127,0
+DA:128,0
+DA:129,0
+DA:130,0
+DA:131,0
+DA:132,0
+DA:133,0
+DA:135,0
+DA:136,0
+DA:137,0
+DA:138,0
+DA:139,0
+DA:140,0
+DA:142,0
+DA:143,0
+DA:144,0
+DA:145,0
+DA:147,0
+DA:148,0
+DA:149,0
+DA:150,0
+DA:151,0
+BRDA:128,695,1,0
+BRDA:132,324,0,0
+BRDA:132,324,1,0
+BRDA:128,695,0,0
+LF:95
+LH:0
+BRF:10
+BRH:0
+FNF:8
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Services\UserService.cs
+FN:37,WebApi.Models.Domain.User WebApi.Services.UserService::Authenticate(System.String,System.String)
+FNDA:0,WebApi.Models.Domain.User WebApi.Services.UserService::Authenticate(System.String,System.String)
+DA:38,0
+DA:39,0
+DA:40,0
+DA:41,0
+DA:42,0
+DA:43,0
+DA:45,0
+DA:46,0
+DA:47,0
+DA:48,0
+DA:50,0
+DA:51,0
+DA:52,0
+DA:53,0
+DA:54,0
+DA:55,0
+DA:56,0
+DA:57,0
+DA:58,0
+DA:59,0
+DA:60,0
+DA:61,0
+DA:62,0
+DA:63,0
+DA:64,0
+BRDA:41,136,0,0
+BRDA:41,136,1,0
+BRDA:46,182,0,0
+BRDA:46,182,1,0
+FN:29,System.Void WebApi.Services.UserService::.ctor(WebApi.Context.IUnitOfWork)
+FNDA:13,System.Void WebApi.Services.UserService::.ctor(WebApi.Context.IUnitOfWork)
+DA:30,13
+DA:31,13
+DA:32,13
+DA:33,13
+DA:34,13
+DA:35,13
+FN:66,System.Void WebApi.Services.UserService/<Create>d__5::MoveNext()
+FNDA:14,System.Void WebApi.Services.UserService/<Create>d__5::MoveNext()
+DA:67,14
+DA:68,14
+DA:70,14
+DA:71,14
+DA:72,14
+DA:73,14
+DA:74,14
+DA:75,14
+DA:76,14
+DA:78,14
+DA:79,14
+DA:80,14
+DA:81,14
+DA:82,14
+DA:84,14
+DA:85,14
+DA:87,14
+DA:88,14
+FN:91,System.Void WebApi.Services.UserService/<ChangeCurrency>d__6::MoveNext()
+FNDA:0,System.Void WebApi.Services.UserService/<ChangeCurrency>d__6::MoveNext()
+DA:92,0
+DA:93,0
+DA:94,0
+DA:95,0
+DA:96,0
+DA:99,0
+DA:100,0
+DA:101,0
+DA:104,0
+DA:105,0
+DA:106,0
+DA:107,0
+BRDA:94,325,0,0
+BRDA:94,325,1,0
+BRDA:99,357,0,0
+BRDA:99,357,1,0
+FN:109,System.Void WebApi.Services.UserService/<GetPreferences>d__7::MoveNext()
+FNDA:5,System.Void WebApi.Services.UserService/<GetPreferences>d__7::MoveNext()
+DA:110,5
+DA:111,5
+DA:112,5
+LF:64
+LH:27
+BRF:8
+BRH:0
+FNF:5
+FNH:3
+end_of_record
+SF:F:\financr\api\WebApi\Seeders\AccountPreferenceSeeder.cs
+FN:15,System.Void WebApi.Seeders.AccountPreferenceSeeder/<Seed>d__0::MoveNext()
+FNDA:0,System.Void WebApi.Seeders.AccountPreferenceSeeder/<Seed>d__0::MoveNext()
+DA:16,0
+DA:17,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:21,0
+DA:22,0
+DA:23,0
+DA:24,0
+DA:25,0
+DA:26,0
+DA:27,0
+BRDA:16,16,0,0
+BRDA:16,16,1,0
+BRDA:18,618,1,0
+BRDA:20,315,0,0
+BRDA:20,315,1,0
+BRDA:18,618,0,0
+LF:12
+LH:0
+BRF:6
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Seeders\DbInitializer.cs
+FN:10,System.Void WebApi.Seeders.DbInitializer/<Seed>d__0::MoveNext()
+FNDA:0,System.Void WebApi.Seeders.DbInitializer/<Seed>d__0::MoveNext()
+DA:11,0
+DA:12,0
+DA:13,0
+DA:14,0
+DA:15,0
+DA:16,0
+DA:17,0
+DA:19,0
+DA:20,0
+DA:21,0
+DA:22,0
+DA:23,0
+BRDA:19,237,1,0
+BRDA:19,237,0,0
+LF:12
+LH:0
+BRF:2
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Seeders\UserPreferencesSeeder.cs
+FN:15,System.Void WebApi.Seeders.UserPreferencesSeeder/<Seed>d__0::MoveNext()
+FNDA:0,System.Void WebApi.Seeders.UserPreferencesSeeder/<Seed>d__0::MoveNext()
+DA:16,0
+DA:17,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:21,0
+DA:22,0
+DA:23,0
+DA:24,0
+DA:25,0
+DA:26,0
+DA:27,0
+BRDA:16,16,0,0
+BRDA:16,16,1,0
+BRDA:18,618,1,0
+BRDA:20,315,0,0
+BRDA:20,315,1,0
+BRDA:18,618,0,0
+LF:12
+LH:0
+BRF:6
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Seeders\UserSeeder.cs
+FN:12,System.Void WebApi.Seeders.UserSeeder/<Seed>d__0::MoveNext()
+FNDA:0,System.Void WebApi.Seeders.UserSeeder/<Seed>d__0::MoveNext()
+DA:13,0
+DA:14,0
+DA:15,0
+DA:16,0
+DA:17,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:21,0
+DA:22,0
+BRDA:14,50,0,0
+BRDA:14,50,1,0
+LF:10
+LH:0
+BRF:2
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Models\DTO\Requests\AuthenticationRequest.cs
+FN:4,System.String WebApi.Models.DTO.Requests.AuthenticationRequest::get_Email()
+FNDA:0,System.String WebApi.Models.DTO.Requests.AuthenticationRequest::get_Email()
+DA:5,0
+FN:5,System.String WebApi.Models.DTO.Requests.AuthenticationRequest::get_Password()
+FNDA:0,System.String WebApi.Models.DTO.Requests.AuthenticationRequest::get_Password()
+DA:6,0
+LF:2
+LH:0
+BRF:0
+BRH:0
+FNF:2
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Models\DTO\Requests\CreateAccountCategoryRequest.cs
+FN:8,System.String WebApi.Models.DTO.Requests.CreateAccountCategoryRequest::get_Name()
+FNDA:0,System.String WebApi.Models.DTO.Requests.CreateAccountCategoryRequest::get_Name()
+DA:9,0
+FN:9,WebApi.Models.Database.Account.AccountCategoryType WebApi.Models.DTO.Requests.CreateAccountCategoryRequest::get_Type()
+FNDA:0,WebApi.Models.Database.Account.AccountCategoryType WebApi.Models.DTO.Requests.CreateAccountCategoryRequest::get_Type()
+DA:10,0
+LF:2
+LH:0
+BRF:0
+BRH:0
+FNF:2
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Models\DTO\Requests\CreateAccountRequest.cs
+FN:6,System.String WebApi.Models.DTO.Requests.CreateAccountRequest::get_Name()
+FNDA:0,System.String WebApi.Models.DTO.Requests.CreateAccountRequest::get_Name()
+DA:7,0
+FN:7,WebApi.Models.Domain.AccountType WebApi.Models.DTO.Requests.CreateAccountRequest::get_Type()
+FNDA:0,WebApi.Models.Domain.AccountType WebApi.Models.DTO.Requests.CreateAccountRequest::get_Type()
+DA:8,0
+FN:8,System.Double WebApi.Models.DTO.Requests.CreateAccountRequest::get_InitialAmount()
+FNDA:0,System.Double WebApi.Models.DTO.Requests.CreateAccountRequest::get_InitialAmount()
+DA:9,0
+LF:3
+LH:0
+BRF:0
+BRH:0
+FNF:3
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Models\DTO\Requests\SetAccountBudgetRequest.cs
+FN:4,System.Double WebApi.Models.DTO.Requests.SetAccountBudgetRequest::get_Budget()
+FNDA:0,System.Double WebApi.Models.DTO.Requests.SetAccountBudgetRequest::get_Budget()
+DA:5,0
+LF:1
+LH:0
+BRF:0
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Models\DTO\Requests\SetCurrencyRequest.cs
+FN:4,System.String WebApi.Models.DTO.Requests.SetCurrencyRequest::get_Currency()
+FNDA:0,System.String WebApi.Models.DTO.Requests.SetCurrencyRequest::get_Currency()
+DA:5,0
+LF:1
+LH:0
+BRF:0
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Models\DTO\Requests\Transactions\CreateRecurringTransactionRequest.cs
+FN:6,System.DateTimeOffset WebApi.Models.DTO.Requests.CreateRecurringTransactionRequest::get_StartDate()
+FNDA:0,System.DateTimeOffset WebApi.Models.DTO.Requests.CreateRecurringTransactionRequest::get_StartDate()
+DA:7,0
+FN:7,System.Int32 WebApi.Models.DTO.Requests.CreateRecurringTransactionRequest::get_Occurrence()
+FNDA:0,System.Int32 WebApi.Models.DTO.Requests.CreateRecurringTransactionRequest::get_Occurrence()
+DA:8,0
+FN:8,System.Double WebApi.Models.DTO.Requests.CreateRecurringTransactionRequest::get_Income()
+FNDA:0,System.Double WebApi.Models.DTO.Requests.CreateRecurringTransactionRequest::get_Income()
+DA:9,0
+FN:9,System.String WebApi.Models.DTO.Requests.CreateRecurringTransactionRequest::get_Description()
+FNDA:0,System.String WebApi.Models.DTO.Requests.CreateRecurringTransactionRequest::get_Description()
+DA:10,0
+FN:10,System.Guid WebApi.Models.DTO.Requests.CreateRecurringTransactionRequest::get_AccountCategoryId()
+FNDA:0,System.Guid WebApi.Models.DTO.Requests.CreateRecurringTransactionRequest::get_AccountCategoryId()
+DA:11,0
+LF:5
+LH:0
+BRF:0
+BRH:0
+FNF:5
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Models\DTO\Requests\Transactions\CreateTransactionRequest.cs
+FN:7,System.Double WebApi.Models.DTO.Requests.CreateTransactionRequest::get_Amount()
+FNDA:0,System.Double WebApi.Models.DTO.Requests.CreateTransactionRequest::get_Amount()
+DA:8,0
+FN:8,System.String WebApi.Models.DTO.Requests.CreateTransactionRequest::get_Description()
+FNDA:0,System.String WebApi.Models.DTO.Requests.CreateTransactionRequest::get_Description()
+DA:9,0
+FN:9,System.Guid WebApi.Models.DTO.Requests.CreateTransactionRequest::get_AccountCategoryId()
+FNDA:0,System.Guid WebApi.Models.DTO.Requests.CreateTransactionRequest::get_AccountCategoryId()
+DA:10,0
+FN:10,System.DateTimeOffset WebApi.Models.DTO.Requests.CreateTransactionRequest::get_TransactionDate()
+FNDA:0,System.DateTimeOffset WebApi.Models.DTO.Requests.CreateTransactionRequest::get_TransactionDate()
+DA:11,0
+LF:4
+LH:0
+BRF:0
+BRH:0
+FNF:4
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Models\DTO\Requests\Transactions\EditTransactionRequest.cs
+FN:6,System.Double WebApi.Models.DTO.Requests.EditTransactionRequest::get_Amount()
+FNDA:0,System.Double WebApi.Models.DTO.Requests.EditTransactionRequest::get_Amount()
+DA:7,0
+FN:7,System.String WebApi.Models.DTO.Requests.EditTransactionRequest::get_Description()
+FNDA:0,System.String WebApi.Models.DTO.Requests.EditTransactionRequest::get_Description()
+DA:8,0
+FN:8,System.Guid WebApi.Models.DTO.Requests.EditTransactionRequest::get_AccountCategoryId()
+FNDA:0,System.Guid WebApi.Models.DTO.Requests.EditTransactionRequest::get_AccountCategoryId()
+DA:9,0
+FN:9,System.DateTimeOffset WebApi.Models.DTO.Requests.EditTransactionRequest::get_TransactionDate()
+FNDA:0,System.DateTimeOffset WebApi.Models.DTO.Requests.EditTransactionRequest::get_TransactionDate()
+DA:10,0
+LF:4
+LH:0
+BRF:0
+BRH:0
+FNF:4
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Models\Domain\Account.cs
+FN:11,System.Guid WebApi.Models.Domain.Account::get_Id()
+FNDA:0,System.Guid WebApi.Models.Domain.Account::get_Id()
+DA:12,0
+FN:12,System.String WebApi.Models.Domain.Account::get_Name()
+FNDA:0,System.String WebApi.Models.Domain.Account::get_Name()
+DA:13,0
+FN:13,System.Guid WebApi.Models.Domain.Account::get_UserId()
+FNDA:0,System.Guid WebApi.Models.Domain.Account::get_UserId()
+DA:14,0
+FN:14,WebApi.Models.Domain.AccountType WebApi.Models.Domain.Account::get_Type()
+FNDA:0,WebApi.Models.Domain.AccountType WebApi.Models.Domain.Account::get_Type()
+DA:15,0
+FN:15,System.Collections.Generic.List`1<WebApi.Models.Database.Transaction> WebApi.Models.Domain.Account::get_Transactions()
+FNDA:0,System.Collections.Generic.List`1<WebApi.Models.Database.Transaction> WebApi.Models.Domain.Account::get_Transactions()
+DA:16,0
+FN:17,WebApi.Models.Database.Account.AccountBudget WebApi.Models.Domain.Account::get_Budget()
+FNDA:0,WebApi.Models.Database.Account.AccountBudget WebApi.Models.Domain.Account::get_Budget()
+DA:18,0
+FN:19,WebApi.Models.Database.Account.AccountPreferences WebApi.Models.Domain.Account::get_Preferences()
+FNDA:0,WebApi.Models.Database.Account.AccountPreferences WebApi.Models.Domain.Account::get_Preferences()
+DA:20,0
+FN:21,System.Double WebApi.Models.Domain.Account::get_AvailableBalance()
+FNDA:0,System.Double WebApi.Models.Domain.Account::get_AvailableBalance()
+DA:22,0
+BRDA:22,7,0,0
+BRDA:22,7,1,0
+FN:24,System.Double WebApi.Models.Domain.Account::get_ConvertedBalance()
+FNDA:0,System.Double WebApi.Models.Domain.Account::get_ConvertedBalance()
+DA:25,0
+FN:27,System.Double WebApi.Models.Domain.Account::get_TotalIncome()
+FNDA:0,System.Double WebApi.Models.Domain.Account::get_TotalIncome()
+DA:28,0
+BRDA:28,7,0,0
+BRDA:28,7,1,0
+FN:29,System.Double WebApi.Models.Domain.Account::get_TotalOutgoings()
+FNDA:0,System.Double WebApi.Models.Domain.Account::get_TotalOutgoings()
+DA:30,0
+BRDA:30,7,0,0
+BRDA:30,7,1,0
+FN:31,System.Double WebApi.Models.Domain.Account::get_ConvertedTotalIncome()
+FNDA:0,System.Double WebApi.Models.Domain.Account::get_ConvertedTotalIncome()
+DA:32,0
+FN:32,System.Double WebApi.Models.Domain.Account::get_ConvertedTotalExpense()
+FNDA:0,System.Double WebApi.Models.Domain.Account::get_ConvertedTotalExpense()
+DA:33,0
+FN:34,System.Void WebApi.Models.Domain.Account::.ctor(System.Guid,System.String,WebApi.Models.Domain.AccountType,System.Guid,System.Collections.Generic.List`1<WebApi.Models.Database.Transaction>,WebApi.Models.Database.Account.AccountBudget,WebApi.Models.Database.Account.AccountPreferences)
+FNDA:0,System.Void WebApi.Models.Domain.Account::.ctor(System.Guid,System.String,WebApi.Models.Domain.AccountType,System.Guid,System.Collections.Generic.List`1<WebApi.Models.Database.Transaction>,WebApi.Models.Database.Account.AccountBudget,WebApi.Models.Database.Account.AccountPreferences)
+DA:35,0
+DA:36,0
+DA:37,0
+DA:38,0
+DA:39,0
+DA:40,0
+DA:41,0
+DA:42,0
+DA:43,0
+DA:44,0
+LF:23
+LH:0
+BRF:6
+BRH:0
+FNF:14
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Models\Domain\Currency.cs
+FN:6,System.String WebApi.Models.Domain.Currency::get_Symbol()
+FNDA:0,System.String WebApi.Models.Domain.Currency::get_Symbol()
+DA:7,0
+FN:7,System.String WebApi.Models.Domain.Currency::get_Name()
+FNDA:0,System.String WebApi.Models.Domain.Currency::get_Name()
+DA:8,0
+FN:8,System.String WebApi.Models.Domain.Currency::get_SymbolNative()
+FNDA:0,System.String WebApi.Models.Domain.Currency::get_SymbolNative()
+DA:9,0
+FN:9,System.Int32 WebApi.Models.Domain.Currency::get_DecimalDigits()
+FNDA:0,System.Int32 WebApi.Models.Domain.Currency::get_DecimalDigits()
+DA:10,0
+FN:10,System.Double WebApi.Models.Domain.Currency::get_Rounding()
+FNDA:0,System.Double WebApi.Models.Domain.Currency::get_Rounding()
+DA:11,0
+FN:11,System.String WebApi.Models.Domain.Currency::get_Code()
+FNDA:0,System.String WebApi.Models.Domain.Currency::get_Code()
+DA:12,0
+FN:12,System.String WebApi.Models.Domain.Currency::get_NamePlural()
+FNDA:0,System.String WebApi.Models.Domain.Currency::get_NamePlural()
+DA:13,0
+FN:14,System.Void WebApi.Models.Domain.Currency::.ctor(System.String,System.String,System.String,System.Int32,System.Double,System.String,System.String)
+FNDA:0,System.Void WebApi.Models.Domain.Currency::.ctor(System.String,System.String,System.String,System.Int32,System.Double,System.String,System.String)
+DA:15,0
+DA:16,0
+DA:17,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:21,0
+DA:22,0
+DA:23,0
+DA:24,0
+DA:25,0
+LF:18
+LH:0
+BRF:0
+BRH:0
+FNF:8
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Models\Domain\FinancialHealth.cs
+FN:4,System.Double WebApi.Models.Domain.FinancialHealth::get_TotalNetWorth()
+FNDA:0,System.Double WebApi.Models.Domain.FinancialHealth::get_TotalNetWorth()
+DA:5,0
+FN:5,System.Double WebApi.Models.Domain.FinancialHealth::get_PersonalAccountsWorth()
+FNDA:0,System.Double WebApi.Models.Domain.FinancialHealth::get_PersonalAccountsWorth()
+DA:6,0
+FN:6,System.Double WebApi.Models.Domain.FinancialHealth::get_BusinessAccountsWorth()
+FNDA:0,System.Double WebApi.Models.Domain.FinancialHealth::get_BusinessAccountsWorth()
+DA:7,0
+FN:7,System.Double WebApi.Models.Domain.FinancialHealth::get_SavingsAccountsWorth()
+FNDA:0,System.Double WebApi.Models.Domain.FinancialHealth::get_SavingsAccountsWorth()
+DA:8,0
+FN:9,System.Void WebApi.Models.Domain.FinancialHealth::.ctor(System.Double,System.Double,System.Double,System.Double)
+FNDA:0,System.Void WebApi.Models.Domain.FinancialHealth::.ctor(System.Double,System.Double,System.Double,System.Double)
+DA:10,0
+DA:11,0
+DA:12,0
+DA:13,0
+DA:14,0
+DA:15,0
+DA:16,0
+DA:17,0
+DA:18,0
+DA:19,0
+DA:20,0
+LF:15
+LH:0
+BRF:0
+BRH:0
+FNF:5
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Models\Domain\User.cs
+FN:6,System.Guid WebApi.Models.Domain.User::get_Id()
+FNDA:0,System.Guid WebApi.Models.Domain.User::get_Id()
+DA:7,0
+FN:7,System.String WebApi.Models.Domain.User::get_Email()
+FNDA:0,System.String WebApi.Models.Domain.User::get_Email()
+DA:8,0
+FN:8,System.String WebApi.Models.Domain.User::get_Token()
+FNDA:0,System.String WebApi.Models.Domain.User::get_Token()
+DA:9,0
+FN:10,System.Void WebApi.Models.Domain.User::.ctor(System.Guid,System.String,System.String)
+FNDA:0,System.Void WebApi.Models.Domain.User::.ctor(System.Guid,System.String,System.String)
+DA:11,0
+DA:12,0
+DA:13,0
+DA:14,0
+DA:15,0
+DA:16,0
+LF:9
+LH:0
+BRF:0
+BRH:0
+FNF:4
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Models\Domain\Reports\GeneralReport.cs
+FN:8,WebApi.Models.Domain.Reports.GeneralReportSummary WebApi.Models.Domain.Reports.GeneralReport::get_Summary()
+FNDA:0,WebApi.Models.Domain.Reports.GeneralReportSummary WebApi.Models.Domain.Reports.GeneralReport::get_Summary()
+DA:9,0
+FN:10,System.Collections.Generic.IEnumerable`1<System.Linq.IGrouping`2<System.String,WebApi.Models.Domain.Reports.GeneralReportTransaction>> WebApi.Models.Domain.Reports.GeneralReport::get_IncomeTransactions()
+FNDA:0,System.Collections.Generic.IEnumerable`1<System.Linq.IGrouping`2<System.String,WebApi.Models.Domain.Reports.GeneralReportTransaction>> WebApi.Models.Domain.Reports.GeneralReport::get_IncomeTransactions()
+DA:11,0
+FN:11,System.Collections.Generic.IEnumerable`1<System.Linq.IGrouping`2<System.String,WebApi.Models.Domain.Reports.GeneralReportTransaction>> WebApi.Models.Domain.Reports.GeneralReport::get_ExpenseTransactions()
+FNDA:0,System.Collections.Generic.IEnumerable`1<System.Linq.IGrouping`2<System.String,WebApi.Models.Domain.Reports.GeneralReportTransaction>> WebApi.Models.Domain.Reports.GeneralReport::get_ExpenseTransactions()
+DA:12,0
+FN:13,System.Void WebApi.Models.Domain.Reports.GeneralReport::.ctor(WebApi.Models.Domain.Reports.GeneralReportSummary,System.Collections.Generic.IEnumerable`1<System.Linq.IGrouping`2<System.String,WebApi.Models.Domain.Reports.GeneralReportTransaction>>,System.Collections.Generic.IEnumerable`1<System.Linq.IGrouping`2<System.String,WebApi.Models.Domain.Reports.GeneralReportTransaction>>)
+FNDA:0,System.Void WebApi.Models.Domain.Reports.GeneralReport::.ctor(WebApi.Models.Domain.Reports.GeneralReportSummary,System.Collections.Generic.IEnumerable`1<System.Linq.IGrouping`2<System.String,WebApi.Models.Domain.Reports.GeneralReportTransaction>>,System.Collections.Generic.IEnumerable`1<System.Linq.IGrouping`2<System.String,WebApi.Models.Domain.Reports.GeneralReportTransaction>>)
+DA:14,0
+DA:15,0
+DA:16,0
+DA:17,0
+DA:18,0
+DA:19,0
+DA:21,0
+FN:25,System.Double WebApi.Models.Domain.Reports.GeneralReportSummary::get_Income()
+FNDA:0,System.Double WebApi.Models.Domain.Reports.GeneralReportSummary::get_Income()
+DA:26,0
+FN:26,System.Double WebApi.Models.Domain.Reports.GeneralReportSummary::get_Expenses()
+FNDA:0,System.Double WebApi.Models.Domain.Reports.GeneralReportSummary::get_Expenses()
+DA:27,0
+FN:27,System.Double WebApi.Models.Domain.Reports.GeneralReportSummary::get_Total()
+FNDA:0,System.Double WebApi.Models.Domain.Reports.GeneralReportSummary::get_Total()
+DA:28,0
+FN:29,System.Void WebApi.Models.Domain.Reports.GeneralReportSummary::.ctor(System.Double,System.Double)
+FNDA:0,System.Void WebApi.Models.Domain.Reports.GeneralReportSummary::.ctor(System.Double,System.Double)
+DA:30,0
+DA:31,0
+DA:32,0
+DA:33,0
+DA:34,0
+FN:38,System.String WebApi.Models.Domain.Reports.GeneralReportTransaction::get_CategoryName()
+FNDA:0,System.String WebApi.Models.Domain.Reports.GeneralReportTransaction::get_CategoryName()
+DA:39,0
+FN:39,System.Double WebApi.Models.Domain.Reports.GeneralReportTransaction::get_Total()
+FNDA:0,System.Double WebApi.Models.Domain.Reports.GeneralReportTransaction::get_Total()
+DA:40,0
+FN:41,System.Void WebApi.Models.Domain.Reports.GeneralReportTransaction::.ctor(System.String,System.Double)
+FNDA:0,System.Void WebApi.Models.Domain.Reports.GeneralReportTransaction::.ctor(System.String,System.Double)
+DA:42,0
+DA:43,0
+DA:44,0
+DA:45,0
+DA:46,0
+LF:25
+LH:0
+BRF:0
+BRH:0
+FNF:11
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Models\Domain\Networth\DashboardChart.cs
+FN:6,System.Collections.Generic.List`1<WebApi.Models.Domain.Networth.MonthlyAmount> WebApi.Models.Domain.Networth.DashboardChart::get_Networth()
+FNDA:0,System.Collections.Generic.List`1<WebApi.Models.Domain.Networth.MonthlyAmount> WebApi.Models.Domain.Networth.DashboardChart::get_Networth()
+DA:7,0
+FN:7,System.Collections.Generic.List`1<WebApi.Models.Domain.Networth.MonthlyAmount> WebApi.Models.Domain.Networth.DashboardChart::get_Spending()
+FNDA:0,System.Collections.Generic.List`1<WebApi.Models.Domain.Networth.MonthlyAmount> WebApi.Models.Domain.Networth.DashboardChart::get_Spending()
+DA:8,0
+LF:2
+LH:0
+BRF:0
+BRH:0
+FNF:2
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Models\Domain\Networth\MonthlyAmount.cs
+FN:6,System.DateTime WebApi.Models.Domain.Networth.MonthlyAmount::get_Month()
+FNDA:0,System.DateTime WebApi.Models.Domain.Networth.MonthlyAmount::get_Month()
+DA:7,0
+FN:7,System.Double WebApi.Models.Domain.Networth.MonthlyAmount::get_Amount()
+FNDA:0,System.Double WebApi.Models.Domain.Networth.MonthlyAmount::get_Amount()
+DA:8,0
+FN:9,System.Void WebApi.Models.Domain.Networth.MonthlyAmount::.ctor(System.DateTime,System.Double)
+FNDA:0,System.Void WebApi.Models.Domain.Networth.MonthlyAmount::.ctor(System.DateTime,System.Double)
+DA:10,0
+DA:11,0
+DA:12,0
+DA:13,0
+DA:14,0
+LF:7
+LH:0
+BRF:0
+BRH:0
+FNF:3
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Models\Domain\Dashboard\DashboardData.cs
+FN:4,WebApi.Models.Domain.Dashboard.FigureCard WebApi.Models.Domain.Dashboard.DashboardData::get_Income()
+FNDA:0,WebApi.Models.Domain.Dashboard.FigureCard WebApi.Models.Domain.Dashboard.DashboardData::get_Income()
+DA:5,0
+FN:5,WebApi.Models.Domain.Dashboard.FigureCard WebApi.Models.Domain.Dashboard.DashboardData::get_Expenses()
+FNDA:0,WebApi.Models.Domain.Dashboard.FigureCard WebApi.Models.Domain.Dashboard.DashboardData::get_Expenses()
+DA:6,0
+FN:6,WebApi.Models.Domain.Dashboard.FigureCard WebApi.Models.Domain.Dashboard.DashboardData::get_Savings()
+FNDA:0,WebApi.Models.Domain.Dashboard.FigureCard WebApi.Models.Domain.Dashboard.DashboardData::get_Savings()
+DA:7,0
+FN:8,WebApi.Models.Domain.Dashboard.FigureCard WebApi.Models.Domain.Dashboard.DashboardData::get_Investments()
+FNDA:0,WebApi.Models.Domain.Dashboard.FigureCard WebApi.Models.Domain.Dashboard.DashboardData::get_Investments()
+DA:9,0
+FN:10,System.Void WebApi.Models.Domain.Dashboard.DashboardData::.ctor(WebApi.Models.Domain.Dashboard.FigureCard,WebApi.Models.Domain.Dashboard.FigureCard,WebApi.Models.Domain.Dashboard.FigureCard,WebApi.Models.Domain.Dashboard.FigureCard)
+FNDA:0,System.Void WebApi.Models.Domain.Dashboard.DashboardData::.ctor(WebApi.Models.Domain.Dashboard.FigureCard,WebApi.Models.Domain.Dashboard.FigureCard,WebApi.Models.Domain.Dashboard.FigureCard,WebApi.Models.Domain.Dashboard.FigureCard)
+DA:11,0
+DA:12,0
+DA:13,0
+DA:14,0
+DA:15,0
+DA:16,0
+DA:17,0
+FN:21,System.Double WebApi.Models.Domain.Dashboard.FigureCard::get_Value()
+FNDA:0,System.Double WebApi.Models.Domain.Dashboard.FigureCard::get_Value()
+DA:22,0
+FN:22,System.Double WebApi.Models.Domain.Dashboard.FigureCard::get_PercentageChange()
+FNDA:0,System.Double WebApi.Models.Domain.Dashboard.FigureCard::get_PercentageChange()
+DA:23,0
+FN:24,System.Void WebApi.Models.Domain.Dashboard.FigureCard::.ctor(System.Double,System.Double)
+FNDA:0,System.Void WebApi.Models.Domain.Dashboard.FigureCard::.ctor(System.Double,System.Double)
+DA:25,0
+DA:26,0
+DA:27,0
+DA:28,0
+DA:29,0
+LF:18
+LH:0
+BRF:0
+BRH:0
+FNF:8
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Models\Domain\Charts\AccountSpendingChart.cs
+FN:6,System.Collections.Generic.List`1<WebApi.Models.Domain.Charts.AccountSpendingChartData> WebApi.Models.Domain.Charts.AccountSpendingChart::get_Data()
+FNDA:0,System.Collections.Generic.List`1<WebApi.Models.Domain.Charts.AccountSpendingChartData> WebApi.Models.Domain.Charts.AccountSpendingChart::get_Data()
+DA:7,0
+FN:11,System.String WebApi.Models.Domain.Charts.AccountSpendingChartData::get_Name()
+FNDA:0,System.String WebApi.Models.Domain.Charts.AccountSpendingChartData::get_Name()
+DA:12,0
+FN:12,System.Double WebApi.Models.Domain.Charts.AccountSpendingChartData::get_Value()
+FNDA:0,System.Double WebApi.Models.Domain.Charts.AccountSpendingChartData::get_Value()
+DA:13,0
+FN:13,System.Double WebApi.Models.Domain.Charts.AccountSpendingChartData::get_ConvertedValue()
+FNDA:0,System.Double WebApi.Models.Domain.Charts.AccountSpendingChartData::get_ConvertedValue()
+DA:14,0
+LF:4
+LH:0
+BRF:0
+BRH:0
+FNF:4
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Models\Domain\Charts\NetworthChart.cs
+FN:7,System.String WebApi.Models.Domain.Charts.NetworthChart::get_Timeframe()
+FNDA:0,System.String WebApi.Models.Domain.Charts.NetworthChart::get_Timeframe()
+DA:8,0
+FN:8,System.Collections.Generic.List`1<WebApi.Models.Domain.Charts.NetworthChartData> WebApi.Models.Domain.Charts.NetworthChart::get_ChartData()
+FNDA:0,System.Collections.Generic.List`1<WebApi.Models.Domain.Charts.NetworthChartData> WebApi.Models.Domain.Charts.NetworthChart::get_ChartData()
+DA:9,0
+FN:13,System.DateTimeOffset WebApi.Models.Domain.Charts.NetworthChartData::get_Name()
+FNDA:0,System.DateTimeOffset WebApi.Models.Domain.Charts.NetworthChartData::get_Name()
+DA:14,0
+FN:14,System.Double WebApi.Models.Domain.Charts.NetworthChartData::get_Value()
+FNDA:0,System.Double WebApi.Models.Domain.Charts.NetworthChartData::get_Value()
+DA:15,0
+LF:4
+LH:0
+BRF:0
+BRH:0
+FNF:4
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Models\Database\Account\Transactions\RecurringTransaction.cs
+FN:10,System.DateTimeOffset WebApi.Models.Database.RecurringTransaction::get_StartDate()
+FNDA:0,System.DateTimeOffset WebApi.Models.Database.RecurringTransaction::get_StartDate()
+DA:11,0
+FN:11,System.Int32 WebApi.Models.Database.RecurringTransaction::get_Occurrence()
+FNDA:0,System.Int32 WebApi.Models.Database.RecurringTransaction::get_Occurrence()
+DA:12,0
+FN:12,System.String WebApi.Models.Database.RecurringTransaction::get_Description()
+FNDA:0,System.String WebApi.Models.Database.RecurringTransaction::get_Description()
+DA:13,0
+FN:14,System.Double WebApi.Models.Database.RecurringTransaction::get_Income()
+FNDA:0,System.Double WebApi.Models.Database.RecurringTransaction::get_Income()
+DA:15,0
+FN:16,System.Guid WebApi.Models.Database.RecurringTransaction::get_AccountCategoryId()
+FNDA:0,System.Guid WebApi.Models.Database.RecurringTransaction::get_AccountCategoryId()
+DA:17,0
+FN:17,WebApi.Models.Database.Account.AccountCategory WebApi.Models.Database.RecurringTransaction::get_AccountCategory()
+FNDA:0,WebApi.Models.Database.Account.AccountCategory WebApi.Models.Database.RecurringTransaction::get_AccountCategory()
+DA:18,0
+FN:19,System.Guid WebApi.Models.Database.RecurringTransaction::get_AccountId()
+FNDA:0,System.Guid WebApi.Models.Database.RecurringTransaction::get_AccountId()
+DA:20,0
+FN:20,WebApi.Models.Database.Account.Account WebApi.Models.Database.RecurringTransaction::get_Account()
+FNDA:0,WebApi.Models.Database.Account.Account WebApi.Models.Database.RecurringTransaction::get_Account()
+DA:21,0
+FN:24,System.DateTimeOffset WebApi.Models.Database.RecurringTransaction::get_NextDate()
+FNDA:0,System.DateTimeOffset WebApi.Models.Database.RecurringTransaction::get_NextDate()
+DA:25,0
+FN:25,System.Void WebApi.Models.Database.RecurringTransaction::.ctor()
+FNDA:0,System.Void WebApi.Models.Database.RecurringTransaction::.ctor()
+DA:26,0
+FN:26,System.Void WebApi.Models.Database.RecurringTransaction::.ctor(System.DateTimeOffset,System.Int32,System.Double,System.String,System.Guid,System.Guid)
+FNDA:0,System.Void WebApi.Models.Database.RecurringTransaction::.ctor(System.DateTimeOffset,System.Int32,System.Double,System.String,System.Guid,System.Guid)
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+DA:32,0
+DA:33,0
+DA:34,0
+DA:35,0
+LF:19
+LH:0
+BRF:0
+BRH:0
+FNF:11
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Models\Database\Account\Transactions\RecurringTransactionsLog.cs
+FN:6,System.Int32 WebApi.Models.Database.RecurringTransactionsLog::get_NewTransactionsAdded()
+FNDA:0,System.Int32 WebApi.Models.Database.RecurringTransactionsLog::get_NewTransactionsAdded()
+DA:7,0
+FN:8,System.Void WebApi.Models.Database.RecurringTransactionsLog::.ctor()
+FNDA:0,System.Void WebApi.Models.Database.RecurringTransactionsLog::.ctor()
+DA:9,0
+FN:10,System.Void WebApi.Models.Database.RecurringTransactionsLog::.ctor(System.Int32)
+FNDA:0,System.Void WebApi.Models.Database.RecurringTransactionsLog::.ctor(System.Int32)
+DA:11,0
+DA:12,0
+DA:13,0
+DA:14,0
+LF:6
+LH:0
+BRF:0
+BRH:0
+FNF:3
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Models\Database\Account\Transactions\Transaction.cs
+FN:9,System.Double WebApi.Models.Database.Transaction::get_Amount()
+FNDA:8,System.Double WebApi.Models.Database.Transaction::get_Amount()
+DA:10,8
+FN:11,System.Double WebApi.Models.Database.Transaction::get_ConvertedAmount()
+FNDA:0,System.Double WebApi.Models.Database.Transaction::get_ConvertedAmount()
+DA:12,0
+FN:12,System.String WebApi.Models.Database.Transaction::get_Description()
+FNDA:7,System.String WebApi.Models.Database.Transaction::get_Description()
+DA:13,7
+FN:13,System.Guid WebApi.Models.Database.Transaction::get_AccountId()
+FNDA:7,System.Guid WebApi.Models.Database.Transaction::get_AccountId()
+DA:14,7
+FN:14,System.DateTimeOffset WebApi.Models.Database.Transaction::get_TransactionDate()
+FNDA:7,System.DateTimeOffset WebApi.Models.Database.Transaction::get_TransactionDate()
+DA:15,7
+FN:15,System.Guid WebApi.Models.Database.Transaction::get_AccountCategoryId()
+FNDA:7,System.Guid WebApi.Models.Database.Transaction::get_AccountCategoryId()
+DA:16,7
+FN:16,WebApi.Models.Database.Account.AccountCategory WebApi.Models.Database.Transaction::get_AccountCategory()
+FNDA:0,WebApi.Models.Database.Account.AccountCategory WebApi.Models.Database.Transaction::get_AccountCategory()
+DA:17,0
+FN:17,WebApi.Models.Database.Account.Account WebApi.Models.Database.Transaction::get_Account()
+FNDA:0,WebApi.Models.Database.Account.Account WebApi.Models.Database.Transaction::get_Account()
+DA:18,0
+FN:20,System.Void WebApi.Models.Database.Transaction::.ctor(System.Double,System.String,System.DateTimeOffset,System.Guid,System.Guid)
+FNDA:7,System.Void WebApi.Models.Database.Transaction::.ctor(System.Double,System.String,System.DateTimeOffset,System.Guid,System.Guid)
+DA:21,7
+DA:22,7
+DA:23,7
+DA:24,7
+DA:25,7
+DA:26,7
+DA:27,7
+DA:28,7
+LF:16
+LH:13
+BRF:0
+BRH:0
+FNF:9
+FNH:6
+end_of_record
+SF:F:\financr\api\WebApi\Models\Database\CurrencyConversionRate.cs
+FN:6,System.String WebApi.Models.Database.CurrencyConversionRate::get_Pair()
+FNDA:0,System.String WebApi.Models.Database.CurrencyConversionRate::get_Pair()
+DA:7,0
+FN:7,System.Double WebApi.Models.Database.CurrencyConversionRate::get_Rate()
+FNDA:0,System.Double WebApi.Models.Database.CurrencyConversionRate::get_Rate()
+DA:8,0
+FN:9,System.Void WebApi.Models.Database.CurrencyConversionRate::.ctor(System.String,System.Double)
+FNDA:0,System.Void WebApi.Models.Database.CurrencyConversionRate::.ctor(System.String,System.Double)
+DA:10,0
+DA:11,0
+DA:12,0
+DA:13,0
+DA:14,0
+FN:15,System.Void WebApi.Models.Database.CurrencyConversionRate::.ctor()
+FNDA:0,System.Void WebApi.Models.Database.CurrencyConversionRate::.ctor()
+DA:16,0
+LF:8
+LH:0
+BRF:0
+BRH:0
+FNF:4
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Models\Database\User.cs
+FN:8,System.String WebApi.Models.Database.User::get_Email()
+FNDA:14,System.String WebApi.Models.Database.User::get_Email()
+DA:9,14
+FN:9,System.String WebApi.Models.Database.User::get_Password()
+FNDA:14,System.String WebApi.Models.Database.User::get_Password()
+DA:10,14
+FN:11,System.Collections.Generic.List`1<WebApi.Models.Database.Account.Account> WebApi.Models.Database.User::get_Accounts()
+FNDA:0,System.Collections.Generic.List`1<WebApi.Models.Database.Account.Account> WebApi.Models.Database.User::get_Accounts()
+DA:12,0
+FN:12,WebApi.Models.Database.UserPreferences WebApi.Models.Database.User::get_Preferences()
+FNDA:0,WebApi.Models.Database.UserPreferences WebApi.Models.Database.User::get_Preferences()
+DA:13,0
+FN:14,System.Void WebApi.Models.Database.User::.ctor()
+FNDA:42,System.Void WebApi.Models.Database.User::.ctor()
+DA:15,42
+FN:16,System.Void WebApi.Models.Database.User::.ctor(System.String,System.String)
+FNDA:0,System.Void WebApi.Models.Database.User::.ctor(System.String,System.String)
+DA:17,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:21,0
+LF:10
+LH:3
+BRF:0
+BRH:0
+FNF:6
+FNH:3
+end_of_record
+SF:F:\financr\api\WebApi\Models\Database\UserPreferences.cs
+FN:10,System.String WebApi.Models.Database.UserPreferences::get_Currency()
+FNDA:33,System.String WebApi.Models.Database.UserPreferences::get_Currency()
+DA:11,33
+FN:12,System.Guid WebApi.Models.Database.UserPreferences::get_UserId()
+FNDA:15,System.Guid WebApi.Models.Database.UserPreferences::get_UserId()
+DA:13,15
+FN:13,WebApi.Models.Database.User WebApi.Models.Database.UserPreferences::get_User()
+FNDA:0,WebApi.Models.Database.User WebApi.Models.Database.UserPreferences::get_User()
+DA:14,0
+FN:16,WebApi.Models.Domain.Currency WebApi.Models.Database.UserPreferences::get_CurrencyData()
+FNDA:0,WebApi.Models.Domain.Currency WebApi.Models.Database.UserPreferences::get_CurrencyData()
+DA:17,0
+FN:18,System.Void WebApi.Models.Database.UserPreferences::.ctor(System.String,System.Guid)
+FNDA:1,System.Void WebApi.Models.Database.UserPreferences::.ctor(System.String,System.Guid)
+DA:19,1
+DA:20,1
+DA:21,1
+DA:22,1
+DA:23,1
+FN:24,System.Void WebApi.Models.Database.UserPreferences::.ctor()
+FNDA:14,System.Void WebApi.Models.Database.UserPreferences::.ctor()
+DA:25,14
+DA:26,14
+DA:28,14
+LF:12
+LH:10
+BRF:0
+BRH:0
+FNF:6
+FNH:4
+end_of_record
+SF:F:\financr\api\WebApi\Models\Database\Base\BaseModel.cs
+FN:9,System.Guid WebApi.Models.Database.Base.BaseModel::get_Id()
+FNDA:89,System.Guid WebApi.Models.Database.Base.BaseModel::get_Id()
+DA:10,89
+FN:11,System.DateTimeOffset WebApi.Models.Database.Base.BaseModel::get_CreatedAt()
+FNDA:201,System.DateTimeOffset WebApi.Models.Database.Base.BaseModel::get_CreatedAt()
+DA:12,201
+LF:2
+LH:2
+BRF:0
+BRH:0
+FNF:2
+FNH:2
+end_of_record
+SF:F:\financr\api\WebApi\Models\Database\Account\Account.cs
+FN:11,System.String WebApi.Models.Database.Account.Account::get_Name()
+FNDA:23,System.String WebApi.Models.Database.Account.Account::get_Name()
+DA:12,23
+FN:12,WebApi.Models.Domain.AccountType WebApi.Models.Database.Account.Account::get_Type()
+FNDA:27,WebApi.Models.Domain.AccountType WebApi.Models.Database.Account.Account::get_Type()
+DA:13,27
+FN:13,System.Guid WebApi.Models.Database.Account.Account::get_UserId()
+FNDA:22,System.Guid WebApi.Models.Database.Account.Account::get_UserId()
+DA:14,22
+FN:14,WebApi.Models.Database.User WebApi.Models.Database.Account.Account::get_User()
+FNDA:0,WebApi.Models.Database.User WebApi.Models.Database.Account.Account::get_User()
+DA:15,0
+FN:16,System.Double WebApi.Models.Database.Account.Account::get_Balance()
+FNDA:5,System.Double WebApi.Models.Database.Account.Account::get_Balance()
+DA:17,5
+BRDA:17,7,0,1
+BRDA:17,7,1,3
+FN:18,System.Double WebApi.Models.Database.Account.Account::get_ConvertedBalance()
+FNDA:5,System.Double WebApi.Models.Database.Account.Account::get_ConvertedBalance()
+DA:19,5
+FN:20,System.Collections.Generic.List`1<WebApi.Models.Database.Transaction> WebApi.Models.Database.Account.Account::get_Transactions()
+FNDA:6,System.Collections.Generic.List`1<WebApi.Models.Database.Transaction> WebApi.Models.Database.Account.Account::get_Transactions()
+DA:21,6
+FN:21,System.Collections.Generic.List`1<WebApi.Models.Database.Account.AccountCategory> WebApi.Models.Database.Account.Account::get_Categories()
+FNDA:0,System.Collections.Generic.List`1<WebApi.Models.Database.Account.AccountCategory> WebApi.Models.Database.Account.Account::get_Categories()
+DA:22,0
+FN:23,WebApi.Models.Database.Account.AccountBudget WebApi.Models.Database.Account.Account::get_Budget()
+FNDA:0,WebApi.Models.Database.Account.AccountBudget WebApi.Models.Database.Account.Account::get_Budget()
+DA:24,0
+FN:25,WebApi.Models.Database.Account.AccountPreferences WebApi.Models.Database.Account.Account::get_Preferences()
+FNDA:12,WebApi.Models.Database.Account.AccountPreferences WebApi.Models.Database.Account.Account::get_Preferences()
+DA:26,12
+FN:27,System.Void WebApi.Models.Database.Account.Account::.ctor(System.String,WebApi.Models.Domain.AccountType,System.Guid)
+FNDA:22,System.Void WebApi.Models.Database.Account.Account::.ctor(System.String,WebApi.Models.Domain.AccountType,System.Guid)
+DA:28,22
+DA:29,22
+DA:30,22
+DA:31,22
+DA:32,22
+DA:33,22
+LF:16
+LH:13
+BRF:2
+BRH:2
+FNF:11
+FNH:8
+end_of_record
+SF:F:\financr\api\WebApi\Models\Database\Account\AccountBudget.cs
+FN:7,System.Double WebApi.Models.Database.Account.AccountBudget::get_Budget()
+FNDA:0,System.Double WebApi.Models.Database.Account.AccountBudget::get_Budget()
+DA:8,0
+FN:8,System.Guid WebApi.Models.Database.Account.AccountBudget::get_AccountId()
+FNDA:0,System.Guid WebApi.Models.Database.Account.AccountBudget::get_AccountId()
+DA:9,0
+FN:9,WebApi.Models.Database.Account.Account WebApi.Models.Database.Account.AccountBudget::get_Account()
+FNDA:0,WebApi.Models.Database.Account.Account WebApi.Models.Database.Account.AccountBudget::get_Account()
+DA:10,0
+FN:11,System.Void WebApi.Models.Database.Account.AccountBudget::.ctor()
+FNDA:0,System.Void WebApi.Models.Database.Account.AccountBudget::.ctor()
+DA:12,0
+DA:13,0
+DA:15,0
+FN:16,System.Void WebApi.Models.Database.Account.AccountBudget::.ctor(System.Double,System.Guid)
+FNDA:0,System.Void WebApi.Models.Database.Account.AccountBudget::.ctor(System.Double,System.Guid)
+DA:17,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:21,0
+LF:11
+LH:0
+BRF:0
+BRH:0
+FNF:5
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Models\Database\Account\AccountCategory.cs
+FN:7,System.String WebApi.Models.Database.Account.AccountCategory::get_Name()
+FNDA:117,System.String WebApi.Models.Database.Account.AccountCategory::get_Name()
+DA:8,117
+FN:8,System.Guid WebApi.Models.Database.Account.AccountCategory::get_AccountId()
+FNDA:117,System.Guid WebApi.Models.Database.Account.AccountCategory::get_AccountId()
+DA:9,117
+FN:9,WebApi.Models.Database.Account.AccountCategoryType WebApi.Models.Database.Account.AccountCategory::get_Type()
+FNDA:117,WebApi.Models.Database.Account.AccountCategoryType WebApi.Models.Database.Account.AccountCategory::get_Type()
+DA:10,117
+FN:10,WebApi.Models.Database.Account.Account WebApi.Models.Database.Account.AccountCategory::get_Account()
+FNDA:0,WebApi.Models.Database.Account.Account WebApi.Models.Database.Account.AccountCategory::get_Account()
+DA:11,0
+FN:12,System.Void WebApi.Models.Database.Account.AccountCategory::.ctor(System.String,WebApi.Models.Database.Account.AccountCategoryType,System.Guid)
+FNDA:117,System.Void WebApi.Models.Database.Account.AccountCategory::.ctor(System.String,WebApi.Models.Database.Account.AccountCategoryType,System.Guid)
+DA:13,117
+DA:14,117
+DA:15,117
+DA:16,117
+DA:17,117
+DA:18,117
+LF:10
+LH:9
+BRF:0
+BRH:0
+FNF:5
+FNH:4
+end_of_record
+SF:F:\financr\api\WebApi\Models\Database\Account\AccountPreferences.cs
+FN:10,System.String WebApi.Models.Database.Account.AccountPreferences::get_Currency()
+FNDA:36,System.String WebApi.Models.Database.Account.AccountPreferences::get_Currency()
+DA:11,36
+FN:13,WebApi.Models.Domain.Currency WebApi.Models.Database.Account.AccountPreferences::get_CurrencyData()
+FNDA:0,WebApi.Models.Domain.Currency WebApi.Models.Database.Account.AccountPreferences::get_CurrencyData()
+DA:14,0
+FN:15,System.Guid WebApi.Models.Database.Account.AccountPreferences::get_AccountId()
+FNDA:26,System.Guid WebApi.Models.Database.Account.AccountPreferences::get_AccountId()
+DA:16,26
+FN:16,WebApi.Models.Database.Account.Account WebApi.Models.Database.Account.AccountPreferences::get_Account()
+FNDA:0,WebApi.Models.Database.Account.Account WebApi.Models.Database.Account.AccountPreferences::get_Account()
+DA:17,0
+FN:18,System.Void WebApi.Models.Database.Account.AccountPreferences::.ctor(System.String,System.Guid)
+FNDA:26,System.Void WebApi.Models.Database.Account.AccountPreferences::.ctor(System.String,System.Guid)
+DA:19,26
+DA:20,26
+DA:21,26
+DA:22,26
+DA:23,26
+LF:9
+LH:7
+BRF:0
+BRH:0
+FNF:5
+FNH:3
+end_of_record
+SF:F:\financr\api\WebApi\Migrations\20200313164446_InitialMigrations.cs
+FN:8,System.Void WebApi.Migrations.InitialMigrations::Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+FNDA:0,System.Void WebApi.Migrations.InitialMigrations::Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+DA:9,0
+DA:10,0
+DA:11,0
+DA:13,0
+DA:14,0
+DA:15,0
+DA:16,0
+DA:17,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:21,0
+DA:22,0
+DA:23,0
+DA:24,0
+DA:25,0
+DA:26,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+DA:32,0
+DA:33,0
+DA:34,0
+DA:35,0
+DA:36,0
+DA:37,0
+DA:38,0
+DA:39,0
+DA:40,0
+DA:41,0
+DA:42,0
+DA:43,0
+DA:44,0
+DA:45,0
+DA:46,0
+DA:47,0
+DA:48,0
+DA:49,0
+DA:51,0
+DA:52,0
+DA:53,0
+DA:54,0
+DA:55,0
+DA:56,0
+DA:57,0
+DA:58,0
+DA:59,0
+DA:60,0
+DA:61,0
+DA:62,0
+DA:63,0
+DA:64,0
+DA:65,0
+DA:66,0
+DA:67,0
+DA:68,0
+DA:69,0
+DA:70,0
+DA:71,0
+DA:72,0
+DA:74,0
+DA:75,0
+DA:76,0
+DA:77,0
+DA:78,0
+DA:79,0
+DA:80,0
+DA:81,0
+DA:82,0
+DA:83,0
+DA:84,0
+DA:85,0
+DA:86,0
+DA:87,0
+DA:88,0
+DA:89,0
+DA:90,0
+DA:91,0
+DA:92,0
+DA:93,0
+DA:94,0
+DA:95,0
+DA:96,0
+DA:97,0
+DA:98,0
+DA:99,0
+DA:100,0
+DA:101,0
+DA:102,0
+DA:103,0
+DA:104,0
+DA:106,0
+DA:107,0
+DA:108,0
+DA:109,0
+DA:110,0
+DA:112,0
+DA:113,0
+DA:114,0
+DA:115,0
+DA:116,0
+DA:118,0
+DA:119,0
+DA:120,0
+DA:121,0
+DA:122,0
+DA:124,0
+DA:125,0
+DA:126,0
+DA:127,0
+DA:128,0
+DA:129,0
+FN:131,System.Void WebApi.Migrations.InitialMigrations::Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+FNDA:0,System.Void WebApi.Migrations.InitialMigrations::Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+DA:132,0
+DA:133,0
+DA:134,0
+DA:135,0
+DA:137,0
+DA:138,0
+DA:139,0
+DA:141,0
+DA:142,0
+DA:143,0
+DA:145,0
+DA:146,0
+DA:147,0
+DA:148,0
+LF:127
+LH:0
+BRF:0
+BRH:0
+FNF:2
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Migrations\20200313164446_InitialMigrations.Designer.cs
+FN:16,System.Void WebApi.Migrations.InitialMigrations::BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)
+FNDA:0,System.Void WebApi.Migrations.InitialMigrations::BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)
+DA:17,0
+DA:19,0
+DA:20,0
+DA:21,0
+DA:22,0
+DA:23,0
+DA:25,0
+DA:26,0
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+DA:32,0
+DA:33,0
+DA:34,0
+DA:35,0
+DA:36,0
+DA:37,0
+DA:38,0
+DA:39,0
+DA:40,0
+DA:41,0
+DA:42,0
+DA:43,0
+DA:45,0
+DA:46,0
+DA:47,0
+DA:48,0
+DA:49,0
+DA:50,0
+DA:51,0
+DA:52,0
+DA:53,0
+DA:54,0
+DA:55,0
+DA:56,0
+DA:57,0
+DA:58,0
+DA:59,0
+DA:60,0
+DA:61,0
+DA:62,0
+DA:63,0
+DA:65,0
+DA:66,0
+DA:67,0
+DA:68,0
+DA:69,0
+DA:70,0
+DA:71,0
+DA:72,0
+DA:73,0
+DA:74,0
+DA:75,0
+DA:76,0
+DA:77,0
+DA:78,0
+DA:79,0
+DA:80,0
+DA:81,0
+DA:82,0
+DA:83,0
+DA:84,0
+DA:85,0
+DA:86,0
+DA:87,0
+DA:88,0
+DA:89,0
+DA:91,0
+DA:92,0
+DA:93,0
+DA:94,0
+DA:95,0
+DA:96,0
+DA:97,0
+DA:98,0
+DA:99,0
+DA:100,0
+DA:101,0
+DA:102,0
+DA:103,0
+DA:104,0
+DA:105,0
+DA:107,0
+DA:108,0
+DA:109,0
+DA:110,0
+DA:111,0
+DA:112,0
+DA:113,0
+DA:115,0
+DA:116,0
+DA:117,0
+DA:118,0
+DA:119,0
+DA:120,0
+DA:121,0
+DA:123,0
+DA:124,0
+DA:125,0
+DA:126,0
+DA:127,0
+DA:128,0
+DA:129,0
+DA:130,0
+DA:131,0
+DA:132,0
+DA:133,0
+DA:134,0
+DA:136,0
+LF:111
+LH:0
+BRF:0
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Migrations\20200314131636_AddAccountBudgetTable.cs
+FN:8,System.Void WebApi.Migrations.AddAccountBudgetTable::Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+FNDA:0,System.Void WebApi.Migrations.AddAccountBudgetTable::Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+DA:9,0
+DA:10,0
+DA:11,0
+DA:12,0
+DA:13,0
+DA:14,0
+DA:15,0
+DA:16,0
+DA:17,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:21,0
+DA:22,0
+DA:23,0
+DA:24,0
+DA:25,0
+DA:26,0
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:32,0
+DA:33,0
+DA:34,0
+DA:35,0
+DA:36,0
+DA:37,0
+DA:38,0
+FN:40,System.Void WebApi.Migrations.AddAccountBudgetTable::Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+FNDA:0,System.Void WebApi.Migrations.AddAccountBudgetTable::Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+DA:41,0
+DA:42,0
+DA:43,0
+DA:44,0
+DA:45,0
+LF:34
+LH:0
+BRF:0
+BRH:0
+FNF:2
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Migrations\20200314131636_AddAccountBudgetTable.Designer.cs
+FN:16,System.Void WebApi.Migrations.AddAccountBudgetTable::BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)
+FNDA:0,System.Void WebApi.Migrations.AddAccountBudgetTable::BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)
+DA:17,0
+DA:19,0
+DA:20,0
+DA:21,0
+DA:22,0
+DA:23,0
+DA:25,0
+DA:26,0
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+DA:32,0
+DA:33,0
+DA:34,0
+DA:35,0
+DA:36,0
+DA:37,0
+DA:38,0
+DA:39,0
+DA:40,0
+DA:41,0
+DA:42,0
+DA:43,0
+DA:45,0
+DA:46,0
+DA:47,0
+DA:48,0
+DA:49,0
+DA:50,0
+DA:51,0
+DA:52,0
+DA:53,0
+DA:54,0
+DA:55,0
+DA:56,0
+DA:57,0
+DA:58,0
+DA:59,0
+DA:60,0
+DA:61,0
+DA:62,0
+DA:64,0
+DA:65,0
+DA:66,0
+DA:67,0
+DA:68,0
+DA:69,0
+DA:70,0
+DA:71,0
+DA:72,0
+DA:73,0
+DA:74,0
+DA:75,0
+DA:76,0
+DA:77,0
+DA:78,0
+DA:79,0
+DA:80,0
+DA:81,0
+DA:82,0
+DA:84,0
+DA:85,0
+DA:86,0
+DA:87,0
+DA:88,0
+DA:89,0
+DA:90,0
+DA:91,0
+DA:92,0
+DA:93,0
+DA:94,0
+DA:95,0
+DA:96,0
+DA:97,0
+DA:98,0
+DA:99,0
+DA:100,0
+DA:101,0
+DA:102,0
+DA:103,0
+DA:104,0
+DA:105,0
+DA:106,0
+DA:107,0
+DA:108,0
+DA:110,0
+DA:111,0
+DA:112,0
+DA:113,0
+DA:114,0
+DA:115,0
+DA:116,0
+DA:117,0
+DA:118,0
+DA:119,0
+DA:120,0
+DA:121,0
+DA:122,0
+DA:123,0
+DA:124,0
+DA:126,0
+DA:127,0
+DA:128,0
+DA:129,0
+DA:130,0
+DA:131,0
+DA:132,0
+DA:134,0
+DA:135,0
+DA:136,0
+DA:137,0
+DA:138,0
+DA:139,0
+DA:140,0
+DA:142,0
+DA:143,0
+DA:144,0
+DA:145,0
+DA:146,0
+DA:147,0
+DA:148,0
+DA:150,0
+DA:151,0
+DA:152,0
+DA:153,0
+DA:154,0
+DA:155,0
+DA:156,0
+DA:157,0
+DA:158,0
+DA:159,0
+DA:160,0
+DA:161,0
+DA:163,0
+LF:136
+LH:0
+BRF:0
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Migrations\20200319164528_AddRecurringTransactionsTable.cs
+FN:8,System.Void WebApi.Migrations.AddRecurringTransactionsTable::Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+FNDA:0,System.Void WebApi.Migrations.AddRecurringTransactionsTable::Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+DA:9,0
+DA:10,0
+DA:11,0
+DA:12,0
+DA:13,0
+DA:14,0
+DA:15,0
+DA:16,0
+DA:17,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:21,0
+DA:22,0
+DA:23,0
+DA:24,0
+DA:25,0
+DA:26,0
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+DA:32,0
+DA:33,0
+DA:34,0
+DA:35,0
+DA:36,0
+DA:37,0
+DA:38,0
+DA:39,0
+DA:40,0
+DA:41,0
+DA:43,0
+DA:44,0
+DA:45,0
+DA:46,0
+DA:47,0
+DA:49,0
+DA:50,0
+DA:51,0
+DA:52,0
+DA:53,0
+DA:54,0
+FN:56,System.Void WebApi.Migrations.AddRecurringTransactionsTable::Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+FNDA:0,System.Void WebApi.Migrations.AddRecurringTransactionsTable::Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+DA:57,0
+DA:58,0
+DA:59,0
+DA:60,0
+DA:61,0
+LF:49
+LH:0
+BRF:0
+BRH:0
+FNF:2
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Migrations\20200319164528_AddRecurringTransactionsTable.Designer.cs
+FN:16,System.Void WebApi.Migrations.AddRecurringTransactionsTable::BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)
+FNDA:0,System.Void WebApi.Migrations.AddRecurringTransactionsTable::BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)
+DA:17,0
+DA:19,0
+DA:20,0
+DA:21,0
+DA:22,0
+DA:23,0
+DA:25,0
+DA:26,0
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+DA:32,0
+DA:33,0
+DA:34,0
+DA:35,0
+DA:36,0
+DA:37,0
+DA:38,0
+DA:39,0
+DA:40,0
+DA:41,0
+DA:42,0
+DA:43,0
+DA:45,0
+DA:46,0
+DA:47,0
+DA:48,0
+DA:49,0
+DA:50,0
+DA:51,0
+DA:52,0
+DA:53,0
+DA:54,0
+DA:55,0
+DA:56,0
+DA:57,0
+DA:58,0
+DA:59,0
+DA:60,0
+DA:61,0
+DA:62,0
+DA:64,0
+DA:65,0
+DA:66,0
+DA:67,0
+DA:68,0
+DA:69,0
+DA:70,0
+DA:71,0
+DA:72,0
+DA:73,0
+DA:74,0
+DA:75,0
+DA:76,0
+DA:77,0
+DA:78,0
+DA:79,0
+DA:80,0
+DA:81,0
+DA:82,0
+DA:84,0
+DA:85,0
+DA:86,0
+DA:87,0
+DA:88,0
+DA:89,0
+DA:90,0
+DA:91,0
+DA:92,0
+DA:93,0
+DA:94,0
+DA:95,0
+DA:96,0
+DA:97,0
+DA:98,0
+DA:99,0
+DA:100,0
+DA:101,0
+DA:102,0
+DA:103,0
+DA:104,0
+DA:105,0
+DA:106,0
+DA:107,0
+DA:108,0
+DA:109,0
+DA:110,0
+DA:112,0
+DA:113,0
+DA:114,0
+DA:115,0
+DA:116,0
+DA:117,0
+DA:118,0
+DA:119,0
+DA:120,0
+DA:121,0
+DA:122,0
+DA:123,0
+DA:124,0
+DA:125,0
+DA:126,0
+DA:127,0
+DA:128,0
+DA:129,0
+DA:130,0
+DA:131,0
+DA:132,0
+DA:133,0
+DA:134,0
+DA:135,0
+DA:136,0
+DA:138,0
+DA:139,0
+DA:140,0
+DA:141,0
+DA:142,0
+DA:143,0
+DA:144,0
+DA:145,0
+DA:146,0
+DA:147,0
+DA:148,0
+DA:149,0
+DA:150,0
+DA:151,0
+DA:152,0
+DA:154,0
+DA:155,0
+DA:156,0
+DA:157,0
+DA:158,0
+DA:159,0
+DA:160,0
+DA:162,0
+DA:163,0
+DA:164,0
+DA:165,0
+DA:166,0
+DA:167,0
+DA:168,0
+DA:170,0
+DA:171,0
+DA:172,0
+DA:173,0
+DA:174,0
+DA:175,0
+DA:176,0
+DA:178,0
+DA:179,0
+DA:180,0
+DA:181,0
+DA:182,0
+DA:183,0
+DA:184,0
+DA:185,0
+DA:186,0
+DA:187,0
+DA:188,0
+DA:189,0
+DA:191,0
+DA:192,0
+DA:193,0
+DA:194,0
+DA:195,0
+DA:196,0
+DA:197,0
+DA:198,0
+DA:199,0
+DA:200,0
+DA:201,0
+DA:202,0
+DA:204,0
+LF:175
+LH:0
+BRF:0
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Migrations\20200319202036_AddRecurringTransactionsLogsTable.cs
+FN:8,System.Void WebApi.Migrations.AddRecurringTransactionsLogsTable::Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+FNDA:0,System.Void WebApi.Migrations.AddRecurringTransactionsLogsTable::Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+DA:9,0
+DA:10,0
+DA:11,0
+DA:12,0
+DA:13,0
+DA:14,0
+DA:15,0
+DA:16,0
+DA:17,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:21,0
+DA:22,0
+DA:23,0
+FN:25,System.Void WebApi.Migrations.AddRecurringTransactionsLogsTable::Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+FNDA:0,System.Void WebApi.Migrations.AddRecurringTransactionsLogsTable::Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+DA:26,0
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+LF:20
+LH:0
+BRF:0
+BRH:0
+FNF:2
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Migrations\20200319202036_AddRecurringTransactionsLogsTable.Designer.cs
+FN:16,System.Void WebApi.Migrations.AddRecurringTransactionsLogsTable::BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)
+FNDA:0,System.Void WebApi.Migrations.AddRecurringTransactionsLogsTable::BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)
+DA:17,0
+DA:19,0
+DA:20,0
+DA:21,0
+DA:22,0
+DA:23,0
+DA:25,0
+DA:26,0
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+DA:32,0
+DA:33,0
+DA:34,0
+DA:35,0
+DA:36,0
+DA:37,0
+DA:38,0
+DA:39,0
+DA:40,0
+DA:41,0
+DA:42,0
+DA:43,0
+DA:45,0
+DA:46,0
+DA:47,0
+DA:48,0
+DA:49,0
+DA:50,0
+DA:51,0
+DA:52,0
+DA:53,0
+DA:54,0
+DA:55,0
+DA:56,0
+DA:57,0
+DA:58,0
+DA:59,0
+DA:60,0
+DA:61,0
+DA:62,0
+DA:64,0
+DA:65,0
+DA:66,0
+DA:67,0
+DA:68,0
+DA:69,0
+DA:70,0
+DA:71,0
+DA:72,0
+DA:73,0
+DA:74,0
+DA:75,0
+DA:76,0
+DA:77,0
+DA:78,0
+DA:79,0
+DA:80,0
+DA:81,0
+DA:82,0
+DA:84,0
+DA:85,0
+DA:86,0
+DA:87,0
+DA:88,0
+DA:89,0
+DA:90,0
+DA:91,0
+DA:92,0
+DA:93,0
+DA:94,0
+DA:95,0
+DA:96,0
+DA:97,0
+DA:98,0
+DA:99,0
+DA:100,0
+DA:101,0
+DA:102,0
+DA:103,0
+DA:104,0
+DA:105,0
+DA:106,0
+DA:107,0
+DA:108,0
+DA:109,0
+DA:110,0
+DA:112,0
+DA:113,0
+DA:114,0
+DA:115,0
+DA:116,0
+DA:117,0
+DA:118,0
+DA:119,0
+DA:120,0
+DA:121,0
+DA:122,0
+DA:123,0
+DA:124,0
+DA:126,0
+DA:127,0
+DA:128,0
+DA:129,0
+DA:130,0
+DA:131,0
+DA:132,0
+DA:133,0
+DA:134,0
+DA:135,0
+DA:136,0
+DA:137,0
+DA:138,0
+DA:139,0
+DA:140,0
+DA:141,0
+DA:142,0
+DA:143,0
+DA:144,0
+DA:145,0
+DA:146,0
+DA:147,0
+DA:148,0
+DA:149,0
+DA:150,0
+DA:152,0
+DA:153,0
+DA:154,0
+DA:155,0
+DA:156,0
+DA:157,0
+DA:158,0
+DA:159,0
+DA:160,0
+DA:161,0
+DA:162,0
+DA:163,0
+DA:164,0
+DA:165,0
+DA:166,0
+DA:168,0
+DA:169,0
+DA:170,0
+DA:171,0
+DA:172,0
+DA:173,0
+DA:174,0
+DA:176,0
+DA:177,0
+DA:178,0
+DA:179,0
+DA:180,0
+DA:181,0
+DA:182,0
+DA:184,0
+DA:185,0
+DA:186,0
+DA:187,0
+DA:188,0
+DA:189,0
+DA:190,0
+DA:192,0
+DA:193,0
+DA:194,0
+DA:195,0
+DA:196,0
+DA:197,0
+DA:198,0
+DA:199,0
+DA:200,0
+DA:201,0
+DA:202,0
+DA:203,0
+DA:205,0
+DA:206,0
+DA:207,0
+DA:208,0
+DA:209,0
+DA:210,0
+DA:211,0
+DA:212,0
+DA:213,0
+DA:214,0
+DA:215,0
+DA:216,0
+DA:218,0
+LF:188
+LH:0
+BRF:0
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Migrations\20210531201103_AddAccountPreferencesTable.cs
+FN:8,System.Void WebApi.Migrations.AddAccountPreferencesTable::Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+FNDA:0,System.Void WebApi.Migrations.AddAccountPreferencesTable::Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+DA:9,0
+DA:12,0
+DA:13,0
+DA:14,0
+DA:15,0
+DA:16,0
+DA:17,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:21,0
+DA:22,0
+DA:23,0
+DA:24,0
+DA:25,0
+DA:26,0
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+DA:32,0
+DA:34,0
+DA:35,0
+DA:36,0
+DA:37,0
+DA:38,0
+DA:39,0
+DA:42,0
+FN:44,System.Void WebApi.Migrations.AddAccountPreferencesTable::Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+FNDA:0,System.Void WebApi.Migrations.AddAccountPreferencesTable::Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+DA:45,0
+DA:46,0
+DA:47,0
+DA:48,0
+DA:49,0
+LF:34
+LH:0
+BRF:0
+BRH:0
+FNF:2
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Migrations\20210531201103_AddAccountPreferencesTable.Designer.cs
+FN:16,System.Void WebApi.Migrations.AddAccountPreferencesTable::BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)
+FNDA:0,System.Void WebApi.Migrations.AddAccountPreferencesTable::BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)
+DA:17,0
+DA:19,0
+DA:20,0
+DA:21,0
+DA:22,0
+DA:23,0
+DA:25,0
+DA:26,0
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+DA:32,0
+DA:33,0
+DA:34,0
+DA:35,0
+DA:36,0
+DA:37,0
+DA:38,0
+DA:39,0
+DA:40,0
+DA:41,0
+DA:42,0
+DA:43,0
+DA:45,0
+DA:46,0
+DA:47,0
+DA:48,0
+DA:49,0
+DA:50,0
+DA:51,0
+DA:52,0
+DA:53,0
+DA:54,0
+DA:55,0
+DA:56,0
+DA:57,0
+DA:58,0
+DA:59,0
+DA:60,0
+DA:61,0
+DA:62,0
+DA:64,0
+DA:65,0
+DA:66,0
+DA:67,0
+DA:68,0
+DA:69,0
+DA:70,0
+DA:71,0
+DA:72,0
+DA:73,0
+DA:74,0
+DA:75,0
+DA:76,0
+DA:77,0
+DA:78,0
+DA:79,0
+DA:80,0
+DA:81,0
+DA:82,0
+DA:84,0
+DA:85,0
+DA:86,0
+DA:87,0
+DA:88,0
+DA:89,0
+DA:90,0
+DA:91,0
+DA:92,0
+DA:93,0
+DA:94,0
+DA:95,0
+DA:96,0
+DA:97,0
+DA:98,0
+DA:99,0
+DA:100,0
+DA:101,0
+DA:103,0
+DA:104,0
+DA:105,0
+DA:106,0
+DA:107,0
+DA:108,0
+DA:109,0
+DA:110,0
+DA:111,0
+DA:112,0
+DA:113,0
+DA:114,0
+DA:115,0
+DA:116,0
+DA:117,0
+DA:118,0
+DA:119,0
+DA:120,0
+DA:121,0
+DA:122,0
+DA:123,0
+DA:124,0
+DA:125,0
+DA:126,0
+DA:127,0
+DA:128,0
+DA:129,0
+DA:131,0
+DA:132,0
+DA:133,0
+DA:134,0
+DA:135,0
+DA:136,0
+DA:137,0
+DA:138,0
+DA:139,0
+DA:140,0
+DA:141,0
+DA:142,0
+DA:143,0
+DA:145,0
+DA:146,0
+DA:147,0
+DA:148,0
+DA:149,0
+DA:150,0
+DA:151,0
+DA:152,0
+DA:153,0
+DA:154,0
+DA:155,0
+DA:156,0
+DA:157,0
+DA:158,0
+DA:159,0
+DA:160,0
+DA:161,0
+DA:162,0
+DA:163,0
+DA:164,0
+DA:165,0
+DA:166,0
+DA:167,0
+DA:168,0
+DA:169,0
+DA:171,0
+DA:172,0
+DA:173,0
+DA:174,0
+DA:175,0
+DA:176,0
+DA:177,0
+DA:178,0
+DA:179,0
+DA:180,0
+DA:181,0
+DA:182,0
+DA:183,0
+DA:184,0
+DA:185,0
+DA:187,0
+DA:188,0
+DA:189,0
+DA:190,0
+DA:191,0
+DA:192,0
+DA:193,0
+DA:195,0
+DA:196,0
+DA:197,0
+DA:198,0
+DA:199,0
+DA:200,0
+DA:201,0
+DA:203,0
+DA:204,0
+DA:205,0
+DA:206,0
+DA:207,0
+DA:208,0
+DA:209,0
+DA:211,0
+DA:212,0
+DA:213,0
+DA:214,0
+DA:215,0
+DA:216,0
+DA:217,0
+DA:219,0
+DA:220,0
+DA:221,0
+DA:222,0
+DA:223,0
+DA:224,0
+DA:225,0
+DA:226,0
+DA:227,0
+DA:228,0
+DA:229,0
+DA:230,0
+DA:232,0
+DA:233,0
+DA:234,0
+DA:235,0
+DA:236,0
+DA:237,0
+DA:238,0
+DA:239,0
+DA:240,0
+DA:241,0
+DA:242,0
+DA:243,0
+DA:245,0
+LF:213
+LH:0
+BRF:0
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Migrations\20210604205641_AddUserPreferencesTable.cs
+FN:8,System.Void WebApi.Migrations.AddUserPreferencesTable::Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+FNDA:0,System.Void WebApi.Migrations.AddUserPreferencesTable::Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+DA:9,0
+DA:10,0
+DA:11,0
+DA:12,0
+DA:13,0
+DA:14,0
+DA:15,0
+DA:16,0
+DA:17,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:21,0
+DA:22,0
+DA:23,0
+DA:24,0
+DA:25,0
+DA:26,0
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:32,0
+DA:33,0
+DA:34,0
+DA:35,0
+DA:36,0
+DA:37,0
+DA:38,0
+FN:40,System.Void WebApi.Migrations.AddUserPreferencesTable::Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+FNDA:0,System.Void WebApi.Migrations.AddUserPreferencesTable::Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+DA:41,0
+DA:42,0
+DA:43,0
+DA:44,0
+DA:45,0
+LF:34
+LH:0
+BRF:0
+BRH:0
+FNF:2
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Migrations\20210604205641_AddUserPreferencesTable.Designer.cs
+FN:16,System.Void WebApi.Migrations.AddUserPreferencesTable::BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)
+FNDA:0,System.Void WebApi.Migrations.AddUserPreferencesTable::BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)
+DA:17,0
+DA:19,0
+DA:20,0
+DA:21,0
+DA:22,0
+DA:23,0
+DA:25,0
+DA:26,0
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+DA:32,0
+DA:33,0
+DA:34,0
+DA:35,0
+DA:36,0
+DA:37,0
+DA:38,0
+DA:39,0
+DA:40,0
+DA:41,0
+DA:42,0
+DA:43,0
+DA:45,0
+DA:46,0
+DA:47,0
+DA:48,0
+DA:49,0
+DA:50,0
+DA:51,0
+DA:52,0
+DA:53,0
+DA:54,0
+DA:55,0
+DA:56,0
+DA:57,0
+DA:58,0
+DA:59,0
+DA:60,0
+DA:61,0
+DA:62,0
+DA:64,0
+DA:65,0
+DA:66,0
+DA:67,0
+DA:68,0
+DA:69,0
+DA:70,0
+DA:71,0
+DA:72,0
+DA:73,0
+DA:74,0
+DA:75,0
+DA:76,0
+DA:77,0
+DA:78,0
+DA:79,0
+DA:80,0
+DA:81,0
+DA:82,0
+DA:84,0
+DA:85,0
+DA:86,0
+DA:87,0
+DA:88,0
+DA:89,0
+DA:90,0
+DA:91,0
+DA:92,0
+DA:93,0
+DA:94,0
+DA:95,0
+DA:96,0
+DA:97,0
+DA:98,0
+DA:99,0
+DA:100,0
+DA:101,0
+DA:103,0
+DA:104,0
+DA:105,0
+DA:106,0
+DA:107,0
+DA:108,0
+DA:109,0
+DA:110,0
+DA:111,0
+DA:112,0
+DA:113,0
+DA:114,0
+DA:115,0
+DA:116,0
+DA:117,0
+DA:118,0
+DA:119,0
+DA:120,0
+DA:121,0
+DA:122,0
+DA:123,0
+DA:124,0
+DA:125,0
+DA:126,0
+DA:127,0
+DA:128,0
+DA:129,0
+DA:131,0
+DA:132,0
+DA:133,0
+DA:134,0
+DA:135,0
+DA:136,0
+DA:137,0
+DA:138,0
+DA:139,0
+DA:140,0
+DA:141,0
+DA:142,0
+DA:143,0
+DA:145,0
+DA:146,0
+DA:147,0
+DA:148,0
+DA:149,0
+DA:150,0
+DA:151,0
+DA:152,0
+DA:153,0
+DA:154,0
+DA:155,0
+DA:156,0
+DA:157,0
+DA:158,0
+DA:159,0
+DA:160,0
+DA:161,0
+DA:162,0
+DA:163,0
+DA:164,0
+DA:165,0
+DA:166,0
+DA:167,0
+DA:168,0
+DA:169,0
+DA:171,0
+DA:172,0
+DA:173,0
+DA:174,0
+DA:175,0
+DA:176,0
+DA:177,0
+DA:178,0
+DA:179,0
+DA:180,0
+DA:181,0
+DA:182,0
+DA:183,0
+DA:184,0
+DA:185,0
+DA:187,0
+DA:188,0
+DA:189,0
+DA:190,0
+DA:191,0
+DA:192,0
+DA:193,0
+DA:194,0
+DA:195,0
+DA:196,0
+DA:197,0
+DA:198,0
+DA:199,0
+DA:200,0
+DA:201,0
+DA:202,0
+DA:203,0
+DA:204,0
+DA:206,0
+DA:207,0
+DA:208,0
+DA:209,0
+DA:210,0
+DA:211,0
+DA:212,0
+DA:214,0
+DA:215,0
+DA:216,0
+DA:217,0
+DA:218,0
+DA:219,0
+DA:220,0
+DA:222,0
+DA:223,0
+DA:224,0
+DA:225,0
+DA:226,0
+DA:227,0
+DA:228,0
+DA:230,0
+DA:231,0
+DA:232,0
+DA:233,0
+DA:234,0
+DA:235,0
+DA:236,0
+DA:238,0
+DA:239,0
+DA:240,0
+DA:241,0
+DA:242,0
+DA:243,0
+DA:244,0
+DA:245,0
+DA:246,0
+DA:247,0
+DA:248,0
+DA:249,0
+DA:251,0
+DA:252,0
+DA:253,0
+DA:254,0
+DA:255,0
+DA:256,0
+DA:257,0
+DA:258,0
+DA:259,0
+DA:260,0
+DA:261,0
+DA:262,0
+DA:264,0
+DA:265,0
+DA:266,0
+DA:267,0
+DA:268,0
+DA:269,0
+DA:270,0
+DA:272,0
+LF:238
+LH:0
+BRF:0
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Migrations\20210606154934_AddCurrencyConversionRatesTable.cs
+FN:8,System.Void WebApi.Migrations.AddCurrencyConversionRatesTable::Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+FNDA:0,System.Void WebApi.Migrations.AddCurrencyConversionRatesTable::Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+DA:9,0
+DA:10,0
+DA:11,0
+DA:12,0
+DA:13,0
+DA:14,0
+DA:15,0
+DA:16,0
+DA:17,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:21,0
+DA:22,0
+DA:23,0
+DA:24,0
+FN:26,System.Void WebApi.Migrations.AddCurrencyConversionRatesTable::Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+FNDA:0,System.Void WebApi.Migrations.AddCurrencyConversionRatesTable::Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+LF:21
+LH:0
+BRF:0
+BRH:0
+FNF:2
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Migrations\20210606154934_AddCurrencyConversionRatesTable.Designer.cs
+FN:16,System.Void WebApi.Migrations.AddCurrencyConversionRatesTable::BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)
+FNDA:0,System.Void WebApi.Migrations.AddCurrencyConversionRatesTable::BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)
+DA:17,0
+DA:19,0
+DA:20,0
+DA:21,0
+DA:22,0
+DA:23,0
+DA:25,0
+DA:26,0
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+DA:32,0
+DA:33,0
+DA:34,0
+DA:35,0
+DA:36,0
+DA:37,0
+DA:38,0
+DA:39,0
+DA:40,0
+DA:41,0
+DA:42,0
+DA:43,0
+DA:45,0
+DA:46,0
+DA:47,0
+DA:48,0
+DA:49,0
+DA:50,0
+DA:51,0
+DA:52,0
+DA:53,0
+DA:54,0
+DA:55,0
+DA:56,0
+DA:57,0
+DA:58,0
+DA:59,0
+DA:60,0
+DA:61,0
+DA:62,0
+DA:64,0
+DA:65,0
+DA:66,0
+DA:67,0
+DA:68,0
+DA:69,0
+DA:70,0
+DA:71,0
+DA:72,0
+DA:73,0
+DA:74,0
+DA:75,0
+DA:76,0
+DA:77,0
+DA:78,0
+DA:79,0
+DA:80,0
+DA:81,0
+DA:82,0
+DA:84,0
+DA:85,0
+DA:86,0
+DA:87,0
+DA:88,0
+DA:89,0
+DA:90,0
+DA:91,0
+DA:92,0
+DA:93,0
+DA:94,0
+DA:95,0
+DA:96,0
+DA:97,0
+DA:98,0
+DA:99,0
+DA:100,0
+DA:101,0
+DA:103,0
+DA:104,0
+DA:105,0
+DA:106,0
+DA:107,0
+DA:108,0
+DA:109,0
+DA:110,0
+DA:111,0
+DA:112,0
+DA:113,0
+DA:114,0
+DA:115,0
+DA:116,0
+DA:117,0
+DA:119,0
+DA:120,0
+DA:121,0
+DA:122,0
+DA:123,0
+DA:124,0
+DA:125,0
+DA:126,0
+DA:127,0
+DA:128,0
+DA:129,0
+DA:130,0
+DA:131,0
+DA:132,0
+DA:133,0
+DA:134,0
+DA:135,0
+DA:136,0
+DA:137,0
+DA:138,0
+DA:139,0
+DA:140,0
+DA:141,0
+DA:142,0
+DA:143,0
+DA:144,0
+DA:145,0
+DA:147,0
+DA:148,0
+DA:149,0
+DA:150,0
+DA:151,0
+DA:152,0
+DA:153,0
+DA:154,0
+DA:155,0
+DA:156,0
+DA:157,0
+DA:158,0
+DA:159,0
+DA:161,0
+DA:162,0
+DA:163,0
+DA:164,0
+DA:165,0
+DA:166,0
+DA:167,0
+DA:168,0
+DA:169,0
+DA:170,0
+DA:171,0
+DA:172,0
+DA:173,0
+DA:174,0
+DA:175,0
+DA:176,0
+DA:177,0
+DA:178,0
+DA:179,0
+DA:180,0
+DA:181,0
+DA:182,0
+DA:183,0
+DA:184,0
+DA:185,0
+DA:187,0
+DA:188,0
+DA:189,0
+DA:190,0
+DA:191,0
+DA:192,0
+DA:193,0
+DA:194,0
+DA:195,0
+DA:196,0
+DA:197,0
+DA:198,0
+DA:199,0
+DA:200,0
+DA:201,0
+DA:203,0
+DA:204,0
+DA:205,0
+DA:206,0
+DA:207,0
+DA:208,0
+DA:209,0
+DA:210,0
+DA:211,0
+DA:212,0
+DA:213,0
+DA:214,0
+DA:215,0
+DA:216,0
+DA:217,0
+DA:218,0
+DA:219,0
+DA:220,0
+DA:222,0
+DA:223,0
+DA:224,0
+DA:225,0
+DA:226,0
+DA:227,0
+DA:228,0
+DA:230,0
+DA:231,0
+DA:232,0
+DA:233,0
+DA:234,0
+DA:235,0
+DA:236,0
+DA:238,0
+DA:239,0
+DA:240,0
+DA:241,0
+DA:242,0
+DA:243,0
+DA:244,0
+DA:246,0
+DA:247,0
+DA:248,0
+DA:249,0
+DA:250,0
+DA:251,0
+DA:252,0
+DA:254,0
+DA:255,0
+DA:256,0
+DA:257,0
+DA:258,0
+DA:259,0
+DA:260,0
+DA:261,0
+DA:262,0
+DA:263,0
+DA:264,0
+DA:265,0
+DA:267,0
+DA:268,0
+DA:269,0
+DA:270,0
+DA:271,0
+DA:272,0
+DA:273,0
+DA:274,0
+DA:275,0
+DA:276,0
+DA:277,0
+DA:278,0
+DA:280,0
+DA:281,0
+DA:282,0
+DA:283,0
+DA:284,0
+DA:285,0
+DA:286,0
+DA:288,0
+LF:253
+LH:0
+BRF:0
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Migrations\ApplicationDbContextModelSnapshot.cs
+FN:14,System.Void WebApi.Migrations.ApplicationDbContextModelSnapshot::BuildModel(Microsoft.EntityFrameworkCore.ModelBuilder)
+FNDA:0,System.Void WebApi.Migrations.ApplicationDbContextModelSnapshot::BuildModel(Microsoft.EntityFrameworkCore.ModelBuilder)
+DA:15,0
+DA:17,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:21,0
+DA:23,0
+DA:24,0
+DA:25,0
+DA:26,0
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+DA:32,0
+DA:33,0
+DA:34,0
+DA:35,0
+DA:36,0
+DA:37,0
+DA:38,0
+DA:39,0
+DA:40,0
+DA:41,0
+DA:43,0
+DA:44,0
+DA:45,0
+DA:46,0
+DA:47,0
+DA:48,0
+DA:49,0
+DA:50,0
+DA:51,0
+DA:52,0
+DA:53,0
+DA:54,0
+DA:55,0
+DA:56,0
+DA:57,0
+DA:58,0
+DA:59,0
+DA:60,0
+DA:62,0
+DA:63,0
+DA:64,0
+DA:65,0
+DA:66,0
+DA:67,0
+DA:68,0
+DA:69,0
+DA:70,0
+DA:71,0
+DA:72,0
+DA:73,0
+DA:74,0
+DA:75,0
+DA:76,0
+DA:77,0
+DA:78,0
+DA:79,0
+DA:80,0
+DA:82,0
+DA:83,0
+DA:84,0
+DA:85,0
+DA:86,0
+DA:87,0
+DA:88,0
+DA:89,0
+DA:90,0
+DA:91,0
+DA:92,0
+DA:93,0
+DA:94,0
+DA:95,0
+DA:96,0
+DA:97,0
+DA:98,0
+DA:99,0
+DA:101,0
+DA:102,0
+DA:103,0
+DA:104,0
+DA:105,0
+DA:106,0
+DA:107,0
+DA:108,0
+DA:109,0
+DA:110,0
+DA:111,0
+DA:112,0
+DA:113,0
+DA:114,0
+DA:115,0
+DA:117,0
+DA:118,0
+DA:119,0
+DA:120,0
+DA:121,0
+DA:122,0
+DA:123,0
+DA:124,0
+DA:125,0
+DA:126,0
+DA:127,0
+DA:128,0
+DA:129,0
+DA:130,0
+DA:131,0
+DA:132,0
+DA:133,0
+DA:134,0
+DA:135,0
+DA:136,0
+DA:137,0
+DA:138,0
+DA:139,0
+DA:140,0
+DA:141,0
+DA:142,0
+DA:143,0
+DA:145,0
+DA:146,0
+DA:147,0
+DA:148,0
+DA:149,0
+DA:150,0
+DA:151,0
+DA:152,0
+DA:153,0
+DA:154,0
+DA:155,0
+DA:156,0
+DA:157,0
+DA:159,0
+DA:160,0
+DA:161,0
+DA:162,0
+DA:163,0
+DA:164,0
+DA:165,0
+DA:166,0
+DA:167,0
+DA:168,0
+DA:169,0
+DA:170,0
+DA:171,0
+DA:172,0
+DA:173,0
+DA:174,0
+DA:175,0
+DA:176,0
+DA:177,0
+DA:178,0
+DA:179,0
+DA:180,0
+DA:181,0
+DA:182,0
+DA:183,0
+DA:185,0
+DA:186,0
+DA:187,0
+DA:188,0
+DA:189,0
+DA:190,0
+DA:191,0
+DA:192,0
+DA:193,0
+DA:194,0
+DA:195,0
+DA:196,0
+DA:197,0
+DA:198,0
+DA:199,0
+DA:201,0
+DA:202,0
+DA:203,0
+DA:204,0
+DA:205,0
+DA:206,0
+DA:207,0
+DA:208,0
+DA:209,0
+DA:210,0
+DA:211,0
+DA:212,0
+DA:213,0
+DA:214,0
+DA:215,0
+DA:216,0
+DA:217,0
+DA:218,0
+DA:220,0
+DA:221,0
+DA:222,0
+DA:223,0
+DA:224,0
+DA:225,0
+DA:226,0
+DA:228,0
+DA:229,0
+DA:230,0
+DA:231,0
+DA:232,0
+DA:233,0
+DA:234,0
+DA:236,0
+DA:237,0
+DA:238,0
+DA:239,0
+DA:240,0
+DA:241,0
+DA:242,0
+DA:244,0
+DA:245,0
+DA:246,0
+DA:247,0
+DA:248,0
+DA:249,0
+DA:250,0
+DA:252,0
+DA:253,0
+DA:254,0
+DA:255,0
+DA:256,0
+DA:257,0
+DA:258,0
+DA:259,0
+DA:260,0
+DA:261,0
+DA:262,0
+DA:263,0
+DA:265,0
+DA:266,0
+DA:267,0
+DA:268,0
+DA:269,0
+DA:270,0
+DA:271,0
+DA:272,0
+DA:273,0
+DA:274,0
+DA:275,0
+DA:276,0
+DA:278,0
+DA:279,0
+DA:280,0
+DA:281,0
+DA:282,0
+DA:283,0
+DA:284,0
+DA:286,0
+LF:253
+LH:0
+BRF:0
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Middlewares\DelayMiddleware.cs
+FN:11,System.Void WebApi.Middlewares.DelayMiddleware::.ctor(Microsoft.AspNetCore.Http.RequestDelegate)
+FNDA:0,System.Void WebApi.Middlewares.DelayMiddleware::.ctor(Microsoft.AspNetCore.Http.RequestDelegate)
+DA:12,0
+DA:13,0
+DA:14,0
+DA:15,0
+FN:17,System.Void WebApi.Middlewares.DelayMiddleware/<InvokeAsync>d__2::MoveNext()
+FNDA:0,System.Void WebApi.Middlewares.DelayMiddleware/<InvokeAsync>d__2::MoveNext()
+DA:18,0
+DA:19,0
+DA:22,0
+DA:23,0
+LF:8
+LH:0
+BRF:0
+BRH:0
+FNF:2
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Controller\AccountCategoryController.cs
+FN:21,System.Void WebApi.Controller.AccountCategoryController::.ctor(WebApi.Services.IAccountService,WebApi.Services.IAccountCategoryService)
+FNDA:0,System.Void WebApi.Controller.AccountCategoryController::.ctor(WebApi.Services.IAccountService,WebApi.Services.IAccountCategoryService)
+DA:22,0
+DA:23,0
+DA:24,0
+DA:25,0
+DA:26,0
+FN:29,System.Void WebApi.Controller.AccountCategoryController/<CreateAccountCategory>d__3::MoveNext()
+FNDA:0,System.Void WebApi.Controller.AccountCategoryController/<CreateAccountCategory>d__3::MoveNext()
+DA:30,0
+DA:31,0
+DA:32,0
+FN:35,System.Void WebApi.Controller.AccountCategoryController/<GetAccountCategories>d__4::MoveNext()
+FNDA:0,System.Void WebApi.Controller.AccountCategoryController/<GetAccountCategories>d__4::MoveNext()
+DA:36,0
+DA:37,0
+DA:38,0
+FN:42,System.Void WebApi.Controller.AccountCategoryController/<EditAccountCategory>d__5::MoveNext()
+FNDA:0,System.Void WebApi.Controller.AccountCategoryController/<EditAccountCategory>d__5::MoveNext()
+DA:43,0
+DA:44,0
+DA:45,0
+FN:48,System.Void WebApi.Controller.AccountCategoryController/<DeleteCategory>d__6::MoveNext()
+FNDA:0,System.Void WebApi.Controller.AccountCategoryController/<DeleteCategory>d__6::MoveNext()
+DA:49,0
+DA:50,0
+DA:51,0
+LF:17
+LH:0
+BRF:0
+BRH:0
+FNF:5
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Controller\AccountController.cs
+FN:25,System.Void WebApi.Controller.AccountController::.ctor(WebApi.Services.IAccountService,WebApi.Services.IAccountCategoryService,WebApi.Services.IUserService,WebApi.Services.ICurrencyConversionService)
+FNDA:0,System.Void WebApi.Controller.AccountController::.ctor(WebApi.Services.IAccountService,WebApi.Services.IAccountCategoryService,WebApi.Services.IUserService,WebApi.Services.ICurrencyConversionService)
+DA:26,0
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+DA:32,0
+DA:33,0
+FN:36,System.Void WebApi.Controller.AccountController/<GetAccounts>d__5::MoveNext()
+FNDA:0,System.Void WebApi.Controller.AccountController/<GetAccounts>d__5::MoveNext()
+DA:37,0
+DA:38,0
+DA:39,0
+FN:43,System.Void WebApi.Controller.AccountController/<GetSpendingChart>d__6::MoveNext()
+FNDA:0,System.Void WebApi.Controller.AccountController/<GetSpendingChart>d__6::MoveNext()
+DA:44,0
+DA:45,0
+DA:46,0
+FN:49,System.Void WebApi.Controller.AccountController/<GetAccountData>d__7::MoveNext()
+FNDA:0,System.Void WebApi.Controller.AccountController/<GetAccountData>d__7::MoveNext()
+DA:50,0
+DA:51,0
+DA:52,0
+DA:53,0
+DA:54,0
+DA:55,0
+DA:56,0
+DA:57,0
+DA:58,0
+DA:59,0
+DA:60,0
+DA:62,0
+DA:63,0
+DA:64,0
+DA:65,0
+DA:66,0
+DA:67,0
+BRDA:55,462,0,0
+BRDA:55,462,1,0
+FN:70,System.Void WebApi.Controller.AccountController/<GetAccountPreferences>d__8::MoveNext()
+FNDA:0,System.Void WebApi.Controller.AccountController/<GetAccountPreferences>d__8::MoveNext()
+DA:71,0
+DA:72,0
+DA:73,0
+FN:76,System.Void WebApi.Controller.AccountController/<SetAccountCurrency>d__9::MoveNext()
+FNDA:0,System.Void WebApi.Controller.AccountController/<SetAccountCurrency>d__9::MoveNext()
+DA:77,0
+DA:78,0
+DA:79,0
+FN:82,System.Void WebApi.Controller.AccountController/<SetAccountBudget>d__10::MoveNext()
+FNDA:0,System.Void WebApi.Controller.AccountController/<SetAccountBudget>d__10::MoveNext()
+DA:83,0
+DA:84,0
+DA:85,0
+FN:88,System.Void WebApi.Controller.AccountController/<CreateAccount>d__11::MoveNext()
+FNDA:0,System.Void WebApi.Controller.AccountController/<CreateAccount>d__11::MoveNext()
+DA:89,0
+DA:90,0
+DA:91,0
+LF:43
+LH:0
+BRF:2
+BRH:0
+FNF:8
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Controller\ChartsController.cs
+FN:14,System.Void WebApi.Controller.ChartsController::.ctor(WebApi.Services.IChartingService)
+FNDA:0,System.Void WebApi.Controller.ChartsController::.ctor(WebApi.Services.IChartingService)
+DA:15,0
+DA:16,0
+DA:17,0
+DA:18,0
+FN:21,System.Void WebApi.Controller.ChartsController/<GetNetworthChart>d__2::MoveNext()
+FNDA:0,System.Void WebApi.Controller.ChartsController/<GetNetworthChart>d__2::MoveNext()
+DA:22,0
+DA:23,0
+DA:24,0
+LF:7
+LH:0
+BRF:0
+BRH:0
+FNF:2
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Controller\CurrencyController.cs
+FN:17,Microsoft.AspNetCore.Mvc.IActionResult WebApi.Controller.CurrencyController::GetCurrencies()
+FNDA:0,Microsoft.AspNetCore.Mvc.IActionResult WebApi.Controller.CurrencyController::GetCurrencies()
+DA:18,0
+DA:19,0
+DA:20,0
+LF:3
+LH:0
+BRF:0
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Controller\Dashboard\DashboardController.cs
+FN:14,System.Void WebApi.Controller.DashboardController::.ctor(WebApi.Services.IDashboardService)
+FNDA:0,System.Void WebApi.Controller.DashboardController::.ctor(WebApi.Services.IDashboardService)
+DA:15,0
+DA:16,0
+DA:17,0
+DA:18,0
+FN:21,System.Void WebApi.Controller.DashboardController/<GetDashboardData>d__2::MoveNext()
+FNDA:0,System.Void WebApi.Controller.DashboardController/<GetDashboardData>d__2::MoveNext()
+DA:22,0
+DA:23,0
+DA:24,0
+LF:7
+LH:0
+BRF:0
+BRH:0
+FNF:2
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Controller\OverviewController.cs
+FN:14,System.Void WebApi.Controller.OverviewController::.ctor(WebApi.Services.IFinancialHealthService)
+FNDA:0,System.Void WebApi.Controller.OverviewController::.ctor(WebApi.Services.IFinancialHealthService)
+DA:15,0
+DA:16,0
+DA:17,0
+DA:18,0
+FN:21,System.Void WebApi.Controller.OverviewController/<GetFinancialHealth>d__2::MoveNext()
+FNDA:0,System.Void WebApi.Controller.OverviewController/<GetFinancialHealth>d__2::MoveNext()
+DA:22,0
+DA:23,0
+DA:24,0
+FN:27,System.Void WebApi.Controller.OverviewController/<GetMonthlyData>d__3::MoveNext()
+FNDA:0,System.Void WebApi.Controller.OverviewController/<GetMonthlyData>d__3::MoveNext()
+DA:28,0
+DA:29,0
+DA:30,0
+LF:10
+LH:0
+BRF:0
+BRH:0
+FNF:3
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Controller\RecurringTransactionController.cs
+FN:22,System.Void WebApi.Controller.RecurringTransactionController::.ctor(WebApi.Services.IRecurringTransactionsService)
+FNDA:0,System.Void WebApi.Controller.RecurringTransactionController::.ctor(WebApi.Services.IRecurringTransactionsService)
+DA:23,0
+DA:24,0
+DA:25,0
+DA:26,0
+FN:29,System.Void WebApi.Controller.RecurringTransactionController/<GetAllRecurringTransactions>d__2::MoveNext()
+FNDA:0,System.Void WebApi.Controller.RecurringTransactionController/<GetAllRecurringTransactions>d__2::MoveNext()
+DA:30,0
+DA:31,0
+DA:32,0
+FN:36,System.Void WebApi.Controller.RecurringTransactionController/<CreateRecurringTransaction>d__3::MoveNext()
+FNDA:0,System.Void WebApi.Controller.RecurringTransactionController/<CreateRecurringTransaction>d__3::MoveNext()
+DA:37,0
+DA:38,0
+DA:39,0
+DA:40,0
+FN:43,System.Void WebApi.Controller.RecurringTransactionController/<DeleteRecurringTransaction>d__4::MoveNext()
+FNDA:0,System.Void WebApi.Controller.RecurringTransactionController/<DeleteRecurringTransaction>d__4::MoveNext()
+DA:44,0
+DA:45,0
+DA:46,0
+DA:47,0
+LF:15
+LH:0
+BRF:0
+BRH:0
+FNF:4
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Controller\ReportsController.cs
+FN:22,System.Void WebApi.Controller.ReportsController::.ctor(WebApi.Services.IReportService)
+FNDA:0,System.Void WebApi.Controller.ReportsController::.ctor(WebApi.Services.IReportService)
+DA:23,0
+DA:24,0
+DA:25,0
+DA:27,0
+FN:31,System.Void WebApi.Controller.ReportsController/<GetGeneralReportForAllAccounts>d__2::MoveNext()
+FNDA:0,System.Void WebApi.Controller.ReportsController/<GetGeneralReportForAllAccounts>d__2::MoveNext()
+DA:32,0
+DA:33,0
+DA:34,0
+FN:37,System.Void WebApi.Controller.ReportsController/<GetGeneralReportForOneAccount>d__3::MoveNext()
+FNDA:0,System.Void WebApi.Controller.ReportsController/<GetGeneralReportForOneAccount>d__3::MoveNext()
+DA:38,0
+DA:39,0
+DA:40,0
+LF:10
+LH:0
+BRF:0
+BRH:0
+FNF:3
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Controller\TransactionController.cs
+FN:22,System.Void WebApi.Controller.TransactionController::.ctor(WebApi.Services.ITransactionService,WebApi.Services.IRecurringTransactionsService)
+FNDA:0,System.Void WebApi.Controller.TransactionController::.ctor(WebApi.Services.ITransactionService,WebApi.Services.IRecurringTransactionsService)
+DA:23,0
+DA:24,0
+DA:25,0
+DA:26,0
+DA:27,0
+FN:30,System.Void WebApi.Controller.TransactionController/<GetTransactions>d__3::MoveNext()
+FNDA:0,System.Void WebApi.Controller.TransactionController/<GetTransactions>d__3::MoveNext()
+DA:31,0
+DA:32,0
+DA:33,0
+DA:34,0
+DA:36,0
+DA:37,0
+BRDA:32,44,0,0
+BRDA:32,44,1,0
+FN:40,System.Void WebApi.Controller.TransactionController/<GetTransactionById>d__4::MoveNext()
+FNDA:0,System.Void WebApi.Controller.TransactionController/<GetTransactionById>d__4::MoveNext()
+DA:41,0
+DA:42,0
+DA:43,0
+FN:46,System.Void WebApi.Controller.TransactionController/<GetUserSubscriptions>d__5::MoveNext()
+FNDA:0,System.Void WebApi.Controller.TransactionController/<GetUserSubscriptions>d__5::MoveNext()
+DA:47,0
+DA:48,0
+DA:49,0
+FN:53,System.Void WebApi.Controller.TransactionController/<CreateTransaction>d__6::MoveNext()
+FNDA:0,System.Void WebApi.Controller.TransactionController/<CreateTransaction>d__6::MoveNext()
+DA:54,0
+DA:55,0
+DA:56,0
+DA:57,0
+DA:59,0
+DA:60,0
+DA:61,0
+BRDA:55,41,0,0
+BRDA:55,41,1,0
+FN:65,System.Void WebApi.Controller.TransactionController/<EditTransaction>d__7::MoveNext()
+FNDA:0,System.Void WebApi.Controller.TransactionController/<EditTransaction>d__7::MoveNext()
+DA:66,0
+DA:67,0
+DA:68,0
+DA:69,0
+DA:72,0
+DA:73,0
+DA:74,0
+BRDA:67,41,0,0
+BRDA:67,41,1,0
+FN:77,System.Void WebApi.Controller.TransactionController/<DeleteTransaction>d__8::MoveNext()
+FNDA:0,System.Void WebApi.Controller.TransactionController/<DeleteTransaction>d__8::MoveNext()
+DA:78,0
+DA:79,0
+DA:80,0
+LF:34
+LH:0
+BRF:6
+BRH:0
+FNF:7
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Controller\UsersController.cs
+FN:26,Microsoft.AspNetCore.Mvc.IActionResult WebApi.Controller.UsersController::Authenticate(WebApi.Models.DTO.Requests.AuthenticationRequest)
+FNDA:0,Microsoft.AspNetCore.Mvc.IActionResult WebApi.Controller.UsersController::Authenticate(WebApi.Models.DTO.Requests.AuthenticationRequest)
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+DA:34,0
+DA:35,0
+BRDA:29,31,0,0
+BRDA:29,31,1,0
+FN:18,System.Void WebApi.Controller.UsersController::.ctor(WebApi.Services.IUserService)
+FNDA:0,System.Void WebApi.Controller.UsersController::.ctor(WebApi.Services.IUserService)
+DA:19,0
+DA:20,0
+DA:21,0
+DA:22,0
+FN:38,System.Void WebApi.Controller.UsersController/<ChangeCurrency>d__3::MoveNext()
+FNDA:0,System.Void WebApi.Controller.UsersController/<ChangeCurrency>d__3::MoveNext()
+DA:39,0
+DA:40,0
+DA:41,0
+FN:44,System.Void WebApi.Controller.UsersController/<GetUserPreferences>d__4::MoveNext()
+FNDA:0,System.Void WebApi.Controller.UsersController/<GetUserPreferences>d__4::MoveNext()
+DA:45,0
+DA:46,0
+DA:47,0
+LF:17
+LH:0
+BRF:2
+BRH:0
+FNF:4
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Controller\Base\BaseController.cs
+FN:12,System.Guid WebApi.Controller.Base.BaseController::get_UserId()
+FNDA:0,System.Guid WebApi.Controller.Base.BaseController::get_UserId()
+DA:13,0
+FN:19,System.Void WebApi.Controller.Base.BaseController::OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)
+FNDA:0,System.Void WebApi.Controller.Base.BaseController::OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)
+DA:20,0
+DA:21,0
+DA:22,0
+DA:23,0
+DA:24,0
+BRDA:22,56,0,0
+BRDA:22,56,1,0
+FN:14,System.Void WebApi.Controller.Base.BaseController::.ctor()
+FNDA:0,System.Void WebApi.Controller.Base.BaseController::.ctor()
+DA:15,0
+DA:16,0
+DA:17,0
+LF:9
+LH:0
+BRF:2
+BRH:0
+FNF:3
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Context\ApplicationDbContext.cs
+FN:9,Microsoft.EntityFrameworkCore.DbSet`1<WebApi.Models.Database.User> WebApi.Context.ApplicationDbContext::get_Users()
+FNDA:26,Microsoft.EntityFrameworkCore.DbSet`1<WebApi.Models.Database.User> WebApi.Context.ApplicationDbContext::get_Users()
+DA:10,26
+FN:10,Microsoft.EntityFrameworkCore.DbSet`1<WebApi.Models.Database.UserPreferences> WebApi.Context.ApplicationDbContext::get_UserPreferences()
+FNDA:27,Microsoft.EntityFrameworkCore.DbSet`1<WebApi.Models.Database.UserPreferences> WebApi.Context.ApplicationDbContext::get_UserPreferences()
+DA:11,27
+FN:11,Microsoft.EntityFrameworkCore.DbSet`1<WebApi.Models.Database.Account.Account> WebApi.Context.ApplicationDbContext::get_Accounts()
+FNDA:33,Microsoft.EntityFrameworkCore.DbSet`1<WebApi.Models.Database.Account.Account> WebApi.Context.ApplicationDbContext::get_Accounts()
+DA:12,33
+FN:12,Microsoft.EntityFrameworkCore.DbSet`1<WebApi.Models.Database.Transaction> WebApi.Context.ApplicationDbContext::get_Transactions()
+FNDA:27,Microsoft.EntityFrameworkCore.DbSet`1<WebApi.Models.Database.Transaction> WebApi.Context.ApplicationDbContext::get_Transactions()
+DA:13,27
+FN:13,Microsoft.EntityFrameworkCore.DbSet`1<WebApi.Models.Database.RecurringTransaction> WebApi.Context.ApplicationDbContext::get_RecurringTransactions()
+FNDA:26,Microsoft.EntityFrameworkCore.DbSet`1<WebApi.Models.Database.RecurringTransaction> WebApi.Context.ApplicationDbContext::get_RecurringTransactions()
+DA:14,26
+FN:14,Microsoft.EntityFrameworkCore.DbSet`1<WebApi.Models.Database.RecurringTransactionsLog> WebApi.Context.ApplicationDbContext::get_RecurringTransactionsLogs()
+FNDA:26,Microsoft.EntityFrameworkCore.DbSet`1<WebApi.Models.Database.RecurringTransactionsLog> WebApi.Context.ApplicationDbContext::get_RecurringTransactionsLogs()
+DA:15,26
+FN:15,Microsoft.EntityFrameworkCore.DbSet`1<WebApi.Models.Database.Account.AccountCategory> WebApi.Context.ApplicationDbContext::get_AccountCategories()
+FNDA:31,Microsoft.EntityFrameworkCore.DbSet`1<WebApi.Models.Database.Account.AccountCategory> WebApi.Context.ApplicationDbContext::get_AccountCategories()
+DA:16,31
+FN:16,Microsoft.EntityFrameworkCore.DbSet`1<WebApi.Models.Database.CurrencyConversionRate> WebApi.Context.ApplicationDbContext::get_CurrencyConversionRates()
+FNDA:26,Microsoft.EntityFrameworkCore.DbSet`1<WebApi.Models.Database.CurrencyConversionRate> WebApi.Context.ApplicationDbContext::get_CurrencyConversionRates()
+DA:17,26
+FN:17,Microsoft.EntityFrameworkCore.DbSet`1<WebApi.Models.Database.Account.AccountPreferences> WebApi.Context.ApplicationDbContext::get_AccountPreferences()
+FNDA:37,Microsoft.EntityFrameworkCore.DbSet`1<WebApi.Models.Database.Account.AccountPreferences> WebApi.Context.ApplicationDbContext::get_AccountPreferences()
+DA:18,37
+FN:32,System.Void WebApi.Context.ApplicationDbContext::OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
+FNDA:1,System.Void WebApi.Context.ApplicationDbContext::OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
+DA:33,1
+DA:34,1
+DA:37,1
+DA:38,1
+DA:39,1
+DA:40,1
+DA:41,2
+DA:45,1
+DA:46,1
+DA:47,1
+DA:48,2
+DA:52,1
+DA:53,1
+DA:54,1
+DA:55,1
+DA:56,1
+DA:57,1
+DA:58,1
+DA:59,2
+DA:63,1
+DA:64,1
+DA:65,1
+DA:66,1
+DA:67,2
+DA:71,1
+DA:72,1
+DA:73,1
+DA:74,1
+DA:75,2
+DA:79,1
+DA:80,1
+DA:81,1
+DA:82,1
+DA:83,2
+DA:87,1
+DA:88,1
+DA:89,1
+DA:90,1
+DA:91,2
+DA:95,1
+DA:96,1
+DA:97,1
+DA:98,2
+DA:100,1
+FN:18,System.Void WebApi.Context.ApplicationDbContext::.ctor()
+FNDA:0,System.Void WebApi.Context.ApplicationDbContext::.ctor()
+DA:19,0
+DA:20,0
+DA:21,0
+FN:23,System.Void WebApi.Context.ApplicationDbContext::.ctor(Microsoft.EntityFrameworkCore.DbContextOptions`1<WebApi.Context.ApplicationDbContext>)
+FNDA:26,System.Void WebApi.Context.ApplicationDbContext::.ctor(Microsoft.EntityFrameworkCore.DbContextOptions`1<WebApi.Context.ApplicationDbContext>)
+DA:24,26
+DA:25,26
+DA:26,26
+LF:59
+LH:56
+BRF:0
+BRH:0
+FNF:12
+FNH:11
+end_of_record
+SF:F:\financr\api\WebApi\Configuration\AppSettings.cs
+FN:4,System.Void WebApi.Configuration.AppSettings::.cctor()
+FNDA:0,System.Void WebApi.Configuration.AppSettings::.cctor()
+DA:5,0
+LF:1
+LH:0
+BRF:0
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Configuration\Currencies.cs
+FN:12,System.Collections.Generic.List`1<WebApi.Models.Domain.Currency> WebApi.Configuration.Currencies::GetCurrencies()
+FNDA:0,System.Collections.Generic.List`1<WebApi.Models.Domain.Currency> WebApi.Configuration.Currencies::GetCurrencies()
+DA:13,0
+DA:14,0
+DA:15,0
+DA:16,0
+DA:17,0
+FN:19,System.Boolean WebApi.Configuration.Currencies::IsValid(System.String)
+FNDA:0,System.Boolean WebApi.Configuration.Currencies::IsValid(System.String)
+DA:20,0
+DA:21,0
+DA:22,0
+LF:8
+LH:0
+BRF:0
+BRH:0
+FNF:2
+FNH:0
+end_of_record
+SF:F:\financr\api\WebApi\Configuration\DefaultCategories.cs
+FN:6,System.Void WebApi.Configuration.DefaultCategories::.cctor()
+FNDA:1,System.Void WebApi.Configuration.DefaultCategories::.cctor()
+DA:7,1
+DA:8,1
+DA:9,1
+DA:10,1
+DA:11,1
+DA:12,1
+DA:13,1
+DA:14,1
+DA:15,1
+DA:16,1
+DA:17,1
+DA:18,1
+DA:19,1
+DA:20,1
+DA:21,1
+DA:22,1
+DA:23,1
+DA:24,1
+DA:25,1
+DA:26,1
+LF:20
+LH:20
+BRF:0
+BRH:0
+FNF:1
+FNH:1
+end_of_record
+SF:F:\financr\api\WebApi\Configuration\StartupServices.cs
+FN:14,Microsoft.Extensions.DependencyInjection.IServiceCollection WebApi.Configuration.StartupServices::AddCoreServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+FNDA:13,Microsoft.Extensions.DependencyInjection.IServiceCollection WebApi.Configuration.StartupServices::AddCoreServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+DA:15,13
+DA:16,13
+DA:17,13
+DA:18,13
+DA:19,13
+DA:20,13
+DA:21,13
+DA:22,13
+DA:23,13
+DA:24,13
+DA:25,13
+DA:26,13
+DA:27,13
+DA:28,13
+FN:30,Microsoft.Extensions.DependencyInjection.IServiceCollection WebApi.Configuration.StartupServices::AddAuthenticationService(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Byte[])
+FNDA:13,Microsoft.Extensions.DependencyInjection.IServiceCollection WebApi.Configuration.StartupServices::AddAuthenticationService(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Byte[])
+DA:31,13
+DA:32,13
+DA:33,0
+DA:34,0
+DA:35,0
+DA:36,0
+DA:37,13
+DA:38,0
+DA:39,0
+DA:40,0
+DA:41,0
+DA:42,0
+DA:43,0
+DA:44,0
+DA:45,0
+DA:46,0
+DA:47,0
+DA:48,13
+DA:49,13
+DA:50,13
+FN:52,Microsoft.Extensions.DependencyInjection.IServiceCollection WebApi.Configuration.StartupServices::AddMvcService(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+FNDA:0,Microsoft.Extensions.DependencyInjection.IServiceCollection WebApi.Configuration.StartupServices::AddMvcService(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+DA:53,0
+DA:54,0
+DA:55,0
+DA:56,0
+DA:57,0
+DA:58,0
+DA:59,0
+DA:60,0
+DA:61,0
+LF:43
+LH:20
+BRF:0
+BRH:0
+FNF:3
+FNH:2
+end_of_record
