@@ -71,6 +71,10 @@ namespace WebApi.Services
             
             // Construct the chart for all times
             var firstTransaction = await _getFirstTransaction(userId);
+            if (firstTransaction == null)
+            {
+                return new List<NetworthChart>();
+            }
             DateTimeOffset startDate;
             if (firstTransaction.TransactionDate >= DateTimeOffset.Now.AddDays(-365))
             {
@@ -175,7 +179,8 @@ namespace WebApi.Services
                 {
                     if (newTransaction.FirstOrDefault() != null)
                     {
-                        transactionDate = newTransaction.FirstOrDefault().TransactionDate;
+                        transactionDate = newTransaction.FirstOrDefault() != null ? 
+                            newTransaction.FirstOrDefault().TransactionDate : DateTime.Now;
                     }
                     
                 }
