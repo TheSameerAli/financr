@@ -12,7 +12,7 @@ namespace Tests.Unit.ServiceLevelTests.Account.Base
         {
             var currencyConversionServiceMock = new Mock<ICurrencyConversionService>();
             currencyConversionServiceMock.Setup(ccsm =>
-                ccsm.Convert(It.IsAny<string>(), It.IsAny<double>())).ReturnsAsync(0);
+                ccsm.Convert(It.IsAny<string>(), It.IsAny<double>())).ReturnsAsync(10);
             
             _accountService = new AccountService(
                 _helper.GetService<IUnitOfWork>(),
