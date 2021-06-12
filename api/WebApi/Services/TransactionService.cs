@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -15,18 +16,18 @@ namespace WebApi.Services
         Task<Transaction> Create(double income, string description, DateTimeOffset transactionDate, Guid accountCategoryId, Guid accountId);
         Task<List<Transaction>> GetAll(Guid accountId);
         Task<Transaction> GetTransactionById(Guid transactionId);
-        Task<List<Transaction>> GetAllByDate(Guid accountId, DateTimeOffset date);
+        Task<List<Transaction>> GetAllByMonth(Guid accountId, DateTimeOffset date);
 
         Task<Transaction> Edit(double income, string description, DateTimeOffset transactionDate,
             Guid accountCategoryId, Guid transactionId);
         Task<bool> DeleteTransaction(Guid transactionId);
-        Task RunRecurringTransactions();
 
     }
     public class TransactionService : ITransactionService
     {
         private readonly IUnitOfWork _uow;
         private readonly DbSet<Transaction> _transactions;
+        private readonly DbSet<AccountCategory> _accountCategories;
         private readonly DbSet<RecurringTransactionsLog> _recurringTransactionsLogs;
         private readonly IRecurringTransactionsService _recurringTransactionsService;
         private readonly DbSet<Account> _accounts;
@@ -39,6 +40,7 @@ namespace WebApi.Services
         {
             _uow = uow;
             _transactions = _uow.Set<Transaction>();
+            _accountCategories = _uow.Set<AccountCategory>();
             _recurringTransactionsService = recurringTransactionsService;
             _recurringTransactionsLogs = _uow.Set<RecurringTransactionsLog>();
             _accounts = _uow.Set<Account>();
@@ -48,6 +50,16 @@ namespace WebApi.Services
 
         public async Task<Transaction> Create(double income, string description, DateTimeOffset transactionDate, Guid accountCategoryId, Guid accountId)
         {
+            if (income == 0)
+            {
+                throw new InvalidDataException("Transaction amount can not be 0");
+            }
+
+            var accountCategory = await _accountCategories.FirstOrDefaultAsync(ac => ac.Id == accountCategoryId);
+            if ((accountCategory.Type == AccountCategoryType.Expense && income > 0) || (accountCategory.Type == AccountCategoryType.Income && income < 0))
+            {
+                income *= -1;
+            }
             var transaction = new Transaction(income, description, transactionDate, accountCategoryId, accountId);
             await _transactions.AddAsync(transaction);
             await _uow.SaveChangesAsync();
@@ -87,7 +99,7 @@ namespace WebApi.Services
                 .FirstOrDefaultAsync();
         }
 
-        public async Task<List<Transaction>> GetAllByDate(Guid accountId, DateTimeOffset date)
+        public async Task<List<Transaction>> GetAllByMonth(Guid accountId, DateTimeOffset date)
         {
             return await _transactions
                 .Where(t => t.AccountId == accountId && date.Month == t.TransactionDate.Month)
@@ -100,6 +112,16 @@ namespace WebApi.Services
         public async Task<Transaction> Edit(double income, string description, DateTimeOffset transactionDate, Guid accountCategoryId,
             Guid transactionId)
         {
+            if (income == 0)
+            {
+                throw new InvalidDataException("Transaction amount can not be 0");
+            }
+
+            var accountCategory = await _accountCategories.FirstOrDefaultAsync(ac => ac.Id == accountCategoryId);
+            if ((accountCategory.Type == AccountCategoryType.Expense && income > 0) || (accountCategory.Type == AccountCategoryType.Income && income < 0))
+            {
+                income *= -1;
+            }
             var transaction = await _transactions.FirstOrDefaultAsync(t => t.Id == transactionId);
             transaction.Amount = income;
             transaction.Description = description;
@@ -121,33 +143,6 @@ namespace WebApi.Services
             return true;
         }
 
-        public async Task RunRecurringTransactions()
-        {
-            var recurringTransactions = await _recurringTransactionsService.GetAll();
-            var totalAdded = 0;
-            foreach (var recurringTransaction in recurringTransactions)
-            {
-                var nextDate = RecurringTransactions.NextDate(recurringTransaction.StartDate,
-                    recurringTransaction.Occurrence, DateTimeOffset.Now);
-                if (nextDate.Date == DateTime.Now.Date)
-                {
-                    // Create the transaction
-                    var transaction = new Transaction(
-                        recurringTransaction.Income, 
-                        recurringTransaction.Description, 
-                        DateTimeOffset.Now, 
-                        recurringTransaction.AccountCategoryId, 
-                        recurringTransaction.AccountId);
-
-                    await _transactions.AddAsync(transaction);
-                    await _uow.SaveChangesAsync();
-                    totalAdded++;
-                }
-                // otherwise do nothing
-            }
-            var recurringTransactionLog = new RecurringTransactionsLog(totalAdded);
-            await _recurringTransactionsLogs.AddAsync(recurringTransactionLog);
-            await _uow.SaveChangesAsync();
-        }
+        
     }
 }

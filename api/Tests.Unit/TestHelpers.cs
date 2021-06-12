@@ -33,12 +33,12 @@ namespace Tests.Unit
             return user;
         }
 
-        public async Task<Account> CreateAccount(string name, AccountType type, Guid userId)
+        public async Task<Account> CreateAccount(string name, AccountType type, Guid userId, string currency = "GBP")
         {
             var account = new Account(name, type, userId);
             await _context.Accounts.AddAsync(account);
             await _context.SaveChangesAsync();
-            var preferences = new AccountPreferences("GBP", account.Id);
+            var preferences = new AccountPreferences(currency, account.Id);
             await _context.AccountPreferences.AddAsync(preferences);
             await _context.SaveChangesAsync();
             return account;

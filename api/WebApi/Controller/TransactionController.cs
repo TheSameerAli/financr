@@ -31,7 +31,7 @@ namespace WebApi.Controller
         {
             if (dateMonth != DateTimeOffset.MinValue)
             {
-                return Ok(await _transactionService.GetAllByDate(accountId, dateMonth));
+                return Ok(await _transactionService.GetAllByMonth(accountId, dateMonth));
             }
             return Ok(await _transactionService.GetAll(accountId));
         }
