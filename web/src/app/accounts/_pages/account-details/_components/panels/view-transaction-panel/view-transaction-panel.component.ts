@@ -1,3 +1,5 @@
+import { ToastrService } from 'ngx-toastr';
+import { transition } from '@angular/animations';
 import { currentlyViewingAccountPreferencesSelector } from './../../../../../store/selector/account.selectors';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -20,7 +22,11 @@ export class ViewTransactionPanelComponent implements OnInit, OnChanges {
   @Output() close: EventEmitter<any> = new EventEmitter();
   public isLoading: boolean = false;
   public accountPreferences: Observable<AccountPreferences>;
-  constructor(private accountService: AccountService, private store: Store<AppState>) {
+  public transactionNote: string;
+  constructor(
+    private accountService: AccountService,
+    private store: Store<AppState>,
+    private toastr: ToastrService) {
 
   }
 
@@ -34,6 +40,12 @@ export class ViewTransactionPanelComponent implements OnInit, OnChanges {
     this.accountService.getTransaction(this.accountId, transactionId).subscribe(data => {
       this.isLoading = false;
       this.transaction = data;
+      if (data.transactionNote === null) {
+        this.transactionNote = '';
+      } else {
+        this.transactionNote = data.transactionNote.note;
+
+      }
     }, (err) => {
       this.isLoading = false;
     })
@@ -47,6 +59,18 @@ export class ViewTransactionPanelComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     this.accountPreferences = this.store.select(currentlyViewingAccountPreferencesSelector);
 
+  }
+
+  saveNote(): void {
+    if (this.transaction.transactionNote !== null && this.transactionNote === this.transaction.transactionNote.note) {
+      return;
+    }
+    this.accountService.saveTransactionNote(this.transactionNote, this.accountId, this.transactionId).subscribe(data => {
+      this.toastr.success('Transaction note has been saved successfully', 'Saved');
+
+    }, (err) => {
+      this.toastr.error('Error saving the transaction note. Please try again', 'Saving error');
+    })
   }
 
 }

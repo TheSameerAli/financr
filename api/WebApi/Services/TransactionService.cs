@@ -20,6 +20,8 @@ namespace WebApi.Services
 
         Task<Transaction> Edit(double income, string description, DateTimeOffset transactionDate,
             Guid accountCategoryId, Guid transactionId);
+
+        Task<TransactionNote> UpdateTransactionNote(string note, Guid transactionId);
         Task<bool> DeleteTransaction(Guid transactionId);
 
     }
@@ -28,6 +30,7 @@ namespace WebApi.Services
         private readonly IUnitOfWork _uow;
         private readonly DbSet<Transaction> _transactions;
         private readonly DbSet<AccountCategory> _accountCategories;
+        private readonly DbSet<TransactionNote> _transactionNotes;
         private readonly DbSet<RecurringTransactionsLog> _recurringTransactionsLogs;
         private readonly IRecurringTransactionsService _recurringTransactionsService;
         private readonly DbSet<Account> _accounts;
@@ -41,6 +44,7 @@ namespace WebApi.Services
             _uow = uow;
             _transactions = _uow.Set<Transaction>();
             _accountCategories = _uow.Set<AccountCategory>();
+            _transactionNotes = _uow.Set<TransactionNote>();
             _recurringTransactionsService = recurringTransactionsService;
             _recurringTransactionsLogs = _uow.Set<RecurringTransactionsLog>();
             _accounts = _uow.Set<Account>();
@@ -96,6 +100,7 @@ namespace WebApi.Services
             return await _transactions
                 .Where(t => t.Id == transactionId)
                 .Include(t => t.AccountCategory)
+                .Include(t => t.TransactionNote)
                 .FirstOrDefaultAsync();
         }
 
@@ -129,6 +134,22 @@ namespace WebApi.Services
             transaction.TransactionDate = transactionDate;
             await _uow.SaveChangesAsync();
             return transaction;
+        }
+
+        public async Task<TransactionNote> UpdateTransactionNote(string note, Guid transactionId)
+        {
+            var transactionNote = await _transactionNotes.FirstOrDefaultAsync(tn => tn.TransactionId == transactionId);
+            if (transactionNote == null)
+            {
+                transactionNote = new TransactionNote(note, transactionId);
+                await _transactionNotes.AddAsync(transactionNote);
+                await _uow.SaveChangesAsync();
+                return transactionNote;
+            }
+
+            transactionNote.Note = note;
+            await _uow.SaveChangesAsync();
+            return transactionNote;
         }
 
         public async Task<bool> DeleteTransaction(Guid transactionId)

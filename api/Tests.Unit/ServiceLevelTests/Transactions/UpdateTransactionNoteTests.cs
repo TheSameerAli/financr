@@ -7,10 +7,10 @@ using Xunit;
 
 namespace Tests.Unit.ServiceLevelTests.Transactions
 {
-    public class GetTransactionByIdTests : TransactionServiceTestBase
+    public class UpdateTransactionNoteTests : TransactionServiceTestBase
     {
         [Fact]
-        public async Task It_should_get_transactions_provided_the_id()
+        public async Task It_should_create_a_new_transaction_note_if_it_doesnt_exist()
         {
             #region Arrange
             var account = await _helper.CreateAccount("testaccount", AccountType.Current, _testUser.Id);
@@ -24,18 +24,18 @@ namespace Tests.Unit.ServiceLevelTests.Transactions
 
             #region Act
 
-            var transaction = await _transactionService.GetTransactionById(transaction1.Id);
+            var transactionNote = await _transactionService.UpdateTransactionNote("Test Note", transaction1.Id);
             
             #endregion
 
             #region Assert
-            Assert.NotNull(transaction);
-            Assert.Equal(-10, transaction.Amount);
+            Assert.NotNull(transactionNote);
+            Assert.Equal("Test Note", transactionNote.Note);
             #endregion
         }
 
         [Fact]
-        public async Task It_should_return_null_if_the_transaction_is_not_found()
+        public async Task It_should_update_the_existing_transaction_note_if_it_does_exist()
         {
             #region Arrange
             var account = await _helper.CreateAccount("testaccount", AccountType.Current, _testUser.Id);
@@ -45,21 +45,24 @@ namespace Tests.Unit.ServiceLevelTests.Transactions
                 .Create(-10, "test transaction", DateTimeOffset.Now, accountCategory.Id, account.Id);
             var transaction2 = await _transactionService
                 .Create(20, "test transaction", DateTimeOffset.Now, accountCategory.Id, account.Id);
+            var tNote = await _helper.CreateTransactionNote("Test transaction note", transaction1.Id);
+
             #endregion
 
             #region Act
 
-            var transaction = await _transactionService.GetTransactionById(Guid.NewGuid());
+            var transactionNote = await _transactionService.UpdateTransactionNote("Test Note", transaction1.Id);
             
             #endregion
 
             #region Assert
-            Assert.Null(transaction);
+            Assert.NotNull(transactionNote);
+            Assert.Equal("Test Note", transactionNote.Note);
             #endregion
         }
 
         [Fact]
-        public async Task It_should_include_account_category_with_the_transaction()
+        public async Task It_should_allow_empty_string_for_transaction_note()
         {
             #region Arrange
             var account = await _helper.CreateAccount("testaccount", AccountType.Current, _testUser.Id);
@@ -69,42 +72,18 @@ namespace Tests.Unit.ServiceLevelTests.Transactions
                 .Create(-10, "test transaction", DateTimeOffset.Now, accountCategory.Id, account.Id);
             var transaction2 = await _transactionService
                 .Create(20, "test transaction", DateTimeOffset.Now, accountCategory.Id, account.Id);
+
             #endregion
 
             #region Act
 
-            var transaction = await _transactionService.GetTransactionById(transaction1.Id);
+            var transactionNote = await _transactionService.UpdateTransactionNote("", transaction1.Id);
             
             #endregion
 
             #region Assert
-            Assert.NotNull(transaction.AccountCategory);
-            #endregion
-        }
-        
-        [Fact]
-        public async Task It_should_include_transaction_notes_with_the_transaction()
-        {
-            #region Arrange
-            var account = await _helper.CreateAccount("testaccount", AccountType.Current, _testUser.Id);
-            var accountCategory =
-                await _helper.CreateAccountCategory("test account category", AccountCategoryType.Expense, account.Id);
-            var transaction1 = await _transactionService
-                .Create(-10, "test transaction", DateTimeOffset.Now, accountCategory.Id, account.Id);
-            var transaction2 = await _transactionService
-                .Create(20, "test transaction", DateTimeOffset.Now, accountCategory.Id, account.Id);
-            var transactionNote = await _helper.CreateTransactionNote("Test transaction note", transaction1.Id);
-            #endregion
-
-            #region Act
-
-            var transaction = await _transactionService.GetTransactionById(transaction1.Id);
-            
-            #endregion
-
-            #region Assert
-            Assert.NotNull(transaction.TransactionNote);
-            Assert.Equal("Test transaction note", transaction1.TransactionNote.Note);
+            Assert.NotNull(transactionNote);
+            Assert.Equal("", transactionNote.Note);
             #endregion
         }
     }

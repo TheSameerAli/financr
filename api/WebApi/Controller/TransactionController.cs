@@ -60,6 +60,13 @@ namespace WebApi.Controller
                 request.AccountCategoryId, accountId));
         }
 
+        [HttpPost("{accountId}/transaction/{transactionId}/note")]
+        public async Task<IActionResult> CreateOrUpdateTransactionNote([FromBody] UpdateTransactionNoteRequest request,
+            Guid accountId, Guid transactionId)
+        {
+            return Ok(await _transactionService.UpdateTransactionNote(request.Note, transactionId));
+        }
+
         [HttpPut("{accountId}/transaction/{transactionId}/edit")]
         public async Task<IActionResult> EditTransaction([FromBody] EditTransactionRequest request, Guid accountId,
             Guid transactionId)
