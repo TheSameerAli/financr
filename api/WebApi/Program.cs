@@ -32,10 +32,6 @@ namespace WebApi
                     }
                     var context = services.GetRequiredService<ApplicationDbContext>();
                     Task.Run(() => DbInitializer.Seed(context)).Wait();
-                    var transactionService = services.GetRequiredService<ITransactionService>();
-                    RecurringJob.AddOrUpdate(
-                        () => transactionService.RunRecurringTransactions(),
-                        Cron.Daily(1));
                 }
                 catch (Exception ex)
                 {

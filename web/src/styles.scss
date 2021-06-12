@@ -177,3 +177,8 @@ body, html {
 .is-invalid {
   border-bottom: 1px solid $red !important;
 }
+
+
+.toast-container {
+  z-index: 10000000 !important;
+}

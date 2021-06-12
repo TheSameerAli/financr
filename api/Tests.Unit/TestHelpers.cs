@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.TestHost;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Newtonsoft.Json;
 using WebApi.Context;
+using WebApi.Models.Database;
 using WebApi.Models.Database.Account;
 using WebApi.Models.Domain;
 using WebApi.Services;
@@ -33,12 +34,12 @@ namespace Tests.Unit
             return user;
         }
 
-        public async Task<Account> CreateAccount(string name, AccountType type, Guid userId)
+        public async Task<Account> CreateAccount(string name, AccountType type, Guid userId, string currency = "GBP")
         {
             var account = new Account(name, type, userId);
             await _context.Accounts.AddAsync(account);
             await _context.SaveChangesAsync();
-            var preferences = new AccountPreferences("GBP", account.Id);
+            var preferences = new AccountPreferences(currency, account.Id);
             await _context.AccountPreferences.AddAsync(preferences);
             await _context.SaveChangesAsync();
             return account;
@@ -50,6 +51,14 @@ namespace Tests.Unit
             await _context.AccountCategories.AddAsync(accountCategory);
             await _context.SaveChangesAsync();
             return accountCategory;
+        }
+
+        public async Task<TransactionNote> CreateTransactionNote(string note, Guid transactionId)
+        {
+            var transactionNote = new TransactionNote(note, transactionId);
+            await _context.TransactionNotes.AddAsync(transactionNote);
+            await _context.SaveChangesAsync();
+            return transactionNote;
         }
         
         public T GetService<T>()

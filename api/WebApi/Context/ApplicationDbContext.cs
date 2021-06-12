@@ -11,6 +11,7 @@
         public DbSet<UserPreferences> UserPreferences { get; set; }
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<TransactionNote> TransactionNotes { get; set; }
         public DbSet<RecurringTransaction> RecurringTransactions { get; set; }
         public DbSet<RecurringTransactionsLog> RecurringTransactionsLogs { get; set; }
         public DbSet<AccountCategory> AccountCategories { get; set; }
@@ -80,6 +81,7 @@
             {
                 o.HasOne(a => a.Account);
                 o.HasOne(t => t.AccountCategory);
+                o.HasOne(t => t.TransactionNote);
             });
             #endregion
             
@@ -95,6 +97,13 @@
             modelBuilder.Entity<AccountPreferences>(o =>
             {
                 o.HasOne(rt => rt.Account);
+            });
+            #endregion
+            
+            #region TransactionNote
+            modelBuilder.Entity<TransactionNote>(o =>
+            {
+                o.HasOne(tn => tn.Transaction);
             });
             #endregion
         }

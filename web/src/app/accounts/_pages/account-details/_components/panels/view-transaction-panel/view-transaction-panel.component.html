@@ -37,5 +37,12 @@
         <div class="badge badge-primary">{{transaction.accountCategory.name}}</div>
       </div>
     </div>
+
+    <hr>
+
+    <div class="transaction-note-section">
+      <h4>Notes</h4>
+      <textarea (blur)="saveNote()" [(ngModel)]="transactionNote" [value]="transactionNote" placeholder="Add some notes here..." class="form-control" type="text"></textarea>
+    </div>
   </div>
 </div>

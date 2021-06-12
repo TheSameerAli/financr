@@ -16,6 +16,7 @@ namespace WebApi.Models.Database
         public Guid AccountCategoryId { get; set; }
         public virtual AccountCategory AccountCategory { get; set; }
         public virtual Account.Account Account { get; set; }
+        public virtual TransactionNote TransactionNote { get; set; }
         
 
         public Transaction(double amount, string description, DateTimeOffset transactionDate, Guid accountCategoryId, Guid accountId)

@@ -7,10 +7,16 @@ export class Transaction {
   accountCategoryId: string;
   accountCategory: AccountCategory;
   convertedAmount: number;
+  transactionNote: TransactionNote;
 }
 
 export interface AccountCategory {
   id: string;
   name: string;
   type: number;
+}
+
+
+export interface TransactionNote {
+  note: string;
 }

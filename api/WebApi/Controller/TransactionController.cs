@@ -31,7 +31,7 @@ namespace WebApi.Controller
         {
             if (dateMonth != DateTimeOffset.MinValue)
             {
-                return Ok(await _transactionService.GetAllByDate(accountId, dateMonth));
+                return Ok(await _transactionService.GetAllByMonth(accountId, dateMonth));
             }
             return Ok(await _transactionService.GetAll(accountId));
         }
@@ -58,6 +58,13 @@ namespace WebApi.Controller
             }
             return Ok(await _transactionService.Create(request.Amount, request.Description, request.TransactionDate,
                 request.AccountCategoryId, accountId));
+        }
+
+        [HttpPost("{accountId}/transaction/{transactionId}/note")]
+        public async Task<IActionResult> CreateOrUpdateTransactionNote([FromBody] UpdateTransactionNoteRequest request,
+            Guid accountId, Guid transactionId)
+        {
+            return Ok(await _transactionService.UpdateTransactionNote(request.Note, transactionId));
         }
 
         [HttpPut("{accountId}/transaction/{transactionId}/edit")]
