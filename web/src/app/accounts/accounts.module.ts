@@ -21,6 +21,7 @@ import { BalanceDisplayComponent } from './_pages/account-details/_components/da
 import { SpendingChartComponent } from './_pages/account-details/_components/data-components/spending-chart/spending-chart.component';
 import { CategoryManagementSectionComponent } from './_pages/account-details/account-details-settings-page/_components/category-management-section/category-management-section.component';
 import { PreferencesManagementSectionComponent } from './_pages/account-details/account-details-settings-page/_components/preferences-management-section/preferences-management-section.component';
+import { DangerZoneSectionComponent } from './_pages/account-details/account-details-settings-page/_components/danger-zone-section/danger-zone-section.component';
 
 
 
@@ -41,6 +42,7 @@ import { PreferencesManagementSectionComponent } from './_pages/account-details/
     SpendingChartComponent,
     CategoryManagementSectionComponent,
     PreferencesManagementSectionComponent,
+    DangerZoneSectionComponent,
   ],
   imports: [
     CommonModule,

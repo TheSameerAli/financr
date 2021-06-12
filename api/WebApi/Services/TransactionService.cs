@@ -80,6 +80,10 @@ namespace WebApi.Services
                 .ToListAsync();
             var account = await _accounts.Include(a => a.Preferences)
                 .Where(a => a.Id == accountId).FirstOrDefaultAsync();
+            if (account == null)
+            {
+                return new List<Transaction>();
+            }
             var userPreferences = await _userService.GetPreferences(account.UserId);
             var accountPreferences = account.Preferences;
             foreach (var transaction in transactions)

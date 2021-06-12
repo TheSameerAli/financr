@@ -96,4 +96,8 @@ export class AccountService {
   saveTransactionNote(note: string, accountId: string, transactionId: string) {
     return this.http.post<any>(`${ACCOUNT_API}/${accountId}/transaction/${transactionId}/note`, {note: note}, httpOptions);
   }
+
+  deleteAccount(accountId: string) {
+    return this.http.delete<boolean>(`${ACCOUNT_API}/${accountId}/delete`);
+  }
 }
