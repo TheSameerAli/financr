@@ -89,5 +89,11 @@ namespace WebApi.Controller
         {
             return Ok(await _accountService.Create(request.Name, request.Type, UserId, request.InitialAmount));
         }
+
+        [HttpDelete("{accountId}/delete")]
+        public async Task<IActionResult> DeleteAccount(Guid accountId)
+        {
+            return Ok(await _accountService.DeleteAccount(accountId));
+        }
     }
 }

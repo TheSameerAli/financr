@@ -1,0 +1,53 @@
+<div class="danger-zone-section pl-3">
+  <div class="section-heading">
+    Danger Zone
+  </div>
+
+  <div class="section-description">
+    This section of the account settings lets you <strong>permanently</strong> delete this account from your profile.
+    <p>Do you wish to proceed?</p>
+  </div>
+
+  <div class="section-button">
+    <button data-toggle="modal" data-target="#delete-account" class="btn btn-danger-button">Delete Account</button>
+  </div>
+</div>
+
+
+<div class="modal fade" id="delete-account" tabindex="-1" role="dialog" aria-labelledby="delete-accountLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="delete-accountLabel">Delete this account</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p> <strong>IMPORTANT: </strong> Please read before continuing. </p>
+        <p>Are you sure you want to delete this account. Deleting this account will <strong>permanently</strong> delete all the data related to this account.</p>
+        <p>This includes all the:</p>
+        <ul>
+          <li>Categories</li>
+          <li>Transactions</li>
+          <li>Account Preferences</li>
+        </ul>
+        <p>This action is <strong>irreversible</strong>.</p>
+
+        <p>If you wish to proceed, please enter the confirmation code <strong>{{confirmCode}}</strong> and click on delete.</p>
+
+        <form [formGroup]="deleteForm">
+          <div  class="form-group">
+
+            <input formControlName="code" class="form-control" placeholder="Confirmation Code" type="text">
+          </div>
+        </form>
+
+      </div>
+      <div class="modal-footer">
+        <button (click)="deleteAccount()" data-dismiss="modal" [disabled]="deleteForm.invalid" type="button" class="btn btn-danger-button">Delete</button>
+        <button type="button" class="btn btn-primary-button" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

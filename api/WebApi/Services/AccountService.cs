@@ -26,6 +26,7 @@ namespace WebApi.Services
         Task<AccountPreferences> ChangeCurrency(string currencyCode, Guid accountId);
         Task<AccountPreferences> GetAccountPreferences(Guid accountId);
         Task<AccountSpendingChart> GetSpendingChart(Guid accountId);
+        Task<bool> DeleteAccount(Guid accountId);
 
 
     }
@@ -118,6 +119,11 @@ namespace WebApi.Services
                 .Include(ac => ac.Budget)
                 .Include(ac => ac.Preferences)
                 .FirstOrDefaultAsync(a => a.Id == accountId);
+
+            if (account == null)
+            {
+                return null;    
+            }
             
             if (account.Preferences.Currency != userPreferences.Currency)
             {
@@ -208,6 +214,33 @@ namespace WebApi.Services
 
             return spendingChart;
 
+        }
+
+        public async Task<bool> DeleteAccount(Guid accountId)
+        {
+            var account = await _accounts.FirstOrDefaultAsync(a => a.Id == accountId);
+            if (account == null)
+            {
+                return false;
+            }
+            
+            // Delete account transactions
+            var transactions = await _transactions.Where(t => t.AccountId == accountId).ToListAsync();
+            _transactions.RemoveRange(transactions);
+            await _uow.SaveChangesAsync();
+
+            // Delete account categories
+            var categories = await _accountCategories.Where(ac => ac.AccountId == accountId).ToListAsync();
+            _accountCategories.RemoveRange(categories);
+            await _uow.SaveChangesAsync();
+            
+            
+            
+            // Delete the account
+            _accounts.Remove(account);
+            await _uow.SaveChangesAsync();
+            
+            return true;
         }
 
         private async Task<bool> AddDefaultCategories(Guid accountId)
