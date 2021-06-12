@@ -13,87 +13,91 @@
   <hr>
 
   <div [hidden]="isLoading" class="edit-transaction-form">
-    <div class="form-group">
-      <label for="">Date</label>
-      <input [value]="transactionDate" [id]="'datepicker-' + transactionId" [placeholder]="today | date: 'dd/MM/yyyy' " class="form-control shadow-none" type="text">
-    </div>
-    <div class="form-group">
-      <label for="">Description</label>
-      <input [(ngModel)]="description" [value]="description" placeholder="What was this transaction for?" class="form-control shadow-none" type="text">
-    </div>
-
-    <div class="balance-group-container pt-3">
-      <span class="input-title">Amount</span>
-      <div class="form-group balance-group">
-        <div class="input-container">
-          <input [(ngModel)]="amount" class="form-control balance shadow-none" placeholder="0.00" type="text">
-
-        </div>
+    <form *ngIf="editTransactionForm" [formGroup]="editTransactionForm">
+      <div class="form-group">
+        <label for="">Date</label>
+        <input [class.error]="transactionDate.invalid" formControlName="transactionDate"  [value]="transactionDate.value" [id]="'datepicker-' + transactionId" [placeholder]="today | date: 'dd/MM/yyyy' " class="form-control shadow-none" type="text">
+        <small>Date format: mm/dd/yyyy</small>
+      </div>
+      <div class="form-group">
+        <label for="">Description</label>
+        <input formControlName="description" placeholder="What was this transaction for?" class="form-control shadow-none" type="text">
       </div>
 
-      <div class="amount-type-selection">
-        <ul class="categories-selection">
-          <li [class.active]="selectedAmountType === 0" (click)="selectAmountType(0)">
-            Income
-            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-            x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
-            <g>
-              <path d="M504.502,75.496c-9.997-9.998-26.205-9.998-36.204,0L161.594,382.203L43.702,264.311c-9.997-9.998-26.205-9.997-36.204,0
-  c-9.998,9.997-9.998,26.205,0,36.203l135.994,135.992c9.994,9.997,26.214,9.99,36.204,0L504.502,111.7
-  C514.5,101.703,514.499,85.494,504.502,75.496z" />
-            </g>
-          </svg>
-          </li>
+      <div class="balance-group-container pt-3">
+        <span class="input-title">Amount</span>
+        <div class="form-group balance-group">
+          <div class="input-container">
+            <input formControlName="amount" class="form-control balance shadow-none" placeholder="0.00" type="text">
 
-          <li [class.active]="selectedAmountType === 1" (click)="selectAmountType(1)">
-            Expense
+          </div>
+        </div>
+
+        <div class="amount-type-selection">
+          <ul class="categories-selection">
+            <li [class.active]="selectedAmountType.value === 0" (click)="selectAmountType(0)">
+              Income
+              <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+              x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+              <g>
+                <path d="M504.502,75.496c-9.997-9.998-26.205-9.998-36.204,0L161.594,382.203L43.702,264.311c-9.997-9.998-26.205-9.997-36.204,0
+    c-9.998,9.997-9.998,26.205,0,36.203l135.994,135.992c9.994,9.997,26.214,9.99,36.204,0L504.502,111.7
+    C514.5,101.703,514.499,85.494,504.502,75.496z" />
+              </g>
+            </svg>
+            </li>
+
+            <li [class.active]="selectedAmountType.value === 1" (click)="selectAmountType(1)">
+              Expense
+              <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+              x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+              <g>
+                <path d="M504.502,75.496c-9.997-9.998-26.205-9.998-36.204,0L161.594,382.203L43.702,264.311c-9.997-9.998-26.205-9.997-36.204,0
+    c-9.998,9.997-9.998,26.205,0,36.203l135.994,135.992c9.994,9.997,26.214,9.99,36.204,0L504.502,111.7
+    C514.5,101.703,514.499,85.494,504.502,75.496z" />
+              </g>
+            </svg>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="form-group">
+        <label for="">Select a category for this transaction</label>
+        <ul class="categories-selection">
+          <ng-container *ngFor="let accountCategory of accountCategories">
+            <li *ngIf="accountCategory.type === selectedAmountType.value" (click)="selectCategory(accountCategory)" [class.active]="selectedCategory.value?.id === accountCategory.id"
+            [id]="accountCategory.id" >
+            {{accountCategory.name}}
+
             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-            x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
-            <g>
-              <path d="M504.502,75.496c-9.997-9.998-26.205-9.998-36.204,0L161.594,382.203L43.702,264.311c-9.997-9.998-26.205-9.997-36.204,0
-  c-9.998,9.997-9.998,26.205,0,36.203l135.994,135.992c9.994,9.997,26.214,9.99,36.204,0L504.502,111.7
-  C514.5,101.703,514.499,85.494,504.502,75.496z" />
-            </g>
-          </svg>
-          </li>
+              x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+              <g>
+                <path d="M504.502,75.496c-9.997-9.998-26.205-9.998-36.204,0L161.594,382.203L43.702,264.311c-9.997-9.998-26.205-9.997-36.204,0
+    c-9.998,9.997-9.998,26.205,0,36.203l135.994,135.992c9.994,9.997,26.214,9.99,36.204,0L504.502,111.7
+    C514.5,101.703,514.499,85.494,504.502,75.496z" />
+              </g>
+            </svg>
+            </li>
+          </ng-container>
+
+
         </ul>
       </div>
+      <div [class.d-flex]="isEditLoading" [class.justify-content-end]="isEditLoading" class="text-right">
+        <button (click)="editTransaction()" [class.d-flex]="isEditLoading" [class.justify-content-center]="isEditLoading" [disabled]="editTransactionForm.invalid || isEditLoading" id="create-button" class="btn btn-primary-button w-50 mt-3">
+          <ng-container *ngIf="!isEditLoading">Save</ng-container>
+          <ng-container *ngIf="isEditLoading">
+            <ng-lottie width="30px" height="30px" containerClass="loader-icon"
+              [options]="{path: '/assets/animations/lottie/loaders/333-loader-4.json'}"></ng-lottie>
+          </ng-container>
 
-    </div>
+        </button>
 
-    <div class="form-group">
-      <label for="">Select a category for this transaction</label>
-      <ul class="categories-selection">
-        <ng-container *ngFor="let accountCategory of accountCategories">
-          <li *ngIf="accountCategory.type === selectedAmountType" (click)="selectCategory(accountCategory)" [class.active]="selectedCategory?.id === accountCategory.id"
-          [id]="accountCategory.id" >
-          {{accountCategory.name}}
+      </div>
+    </form>
 
-          <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-            x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
-            <g>
-              <path d="M504.502,75.496c-9.997-9.998-26.205-9.998-36.204,0L161.594,382.203L43.702,264.311c-9.997-9.998-26.205-9.997-36.204,0
-  c-9.998,9.997-9.998,26.205,0,36.203l135.994,135.992c9.994,9.997,26.214,9.99,36.204,0L504.502,111.7
-  C514.5,101.703,514.499,85.494,504.502,75.496z" />
-            </g>
-          </svg>
-          </li>
-        </ng-container>
-
-
-      </ul>
-    </div>
-    <div [class.d-flex]="isEditLoading" [class.justify-content-end]="isEditLoading" class="text-right">
-      <button (click)="editTransaction()" [class.d-flex]="isEditLoading" [class.justify-content-center]="isEditLoading" [disabled]="isEditLoading" id="create-button" class="btn btn-primary-button w-50 mt-3">
-        <ng-container *ngIf="!isEditLoading">Save</ng-container>
-        <ng-container *ngIf="isEditLoading">
-          <ng-lottie width="30px" height="30px" containerClass="loader-icon"
-            [options]="{path: '/assets/animations/lottie/loaders/333-loader-4.json'}"></ng-lottie>
-        </ng-container>
-
-      </button>
-
-    </div>
   </div>
 
   <div *ngIf="isLoading" class="d-flex justify-content-center">

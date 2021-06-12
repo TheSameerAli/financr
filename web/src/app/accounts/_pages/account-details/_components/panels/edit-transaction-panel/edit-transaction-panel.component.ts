@@ -1,3 +1,4 @@
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { loadSpendingChartRequest } from './../../../../../store/action/account.actions';
 import { Transaction } from './../../../../../_models/transaction';
 import { refreshFinancialHealthRequest } from '../../../../../../shared/store/shared.actions';
@@ -24,25 +25,44 @@ export class EditTransactionPanelComponent implements OnInit, OnChanges, AfterVi
   public accountCategories: AccountCategory[];
   public isAccountCategoriesLoading: boolean = false;
 
-  public selectedCategory: AccountCategory;
   public today: Date = new Date();
   public isEditLoading: boolean = false;
-  public selectedAmountType: number = 0;
 
   public transaction: Transaction;
 
 
   public isLoading: boolean = false;
 
-
-  /// Form data below
-  public transactionDate: string;
-  public description: string = '';
-  public amount: number;
+  public editTransactionForm: FormGroup;
 
   picker;
 
-  constructor(private accountService: AccountService, private store: Store<AppState>) { }
+  get amount() {
+    return this.editTransactionForm.get('amount');
+  }
+
+  get description() {
+    return this.editTransactionForm.get('description');
+  }
+
+  get transactionDate() {
+    return this.editTransactionForm.get('transactionDate');
+  }
+
+  get selectedAmountType() {
+    return this.editTransactionForm.get('selectedAmountType');
+  }
+
+  get selectedCategory() {
+    return this.editTransactionForm.get('selectedCategory');
+  }
+
+  constructor(
+    private accountService: AccountService,
+    private store: Store<AppState>,
+    private formBuilder: FormBuilder) { }
+
+
 
   ngAfterViewInit(): void {
     this.picker = new Pikaday(
@@ -52,7 +72,9 @@ export class EditTransactionPanelComponent implements OnInit, OnChanges, AfterVi
         format: 'MM/DD/YYYY',
         onSelect: (ev: Date) => {
 
-          this.transactionDate = moment(ev).format('MM/DD/YYYY');
+          this.editTransactionForm.patchValue({
+            transactionDate: moment(ev).format('MM/DD/YYYY')
+          })
         }
       }
     );
@@ -60,33 +82,31 @@ export class EditTransactionPanelComponent implements OnInit, OnChanges, AfterVi
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    this.editTransactionForm = this.formBuilder.group({
+      amount: [0, [Validators.required, Validators.min(0.01)]],
+      description: ['', [Validators.required, Validators.minLength(2)]],
+      transactionDate: ['', [Validators.required, Validators.pattern('(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)[0-9]{2}')]],
+      selectedAmountType: ['', [Validators.required]],
+      selectedCategory: ['', [Validators.required]]
+    });
     this.isLoading = true;
     this.accountService.getAccountCategories(this.accountId).subscribe(data => {
       this.accountCategories = data;
     }, (err) => {
     })
     this.accountService.getTransaction(this.accountId, this.transactionId).subscribe(data => {
-      // Check income or expense
-      if (data.amount < 0) {
-        this.selectedAmountType = 1;
-        this.amount = data.amount * -1;
-      } else if (data.amount > 0) {
-        this.selectedAmountType = 0;
-        this.amount = data.amount;
-      }
-      // check the selected category
-      this.transactionDate = moment(data.transactionDate).format('MM/DD/YYYY');
-      this.picker.setDate(new Date(Date.parse(this.transactionDate)));
-      this.selectedCategory = data.accountCategory;
-      this.description = data.description;
       this.isLoading = false;
+      this.transaction = data;
+      this.initialiseForm();
     }, (err) => {
       this.isLoading = false;
     })
   }
 
   selectCategory(accountCategory: AccountCategory) {
-    this.selectedCategory = accountCategory;
+    this.editTransactionForm.patchValue({
+      selectedCategory: accountCategory
+    })
   }
 
   ngOnInit(): void {
@@ -94,8 +114,8 @@ export class EditTransactionPanelComponent implements OnInit, OnChanges, AfterVi
 
   editTransaction() {
     this.isEditLoading = true;
-    let transactionAmount = this.selectedAmountType === 1 ? this.amount * -1 : this.amount;
-    this.accountService.editTransaction(this.accountId, this.transactionId, transactionAmount, this.description, this.selectedCategory.id, new Date(Date.parse(this.transactionDate))).subscribe(data => {
+    let transactionAmount = this.selectedAmountType.value === 1 ?  this.amount.value * -1 : this.amount.value;
+    this.accountService.editTransaction(this.accountId, this.transactionId, transactionAmount, this.description.value, this.selectedCategory.value.id, new Date(Date.parse(this.transactionDate.value))).subscribe(data => {
       this.store.dispatch(loadCurrentlyViewingAccountTransactionsRequest({accountId: this.accountId}));
       this.store.dispatch(loadCurrentlyViewingAccountRequest({accountId: this.accountId}));
       this.store.dispatch(refreshFinancialHealthRequest());
@@ -108,16 +128,34 @@ export class EditTransactionPanelComponent implements OnInit, OnChanges, AfterVi
   }
 
   selectAmountType(type) {
-    this.selectedAmountType = type;
+    this.editTransactionForm.patchValue({
+      selectedAmountType: type
+    });
   }
 
   closeBox() {
-    this.selectedCategory = {id: '', name: '', type: 0};
-    this.selectedAmountType = 0;
-    this.amount;
-    this.description = '';
-    this.transactionDate;
     this.close.emit();
+  }
+
+  initialiseForm() {
+    let amount = 0;
+    let selectedAmountType = 0;
+    if (this.transaction.amount < 0) {
+      selectedAmountType = 1;
+      amount = this.transaction.amount * -1;
+    } else if (this.transaction.amount > 0) {
+      selectedAmountType = 0;
+      amount = this.transaction.amount;
+    }
+    let transactionDate = moment(this.transaction.transactionDate).format('MM/DD/YYYY');
+    this.picker.setDate(new Date(Date.parse(this.transactionDate.value)));
+    this.editTransactionForm = this.formBuilder.group({
+      amount: [amount, [Validators.required, Validators.min(0.01)]],
+      description: [this.transaction.description, [Validators.required, Validators.minLength(2)]],
+      transactionDate: [transactionDate, [Validators.required, Validators.pattern('(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)[0-9]{2}')]],
+      selectedAmountType: [selectedAmountType, [Validators.required]],
+      selectedCategory: [this.transaction.accountCategory, [Validators.required]]
+    });
   }
 
 }

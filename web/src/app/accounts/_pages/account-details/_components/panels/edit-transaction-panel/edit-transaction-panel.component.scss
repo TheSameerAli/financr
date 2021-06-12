@@ -1,5 +1,9 @@
 @import '../../../../../../styles/variables';
 
+.error {
+  border-bottom: 1px solid $red !important;
+}
+
 .edit-transaction-panel-container {
   background-color: white;
   padding: 2rem;
