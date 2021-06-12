@@ -34,6 +34,10 @@
 
 }
 
+.error {
+  border-bottom: 1px solid $red !important;
+}
+
 .add-transaction-container {
   .top-button {
     display: flex;

@@ -87,7 +87,6 @@ export class AddTransactionPanelComponent implements OnInit, OnChanges, AfterVie
     this.addTransactionForm.patchValue({
       selectedCategory: accountCategory
     });
-    console.log(this.addTransactionForm);
   }
 
 
@@ -123,7 +122,7 @@ export class AddTransactionPanelComponent implements OnInit, OnChanges, AfterVie
     this.addTransactionForm = this.formBuilder.group({
       amount: ['', [Validators.required, Validators.min(0.01)]],
       description: ['', [Validators.required, Validators.minLength(2)]],
-      transactionDate: [moment(new Date()).format('MM/DD/YYYY'), [Validators.required]],
+      transactionDate: [moment(new Date()).format('MM/DD/YYYY'), [Validators.required, Validators.pattern('(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)[0-9]{2}')]],
       selectedAmountType: [0, [Validators.required]],
       selectedCategory: [undefined, [Validators.required]]
     });

@@ -43,7 +43,7 @@ export class ViewTransactionPanelComponent implements OnInit, OnChanges {
       if (data.transactionNote === null) {
         this.transactionNote = '';
       } else {
-        this.transactionNote = data.transactionNote.note;
+        this.transactionNote = data?.transactionNote?.note;
 
       }
     }, (err) => {

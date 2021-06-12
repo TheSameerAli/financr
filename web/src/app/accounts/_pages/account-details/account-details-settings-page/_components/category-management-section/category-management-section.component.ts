@@ -65,7 +65,6 @@ export class CategoryManagementSectionComponent implements OnInit {
       this.accountService.createAccountCategory(name, type, this.accountId).subscribe(data => {
         this.getCategories();
       }, (err) => {
-        console.log('error creating a category');
       })
     }
 
@@ -78,7 +77,6 @@ export class CategoryManagementSectionComponent implements OnInit {
     this.accountService.editAccountCategory(name, categoryId, this.accountId).subscribe(data => {
       this.getCategories();
     }, (err) => {
-      console.log('error editing category');
     })
   }
 
@@ -104,7 +102,6 @@ export class CategoryManagementSectionComponent implements OnInit {
       this.getCategories();
     }, (err) => {
       this.selectedForDeleteId = '';
-      console.log('Unable to delete the selected category');
     })
   }
 

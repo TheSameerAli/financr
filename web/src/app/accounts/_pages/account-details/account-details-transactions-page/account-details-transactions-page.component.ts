@@ -51,7 +51,6 @@ export class AccountDetailsTransactionsPageComponent implements OnInit, AfterVie
   }
 
   openEditTransactionPanel(transactionId: string) {
-    console.log(transactionId);
     this.isEditTransactionPanelOpen = true;
     this.currentSelectedTransactionId = transactionId;
   }
