@@ -1,5 +1,17 @@
 @import '../../../../../../styles/variables';
 
+.converted-text {
+  font-size: 16px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  color: $primary;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  font-weight: 600;
+}
+
 .add-transaction-panel-container {
   background-color: white;
   padding: 2rem;
@@ -73,7 +85,7 @@
         color: $primary;
         border: none;
         font-size: 55px;
-        text-align: center;
+        text-align: left;
 
         &:focus{
           outline: none;

@@ -24,13 +24,28 @@
       </div>
 
       <div class="balance-group-container pt-3">
-        <span class="input-title">Amount<span class="red">*</span></span>
-        <div class="form-group balance-group">
-          <div class="input-container">
-            <input formControlName="amount" class="form-control balance shadow-none" placeholder="0.00" type="text">
+        <div class="amount-input">
+          <span class="input-title">Amount<span class="red">*</span></span>
+          <div class="form-group balance-group">
+            <div class="input-container">
+              <span class="currency-symbol">{{currencyState?.main?.symbolNative}}</span>
+              <input (keyup)="handleConversion()" formControlName="amount" class="form-control balance shadow-none" placeholder="0.00" type="text">
+              <div *ngIf="(currentlyViewingAccount$ | async)?.preferences?.currencyData?.code !== (userPreferences$ | async)?.currencyData?.code" class="switcher">
+                <button (click)="switchCurrencies()" class="btn btn-primary-button">
+                  <img style="height: 20px; width: 20px; -webkit-filter: invert(100%); filter: invert(100%);" src="/assets/icons/arrows.svg" alt="">
+
+                </button>
+              </div>
+            </div>
 
           </div>
+          <small
+          *ngIf="(currentlyViewingAccount$ | async)?.preferences?.currencyData?.code !== (userPreferences$ | async)?.currencyData?.code" class="pb-3 converted-text">
+          Converted to {{convertedAmount | currency: currencyState?.secondary?.code: currencyState?.secondary?.symbolNative}}
+        </small>
+
         </div>
+
 
         <div class="amount-type-selection">
           <ul class="categories-selection">
