@@ -15,4 +15,8 @@ export class CurrencyService {
   getAllCurrencies(): Observable<Currency[]> {
     return this.http.get<Currency[]>(`${CURRENCY_ENDPOINT}/list`);
   }
+
+  convert(pair: string, amount: string) {
+    return this.http.get<number>(`${CURRENCY_ENDPOINT}/convert?pair=${pair}&amount=${amount}`);
+  }
 }
