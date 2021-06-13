@@ -1,4 +1,3 @@
-import { EditTransactionPanelComponent } from './_pages/account-details/_components/panels/edit-transaction-panel/edit-transaction-panel.component';
 import { StoreModule } from '@ngrx/store';
 import { AddAccountStep2Component } from './_pages/add-account-page/steps/add-account-step2/add-account-step2.component';
 import { AddAccountStep1Component } from './_pages/add-account-page/steps/add-account-step1/add-account-step1.component';
@@ -35,7 +34,6 @@ import { DangerZoneSectionComponent } from './_pages/account-details/account-det
     AccountDetailsSettingsPageComponent,
     AccountDetailsContainerComponent,
     AddTransactionPanelComponent,
-    EditTransactionPanelComponent,
     ViewTransactionPanelComponent,
     TransactionsTableComponent,
     BalanceDisplayComponent,

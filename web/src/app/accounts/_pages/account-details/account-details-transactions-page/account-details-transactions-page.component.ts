@@ -14,8 +14,9 @@ export class AccountDetailsTransactionsPageComponent implements OnInit, AfterVie
 
   public singleTransactionBoxOpen: boolean = false;
   public addTransactionBoxOpen: boolean = false;
-  public isEditTransactionPanelOpen: boolean = false;
   public currentSelectedTransactionId: string = '';
+
+  public isEditing = false;
 
 
   constructor(private route: ActivatedRoute) { }
@@ -40,23 +41,32 @@ export class AccountDetailsTransactionsPageComponent implements OnInit, AfterVie
 
   closeSingleTransactionBox() {
     this.singleTransactionBoxOpen = false;
+    this.currentSelectedTransactionId = ''
+    this.isEditing = false;
   }
 
   closeAddTransactionBox() {
     this.addTransactionBoxOpen = false;
+    this.currentSelectedTransactionId = ''
+    this.isEditing = false;
   }
 
   openAddTransactionBox() {
+    this.isEditing = false;
     this.addTransactionBoxOpen = true;
+    this.currentSelectedTransactionId = '';
   }
 
   openEditTransactionPanel(transactionId: string) {
-    this.isEditTransactionPanelOpen = true;
+    this.addTransactionBoxOpen = true;
     this.currentSelectedTransactionId = transactionId;
+    this.isEditing = true;
   }
 
   closeEditTransactionPanel() {
-    this.isEditTransactionPanelOpen = false;
+    this.addTransactionBoxOpen = false;
+    this.isEditing = false;
+    this.currentSelectedTransactionId = '';
   }
 
 

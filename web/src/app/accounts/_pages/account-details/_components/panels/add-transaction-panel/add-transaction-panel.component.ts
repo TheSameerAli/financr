@@ -8,7 +8,7 @@ import { refreshFinancialHealthRequest } from './../../../../../../shared/store/
 import { loadCurrentlyViewingAccountTransactionsRequest, loadCurrentlyViewingAccountRequest, loadSpendingChartRequest } from './../../../../../store/action/account.actions';
 import { Store } from '@ngrx/store';
 import { AccountService } from './../../../../../_services/accounts.service';
-import { AccountCategory } from './../../../../../_models/transaction';
+import { AccountCategory, Transaction } from './../../../../../_models/transaction';
 import { Component, Input, OnInit, Output, EventEmitter, OnChanges, SimpleChanges, AfterViewInit } from '@angular/core';
 import { AppState } from 'src/app/app.state';
 import Pikaday from 'pikaday';
@@ -24,6 +24,8 @@ import { UserPreferences } from 'src/app/settings/_models/user-preferences';
 export class AddTransactionPanelComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() isOpen: boolean = false;
   @Input() accountId: string;
+  @Input('transactionId') transactionId: string;
+  @Input('isEdit') isEdit: boolean;
   @Output() close: EventEmitter<any> = new EventEmitter();
 
   public currentlyViewingAccount$: Observable<Account>;
@@ -37,6 +39,12 @@ export class AddTransactionPanelComponent implements OnInit, OnChanges, AfterVie
   public addTransactionForm: FormGroup;
 
   public convertedAmount: number = 0;
+
+  public transaction: Transaction;
+
+  public isLoading: boolean = false;
+  public isConversionLoading: boolean = false;
+  public picker;
 
   public currencyState: {
     main: Currency
@@ -75,7 +83,7 @@ export class AddTransactionPanelComponent implements OnInit, OnChanges, AfterVie
 
 
   ngAfterViewInit(): void {
-    var picker = new Pikaday(
+    this.picker = new Pikaday(
       {
         field: document.getElementById('datepicker'),
         trigger: document.getElementById('datepicker'),
@@ -88,7 +96,7 @@ export class AddTransactionPanelComponent implements OnInit, OnChanges, AfterVie
         }
       }
       );
-      picker.setDate(new Date());
+      this.picker.setDate(new Date());
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -110,6 +118,17 @@ export class AddTransactionPanelComponent implements OnInit, OnChanges, AfterVie
         }
       })
     })
+
+    if (this.isEdit) {
+      this.isLoading = true;
+      this.accountService.getTransaction(this.accountId, this.transactionId).subscribe(data => {
+        this.isLoading = false;
+        this.transaction = data;
+        this.initialiseForm();
+      }, (err) => {
+        this.isLoading = false;
+      })
+    }
   }
 
   switchCurrencies() {
@@ -126,6 +145,7 @@ export class AddTransactionPanelComponent implements OnInit, OnChanges, AfterVie
       selectedCategory: accountCategory
     });
   }
+
 
 
 
@@ -173,6 +193,46 @@ export class AddTransactionPanelComponent implements OnInit, OnChanges, AfterVie
 
   }
 
+  editTransaction() {
+    this.isCreateLoading = true;
+    let transactionAmount = this.selectedAmountType.value === 1 ?  this.amount.value * -1 : this.amount.value;
+    this.currentlyViewingAccount$.subscribe(currentAccount => {
+      this.userPreferences$.subscribe(uPreferences => {
+        if (this.currencyState.main.code !== currentAccount.preferences.currency) {
+          let pair = `${this.currencyState.main.code}_${this.currencyState.secondary.code}`;
+          this.currencyService.convert(pair, transactionAmount).subscribe(data => {
+            transactionAmount = data;
+            this.accountService.editTransaction(this.accountId, this.transactionId, transactionAmount, this.description.value, this.selectedCategory.value.id, new Date(Date.parse(this.transactionDate.value))).subscribe(data => {
+              this.store.dispatch(loadCurrentlyViewingAccountTransactionsRequest({accountId: this.accountId}));
+              this.store.dispatch(loadCurrentlyViewingAccountRequest({accountId: this.accountId}));
+              this.store.dispatch(refreshFinancialHealthRequest());
+              this.store.dispatch(loadSpendingChartRequest({accountId: this.accountId}));
+              this.isCreateLoading = false;
+              this.closeBox();
+              return;
+            }, (err) => {
+              this.isCreateLoading = false;
+            })
+          })
+
+        } else {
+          this.accountService.editTransaction(this.accountId, this.transactionId, transactionAmount, this.description.value, this.selectedCategory.value.id, new Date(Date.parse(this.transactionDate.value))).subscribe(data => {
+            this.store.dispatch(loadCurrentlyViewingAccountTransactionsRequest({accountId: this.accountId}));
+            this.store.dispatch(loadCurrentlyViewingAccountRequest({accountId: this.accountId}));
+            this.store.dispatch(refreshFinancialHealthRequest());
+            this.store.dispatch(loadSpendingChartRequest({accountId: this.accountId}));
+            this.isCreateLoading = false;
+            this.closeBox();
+            return;
+          }, (err) => {
+            this.isCreateLoading = false;
+          })
+        }
+      })
+
+    })
+  }
+
   selectAmountType(type) {
     this.addTransactionForm.patchValue({
       selectedAmountType: type
@@ -188,9 +248,13 @@ export class AddTransactionPanelComponent implements OnInit, OnChanges, AfterVie
           this.currentlyViewingAccount$.subscribe(currentAccount => {
             if (uPreferences.currencyData.code !== currentAccount.preferences.currencyData.code) {
               if (!this.amount.invalid) {
+                this.isConversionLoading = true;
                 let pair = `${this.currencyState.main.code}_${this.currencyState.secondary.code}`;
                 this.currencyService.convert(pair, this.amount.value).subscribe(data => {
                   this.convertedAmount = data;
+                  this.isConversionLoading = false;
+                }, (err) => {
+                  this.isConversionLoading = false;
                 })
               }
             }
@@ -202,6 +266,8 @@ export class AddTransactionPanelComponent implements OnInit, OnChanges, AfterVie
   }
 
   closeBox() {
+    this.isEdit = false;
+    this.transactionId = '';
     this.initialiseForm();
     this.close.emit();
   }
@@ -215,6 +281,47 @@ export class AddTransactionPanelComponent implements OnInit, OnChanges, AfterVie
       selectedCategory: [undefined, [Validators.required]]
     });
     this.convertedAmount = 0;
+
+    this.currentlyViewingAccount$.subscribe(currentAccount => {
+      this.userPreferences$.subscribe(uPreferences => {
+        this.currencyState = {
+          main: currentAccount.preferences.currencyData,
+          secondary: uPreferences.currencyData
+        }
+      })
+    })
+
+    if (this.isEdit && this.transaction) {
+      let amount = 0;
+      let selectedAmountType = 0;
+      if (this.transaction.amount < 0) {
+        selectedAmountType = 1;
+        amount = this.transaction.amount * -1;
+      } else if (this.transaction.amount > 0) {
+        selectedAmountType = 0;
+        amount = this.transaction.amount;
+      }
+      let transactionDate = moment(this.transaction.transactionDate).format('MM/DD/YYYY');
+      this.addTransactionForm = this.formBuilder.group({
+        amount: [amount, [Validators.required, Validators.min(0.01)]],
+        description: [this.transaction.description, [Validators.required, Validators.minLength(2)]],
+        transactionDate: [transactionDate, [Validators.required, Validators.pattern('(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)[0-9]{2}')]],
+        selectedAmountType: [selectedAmountType, [Validators.required]],
+        selectedCategory: [this.transaction.accountCategory, [Validators.required]]
+      });
+      this.picker.setDate(new Date(Date.parse(this.transactionDate.value)));
+      this.handleConversion(true);
+    }
   }
+
+  handleCreateOrEdit() {
+    if (this.isEdit) {
+      this.editTransaction();
+    } else {
+      this.createTransaction();
+    }
+  }
+
+
 
 }
