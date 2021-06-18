@@ -3,8 +3,26 @@
   <div class="transactions-page-container">
 
     <div class="main-content">
-
-      <app-transactions-table (openEdit)="openEditTransactionPanel($event)" (selection)="openSingleTransactionBox($event)" [accountId]="accountId"></app-transactions-table>
+      <div class="d-flex justify-content-end options pb-3">
+        <button data-toggle="modal" data-backdrop="static" data-target="#balance-transfer-modal" class="btn btn-secondary-button option-button">
+          <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+            x="0px" y="0px" viewBox="0 0 489.2 489.2" style="enable-background:new 0 0 489.2 489.2;"
+            xml:space="preserve">
+            <g>
+              <g>
+                <path d="M481.044,382.5c0-6.8-5.5-12.3-12.3-12.3h-418.7l73.6-73.6c4.8-4.8,4.8-12.5,0-17.3c-4.8-4.8-12.5-4.8-17.3,0l-94.5,94.5
+			c-4.8,4.8-4.8,12.5,0,17.3l94.5,94.5c2.4,2.4,5.5,3.6,8.7,3.6s6.3-1.2,8.7-3.6c4.8-4.8,4.8-12.5,0-17.3l-73.6-73.6h418.8
+			C475.544,394.7,481.044,389.3,481.044,382.5z" />
+                <path d="M477.444,98l-94.5-94.4c-4.8-4.8-12.5-4.8-17.3,0s-4.8,12.5,0,17.3l73.6,73.6h-418.8c-6.8,0-12.3,5.5-12.3,12.3
+			s5.5,12.3,12.3,12.3h418.8l-73.6,73.4c-4.8,4.8-4.8,12.5,0,17.3c2.4,2.4,5.5,3.6,8.7,3.6s6.3-1.2,8.7-3.6l94.5-94.5
+			C482.244,110.6,482.244,102.8,477.444,98z" />
+              </g>
+            </g>
+          </svg>
+        </button>
+      </div>
+      <app-transactions-table (openEdit)="openEditTransactionPanel($event)"
+        (selection)="openSingleTransactionBox($event)" [accountId]="accountId"></app-transactions-table>
     </div>
 
     <div class="right-sidebar">
@@ -28,15 +46,11 @@
 
 </app-account-details-container>
 
-<app-view-transaction-panel
-[isOpen]="singleTransactionBoxOpen"
-[transactionId]="currentSelectedTransactionId"
-[accountId]="accountId"
-(close)="closeSingleTransactionBox()"></app-view-transaction-panel>
+<app-view-transaction-panel [isOpen]="singleTransactionBoxOpen" [transactionId]="currentSelectedTransactionId"
+  [accountId]="accountId" (close)="closeSingleTransactionBox()"></app-view-transaction-panel>
 
-<app-add-transaction-panel
-[isEdit]="isEditing"
-[transactionId]="currentSelectedTransactionId"
-[accountId]="accountId"
-(close)="closeEditTransactionPanel()"
-[isOpen]="addTransactionBoxOpen"></app-add-transaction-panel>
+<app-add-transaction-panel [isEdit]="isEditing" [transactionId]="currentSelectedTransactionId" [accountId]="accountId"
+  (close)="closeEditTransactionPanel()" [isOpen]="addTransactionBoxOpen"></app-add-transaction-panel>
+
+
+<app-balance-transfer-modal [accountId]="accountId"></app-balance-transfer-modal>

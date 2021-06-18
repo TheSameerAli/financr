@@ -1,6 +1,10 @@
 @import '../../../../styles/variables';
 
 
+.option-button {
+  padding-right: 0px;
+}
+
 .transactions-page-container {
   display: grid;
   grid-template-columns: 3fr 1fr;
