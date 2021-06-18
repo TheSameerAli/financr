@@ -66,6 +66,12 @@ namespace WebApi.Controller
             return Ok(accountResp);
         }
 
+        [HttpPost("{accountId}/transfer")]
+        public async Task<IActionResult> Transfer([FromBody] AccountTransferRequest request, Guid accountId)
+        {
+            return Ok(await _accountService.Transfer(accountId, request.ToAccountId, request.Amount, UserId));
+        }
+
         [HttpGet("{accountId}/preferences")]
         public async Task<IActionResult> GetAccountPreferences(Guid accountId)
         {

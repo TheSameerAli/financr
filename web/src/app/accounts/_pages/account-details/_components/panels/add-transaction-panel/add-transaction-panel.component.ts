@@ -113,7 +113,7 @@ export class AddTransactionPanelComponent implements OnInit, OnChanges, AfterVie
     this.currentlyViewingAccount$.subscribe(currentAccount => {
       this.userPreferences$.subscribe(uPreferences => {
         this.currencyState = {
-          main: currentAccount.preferences.currencyData,
+          main: currentAccount?.preferences?.currencyData,
           secondary: uPreferences.currencyData
         }
       })
@@ -285,7 +285,7 @@ export class AddTransactionPanelComponent implements OnInit, OnChanges, AfterVie
     this.currentlyViewingAccount$.subscribe(currentAccount => {
       this.userPreferences$.subscribe(uPreferences => {
         this.currencyState = {
-          main: currentAccount.preferences.currencyData,
+          main: currentAccount?.preferences?.currencyData,
           secondary: uPreferences.currencyData
         }
       })

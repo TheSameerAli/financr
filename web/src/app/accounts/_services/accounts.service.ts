@@ -80,6 +80,10 @@ export class AccountService {
     }, httpOptions);
   }
 
+  transferBalance(fromId: string, toId: string, amount: number) {
+    return this.http.post<boolean>(`${ACCOUNT_API}/${fromId}/transfer`, {toAccountId: toId, amount: amount}, httpOptions);
+  }
+
   editTransaction(accountId: string, transactionId: string, amount: number, description: string, accountCategoryId: string, transactionDate: Date) {
     return this.http.put<Transaction>(`${ACCOUNT_API}/${accountId}/transaction/${transactionId}/edit`, {
       amount: amount,

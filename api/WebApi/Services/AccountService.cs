@@ -28,6 +28,8 @@ namespace WebApi.Services
         Task<AccountSpendingChart> GetSpendingChart(Guid accountId);
         Task<bool> DeleteAccount(Guid accountId);
 
+        Task<bool> Transfer(Guid fromAccountId, Guid toAccountId, double amount, Guid userId);
+
 
     }
     public class AccountService : IAccountService
@@ -240,6 +242,68 @@ namespace WebApi.Services
             _accounts.Remove(account);
             await _uow.SaveChangesAsync();
             
+            return true;
+        }
+
+        public async Task<bool> Transfer(Guid fromAccountId, Guid toAccountId, double amount, Guid userId)
+        {
+            if (amount <= 0)
+            {
+                throw new InvalidDataException("Amount should be greater than 0");
+            }
+            
+            var fromAccount = await GetAccount(fromAccountId, userId);
+            var toAccount = await GetAccount(toAccountId, userId);
+
+            if (fromAccount.Balance < amount)
+            {
+                throw new InvalidDataException("Insufficient money in account to transfer from.");
+            }
+
+            var amountToTransfer = amount;
+            if (fromAccount.Preferences.Currency != toAccount.Preferences.Currency)
+            {
+                var pair = $"{fromAccount.Preferences.Currency}_{toAccount.Preferences.Currency}";
+                amountToTransfer = await _currencyConversionService.Convert(pair, amountToTransfer);
+            }
+
+            var transferCategoryName = "Transfer";
+
+            // Create transaction in from account
+            var fromAccountCategory = await _accountCategories
+                .Where(ac => ac.AccountId == fromAccountId && ac.Name == transferCategoryName)
+                .Where(ac => ac.Type == AccountCategoryType.Expense)
+                .FirstOrDefaultAsync();
+            if (fromAccountCategory == null)
+            {
+                fromAccountCategory =
+                    new AccountCategory(transferCategoryName, AccountCategoryType.Expense, fromAccountId);
+                await _accountCategories.AddAsync(fromAccountCategory);
+            }
+            var fromDescription = $"Manual Transfer to {toAccount.Name}";
+            var fromTransaction = new Transaction(amount * -1, fromDescription, DateTimeOffset.Now, fromAccountCategory.Id,
+                fromAccountId);
+            await _transactions.AddAsync(fromTransaction);
+            await _uow.SaveChangesAsync();
+            
+            
+            // Create transaction in to account
+            var toAccountCategory = await _accountCategories
+                .Where(ac => ac.AccountId == fromAccountId && ac.Name == transferCategoryName)
+                .Where(ac => ac.Type == AccountCategoryType.Income)
+                .FirstOrDefaultAsync();
+            if (toAccountCategory == null)
+            {
+                toAccountCategory =
+                    new AccountCategory(transferCategoryName, AccountCategoryType.Income, toAccountId);
+                await _accountCategories.AddAsync(toAccountCategory);
+            }
+            var toDescription = $"Manual Transfer from {fromAccount.Name}";
+            var toTransaction = new Transaction(amountToTransfer, toDescription, DateTimeOffset.Now, toAccountCategory.Id,
+                toAccountId);
+            await _transactions.AddAsync(toTransaction);
+            await _uow.SaveChangesAsync();
+
             return true;
         }
 

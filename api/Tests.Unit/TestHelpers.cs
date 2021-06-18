@@ -45,6 +45,15 @@ namespace Tests.Unit
             return account;
         }
 
+        public async Task<Transaction> CreateTransaction(double amount, string description, Guid accountCategoryId,
+            Guid accountId)
+        {
+            var transaction = new Transaction(amount, description, DateTimeOffset.Now, accountCategoryId, accountId);
+            await _context.Transactions.AddAsync(transaction);
+            await _context.SaveChangesAsync();
+            return transaction;
+        }
+
         public async Task<AccountCategory> CreateAccountCategory(string name, AccountCategoryType type, Guid accountId)
         {
             var accountCategory = new AccountCategory(name, type, accountId);

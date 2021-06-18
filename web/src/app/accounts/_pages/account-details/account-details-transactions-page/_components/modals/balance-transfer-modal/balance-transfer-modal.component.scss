@@ -1,0 +1,62 @@
+@import '../../../../../../../styles/variables';
+
+.loading {
+  h2 {
+    color: $primary;
+    font-weight: 600;
+  }
+}
+
+.amount-input.error {
+  .currency-symbol {
+    color: $red !important;
+  }
+
+  input {
+    color: $red !important;
+  }
+}
+
+.balance-group-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  .balance-group {
+    padding-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    input {
+      display: flex;
+      color: $primary;
+      border: none;
+      font-size: 55px;
+      text-align: left;
+
+      &:focus{
+        outline: none;
+      }
+
+      &::placeholder {
+        color: rgba($primary, 0.3);
+      }
+
+    }
+
+    .currency-symbol {
+      font-size: 55px;
+      color: $primary;
+      justify-content: center;
+      align-items: flex-end;
+      display: flex;
+      // width: 100%;
+
+    }
+
+    .input-container {
+      display: inherit;
+      align-items: center;
+    }
+  }
+}
