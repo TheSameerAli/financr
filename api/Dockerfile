@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/core/sdk:5.0 AS build
+FROM mcr.microsoft.com/dotnet/core/sdk:5.0-buster AS build
 WORKDIR /app
 
 COPY ./WebApi/ ./financr-api/
@@ -8,7 +8,7 @@ RUN dotnet restore
 RUN dotnet publish -c Release -o out
 
 
-FROM mcr.microsoft.com/dotnet/core/aspnet:5.0 AS runtime
+FROM mcr.microsoft.com/dotnet/core/aspnet:5.0-buster-slim AS runtime
 WORKDIR /app
 COPY --from=build /app/financr-api/out ./
 ENTRYPOINT ["dotnet", "WebApi.dll"]
