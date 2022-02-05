@@ -52,7 +52,7 @@ namespace WebApi.Controller
         [HttpPost("{accountId}/transaction/create")]
         public async Task<IActionResult> CreateTransaction([FromBody] CreateTransactionRequest request, Guid accountId)
         {
-            if (request.TransactionDate > DateTimeOffset.Now)
+            if (request.TransactionDate > DateTimeOffset.Now.AddDays(7)) // Allow transactions to be created for a week in advanced
             {
                 throw new InvalidDataException("Transaction can not be in the future");
             }
