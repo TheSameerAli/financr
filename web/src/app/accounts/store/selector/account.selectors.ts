@@ -40,8 +40,13 @@ export const currentlyViewingAccountTransactionsSelector = createSelector(
   selectAccountsState,
   (state: fromAccount.AccountState) => {
     let transactions = state[0].currentlyViewingAccount.transactions;
-    let sortedTransactions = arrayReverseObj(Object.assign([], _.groupBy(transactions, (tr) => moment(tr.transactionDate).format('MM/DD/YYYY'))));
-    return sortedTransactions;
+    //.format('MM/DD/YYYY')
+    let sortedTransactions = arrayReverseObj(Object.assign([], _.groupBy(transactions, (tr) => moment(tr.transactionDate))));
+    let orderedTransactions = sortedTransactions.sort((a, b) => b.date - a.date).map(data => {
+      data['date'] = moment(data['date']).format('MM/DD/YYYY');
+      return data;
+    });
+    return orderedTransactions;
   }
 )
 
