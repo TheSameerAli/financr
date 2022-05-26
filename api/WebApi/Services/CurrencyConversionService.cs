@@ -55,15 +55,21 @@ namespace WebApi.Services
 
         private async Task<double> RequestPairValue(string pair)
         {
-            // Call the api to retrieve pair value
-            var client = new HttpClient();
-            var apiKey = _configuration["CurrencyConverter:API_KEY"];
-            var apiCall = await client.GetAsync(
-                $"https://free.currconv.com/api/v7/convert?q={pair}&compact=ultra&apiKey={apiKey}"); 
-            var jsonObj = await apiCall.Content.ReadAsStringAsync(); 
-            var value = JsonConvert.DeserializeObject<IDictionary<string, double>>(jsonObj);
-            await AddPairValue(pair, value.Values.FirstOrDefault());
-            return value.Values.FirstOrDefault();        
+            try {
+                // Call the api to retrieve pair value
+                var client = new HttpClient();
+                var apiKey = _configuration["CurrencyConverter:API_KEY"];
+                var apiCall = await client.GetAsync(
+                    $"https://free.currconv.com/api/v7/convert?q={pair}&compact=ultra&apiKey={apiKey}"); 
+                var jsonObj = await apiCall.Content.ReadAsStringAsync(); 
+                var value = JsonConvert.DeserializeObject<IDictionary<string, double>>(jsonObj);
+                await AddPairValue(pair, value.Values.FirstOrDefault());
+                return value.Values.FirstOrDefault();     
+            }
+            catch (Exception e) {
+                return 0;
+            }
+               
         }
     }
 }
